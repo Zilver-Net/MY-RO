@@ -100,3 +100,38 @@ quest_exp_rate: 1000
 
 // EXP cost for cast PR_REDEMPTIO (Note 2)
 exp_cost_redemptio: 0
+
+//--------------------------------------------------------------
+// feature.conf
+
+// Buying store (Note 1)
+// Requires: 2010-04-27aRagexeRE or later
+feature.buying_store: off
+
+// Search stores (Note 1)
+// Requires: 2010-08-03aRagexeRE or later
+feature.search_stores: off
+
+// Battlegrounds queue interface. Makes it possible to queue for a battleground anywhere using the battle menu.
+// Requires: 2012-04-10aRagexe or later
+feature.bgqueue: off
+
+// Roulette (Note 1)
+// Requires: 2014-10-22bRagexe or later
+feature.roulette: off
+
+// Attendance System (Note 1)
+// Requires: 2018-03-07bRagexeRE or later
+feature.attendance: off
+
+// Private Airship System (Note 1)
+// Requires: 2018-03-21aRagexeRE or later
+feature.privateairship: off
+
+// Barter Shop System (Note 1)
+// Requires: 2019-01-16RagexeRE or later
+feature.barter: off
+
+// Extended Barter Shop System (Note 1)
+// Requires: 2019-11-06RagexeRE or later
+feature.barter_extended: off
