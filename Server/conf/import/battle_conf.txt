@@ -135,3 +135,17 @@ feature.barter: off
 // Extended Barter Shop System (Note 1)
 // Requires: 2019-11-06RagexeRE or later
 feature.barter_extended: off
+
+//--------------------------------------------------------------
+// homunc.conf
+
+// The rate a homunculus will get friendly by feeding it. (Note 2)
+homunculus_friendly_rate: 1000
+
+// Can you name a homunculus more then once? (Note 1)
+hom_rename: no
+
+// The rate at which homunculus gain experience from kills. (Note 2)
+// Only applies to renewal mode.
+// Official: 10%
+homunculus_exp_gain: 100
