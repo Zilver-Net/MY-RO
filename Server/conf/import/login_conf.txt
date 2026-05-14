@@ -5,7 +5,7 @@ new_account: yes
 // If new_account is enabled, changes the minimum length for the account name.
 // By default is set to '4' or '6' (depending on the new login UI).
 // Don't change it unless your client uses the 'Remove 4/6 letter User Name limit' diff patch.
-acc_name_min_length: 
+acc_name_min_length: 4
 
 // If new_account is enabled, changes the minimum length for the password.
 // By default is set to '4' or '6' (depending on the new login UI).
@@ -15,3 +15,7 @@ password_min_length: 4
 // Enable web authentication token system
 // This is required for new clients that get data via an additional API over HTTP
 use_web_auth_token: no
+
+// User count colorization on login window (requires PACKETVER >= 20170726)
+// Disable colorization and description in general?
+usercount_disable: yes
