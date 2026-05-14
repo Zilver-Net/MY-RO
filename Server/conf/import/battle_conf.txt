@@ -79,3 +79,24 @@ drops_by_luk: 10
 // 333 = show announces for 3.33% or lower drop chance items
 // 10000 = show announces for all items
 rare_drop_announce: 150
+
+//--------------------------------------------------------------
+// exp.conf
+
+// Rate at which exp. is given. (Note 2)
+base_exp_rate: 1000
+
+// Rate at which job exp. is given. (Note 2)
+job_exp_rate: 1000
+
+// Turn this on to allow a player to level up more than once from a kill. (Note 1)
+multi_level_up: yes
+
+// MVP bonus exp rate. (Note 2)
+mvp_exp_rate: 1000
+
+// Rate of base/job exp given by NPCs. (Note 2)
+quest_exp_rate: 1000
+
+// EXP cost for cast PR_REDEMPTIO (Note 2)
+exp_cost_redemptio: 0
