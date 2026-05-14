@@ -170,3 +170,47 @@ boss_spawn_delay: 10
 
 // Zeny from mobs
 zeny_from_mobs: yes
+
+//--------------------------------------------------------------
+// party.conf
+
+// Give additional experience bonus per party-member involved on even-share parties (excluding yourself)?
+// ex. If set to 10, an even-share party of 5 people will receive +40% exp (4 members * 10% exp):
+//     140% party experience in total, so each member receives 140%/5 = 28% exp (instead of 20%).
+party_even_share_bonus: 25
+
+//--------------------------------------------------------------
+// pet.conf
+
+// Rate for catching pets (Note 2)
+pet_catch_rate: 1000
+
+// The rate a pet will get friendly by feeding it. (Note 2)
+pet_friendly_rate: 1000
+
+// When the master attacks a monster, whether or not the pet will also attack. (Note 1)
+pet_attack_support: yes
+
+// When the master receives damage from the monster, whether or not the pet attacks back. (Note 1)
+pet_damage_support: yes
+
+// Whether or not the pet's will use skills. (Note 1)
+// Note: Offensive pet skills need at least pet_attack_support or 
+// pet_damage_support to work (they trigger while the pet is attacking).
+pet_status_support: yes
+
+// Rate at which a pet will support it's owner in battle. (Note 2)
+// Affects pet_attack_support & pet_damage_support.
+pet_support_rate: 10000
+
+// Does the pets owner receive exp from the pets damage?
+pet_attack_exp_to_master: yes
+
+// The rate exp. is gained from the pet attacking monsters
+pet_attack_exp_rate: 100
+
+// When pet leveling is enabled, these are the imposed caps on
+// min/max damage. Note that these only cap atk1 and atk2, if you 
+// enable pet_str, their max damage is then their base_atk + pet_max_atk2
+pet_max_atk1: 1000
+pet_max_atk2: 2000
