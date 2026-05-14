@@ -43,3 +43,8 @@ char_moves_unlimited: yes
 start_point: morocc,158,92
 start_point_pre: morocc,158,92
 start_point_doram: morocc,158,92
+
+// Default map if character is in not-existing map when loaded.
+default_map: morocc
+default_map_x: 158
+default_map_y: 92
