@@ -229,3 +229,18 @@ max_extended_aspd: 194
 
 // Max ASPD for Summoner Class (Doram). (Default 193, Highest allowed 199)
 max_summoner_aspd: 194
+
+//--------------------------------------------------------------
+// skill.conf
+
+// Delay time after casting (Note 2)
+delay_rate: 10
+
+// Max Level Difference for Devotion
+devotion_level_difference: 100
+
+// For RENEWAL_CAST (Note 2)
+// By default skill that has '-1' value for Fixed Casting Time will use 20% of cast time
+// as Fixed Casting Time, and the rest (80%) as Variable Casting Time.
+// Put it 0 to disable default Fixed Casting Time (just like 0 in the skill_db.yml).
+default_fixed_castrate: 0
