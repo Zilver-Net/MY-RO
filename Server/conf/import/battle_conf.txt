@@ -149,3 +149,24 @@ hom_rename: no
 // Only applies to renewal mode.
 // Official: 10%
 homunculus_exp_gain: 100
+
+//--------------------------------------------------------------
+// misc.conf
+
+// Choose if server begin with night (yes) or day (no)
+night_at_start: yes
+
+//--------------------------------------------------------------
+// monster.conf
+
+// Rate of monsters on a map, 200 would be twice as many as normal. (Note 2)
+mob_count_rate: 250
+
+// Respawn rate of monsters on a map. 50 would make mobs respawn twice as fast (half delay time) (Note 2)
+//Note: This does not affects mobs with immediate respawn (most normal mobs)
+mob_spawn_delay: 50
+plant_spawn_delay: 50
+boss_spawn_delay: 10
+
+// Zeny from mobs
+zeny_from_mobs: yes
