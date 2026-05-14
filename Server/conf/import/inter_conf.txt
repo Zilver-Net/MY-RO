@@ -1,0 +1,23 @@
+login_server_id: ragnarok1
+login_server_pw: ragnarok1
+login_server_db: my-ro_main
+
+ipban_db_id: ragnarok1
+ipban_db_pw: ragnarok1
+ipban_db_db: my-ro_main
+
+char_server_id: ragnarok1
+char_server_pw: ragnarok1
+char_server_db: my-ro_main
+
+map_server_id: ragnarok1
+map_server_pw: ragnarok1
+map_server_db: my-ro_main
+
+web_server_id: ragnarok1
+web_server_pw: ragnarok1
+web_server_db: my-ro_web
+
+log_db_id: ragnarok1
+log_db_pw: ragnarok1
+log_db_db: my-ro_log

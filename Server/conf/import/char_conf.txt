@@ -1,0 +1,4 @@
+userid: ragnarok1
+passwd: ragnarok1
+
+server_name: MY-RO
