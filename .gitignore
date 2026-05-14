@@ -38,6 +38,7 @@
 *.exe
 *.out
 *.app
+/Server/bin/
 /Server/db/save/
 
 # Build directories
