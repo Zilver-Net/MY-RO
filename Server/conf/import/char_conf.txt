@@ -34,3 +34,12 @@ pincode_enabled: no
 
 // Allow users to move characters as often as they like?
 char_moves_unlimited: yes
+
+// Starting point for new characters
+// Format: <map_name>,<x>,<y>{:<map_name>,<x>,<y>...}
+// Max number of start points is MAX_STARTPOINT in char.hpp (default 5)
+// Location is randomly picked on character creation.
+// NOTE: For Doram, this requires client 20151001 or newer.
+start_point: morocc,158,92
+start_point_pre: morocc,158,92
+start_point_doram: morocc,158,92
