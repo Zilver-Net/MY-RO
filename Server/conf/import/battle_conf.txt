@@ -1,0 +1,22 @@
+//--------------------------------------------------------------
+// rAthena Battle Configuration File
+// Originally Translated by Peter Kieser <pfak@telus.net>
+// Made in to plainer English by Ancyker
+//--------------------------------------------------------------
+// Note 1: Value is a config switch (on/off, yes/no or 1/0)
+// Note 2: Value is in percents (100 means 100%)
+// Note 3: Value is a bit field. If no description is given,
+//         assume unit types (1: Pc, 2: Mob, 4: Pet, 8: Homun, 16: Mercenary, 128: NPC, 512: Elemental)
+//--------------------------------------------------------------
+
+// Type of penalty that is applied to FLEE when more than agi_penalty_count monsters are targetting player
+// 0 = no penalty is applied
+// 1 = agi_penalty_num is reduced from FLEE as a %
+// 2 = agi_penalty_num is reduced from FLEE as an exact amount
+agi_penalty_type: 0
+
+// Type of penalty that is applied to both equipment and vit DEF when more than vit_penalty_count monsters are targetting player
+// 0 = no penalty is applied
+// 1 = vit_penalty_num is reduced from DEF as a %
+// 2 = vit_penalty_num is reduced from DEF as an exact amount
+vit_penalty_type: 0
