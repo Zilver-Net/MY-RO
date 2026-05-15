@@ -51,7 +51,7 @@
 					else setriding;
 			} else if (!checkmadogear() && getskilllv("NC_MADOLICENCE")) setmadogear;
 				else {
-					dispbottom "คุณไม่มีสกิล",0xFF0000;
+					dispbottom "คุณไม่มีสกิลค่ะ",0xFF0000;
 					cutin "",255;
 					end;
 				}
