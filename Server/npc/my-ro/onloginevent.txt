@@ -14,6 +14,8 @@
 //= เพิ่มการตรวจสอบว่าผู้เล่นได้รับไอเทมช่วยเหลือสำหรับผู้เริ่มต้นหรือไม่ และให้ไอเทมเหล่านั้นแก่ผู้เล่นหากยังไม่ได้รับ
 //= V. 1.4
 //= ปรับปรุงโค้ดให้รองรับการแสดงผลเป็นจำนวนเท่าตัว แทนการแสดงผลเป็นเปอร์เซ็นต์ของอัตราการได้รับ EXP, Job EXP และ Monster Rate โดยใช้ฟังก์ชันในการแปลงค่าตัวเลขเป็นรูปแบบที่อ่านง่าย
+//= V. 1.5
+//= เพิ่มโค้ดและประกาศสำหรับการแสดงอัตราการได้รับ Item Drop Rate, MVP Drop Rate, Card Drop Rate และ MVP Card Drop Rate ในขณะที่ผู้เล่นเข้าสู่เกม
 //===============================Script==============================\\
 
 -	script	checkonlogin	-1,{
@@ -22,12 +24,18 @@
 		.@exprate = getBattleFlag("base_exp_rate")/100;
 		.@jobrate = getBattleFlag("job_exp_rate")/100;
 		.@mobrate = getBattleFlag("mob_count_rate")/100;
+		.@mobdroprate = getBattleFlag("item_rate_common")/100;
+		.@MVPdroprate = getBattleFlag("item_rate_common_mvp")/100;
+		.@carddroprate = getBattleFlag("item_rate_card")/100;
+		.@MVPcarddroprate = getBattleFlag("item_rate_card_mvp")/100;
+
 		announce ""+strcharinfo(0)+" ได้เข้าสู่เกมส์",0x0033FF;
 		if(getusers(1) < 16){
 			setbattleflag "mob_count_rate",getBattleFlag("mob_count_rate")+20,true;
 		}	
-		announce "[EXP Rate : x"+callfunc("F_InsertComma",.@exprate)+" | Job EXP Rate : x"+callfunc("F_InsertComma",.@jobrate)+" | Monster Rate : x"+callfunc("F_InsertComma",.@mobrate)+" ]",bc_yellow|bc_self;
-		
+		announce "[EXP: x"+callfunc("F_InsertComma",.@exprate)+" | Job EXP: x"+callfunc("F_InsertComma",.@jobrate)+" | Monster: x"+callfunc("F_InsertComma",.@mobrate)+" ]",bc_yellow|bc_self;
+		announce "[Item Drop: x"+callfunc("F_InsertComma",.@mobdroprate)+" | MVP Drop: x"+callfunc("F_InsertComma",.@MVPdroprate)+" | Card Drop: x"+callfunc("F_InsertComma",.@carddroprate)+" | MVP Card Drop: x"+callfunc("F_InsertComma",.@MVPcarddroprate)+" ]",bc_yellow|bc_self;
+
 		if(noviceassistget == 1) { end; } 
 			else {
 				getitem2 13041,1,1,20,0,0,0,0,0; // +20 Novice Main Gauche
