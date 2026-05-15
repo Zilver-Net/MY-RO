@@ -1,0 +1,30 @@
+function	script	angpaw	{
+	set .@rand,rand(10001);
+	
+	if( .@rand <= 10 ) { 
+		set .@angpawzeny,rand(10000000,100000000); 
+	} else if ( .@rand >= 11 && .@rand <= 100 ) { 
+		set .@angpawzeny,rand(1000000,10000000); 
+	} else if ( .@rand >= 101 && .@rand <= 500 ) { 
+		set .@angpawzeny,rand(100000,1000000); 
+	} else if ( .@rand >= 501 && .@rand <= 1000 ) { 
+		set .@angpawzeny,rand(10000,100000); 
+	} else if ( .@rand >= 1001 && .@rand <= 10000 ) { 
+		set .@angpawzeny,rand(1000,10000); 
+	}
+		
+	set zeny,zeny+=.@angpawzeny;
+
+	if ( .@rand <= 200 ) { 
+		set .@randaddangpaw,rand(1,4);
+		getitem 33004,.@randaddangpaw;
+		dispbottom "ท่านได้รับซองอั่งเปาเพิ่ม "+.@randaddangpaw+" ซอง";
+	}
+	
+	if(.@angpawzeny>=1000000){
+		announce ""+strcharinfo(0)+" ได้รับเงินจากซองอั่งเปา "+callfunc("F_InsertComma",(.@angpawzeny))+" zeny.",0xFF99FF; 
+		end;
+	} else 
+	dispbottom "ท่านรับเงินจากซองอั่งเปา "+callfunc("F_InsertComma",(.@angpawzeny))+" zeny.";
+	end;
+}
