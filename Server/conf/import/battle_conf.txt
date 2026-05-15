@@ -43,13 +43,13 @@ item_rate_use_boss: 1000
 item_rate_use_mvp: 1000
 
 // The rate at which equipment is dropped.
-item_rate_equip: 1000
-item_rate_equip_boss: 1000
-item_rate_equip_mvp: 1000
+item_rate_equip: 3000
+item_rate_equip_boss: 3000
+item_rate_equip_mvp: 3000
 
 // The rate at which cards are dropped
-item_rate_card: 1000
-item_rate_card_boss: 1000
+item_rate_card: 2000
+item_rate_card_boss: 2000
 item_rate_card_mvp: 1000
 
 // The rate adjustment for the MVP items that the MVP gets directly in their inventory
