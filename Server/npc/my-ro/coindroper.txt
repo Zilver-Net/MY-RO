@@ -1,0 +1,234 @@
+-	script	DropExtraTreasure	-1,{
+			
+	OnNPCKillEvent:
+		if (!playerattached())
+			end;
+		getunitdata killedgid, .@v;
+		.@x = .@v[UMOB_X];
+		.@y = .@v[UMOB_Y];
+		.@z = .@v[UMOB_CLASS];
+		.@map$ = strcharinfo(3);
+		
+		.@droprate = 10000;
+		.@dropcoin = 671;										// Gold Coin
+		//.@dropblessing = 6635;									// Blacksmith Blessing
+		//.@dropToken = 7621;										// Token Of Siegfried
+		//.@dropAngpaw = 33004;									// Angpaw
+		//.@dropTicket = 6673;									// Bossnia Ticket
+		//.@drophp = 33003;										// Dried Fish
+		//setarray .@dropBox[0],33005,33006,33007,33008;			// Costume Box
+		//setarray .@dropelu[0],985,7619,6224;					// Elunium, Enriched Elunium, Bradium
+		//setarray .@dropori[0],984,7620,6223;					// Oridecon, Enriched Oridecon, Carnium
+		//setarray .@dropsoul[0],6814,6815,6816,6817,6818,6819;	// Soul
+		//.@dropvoucher = 7617;									// Monster Voucher
+		//.@dropvouchermvp = 7615;								// MVP Voucher
+		
+		if( getmonsterinfo( killedrid,MOB_MVPEXP ) ){ // MVP Check
+			for (set @i,0; @i < rand(7,10); set @i,@i+1) {
+				//makeitem .@dropvouchermvp,rand(1,5),.@map$,.@x,.@y;
+				makeitem .@dropcoin,rand(1,23),.@map$,rand(.@x-2,.@x+2),rand(.@y-2,.@y+2);
+				//makeitem .@drophp,rand(1,18),.@map$,rand(.@x-2,.@x+2),rand(.@y-2,.@y+2);
+			}
+			/*if( rand(.@droprate) < 5000 ) {
+				makeitem .@dropori[rand(3)],rand(1,7),.@map$,.@x,.@y;
+			}
+			if( rand(.@droprate) < 5000 ) {
+				makeitem .@dropori[rand(3)],rand(1,7),.@map$,.@x,.@y;
+			}
+			if( rand(.@droprate) < 5000 ) {
+				makeitem .@dropsoul[rand(6)],rand(1,7),.@map$,.@x,.@y;
+			}
+			if( rand(.@droprate) < 2500 ) {
+				makeitem .@dropblessing,rand(1,21),.@map$,.@x,.@y;
+			}
+			if( rand(.@droprate) < 1000 ) {
+				makeitem .@dropsoul[rand(6)],rand(1,7),.@map$,.@x,.@y;
+			}
+			if( rand(.@droprate) < 500 ) {
+				makeitem .@dropAngpaw,rand(1,10),.@map$,.@x,.@y;
+			}
+			if( rand(.@droprate) < 500 ) {
+				makeitem .@dropToken,rand(1,3),.@map$,.@x,.@y;
+			}
+			if( rand(.@droprate) < 100 ) {
+				makeitem .@dropTicket,rand(1,3),.@map$,.@x,.@y;
+			}*/
+			end;
+		}
+		if( getmonsterinfo( killedrid,MOB_MODE ) == 102773397 || getmonsterinfo( killedrid,MOB_MODE ) == 102774421 ){ // Mini-Boss Check
+			for (set @i,0; @i < rand(7,10); set @i,@i+1) {
+				makeitem .@dropcoin,rand(1,13),.@map$,rand(.@x-1,.@x+1),rand(.@y-1,.@y+1);
+				//makeitem .@drophp,rand(1,8),.@map$,rand(.@x-1,.@x+1),rand(.@y-1,.@y+1);
+			}
+		}
+		if( rand(.@droprate) < 1150 ) {
+			makeitem .@dropcoin,rand(1,6),.@map$,.@x,.@y;
+		}
+		/*if( rand(.@droprate) < 2000 ) {
+			makeitem .@dropvoucher,rand(1,6),.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 1900 ) {
+			makeitem .@drophp,rand(1,3),.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 100 ) {
+			makeitem .@dropblessing,rand(1,3),.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 50 ) {
+			makeitem .@dropori[rand(3)],rand(1,3),.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 50 ) {
+			makeitem .@dropelu[rand(3)],rand(1,3),.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 30 ) {
+			makeitem .@dropsoul[rand(6)],rand(1,4),.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 10 ) {
+			makeitem .@dropAngpaw,rand(1,5),.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 30 ) {
+			makeitem .@dropToken,1,.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 20 ) {
+			makeitem .@dropBox[rand(4)],1,.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 10 ) {
+			makeitem .@dropTicket,1,.@map$,.@x,.@y;
+		}*/
+	end;
+}
+//=============================== Old code =========================================
+/*		if (!playerattached())
+			end;
+		.@mob_id = killedrid;
+		getunitdata killedgid, .@v;
+		.@x = .@v[UMOB_X];
+		.@y = .@v[UMOB_Y];
+		.@map$ = strcharinfo(3);
+		
+		.@droprate = 5000;
+		.@dropcoin = 33999;									// Gold Coin
+		.@dropblessing = 6635;								// Blacksmith Blessing
+		setarray .@dropelu[0],985,7619,6224;				// Elunium, Enriched Elunium, Bradium
+		setarray .@dropori[0],984,7620,6223;				// Oridecon, Enriched Oridecon, Carnium
+		.@dropToken = 7621;									// Token Of Siegfried
+		.@dropAngpaw = 33004;								// Angpaw
+		setarray .@drophp[0],33001,33002,33003;				// Big Bun, Pill, Dried Fish
+		setarray .@dropBox[0],33005,33006,33007,33008;		// Costume Box
+		.@dropvoucher = 7617;								// Monster Voucher
+		.@dropvouchermvp = 7615;							// MVP Voucher
+	
+		if( getmonsterinfo( killedrid,22 ) ){
+			makeitem .@dropvouchermvp,rand(1,5),.@map$,.@x,.@y;
+			makeitem .@dropcoin,rand(1,23),.@map$,.@x,.@y;
+			makeitem .@drophp,rand(1,18),.@map$,.@x,.@y;
+			if( rand(.@droprate) < 500 ) {
+				makeitem .@dropori[rand(3)],rand(1,7),.@map$,.@x,.@y;
+			}
+			if( rand(.@droprate) < 500 ) {
+				makeitem .@dropelu[rand(3)],rand(1,7),.@map$,.@x,.@y;
+			}
+			if( rand(.@droprate) < 250 ) {
+				makeitem .@dropblessing,rand(1,21),.@map$,.@x,.@y;
+			}
+			if( rand(.@droprate) < 50 ) {
+				makeitem .@dropAngpaw,rand(1,5),.@map$,.@x,.@y;
+			}
+			end;
+		} else
+		
+		if( rand(.@droprate) < 250 ) {
+			makeitem .@dropcoin,rand(1,3),.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 250 ) {
+			makeitem .@dropvoucher,rand(1,6),.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 250 ) {
+			makeitem .@drophp,rand(1,3),.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 2 ) {
+			makeitem .@dropBox[rand(4)],1,.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 10 ) {
+			makeitem .@dropToken,1,.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 100 ) {
+			makeitem .@dropblessing,rand(1,3),.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 50 ) {
+			makeitem .@dropori[rand(3)],rand(1,3),.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 50 ) {
+			makeitem .@dropelu[rand(3)],rand(1,3),.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 10 ) {
+			makeitem .@dropAngpaw,rand(1,5),.@map$,.@x,.@y;
+		}
+		end;
+*/
+//=============================== Aonther code =========================================
+/*
+		getunitdata(killedgid,.@info);
+		if((.@info[UMOB_MODE]&MD_MVP)){ // MVP
+			makeitem(33999,1,mapid2name(.@info[UMOB_MAPID]),.@info[UMOB_X],.@info[UMOB_Y]);
+		}
+		if((.@info[UMOB_MODE]&0x6200000)){ // Mini Boss
+			makeitem(33999,1,mapid2name(.@info[UMOB_MAPID]),.@info[UMOB_X],.@info[UMOB_Y]);
+		}
+		end;
+*/
+//=============================== Aonther code =========================================
+/*
+if (!playerattached())
+		end;
+	.@mob_id = killedrid;
+	.@size = getd(".size_" + .@mob_id);
+	if (.@size < 1)
+		end;
+	getunitdata killedgid, .@v;
+	.@x = .@v[UMOB_X];
+	.@y = .@v[UMOB_Y];
+	.@map$ = strcharinfo(3);
+
+	for (.@i = 0; .@i < .@size; .@i++) {
+		.@chance = getd(".chance_" + .@mob_id + "[" + .@i + "]");
+		if (rand(10000) < .@chance) {
+			.@id = getd(".item_id_" + .@mob_id + "[" + .@i + "]");
+			.@amt = getd(".item_amount_" + .@mob_id + "[" + .@i + "]");
+			while (.@amt > 0) {
+				makeitem .@id, 1, .@map$, .@x, .@y;
+				.@amt--;
+			}
+		}
+	}
+	end;
+	
+function add_drop {
+	.@arg_count = getargcount();
+	if (.@arg_count % 4)
+		return;
+
+	for (.@i = 0; .@i < .@arg_count; .@i += 4) {
+		.@mob_id = getarg(.@i);
+		.@size = getd(".size_" + .@mob_id);
+		setd ".item_id_" + .@mob_id + "[" + .@size + "]", getarg(.@i+1);	// <item_id>
+		setd ".item_amount_" + .@mob_id + "[" + .@size + "]", getarg(.@i+2);	// <item_amount>
+		setd ".chance_" + .@mob_id + "[" + .@size + "]", getarg(.@i+3);	// <chance>
+		setd ".size_" + .@mob_id, .@size + 1;
+	}
+	return;
+}
+
+OnInit:
+	// <mob_id>, <item_id>, <item_amount>, <chance>
+	// Chance ========================
+	// 10000 	= 100%
+	// 1000		= 10%
+	// 100		= 1%
+	// 99		= 0.99%
+	// 50		= 0.50%
+	// 1		= 0.01%
+	// ===============================
+	add_drop( 1002, 607, 2, 10000 );	// poring will drop 2 ygg berries on the floor with 100% chance
+	add_drop( 1002, 608, 3, 10000 ); // poring will drop 3 ygg seeds on the floor with 100% chance
+	end;
+*/
