@@ -1,0 +1,56 @@
+// Created by: ZilverNet
+//========Update Detail========
+//= V. 1.0
+//= สคริปสำหรับผู้เล่นใหม่ที่เพิ่งเข้ามาในเซอเวอร์
+//= ให้ไอเทมเริ่มต้น และพาไปยังแมพ Morocc
+//= V. 1.1
+//= แก้ไขไอเทมเริ่มต้นให้เหมาะสมกับเซอเวอร์
+//= เพิ่มการลบไอเทมที่ไม่จำเป็นออกจากตัวละคร
+// ==============================Script==============================\\
+
+iz_int,56,11,0	script	intro_to_morocc	WARPNPC,2,2,{
+	end;
+OnTouch:
+	if (select("~ อยู่ต่อ", "~ ไป Morocc") == 1) {
+			end;
+	}
+	callfunc "getstartitem";
+}
+
+-	script	levelcheck	-1,{
+OnPCBaseLvUpEvent:
+	if(DoIntro == 1) { 
+		end; 
+	} else if(readparam(BaseLevel) >= 12){
+		cutin "malaya_nurseb",2;
+		mes "^000080[ Healer ]^000000";
+		mes "ท่านได้เก็บ Level มาพอสมควรแล้ว";
+		mes "ถึงเวลาออกผจญภัย !";
+		close2;
+		callfunc "getstartitem";
+		} else
+	end;
+}
+
+function	script	getstartitem	{
+	DoIntro = 1;
+	//getitem 11567,300; // Novice Potion
+	getitem 12323,100; // Novice Wing
+	delitem 13041,1;
+	delitem 2112,1;
+	delitem 5055,1;
+	delitem 2393,1;
+	delitem 2414,1;
+	delitem 2510,1;
+	.@map$ = "morocc";
+	savepoint .@map$,158,92,2,2;
+	warp .@map$,158,90;
+	cutin "",255;
+	end;
+}
+
+iz_int,0,0	monster	Bomb Poring	1904,1,500000
+iz_int,0,0	monster	Poporing	1031,2,100000
+iz_int,0,0	monster	Poring	1002,3,100000
+iz_int,0,0	monster	Santa Poring	1062,2,100000
+iz_int,0,0	monster	Drops	1113,3,100000

@@ -40,9 +40,9 @@ char_moves_unlimited: yes
 // Max number of start points is MAX_STARTPOINT in char.hpp (default 5)
 // Location is randomly picked on character creation.
 // NOTE: For Doram, this requires client 20151001 or newer.
-start_point: morocc,158,92
-start_point_pre: morocc,158,92
-start_point_doram: morocc,158,92
+start_point: iz_int,18,26
+start_point_pre: iz_int,18,26
+start_point_doram: iz_int,18,26
 
 // Default map if character is in not-existing map when loaded.
 default_map: morocc
