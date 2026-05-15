@@ -1,15 +1,22 @@
+//Create By ZilverNet
+//========Update Detail========
+//= V. 1.0
+//= สคริปสุ่มเงินจากซองอั่งเปา
+//= สุ่มเงินจากซองอั่งเปา 1,000 - 100,000,000 zeny
+//= มีโอกาสได้รับซองอั่งเปาเพิ่ม 1-4 ซอง
+//==============================Script==============================\\
 function	script	angpaw	{
-	set .@rand,rand(10001);
+	set .@rand,rand(10001);								// ตั้งค่าเปอร์เซ็นต์การสุ่มโอกาส ตั้งแต่ 0.01 ถึง 100.01% 
 	
-	if( .@rand <= 10 ) { 
+	if( .@rand <= 10 ) { 								// โอกาส 0.10% ที่จะได้รับเงินตั้งแต่ 10,000,000 ถึง 100,000,000 zeny
 		set .@angpawzeny,rand(10000000,100000000); 
-	} else if ( .@rand >= 11 && .@rand <= 100 ) { 
+	} else if ( .@rand >= 11 && .@rand <= 100 ) { 		// โอกาส 1.00% ที่จะได้รับเงินตั้งแต่ 1,000,000 ถึง 10,000,000 zeny
 		set .@angpawzeny,rand(1000000,10000000); 
-	} else if ( .@rand >= 101 && .@rand <= 500 ) { 
+	} else if ( .@rand >= 101 && .@rand <= 500 ) { 		// โอกาส 5.00% ที่จะได้รับเงินตั้งแต่ 100,000 ถึง 1,000,000 zeny
 		set .@angpawzeny,rand(100000,1000000); 
-	} else if ( .@rand >= 501 && .@rand <= 1000 ) { 
+	} else if ( .@rand >= 501 && .@rand <= 1000 ) { 	// โอกาส 10.00% ที่จะได้รับเงินตั้งแต่ 10,000 ถึง 100,000 zeny
 		set .@angpawzeny,rand(10000,100000); 
-	} else if ( .@rand >= 1001 && .@rand <= 10000 ) { 
+	} else if ( .@rand >= 1001 && .@rand <= 10000 ) { 	// โอกาส 90.00% ที่จะได้รับเงินตั้งแต่ 1,000 ถึง 10,000 zeny
 		set .@angpawzeny,rand(1000,10000); 
 	}
 		
@@ -25,6 +32,6 @@ function	script	angpaw	{
 		announce ""+strcharinfo(0)+" ได้รับเงินจากซองอั่งเปา "+callfunc("F_InsertComma",(.@angpawzeny))+" zeny.",0xFF99FF; 
 		end;
 	} else 
-	dispbottom "ท่านรับเงินจากซองอั่งเปา "+callfunc("F_InsertComma",(.@angpawzeny))+" zeny.";
+	dispbottom "ท่านได้รับเงินจากซองอั่งเปา "+callfunc("F_InsertComma",(.@angpawzeny))+" zeny.";
 	end;
 }
