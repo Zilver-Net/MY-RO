@@ -45,11 +45,11 @@ menu	"Last Warp ^777777["+lastwarp$+"]^000000",-,
 		"~ PVP [^777777"+getmapusers("guild_vs3")+"^000000 คน]",pvp,
     	"~ Special Areas",Special;
 
-	if (lastwarp$ == "")
+	if (lastwarp$ == "") {
 		message strcharinfo(0),"คุณยังไม่ได้วาร์ปที่ไหนเลย!";
 		cutin "",255;
 		end;
-	else
+	} else
 	if (lastwarp$ == "bossnia_01") {
 		if(countitem(6673)<1){
 			message strcharinfo(0),"ต้องใช้ "+getitemname(6673)+" จำนวน 1 ea ในการเข้า";
