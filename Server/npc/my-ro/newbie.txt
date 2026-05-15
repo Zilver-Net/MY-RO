@@ -10,26 +10,26 @@
 
 iz_int,56,11,0	script	intro_to_morocc	WARPNPC,2,2,{
 	end;
-OnTouch:
-	if (select("~ อยู่ต่อ", "~ ไป Morocc") == 1) {
-			end;
-	}
-	callfunc "getstartitem";
+	OnTouch:
+		if (select("~ อยู่ต่อ", "~ ไป Morocc") == 1) {
+				end;
+		}
+		callfunc "getstartitem";
 }
 
 -	script	levelcheck	-1,{
-OnPCBaseLvUpEvent:
-	if(DoIntro == 1) { 
-		end; 
-	} else if(readparam(BaseLevel) >= 12){
-		cutin "malaya_nurseb",2;
-		mes "^000080[ Healer ]^000000";
-		mes "ท่านได้เก็บ Level มาพอสมควรแล้ว";
-		mes "ถึงเวลาออกผจญภัย !";
-		close2;
-		callfunc "getstartitem";
-		} else
-	end;
+	OnPCBaseLvUpEvent:
+		if(DoIntro == 1) { 
+			end; 
+		} else if(readparam(BaseLevel) >= 12){
+			cutin "malaya_nurseb",2;
+			mes "^000080[ Healer ]^000000";
+			mes "ท่านได้เก็บ Level มาพอสมควรแล้ว";
+			mes "ถึงเวลาออกผจญภัย !";
+			close2;
+			callfunc "getstartitem";
+			} else
+		end;
 }
 
 function	script	getstartitem	{
