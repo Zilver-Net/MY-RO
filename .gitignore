@@ -40,6 +40,9 @@
 *.app
 /Server/bin/
 /Server/db/save/
+/UI/
+/Tools/
+/Client/
 
 # Build directories
 build/
