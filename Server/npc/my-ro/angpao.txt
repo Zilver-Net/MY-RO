@@ -18,13 +18,13 @@ function	script	angpaw	{
 	if ( .@rand <= 200 ) { 
 		set .@randaddangpaw,rand(1,4);
 		getitem 33004,.@randaddangpaw;
-		dispbottom "ท่านได้รับซองอั่งเปาเพิ่ม "+.@randaddangpaw+" ซอง";
+		dispbottom "��ҹ���Ѻ�ͧ��������� "+.@randaddangpaw+" �ͧ";
 	}
 	
 	if(.@angpawzeny>=1000000){
-		announce ""+strcharinfo(0)+" ได้รับเงินจากซองอั่งเปา "+callfunc("F_InsertComma",(.@angpawzeny))+" zeny.",0xFF99FF; 
+		announce ""+strcharinfo(0)+" ���Ѻ�Թ�ҡ�ͧ����� "+callfunc("F_InsertComma",(.@angpawzeny))+" zeny.",0xFF99FF; 
 		end;
 	} else 
-	dispbottom "ท่านรับเงินจากซองอั่งเปา "+callfunc("F_InsertComma",(.@angpawzeny))+" zeny.";
+	dispbottom "��ҹ�Ѻ�Թ�ҡ�ͧ����� "+callfunc("F_InsertComma",(.@angpawzeny))+" zeny.";
 	end;
 }

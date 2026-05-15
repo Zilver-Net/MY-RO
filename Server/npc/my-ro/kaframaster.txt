@@ -1,0 +1,234 @@
+//Create By ZilverNet
+//
+//========Update Detail========
+//= V. 1.0
+//= รวมสิ้นทุกสิ่งอย่าง เซฟ ฝากของ รีเซทสเตตัส
+//= ใช้งานแบบฟังชั่น แยกเป็นส่วน ๆ เพื่อให้ง่ายต่อการแก้ไข
+//= V. 2.0
+//= จัดรูปแบบสคริปใหม่ทั้งหมดให้กระชับมากขึ้น
+//= ตัดส่วนข้อความออกเหลือแค่ menu
+//= ตัด option เหลือแค่เซฟ เปิดคลัง 
+//= V. 2.1
+//= แก้ getmapxy ให้เข้ากับตัวเซอเวอร์
+//= เพิ่มเช่านก / รถเข็น
+//= V. 2.2
+//= เพิ่มระบบถอดการ์ด  / รีเซท  / เพิ่มความจุน้ำหนัก / แปลงเพศ /  เปลื่ยนชื่อ 
+//==============================Script==============================\\
+
+-	script	Kafra_master	-1,{
+	cutin "kafra_09",2;
+	switch(select("~ Save:~ เปิดคลัง:~ เช่านก / รถเข็น ฯ:~ ถอดการ์ด:~ รีเซท:~ เพิ่มความจุน้ำหนัก:~ แปลงเพศ:~ เปลื่ยนชื่อ:~ ตรวจสอบจำนวนผู้เล่น:~ Reset Quest Instant")) {
+		case 1:
+			getmapxy(@mapname$,.@x,.@y,BL_PC);
+			message strcharinfo(0),"บันทึกจุดเซฟเรียบร้อยค่ะ";
+			save @mapname$,.@x,.@y,2,2;
+			cutin "",255;
+			end;
+
+		case 2:
+			openstorage;
+			cutin "",255;
+			end;
+
+		case 3:
+			callfunc	"rentride";
+			cutin "",255;
+			end;
+
+		case 4:
+			disable_items;
+			message strcharinfo(0),"โปรดเลือกอุปกรณ์ที่ต้องการ";
+			setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
+			for(.@i = 1; .@i<=10; ++.@i) {
+				if (getequipisequiped(.@indices[.@i])) {
+					.@menu$ = .@menu$ + F_getpositionname(.@indices[.@i]) + "-[" + getequipname(.@indices[.@i]) + "]";
+					.@equipped = 1;
+				}
+				.@menu$ = .@menu$ + ":";
+			}
+			.@part = .@indices[ select(.@menu$) ];
+				switch(select("- ยืนยัน:- ยกเลิก")) {
+					case 1:
+						successremovecards .@part;
+						message strcharinfo(0),"ดำเนินการเรียบร้อยค่ะ";
+						cutin "",255;
+						end;
+					case 2:
+						cutin "",255;
+						end;
+				}
+
+		case 5:
+			//set .@prizeresetstat,BaseLevel*1000;
+			//set .@prizeresetsskill,JobLevel*1000;
+			message strcharinfo(0),"กรุณาเลือกการรีเซทที่ต้องการค่ะ";
+			switch(select("~ Status:~ Skill")) {
+				case 1:
+					/*if (zeny < .@prizeresetstat) {
+						dispbottom "คุณมีเงินไม่พอ",0xFF0000;
+						cutin "",255;
+						end;
+					} else
+						set zeny,zeny-=.@prizeresetstat;*/
+						resetstatus;
+						message strcharinfo(0),"ดำเนินการเรียบร้อยค่ะ";
+						cutin "",255;
+						end;
+				case 2:
+					/*if (zeny < .@prizeresetsskill) {
+						dispbottom "คุณมีเงินไม่พอ",0xFF0000;
+						cutin "",255;
+						end;
+					} else
+						set zeny,zeny-=.@prizeresetsskill;*/
+						resetskill; 						
+						message strcharinfo(0),"ดำเนินการเรียบร้อยค่ะ";
+						cutin "",255;
+						end;
+			}
+
+		case 6:
+			switch(select("~ ตกลง:~ ไม่ล่ะ")) {
+				case 1:
+					if (gympassmemory < 10) {
+						set .@add_carry,gympassmemory + 1;
+						set .@remain_carry,10 - .@add_carry;
+						if (countitem(7776) > 0) {
+							specialeffect2 EF_EARTHSPIKE;
+							sleep2 300;
+							specialeffect2 EF_DEVIL;
+							sleep2 300;
+							specialeffect2 EF_COIN;
+							sleep2 300;
+							specialeffect2 EF_SIGHTRASHER;
+							message strcharinfo(0),"ดำเนินการเรียบร้อยค่ะ";
+							delitem 7776,1; //Max_Weight_Up_Scroll
+							set gympassmemory,.@add_carry;
+							skill "ALL_INCCARRY",.@add_carry,SKILL_PERM_GRANT;
+							cutin "",255;
+							end;
+						} 
+						else {
+							message strcharinfo(0),"ท่านไม่มี Gym Pass ค่ะ";
+							cutin "",255;
+							end;
+						} 
+					}
+					else {
+						message strcharinfo(0),"ท่านถึงขีดจำกัดแล้วค่ะ";
+						cutin "",255;
+						end;
+					}
+				case 2:
+					cutin "",255;
+					end;
+			}
+
+		case 7:
+			switch(select("~ ชาย:~ หญิง")){
+				case 1:
+					query_sql("UPDATE `char` SET `sex` = 'M' WHERE `char`.`char_id` = '"+getcharid(0)+"'");
+					message strcharinfo(0),"ดำเนินการเรียบร้อยค่ะ";
+					atcommand strcharinfo(0);
+					cutin "",255;
+					end;
+				case 2:
+					query_sql("UPDATE `char` SET `sex` = 'F' WHERE `char`.`char_id` = '"+getcharid(0)+"'");
+					message strcharinfo(0),"ดำเนินการเรียบร้อยค่ะ";
+					atcommand strcharinfo(0);
+					cutin "",255;
+					end;
+			}
+
+		case 8:
+			message strcharinfo(0),"กรุณาใส่ชื่อที่ต้องการค่ะ";
+			input .@namech$;
+			if(.@namech$ == " ") goto failed;
+			query_sql("UPDATE `char` SET `name` = '"+.@namech$+"' WHERE `char`.`char_id` = '"+getcharid(0)+"'");
+			message strcharinfo(0),"ดำเนินการเรียบร้อยค่ะ";
+			cutin "",255;
+			end;
+			failed:
+				message strcharinfo(0),"ท่านใส่ชื่อไม่ถูกต้องค่ะ";
+			cutin "",255;
+			end;
+		case 9:
+			message strcharinfo(0),"จำนวนผู้เล่นปัจจุบัน "+getusers(1)+" คน";
+			cutin "",255;
+			end;
+		case 10:
+			switch(select("~ Devil Tower:~ 100 Tower")){
+				case 1:
+					if (isbegin_quest(7568)) erasequest 7568;// Explore the tower
+					if (isbegin_quest(7569)) erasequest 7569;// Treat the injured
+					if (isbegin_quest(7570)) erasequest 7570;// Destroy the demons
+					if (isbegin_quest(7571)) erasequest 7571;// Tower Expedition
+					if (isbegin_quest(7572)) erasequest 7572;// Lucile...?
+					if (isbegin_quest(7573)) erasequest 7573;// Magic Swordman Thanatos
+					if (isbegin_quest(7574)) erasequest 7574;// Thanatos Tower
+					if (isbegin_quest(7576)) erasequest 7576;// Morocc castle seal
+					if (isbegin_quest(7577)) erasequest 7577;// Space distortion
+					message strcharinfo(0),"ทำการรีเซทดันเจี้ยน Devil Tower เรียบร้อยค่ะ";
+					cutin "",255;
+					end;
+				case 2:
+					if (isbegin_quest(60200) == 0) { 
+						message strcharinfo(0),"ท่านยังไม่ได้เริ่มดันเจี้ยน 100 ชั้นค่ะ";
+						cutin "",255;
+						end;
+					} else
+						set etower_timer,0;
+						erasequest 60200;
+						erasequest 60201;
+						set party_instance_id,0;
+						message strcharinfo(0),"ทำการรีเซทดันเจี้ยน 100 ชั้นเรียบร้อยค่ะ";
+						cutin "",255;
+						end;
+			}
+	}
+}
+
+alb2trea,55,70,6	duplicate(Kafra_master)	Kafra#tre	861
+alberta,26,240,4	duplicate(Kafra_master)	Kafra#alb	861
+aldebaran,142,118,4	duplicate(Kafra_master)	Kafra#alde	861
+amatsu,201,87,4	duplicate(Kafra_master)	Kafra#ama	861
+ayothaya,207,169,6	duplicate(Kafra_master)	Kafra#ayo	861
+comodo,192,158,4	duplicate(Kafra_master)	Kafra#com	861
+einbech,57,38,6	duplicate(Kafra_master)	Kafra#einbe	861
+einbroch,67,202,4	duplicate(Kafra_master)	Kafra#einbr	861
+gef_fild10,69,339,4	duplicate(Kafra_master)	Kafra#orc	861
+geffen,122,72,4	duplicate(Kafra_master)	Kafra#gef	861
+glast_01,370,308,4	duplicate(Kafra_master)	Kafra#glh	861
+gonryun,160,122,4	duplicate(Kafra_master)	Kafra#gon	861
+hugel,99,151,4	duplicate(Kafra_master)	Kafra#hug	861
+izlu2dun,109,92,4	duplicate(Kafra_master)	Kafra#izd	861
+izlude,132,150,4	duplicate(Kafra_master)	Kafra#izl	861	//Pre-RE: (132,120)
+jawaii,251,138,4	duplicate(Kafra_master)	Kafra#jaw	861
+lighthalzen,160,102,4	duplicate(Kafra_master)	Kafra#lhz	861
+louyang,206,103,6	duplicate(Kafra_master)	Kafra#lou	861
+manuk,272,146,6	duplicate(Kafra_master)	Kafra#man	861
+mid_camp,214,288,4	duplicate(Kafra_master)	Kafra#mid	861
+mjolnir_02,83,364,4	duplicate(Kafra_master)	Kafra#mjo	861
+moc_ruins,62,164,4	duplicate(Kafra_master)	Kafra#moc	861
+morocc,156,97,4	duplicate(Kafra_master)	Kafra#mor	861
+moscovia,227,191,4	duplicate(Kafra_master)	Kafra#mos	861
+nameless_n,257,213,4	duplicate(Kafra_master)	Kafra#nam	861
+niflheim,203,179,4	duplicate(Kafra_master)	Kafra#nif	861
+pay_arche,40,134,4	duplicate(Kafra_master)	Kafra#arc	861
+payon,180,108,4	duplicate(Kafra_master)	Kafra#pay	861
+prontera,157,192,4	duplicate(Kafra_master)	Kafra#prt	861
+prt_fild05,277,223,6	duplicate(Kafra_master)	Kafra#cul	861
+rachel,133,116,4	duplicate(Kafra_master)	Kafra#rac	861
+splendide,203,153,4	duplicate(Kafra_master)	Kafra#spl	861
+thor_camp,247,76,4	duplicate(Kafra_master)	Kafra#thor	861
+umbala,104,150,3	duplicate(Kafra_master)	Kafra#umb	861
+veins,212,123,4	duplicate(Kafra_master)	Kafra#ve	861
+xmas,148,136,6	duplicate(Kafra_master)	Kafra#xmas	861
+yuno,160,47,4	duplicate(Kafra_master)	Kafra#yuno	861
+
+// --------------------------------------------------
+//	Duplicates (Renewal):
+// --------------------------------------------------
+//brasilis,199,222,4	duplicate(Kafra_master)	Kafra#bra	861
+//dewata,202,186,6	duplicate(Kafra_master)	Kafra#dew	861
+//dicastes01,192,194,6	duplicate(Kafra_master)	Kafra#dic	861
