@@ -1,0 +1,156 @@
+//===== rAthena Script =======================================
+//= Healer
+//===== By: ==================================================
+//= Euphy
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= Basic healer script.
+//===== Additional Comments: =================================
+//= 1.0 Initial script.
+//= 1.1 Aligned coordinates with @go.
+//============================================================
+
+-	script	Healer_master	-1,{
+
+	.@BF_Delay = 600000;		// 60000 = 1 min
+	.@BF_level = 10;
+	.@BF_boost = 100;
+	.@Buffs1 = 1;			// Also buff players? (1: yes / 0: no) AB only.
+	.@Buffs2 = 0;			// Also buff players? (1: yes / 0: no) Buff ETC.
+	.@Buffs3 = 0;			// Also buff players? (1: yes / 0: no) Buff EXP/BRAGI.
+	.@Indentified = 0;		// Also indentified item? (1: yes / 0: no)
+	.@Delay = 3;			// Heal delay, in seconds
+	.@Food = 0;				// Also food buff for players? (1: yes / 0: no)
+	.@CP = 0;				// Also buff CP players? (1: yes / 0: no)
+
+	if (@HD > gettimetick(2))
+		end;
+
+	percentheal 100,100;
+	npcskill "AL_HEAL",11,99,60;
+
+	sc_end SC_STONE;
+	sc_end SC_FREEZE;
+	sc_end SC_STUN;
+	sc_end SC_SLEEP;
+	sc_end SC_POISON;
+	sc_end SC_CURSE;
+	sc_end SC_SILENCE;
+	sc_end SC_CONFUSION;
+	sc_end SC_BLIND;
+	sc_end SC_Hallucination;
+	sc_end SC_BLEEDING;
+	sc_end SC_DPOISON;
+	sc_end SC_HELLPOWER;
+	sc_end SC_ORCISH;
+	sc_end SC_STAN;
+	sc_end SA_REVERSEORCISH;
+
+	if (.@Buffs1) {
+		sc_start SC_BLESSING,.@BF_Delay,.@BF_level;
+		sc_start SC_INCREASEAGI,.@BF_Delay,.@BF_level;
+		sc_start4 SC_POEMBRAGI,.@BF_Delay,.@BF_level,80,100,0;
+		sc_start4 SC_SERVICE4U,.@BF_Delay,.@BF_level,40,40,0;
+		sc_start SC_EXPBOOST,.@BF_Delay,.@BF_boost+BaseLevel;
+		sc_start SC_JEXPBOOST,.@BF_Delay,.@BF_boost+BaseLevel;
+	}
+	if (.@Buffs2) {
+		sc_start SC_IMPOSITIO,.@BF_Delay,.@BF_level;
+		sc_start SC_GLORIA,.@BF_Delay,.@BF_level;
+		sc_start SC_ASSUMPTIO,.@BF_Delay,.@BF_level;
+		sc_start SC_ANGELUS,.@BF_Delay,.@BF_level;
+		sc_start SC_MAGNIFICAT,.@BF_Delay,.@BF_level;
+	}
+	if (.@Buffs3) {
+		sc_start SC_EXPBOOST,.@BF_Delay,.@BF_boost+BaseLevel;
+		sc_start SC_JEXPBOOST,.@BF_Delay,.@BF_boost+BaseLevel;
+		sc_start SC_ITEMBOOST,.@BF_Delay,.@BF_boost;
+		sc_start4 SC_POEMBRAGI,.@BF_Delay,.@BF_level,80,100,0;
+		sc_start4 SC_SERVICE4U,.@BF_Delay,.@BF_level,40,40,0;
+	}
+	if (.@CP) {
+		sc_start SC_CP_WEAPON,.@BF_Delay,.@BF_level;
+		sc_start SC_CP_SHIELD,.@BF_Delay,.@BF_level;
+		sc_start SC_CP_ARMOR,.@BF_Delay,.@BF_level;
+		sc_start SC_CP_HELM,.@BF_Delay,.@BF_level;
+	}
+	if (.@Food) {
+		sc_start SC_STRFood,.@BF_Delay,.@BF_level;
+		sc_start SC_AGIFood,.@BF_Delay,.@BF_level;
+		sc_start SC_VITFood,.@BF_Delay,.@BF_level;
+		sc_start SC_INTFood,.@BF_Delay,.@BF_level;
+		sc_start SC_DEXFood,.@BF_Delay,.@BF_level;
+		sc_start SC_LUKFood,.@BF_Delay,.@BF_level;
+		sc_start SC_HITFood,.@BF_Delay,.@BF_level;
+		sc_start SC_FLEEFood,.@BF_Delay,.@BF_level;
+		sc_start SC_BATKFood,.@BF_Delay,.@BF_level;
+		sc_start SC_MATKFood,.@BF_Delay,.@BF_level;
+		sc_start SC_COMMONSC_RESIST,.@BF_Delay,.@BF_level;
+		//sc_start SC_ASPDPOTION2,.@BF_Delay,.@BF_level;
+	}
+
+	if (getbrokenid(1) > 0) { 
+		repairall;
+	}
+
+	if (.@Indentified) {
+		if (identifyall(false) > 0) {
+			identifyall(true);
+		}
+	}
+	
+	if (.@Delay)
+		@HD = gettimetick(2) + .@Delay;
+	end;
+}
+
+// Duplicates
+//============================================================
+//alberta,25,240,6	duplicate(Healer_master)	Healer#alb	569
+//aldebaran,135,118,6	duplicate(Healer_master)	Healer#alde	569
+//amatsu,200,79,4	duplicate(Healer_master)	Healer#ama	569
+//ayothaya,207,169,6	duplicate(Healer_master)	Healer#ayo	569
+//comodo,184,158,6	duplicate(Healer_master)	Healer#com	569
+//einbech,57,36,6	duplicate(Healer_master)	Healer#einbe	569
+//einbroch,57,202,6	duplicate(Healer_master)	Healer#einbr	569
+//geffen,115,72,6	duplicate(Healer_master)	Healer#gef	569
+//gonryun,156,122,6	duplicate(Healer_master)	Healer#gon	569
+//hugel,89,150,6	duplicate(Healer_master)	Healer#hug	569
+//izlude,121,150,6	duplicate(Healer_master)	Healer#izl	569	//Pre-RE: (125,118)
+//jawaii,250,139,4	duplicate(Healer_master)	Healer#jaw	569
+//lighthalzen,152,100,6	duplicate(Healer_master)	Healer#lhz	569
+//louyang,226,103,4	duplicate(Healer_master)	Healer#lou	569
+//manuk,272,144,6	duplicate(Healer_master)	Healer#man	569
+//mid_camp,203,289,6	duplicate(Healer_master)	Healer#mid	569
+//moc_ruins,72,164,4	duplicate(Healer_master)	Healer#moc	569
+morocc,151,97,6	duplicate(Healer_master)	Healer#mor	569
+//moscovia,220,191,4	duplicate(Healer_master)	Healer#mos	569
+//niflheim,212,182,5	duplicate(Healer_master)	Healer#nif	569
+//payon,179,106,4	duplicate(Healer_master)	Healer#pay	569
+//prontera,162,193,4	duplicate(Healer_master)	Healer#prt	569
+//rachel,125,116,6	duplicate(Healer_master)	Healer#rac	569
+//splendide,201,153,4	duplicate(Healer_master)	Healer#spl	569
+//thor_camp,249,74,4	duplicate(Healer_master)	Healer#thor	569
+//umbala,105,148,3	duplicate(Healer_master)	Healer#umb	569
+//veins,217,121,4	duplicate(Healer_master)	Healer#ve	569
+//xmas,143,136,4	duplicate(Healer_master)	Healer#xmas	569
+//yuno,164,45,4	duplicate(Healer_master)	Healer#yuno	569
+
+iz_int,17,36,4	duplicate(Healer_master)	Healer#newb1	569
+iz_int,61,34,4	duplicate(Healer_master)	Healer#newb2	569
+
+// Duplicates (Renewal)
+//============================================================
+//brasilis,194,221,6	duplicate(Healer_master)	Healer#bra	569
+//dewata,195,187,4	duplicate(Healer_master)	Healer#dew	569
+//dicastes01,201,194,4	duplicate(Healer_master)	Healer#dic	569
+//ecl_in01,45,60,4	duplicate(Healer_master)	Healer#ecl	569
+//malangdo,132,114,6	duplicate(Healer_master)	Healer#mal	569
+//malaya,227,204,6	duplicate(Healer_master)	Healer#ma	569
+//mora,55,152,4	duplicate(Healer_master)	Healer#mora	569
+//verus04,125,243,4	duplicate(Healer_master)	Healer#verus	569
+//harboro1,294,206,4	duplicate(Healer_master)	Healer#rockr	569
+//sp_cor,157,171,4	duplicate(Healer_master)	Healer#rudus	569
