@@ -1,0 +1,29 @@
+//Create By ZilverNet
+//========Update Detail========
+//= V. 1.0
+//= สคริปแลกเปลี่ยน Gold Coin เป็น Cash Points
+//==============================Script==============================\\
+
+morocc,149,105,6	script	Lily	436,{
+	.@coin = 671; // Gold coin
+	.@havecoin = countitem(.@coin);
+	if (.@havecoin == 0) {
+		message strcharinfo(0),"คุณไม่มี "+getitemname(.@coin)+" ค่ะ";
+		end;
+	} else
+		delitem .@coin,.@havecoin;
+		set #CASHPOINTS,#CASHPOINTS+=.@havecoin;
+		message strcharinfo(0),"ดำเนินการเรียบร้อยค่ะ";
+		dispbottom "คุณได้รับ "+.@havecoin+" Cash Points. | คงเหลือ "+callfunc("F_InsertComma",(#CASHPOINTS))+" Points.";
+		end;
+	
+	OnInit:
+		waitingroom ":: Gold Coin to Cash ::",0;
+		end;
+}
+
+function	script	getmycash	{
+	set #CASHPOINTS,#CASHPOINTS+=1;
+	dispbottom "คุณได้รับ 1 Cash Points. | คงเหลือ "+callfunc("F_InsertComma",(#CASHPOINTS))+" Points.";
+	end;
+}
