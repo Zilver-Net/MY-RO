@@ -30,13 +30,38 @@
 			end;
 
 		case 3:
-			callfunc	"rentride";
+			if (ismounting()) {
+				dispbottom "โปรดถอดพาหนะออกก่อนค่ะ",0xFF0000;
+				cutin "",255;
+				end;
+			} else if (((eaclass()&EAJ_THIRDMASK)==EAJ_RANGER) && !countitem(6124)) {
+				if (!checkfalcon() && getskilllv("HT_FALCON") && !checkwug()) {
+					if(select(" ~ Falcon: ~ Warg")==1) setfalcon;
+						else getitem 6124,1; //Wolf's_Flute
+					} else getitem 6124,1; //Wolf's_Flute
+			} else if (((eaclass()&EAJ_THIRDMASK)==EAJ_MECHANIC) && !checkcart() && getskilllv("MC_PUSHCART")) {
+				if (!checkmadogear() && getskilllv("NC_MADOLICENCE")) {
+					if(select(" ~ Cart: ~ Mado")==1) setcart;
+						else setmadogear;
+				} else setcart;
+			} else if (!checkcart() && getskilllv("MC_PUSHCART")) setcart;
+			else if (!checkfalcon() && getskilllv("HT_FALCON") && !checkwug()) setfalcon;
+			else if (!checkriding() && !checkdragon() && getskilllv("KN_RIDING")) {
+				if ((eaclass()&EAJ_THIRDMASK)==EAJ_RUNE_KNIGHT) setdragon;
+					else setriding;
+			} else if (!checkmadogear() && getskilllv("NC_MADOLICENCE")) setmadogear;
+				else {
+					dispbottom "คุณไม่มีสกิล",0xFF0000;
+					cutin "",255;
+					end;
+				}
+			specialeffect2 EF_TEIHIT3;
 			cutin "",255;
 			end;
 
 		case 4:
 			disable_items;
-			message strcharinfo(0),"โปรดเลือกอุปกรณ์ที่ต้องการ";
+			message strcharinfo(0),"โปรดเลือกอุปกรณ์ที่ต้องการค่ะ";
 			setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
 			for(.@i = 1; .@i<=10; ++.@i) {
 				if (getequipisequiped(.@indices[.@i])) {
