@@ -1,4 +1,23 @@
-// 
+//Create By ZilverNet
+//========Update Detail========
+//= V. 1.0
+//= สคริปสุ่มไอเทมจากมอนสเตอร์
+//= สุ่มไอเทมจากมอนสเตอร์ทั่วไป, MVP และมินิบอส
+//= สามารถปรับแต่งไอเทมที่จะดรอปได้อย่างง่ายดาย
+//= V. 1.1
+//= ปรับแต่งให้เข้ากับตัวเซิฟเวอร์
+//= ปรับแต่งให้เข้ากับระบบ MVP และมินิบอสของเซิฟเวอร์
+//= V. 1.2
+//= ปรับแต่งให้ดรอปได้หลายไอเทมต่อการฆ่ามอนสเตอร์ 1 ตัว
+//= V. 1.3
+//= ปรับแต่งให้ดรอปไอเทมได้ตามโอกาสที่กำหนด
+//= V. 1.4
+//= ปรับแต่งให้ดรอปไอเทมได้ตามโอกาสที่กำหนดแยกกันสำหรับ MVP, มินิบอส และมอนสเตอร์ทั่วไป
+//= V. 1.5
+//= ปรับแต่งให้ดรอปไอเทมได้ตามโอกาสที่กำหนดแยกกันสำหรับ MVP, มินิบอส และมอนสเตอร์ทั่วไป โดยสามารถปรับแต่งโอกาสได้อย่างง่ายดาย
+//= V. 1.5a
+//= ปรับแต่งให้ดรอปไอเทมได้ตามโอกาสที่กำหนดแยกกันสำหรับ MVP, มินิบอส และมอนสเตอร์ทั่วไป โดยสามารถปรับแต่งโอกาสได้อย่างง่ายดาย และเพิ่มไอเทมใหม่ๆที่ต้องการให้ดรอปได้อย่างง่ายดาย
+//==============================Script==============================\\
 
 -	script	DropExtraTreasure	-1,{
 			
@@ -16,18 +35,19 @@
 		//.@dropblessing = 6635;									// Blacksmith Blessing
 		//.@dropToken = 7621;										// Token Of Siegfried
 		//.@dropAngpaw = 33004;									// Angpaw
-		//.@dropTicket = 6673;									// Bossnia Ticket
+		.@dropTicket = 6673;									// Bossnia Ticket
 		//.@drophp = 33003;										// Dried Fish
 		//setarray .@dropBox[0],33005,33006,33007,33008;			// Costume Box
 		//setarray .@dropelu[0],985,7619,6224;					// Elunium, Enriched Elunium, Bradium
 		//setarray .@dropori[0],984,7620,6223;					// Oridecon, Enriched Oridecon, Carnium
 		//setarray .@dropsoul[0],6814,6815,6816,6817,6818,6819;	// Soul
-		//.@dropvoucher = 7617;									// Monster Voucher
-		//.@dropvouchermvp = 7615;								// MVP Voucher
+		.@dropvouchermvp = 7615;								// MVP Voucher
+		.@dropvouchermini = 7616;								// Miniboss Voucher
+		.@dropvoucher = 7617;									// Monster Voucher
 		
 		if( getmonsterinfo( killedrid,MOB_MVPEXP ) ){ // MVP Check
 			for (set @i,0; @i < rand(7,10); set @i,@i+1) {
-				//makeitem .@dropvouchermvp,rand(1,5),.@map$,.@x,.@y;
+				makeitem .@dropvouchermvp,rand(1,5),.@map$,.@x,.@y;
 				makeitem .@dropcoin,rand(1,23),.@map$,rand(.@x-2,.@x+2),rand(.@y-2,.@y+2);
 				//makeitem .@drophp,rand(1,18),.@map$,rand(.@x-2,.@x+2),rand(.@y-2,.@y+2);
 			}
@@ -59,6 +79,7 @@
 		}
 		if( getmonsterinfo( killedrid,MOB_MODE ) == 102773397 || getmonsterinfo( killedrid,MOB_MODE ) == 102774421 ){ // Mini-Boss Check
 			for (set @i,0; @i < rand(7,10); set @i,@i+1) {
+				makeitem .@dropvouchermini,rand(1,5),.@map$,.@x,.@y;
 				makeitem .@dropcoin,rand(1,13),.@map$,rand(.@x-1,.@x+1),rand(.@y-1,.@y+1);
 				//makeitem .@drophp,rand(1,8),.@map$,rand(.@x-1,.@x+1),rand(.@y-1,.@y+1);
 			}
@@ -66,10 +87,10 @@
 		if( rand(.@droprate) < 1150 ) { // Drop Rate 11.50%
 			makeitem .@dropcoin,rand(1,6),.@map$,.@x,.@y;
 		}
-		/*if( rand(.@droprate) < 2000 ) { // Drop Rate 20.00%
+		if( rand(.@droprate) < 2000 ) { // Drop Rate 20.00%
 			makeitem .@dropvoucher,rand(1,6),.@map$,.@x,.@y;
 		}
-		if( rand(.@droprate) < 1900 ) { // Drop Rate 19.00%
+		/*if( rand(.@droprate) < 1900 ) { // Drop Rate 19.00%
 			makeitem .@drophp,rand(1,3),.@map$,.@x,.@y;
 		}
 		if( rand(.@droprate) < 100 ) { // Drop Rate 1.00%
