@@ -19,7 +19,7 @@
 	switch(select("~ Save:~ เปิดคลัง:~ เช่านก / รถเข็น ฯ:~ ถอดการ์ด:~ รีเซท:~ เพิ่มความจุน้ำหนัก:~ แปลงเพศ:~ เปลื่ยนชื่อ:~ ตรวจสอบจำนวนผู้เล่น:~ Reset Quest Instant")) {
 		case 1:
 			getmapxy(@mapname$,.@x,.@y,BL_PC);
-			message strcharinfo(0),"บันทึกจุดเซฟเรียบร้อยค่ะ";
+			dispbottom "บันทึกจุดเซฟเรียบร้อยค่ะ";
 			save @mapname$,.@x,.@y,2,2;
 			cutin "",255;
 			end;
@@ -31,7 +31,7 @@
 
 		case 3:
 			if (ismounting()) {
-				dispbottom "โปรดถอดพาหนะออกก่อนค่ะ",0xFF0000;
+				dispbottom "โปรดถอดพาหนะออกก่อนค่ะ";
 				cutin "",255;
 				end;
 			} else if (((eaclass()&EAJ_THIRDMASK)==EAJ_RANGER) && !countitem(6124)) {
@@ -51,7 +51,7 @@
 					else setriding;
 			} else if (!checkmadogear() && getskilllv("NC_MADOLICENCE")) setmadogear;
 				else {
-					dispbottom "ท่านไม่มีสกิลค่ะ",0xFF0000;
+					dispbottom "ท่านไม่มีสกิลค่ะ";
 					cutin "",255;
 					end;
 				}
@@ -61,7 +61,7 @@
 
 		case 4:
 			disable_items;
-			message strcharinfo(0),"โปรดเลือกอุปกรณ์ที่ต้องการค่ะ";
+			dispbottom "โปรดเลือกอุปกรณ์ที่ต้องการค่ะ";
 			setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
 			for(.@i = 1; .@i<=10; ++.@i) {
 				if (getequipisequiped(.@indices[.@i])) {
@@ -74,7 +74,7 @@
 				switch(select("- ยืนยัน:- ยกเลิก")) {
 					case 1:
 						successremovecards .@part;
-						message strcharinfo(0),"ดำเนินการเรียบร้อยค่ะ";
+						dispbottom "ดำเนินการเรียบร้อยค่ะ";
 						cutin "",255;
 						end;
 					case 2:
@@ -85,28 +85,28 @@
 		case 5:
 			//set .@prizeresetstat,BaseLevel*1000;
 			//set .@prizeresetsskill,JobLevel*1000;
-			message strcharinfo(0),"กรุณาเลือกการรีเซทที่ต้องการค่ะ";
+			dispbottom "กรุณาเลือกการรีเซทที่ต้องการค่ะ";
 			switch(select("~ Status:~ Skill")) {
 				case 1:
 					/*if (zeny < .@prizeresetstat) {
-						dispbottom "คุณมีเงินไม่พอ",0xFF0000;
+						dispbottom "ท่านมีเงินไม่พอ";
 						cutin "",255;
 						end;
 					} else
 						set zeny,zeny-=.@prizeresetstat;*/
 						resetstatus;
-						message strcharinfo(0),"ดำเนินการเรียบร้อยค่ะ";
+						dispbottom "ดำเนินการเรียบร้อยค่ะ";
 						cutin "",255;
 						end;
 				case 2:
 					/*if (zeny < .@prizeresetsskill) {
-						dispbottom "คุณมีเงินไม่พอ",0xFF0000;
+						dispbottom "ท่านมีเงินไม่พอ";
 						cutin "",255;
 						end;
 					} else
 						set zeny,zeny-=.@prizeresetsskill;*/
 						resetskill; 						
-						message strcharinfo(0),"ดำเนินการเรียบร้อยค่ะ";
+						dispbottom "ดำเนินการเรียบร้อยค่ะ";
 						cutin "",255;
 						end;
 			}
@@ -114,6 +114,11 @@
 		case 6:
 			switch(select("~ ตกลง:~ ไม่ล่ะ")) {
 				case 1:
+					if (gympassmemory == 0 && countitem(7776) == 0) {
+						dispbottom "ท่านไม่มี Gym Pass ค่ะ";
+						cutin "",255;
+						end;
+					} else
 					if (gympassmemory < 10) {
 						set .@add_carry,gympassmemory + 1;
 						set .@remain_carry,10 - .@add_carry;
@@ -125,21 +130,19 @@
 							specialeffect2 EF_COIN;
 							sleep2 300;
 							specialeffect2 EF_SIGHTRASHER;
-							message strcharinfo(0),"ดำเนินการเรียบร้อยค่ะ";
+							dispbottom "ดำเนินการเรียบร้อยค่ะ";
 							delitem 7776,1; //Max_Weight_Up_Scroll
 							set gympassmemory,.@add_carry;
 							skill "ALL_INCCARRY",.@add_carry,SKILL_PERM_GRANT;
 							cutin "",255;
 							end;
-						} 
-						else {
-							message strcharinfo(0),"ท่านไม่มี Gym Pass ค่ะ";
+						} else {
+							dispbottom "ท่านไม่มี Gym Pass ค่ะ";
 							cutin "",255;
 							end;
 						} 
-					}
-					else {
-						message strcharinfo(0),"ท่านถึงขีดจำกัดแล้วค่ะ";
+					} else {
+						dispbottom "ท่านถึงขีดจำกัดแล้วค่ะ";
 						cutin "",255;
 						end;
 					}
@@ -152,32 +155,32 @@
 			switch(select("~ ชาย:~ หญิง")){
 				case 1:
 					query_sql("UPDATE `char` SET `sex` = 'M' WHERE `char`.`char_id` = '"+getcharid(0)+"'");
-					message strcharinfo(0),"ดำเนินการเรียบร้อยค่ะ";
+					dispbottom "ดำเนินการเรียบร้อยค่ะ";
 					atcommand strcharinfo(0);
 					cutin "",255;
 					end;
 				case 2:
 					query_sql("UPDATE `char` SET `sex` = 'F' WHERE `char`.`char_id` = '"+getcharid(0)+"'");
-					message strcharinfo(0),"ดำเนินการเรียบร้อยค่ะ";
+					dispbottom "ดำเนินการเรียบร้อยค่ะ";
 					atcommand strcharinfo(0);
 					cutin "",255;
 					end;
 			}
 
 		case 8:
-			message strcharinfo(0),"กรุณาใส่ชื่อที่ต้องการค่ะ";
+			dispbottom "กรุณาใส่ชื่อที่ต้องการค่ะ";
 			input .@namech$;
 			if(.@namech$ == " ") goto failed;
 			query_sql("UPDATE `char` SET `name` = '"+.@namech$+"' WHERE `char`.`char_id` = '"+getcharid(0)+"'");
-			message strcharinfo(0),"ดำเนินการเรียบร้อยค่ะ";
+			dispbottom "ดำเนินการเรียบร้อยค่ะ";
 			cutin "",255;
 			end;
 			failed:
-				message strcharinfo(0),"ท่านใส่ชื่อไม่ถูกต้องค่ะ";
+				dispbottom "ท่านใส่ชื่อไม่ถูกต้องค่ะ";
 			cutin "",255;
 			end;
 		case 9:
-			message strcharinfo(0),"จำนวนผู้เล่นปัจจุบัน "+getusers(1)+" คน";
+			dispbottom "จำนวนผู้เล่นปัจจุบัน "+getusers(1)+" คน";
 			cutin "",255;
 			end;
 		case 10:
@@ -192,12 +195,12 @@
 					if (isbegin_quest(7574)) erasequest 7574;// Thanatos Tower
 					if (isbegin_quest(7576)) erasequest 7576;// Morocc castle seal
 					if (isbegin_quest(7577)) erasequest 7577;// Space distortion
-					message strcharinfo(0),"ทำการรีเซทดันเจี้ยน Devil Tower เรียบร้อยค่ะ";
+					dispbottom "ทำการรีเซทดันเจี้ยน Devil Tower เรียบร้อยค่ะ";
 					cutin "",255;
 					end;
 				case 2:
 					if (isbegin_quest(60200) == 0) { 
-						message strcharinfo(0),"ท่านยังไม่ได้เริ่มดันเจี้ยน 100 ชั้นค่ะ";
+						dispbottom "ท่านยังไม่ได้เริ่มดันเจี้ยน 100 ชั้นค่ะ";
 						cutin "",255;
 						end;
 					} else
@@ -205,7 +208,7 @@
 						erasequest 60200;
 						erasequest 60201;
 						set party_instance_id,0;
-						message strcharinfo(0),"ทำการรีเซทดันเจี้ยน 100 ชั้นเรียบร้อยค่ะ";
+						dispbottom "ทำการรีเซทดันเจี้ยน 100 ชั้นเรียบร้อยค่ะ";
 						cutin "",255;
 						end;
 			}
