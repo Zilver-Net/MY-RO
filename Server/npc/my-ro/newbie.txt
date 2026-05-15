@@ -44,7 +44,7 @@ function	script	getstartitem	{
 	delitem 2510,1;
 	.@map$ = "morocc";
 	savepoint .@map$,158,92,2,2;
-	warp .@map$,158,90;
+	warp .@map$,158,92;
 	cutin "",255;
 	end;
 }
