@@ -8,12 +8,12 @@ morocc,149,105,6	script	Lily	436,{
 	.@coin = 671; // Gold coin
 	.@havecoin = countitem(.@coin);
 	if (.@havecoin == 0) {
-		message strcharinfo(0),"คุณไม่มี "+getitemname(.@coin)+" ค่ะ";
+		dispbottom "คุณไม่มี "+getitemname(.@coin)+" ค่ะ";
 		end;
 	} else
 		delitem .@coin,.@havecoin;
 		set #CASHPOINTS,#CASHPOINTS+=.@havecoin;
-		message strcharinfo(0),"ดำเนินการเรียบร้อยค่ะ";
+		dispbottom "ดำเนินการเรียบร้อยค่ะ";
 		dispbottom "คุณได้รับ "+.@havecoin+" Cash Points. | คงเหลือ "+callfunc("F_InsertComma",(#CASHPOINTS))+" Points.";
 		end;
 	

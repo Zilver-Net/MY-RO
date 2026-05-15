@@ -52,13 +52,13 @@ function Go; function Disp; function Pick; function Restrict;
 			"~ Special Areas",Special;
 
 		if (lastwarp$ == "") {
-			dispbottom "คุณยังไม่ได้วาร์ปที่ไหนเลยค่ะ!",0x28bf00;
+			dispbottom "คุณยังไม่ได้วาร์ปที่ไหนเลยค่ะ!";
 			cutin "",255;
 			end;
 		} else
 		if (lastwarp$ == "bossnia_01") {
 			if(countitem(.@itembossniaticket[0])<.@itembossniaticket[1]){
-				dispbottom "ต้องใช้ "+getitemname(.@itembossniaticket[0])+" จำนวน "+.@itembossniaticket[1]+" ea. ในการเข้าค่ะ",0x28bf00;
+				dispbottom "ต้องใช้ "+getitemname(.@itembossniaticket[0])+" จำนวน "+.@itembossniaticket[1]+" ea. ในการเข้าค่ะ";
 				cutin "",255;
 				end;
 			} else {
@@ -67,7 +67,7 @@ function Go; function Disp; function Pick; function Restrict;
 		}
 		if (lastwarp$ == "bossnia_02") {
 			if(countitem(.@itembossniahellticket[0])<.@itembossniahellticket[1]){
-					dispbottom "ต้องใช้ "+getitemname(.@itembossniahellticket[0])+" จำนวน "+.@itembossniahellticket[1]+" ea. ในการเข้าค่ะ",0x28bf00;
+					dispbottom "ต้องใช้ "+getitemname(.@itembossniahellticket[0])+" จำนวน "+.@itembossniahellticket[1]+" ea. ในการเข้าค่ะ";
 					cutin "",255;
 					end;
 				} else {
