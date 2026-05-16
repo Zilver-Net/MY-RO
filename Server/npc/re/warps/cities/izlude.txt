@@ -60,13 +60,13 @@ iz_int02,27,30,0	warp	#room_out02	1,1,iz_int02,51,30
 iz_int03,27,30,0	warp	#room_out03	1,1,iz_int03,51,30
 iz_int04,27,30,0	warp	#room_out04	1,1,iz_int04,51,30
 
-iz_int,47,30,0	warp	#room_in	1,1,iz_int,22,30
+//iz_int,47,30,0	warp	#room_in	1,1,iz_int,22,30
 iz_int01,47,30,0	warp	#room_in01	1,1,iz_int01,22,30
 iz_int02,47,30,0	warp	#room_in02	1,1,iz_int02,22,30
 iz_int03,47,30,0	warp	#room_in03	1,1,iz_int03,22,30
 iz_int04,47,30,0	warp	#room_in04	1,1,iz_int04,22,30
 
-iz_int,56,15,0	script	#ship_out	WARPNPC,1,1,{
+//iz_int,56,15,0	script	#ship_out	WARPNPC,1,1,{
 	end;
 OnTouch:
 	.@num$ = replacestr( strnpcinfo(2), "ship_out", "" );
