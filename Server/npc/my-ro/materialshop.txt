@@ -41,7 +41,7 @@ return;
 morocc,128,106,6	script	Lucy	581,{
 	set $@tr$,"^000080[ Lucy ]^000000";
 	mes $@tr$;
-	mes "ท่านต้องการแลก Carnium และ Bradium หรือไม่?";
+	mes "ท่านต้องการแลกแร่สำหรับตีบวกไอเทมหรือไม่?";
 	next;
 	switch(select("~ แลก")) {
 		case 1:
