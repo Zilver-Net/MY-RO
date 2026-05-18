@@ -359,8 +359,11 @@
 		if (.@to_cls == Job_Novice_High && .LastJob)
 			lastJob = Class; // Saves the lastJob for rebirth
 		jobchange .@to_cls;
-		if (.@to_cls == Job_Novice_High) {
-			if (!.NoReset) { resetlvl(1); } // NoReset option prevents resetting for rebirth
+		if (.@to_cls == Job_Novice_High) {	// NoReset option prevents resetting for rebirth
+			if (.NoReset) { 
+				resetlvl(2); 
+			} else
+				resetlvl(1);
 		}
 		else if (.@to_cls == Job_Baby) {
 			resetstatus;
