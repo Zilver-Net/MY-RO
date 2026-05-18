@@ -66,7 +66,7 @@ iz_int02,47,30,0	warp	#room_in02	1,1,iz_int02,22,30
 iz_int03,47,30,0	warp	#room_in03	1,1,iz_int03,22,30
 iz_int04,47,30,0	warp	#room_in04	1,1,iz_int04,22,30
 
-//iz_int,56,15,0	script	#ship_out	WARPNPC,1,1,{
+/*iz_int,56,15,0	script	#ship_out	WARPNPC,1,1,{
 	end;
 OnTouch:
 	.@num$ = replacestr( strnpcinfo(2), "ship_out", "" );
@@ -79,7 +79,7 @@ iz_int01,56,15,0	duplicate(#ship_out)	#ship_out01	WARPNPC,1,1
 iz_int02,56,15,0	duplicate(#ship_out)	#ship_out02	WARPNPC,1,1
 iz_int03,56,15,0	duplicate(#ship_out)	#ship_out03	WARPNPC,1,1
 iz_int04,56,15,0	duplicate(#ship_out)	#ship_out04	WARPNPC,1,1
-
+*/
 int_land,49,57,0	script	#intro_to_izlude	WARPNPC,2,2,{
 	end;
 OnTouch:
