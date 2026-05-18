@@ -20,6 +20,8 @@
 //= V. 1.0
 //= แปลสคริปต์เป็นภาษาไทยทั้งหมด
 //= เพิ่ม Duplicate NPC เพื่อให้ง่ายต่อการแก้ไขและปรับแต่งในอนาคต
+//= V. 1.1
+//= เพิ่มตัวเลือก NoReset เพื่อป้องกันการรีเซ็ตเลเวลเมื่อทำการรีเบิร์ธ
 //==============================Script==============================\\
 
 -	script	Job_Master	-1,{
@@ -357,8 +359,9 @@
 		if (.@to_cls == Job_Novice_High && .LastJob)
 			lastJob = Class; // Saves the lastJob for rebirth
 		jobchange .@to_cls;
-		if (.@to_cls == Job_Novice_High)
-			resetlvl(1);
+		if (.@to_cls == Job_Novice_High) {
+			if (!.NoReset) { resetlvl(1); } // NoReset option prevents resetting for rebirth
+		}
 		else if (.@to_cls == Job_Baby) {
 			resetstatus;
 			resetskill;
@@ -523,6 +526,7 @@
 		.SkillPointCheck = true;			// Force player to use up all skill points?
 		.Platinum = true;					// Get platinum skills automatically?
 		.GetJobEquip = true;				// Get job equipment (mostly weapons) on job change?
+		.NoReset = true;					// No reset on rebirth?
 
 		// Level Requirements
 		setarray .Req_First[0],1,10; 		// Minimum base level, job level to turn into 1st class
