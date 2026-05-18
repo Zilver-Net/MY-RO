@@ -27,14 +27,14 @@
 		
 		.@droprate = 10000;										// Drop Rate 100.00%
 		.@dropcoin = 671;										// Gold Coin
-		//.@dropblessing = 6635;									// Blacksmith Blessing
-		//.@dropToken = 7621;										// Token Of Siegfried
-		//.@dropAngpaw = 33004;									// Angpaw
+		.@dropblessing = 6635;									// Blacksmith Blessing
+		.@dropToken = 7621;										// Token Of Siegfried
+		.@dropAngpaw = 33004;									// Angpaw
 		.@dropTicket = 6673;									// Bossnia Ticket
-		//.@drophp = 33003;										// Dried Fish
+		.@drophp = 33003;										// Dried Fish
 		//setarray .@dropBox[0],33005,33006,33007,33008;			// Costume Box
-		//setarray .@dropelu[0],985,7619,6224;					// Elunium, Enriched Elunium, Bradium
-		//setarray .@dropori[0],984,7620,6223;					// Oridecon, Enriched Oridecon, Carnium
+		setarray .@dropelu[0],985,7619,6224;					// Elunium, Enriched Elunium, Bradium
+		setarray .@dropori[0],984,7620,6223;					// Oridecon, Enriched Oridecon, Carnium
 		//setarray .@dropsoul[0],6814,6815,6816,6817,6818,6819;	// Soul
 		.@dropvouchermvp = 7615;								// MVP Voucher
 		.@dropvouchermini = 7616;								// Miniboss Voucher
@@ -44,23 +44,23 @@
 			for (set @i,0; @i < rand(7,10); set @i,@i+1) {
 				makeitem .@dropvouchermvp,rand(1,5),.@map$,.@x,.@y;
 				makeitem .@dropcoin,rand(1,23),.@map$,rand(.@x-2,.@x+2),rand(.@y-2,.@y+2);
-				//makeitem .@drophp,rand(1,18),.@map$,rand(.@x-2,.@x+2),rand(.@y-2,.@y+2);
+				makeitem .@drophp,rand(1,18),.@map$,rand(.@x-2,.@x+2),rand(.@y-2,.@y+2);
 			}
-			/*if( rand(.@droprate) < 5000 ) { // Drop Rate 50.00%
+			if( rand(.@droprate) < 5000 ) { // Drop Rate 50.00%
 				makeitem .@dropelu[rand(3)],rand(1,7),.@map$,.@x,.@y;
 			}
 			if( rand(.@droprate) < 5000 ) { // Drop Rate 50.00%
 				makeitem .@dropori[rand(3)],rand(1,7),.@map$,.@x,.@y;
 			}
-			if( rand(.@droprate) < 5000 ) { // Drop Rate 50.00%
-				makeitem .@dropsoul[rand(6)],rand(1,7),.@map$,.@x,.@y;
-			}
+			/*if( rand(.@droprate) < 5000 ) { // Drop Rate 50.00%
+				makeitem .@dropbox[rand(6)],rand(1,7),.@map$,.@x,.@y;
+			}*/
 			if( rand(.@droprate) < 2500 ) { // Drop Rate 25.00%
 				makeitem .@dropblessing,rand(1,21),.@map$,.@x,.@y;
 			}
-			if( rand(.@droprate) < 1000 ) { // Drop Rate 10.00%
+			/*if( rand(.@droprate) < 1000 ) { // Drop Rate 10.00%
 				makeitem .@dropsoul[rand(6)],rand(1,7),.@map$,.@x,.@y;
-			}
+			}*/
 			if( rand(.@droprate) < 500 ) { // Drop Rate 5.00%
 				makeitem .@dropAngpaw,rand(1,10),.@map$,.@x,.@y;
 			}
@@ -69,14 +69,14 @@
 			}
 			if( rand(.@droprate) < 100 ) { // Drop Rate 1.00%
 				makeitem .@dropTicket,rand(1,3),.@map$,.@x,.@y;
-			}*/
+			}
 			end;
 		}
 		if( getmonsterinfo( killedrid,MOB_MODE ) == 102773397 || getmonsterinfo( killedrid,MOB_MODE ) == 102774421 ){ // Mini-Boss Check
 			for (set @i,0; @i < rand(7,10); set @i,@i+1) {
 				makeitem .@dropvouchermini,rand(1,5),.@map$,.@x,.@y;
 				makeitem .@dropcoin,rand(1,13),.@map$,rand(.@x-1,.@x+1),rand(.@y-1,.@y+1);
-				//makeitem .@drophp,rand(1,8),.@map$,rand(.@x-1,.@x+1),rand(.@y-1,.@y+1);
+				makeitem .@drophp,rand(1,8),.@map$,rand(.@x-1,.@x+1),rand(.@y-1,.@y+1);
 			}
 		}
 		if( rand(.@droprate) < 1150 ) { // Drop Rate 11.50%
@@ -85,7 +85,7 @@
 		if( rand(.@droprate) < 2000 ) { // Drop Rate 20.00%
 			makeitem .@dropvoucher,rand(1,6),.@map$,.@x,.@y;
 		}
-		/*if( rand(.@droprate) < 1900 ) { // Drop Rate 19.00%
+		if( rand(.@droprate) < 1900 ) { // Drop Rate 19.00%
 			makeitem .@drophp,rand(1,3),.@map$,.@x,.@y;
 		}
 		if( rand(.@droprate) < 100 ) { // Drop Rate 1.00%
@@ -97,21 +97,21 @@
 		if( rand(.@droprate) < 50 ) { // Drop Rate 0.50%
 			makeitem .@dropelu[rand(3)],rand(1,3),.@map$,.@x,.@y;
 		}
-		if( rand(.@droprate) < 30 ) { // Drop Rate 0.30%
+		/*if( rand(.@droprate) < 30 ) { // Drop Rate 0.30%
 			makeitem .@dropsoul[rand(6)],rand(1,4),.@map$,.@x,.@y;
-		}
+		}*/
 		if( rand(.@droprate) < 10 ) { // Drop Rate 0.10%
 			makeitem .@dropAngpaw,rand(1,5),.@map$,.@x,.@y;
 		}
 		if( rand(.@droprate) < 30 ) { // Drop Rate 0.30%
 			makeitem .@dropToken,1,.@map$,.@x,.@y;
 		}
-		if( rand(.@droprate) < 20 ) { // Drop Rate 0.20%
+		/*if( rand(.@droprate) < 20 ) { // Drop Rate 0.20%
 			makeitem .@dropBox[rand(4)],1,.@map$,.@x,.@y;
-		}
+		}*/
 		if( rand(.@droprate) < 10 ) { // Drop Rate 0.10%
 			makeitem .@dropTicket,1,.@map$,.@x,.@y;
-		}*/
+		}
 	end;
 }
 //=============================== Old code =========================================
