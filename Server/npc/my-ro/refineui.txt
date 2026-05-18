@@ -1,0 +1,10 @@
+-	script	RefineUI	-1,{
+	refineui();
+	end;
+	
+	OnInit:
+		waitingroom "    :: �պǡ ::", 0; 
+		end;
+}
+
+morocc,131,104,6	duplicate(RefineUI)	Refine#mor	63
