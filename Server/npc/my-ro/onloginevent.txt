@@ -38,12 +38,12 @@
 
 		if(noviceassistget == 1) { end; } 
 			else {
-				getitem2 13041,1,1,20,0,0,0,0,0; // +20 Novice Main Gauche
-				getitem2 2112,1,1,20,0,0,0,0,0; // +20 Novice Guard
-				getitem2 5055,1,1,20,0,0,0,0,0; // +20 Novice False Eggshell
-				getitem2 2393,1,1,20,0,0,0,0,0; // +20 Novice Adventurer's Suit
-				getitem2 2414,1,1,20,0,0,0,0,0; // +20 Novice Slippers
-				getitem2 2510,1,1,20,0,0,0,0,0; // +20 Novice Hood
+				getitem2 13041,1,1,20,0,33301,33301,33301,33301; // +20 Novice Main Gauche
+				getitem2 2112,1,1,20,0,0,0,0,33302; // +20 Novice Guard
+				getitem2 5055,1,1,20,0,0,0,0,33302; // +20 Novice False Eggshell
+				getitem2 2393,1,1,20,0,0,0,0,33302; // +20 Novice Adventurer's Suit
+				getitem2 2414,1,1,20,0,0,0,0,33304; // +20 Novice Slippers
+				getitem2 2510,1,1,20,0,0,0,0,33304; // +20 Novice Hood
 				equip 13041;
 				equip 2112;
 				equip 5055;
