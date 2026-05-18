@@ -1,0 +1,151 @@
+// Create by ZilverNet
+//========Update Detail========
+//= V. 1.0
+//= เพิ่มร้านขายวัตถุดิบสำหรับการตีบวกไอเทม
+//= ร้านขายวัตถุดิบจะมีไอเทมต่าง ๆ ที่ใช้ในการตีบวกไอเทม เช่น Elunium, Oridecon, และอื่น ๆ
+//= ผู้เล่นสามารถซื้อวัตถุดิบเหล่านี้ได้โดยใช้ไอเทมอื่น ๆ ที่กำหนดไว้ในสคริปต์
+//= V. 1.1
+//= ปรับปรุงโค้ดให้มีประสิทธิภาพมากขึ้น และแก้ไขบัคที่อาจเกิดขึ้นในการซื้อวัตถุดิบ
+//= เพิ่มการตรวจสอบว่าผู้เล่นมีไอเทมที่ต้องใช้ในการซื้อวัตถุดิบหรือไม่ก่อนที่จะทำการซื้อ
+//= V. 1.2
+//= ปรับปรุงรายการวัตถุดิบที่ขายในร้าน และเพิ่มไอเทมใหม่ ๆ ที่สามารถซื้อได้
+//= V. 1.3
+//= แก้ไขปัญหาที่อาจเกิดขึ้นกับการซื้อวัตถุดิบบางตัวที่ไม่สามารถซื้อได้ตามที่กำหนดไว้
+//= เพิ่มการแจ้งเตือนเมื่อผู้เล่นซื้อวัตถุดิบสำเร็จ และแสดงจำนวนวัตถุดิบที่เหลืออยู่ในร้าน
+//==============================Script==============================\\
+
+-	shop	exchangcarbra	-1,984:5000,985:5000,6223:50000,6224:50000
+
+function	script	Exccb_Buy	{
+
+	if (@bought_nameid == 984) {           // Oridecon
+        setarray @itemuse[0], 756;         // Rough Oridecon
+        setarray @itemusemany[0], 10;
+        set @zenyuse, 500;
+    } else if (@bought_nameid == 985) {    // Elunium
+        setarray @itemuse[0], 755;         // Rough Elunium
+        setarray @itemusemany[0], 10;
+        set @zenyuse, 500;
+    } else if (@bought_nameid == 6223) {   // Carnium
+		setarray @itemuse[0], 985;         // Elunium
+		setarray @itemusemany[0], 3;
+		set @zenyuse, 50000;		
+	} else if (@bought_nameid == 6224) {   // Bradium
+		setarray @itemuse[0], 984;         // Oridecon
+		setarray @itemusemany[0], 3;
+		set @zenyuse, 50000;
+	}
+return;
+}
+
+morocc,128,106,6	script	Lucy	581,{
+	set $@tr$,"^000080[ Lucy ]^000000";
+	mes $@tr$;
+	mes "ท่านต้องการแลก Carnium และ Bradium หรือไม่?";
+	next;
+	switch(select("~ แลก")) {
+		case 1:
+			callfunc "Shop_Exccb","exchangcarbra",1;
+	}		
+	
+	OnBuyItem:
+		callfunc "Exccb_ItemBuy";
+		
+	OnInit: 
+		waitingroom ":: Exchange Ore ::",0;
+		end;
+}
+
+// ============================================ Function Run Shop ===========================================
+function	script	Shop_Exccb	{	npcshopattach getarg(0),1;	close2;	cutin "",255;	callshop getarg(0),1;	end;	}
+
+// ============================================ Function Check Item ==========================================
+function	script	Exccb_ItemBuy	{
+	for (set .@g,0; .@g < getarraysize(@bought_nameid); set .@g,.@g+1) {
+		sleep2 1;
+		set @bought_nameid,@bought_nameid[.@g];
+		deletearray @itemuse[0],getarraysize(@itemuse);
+		deletearray @itemusemany[0],getarraysize(@itemusemany);
+		set @broken,0;	set @zenyuse, 0;
+		callfunc "Exccb_Buy";
+			if(@itemuse[0] <= 0)	goto check;	
+				set .@r,0;	set .@up,0;	set @itemgetmany,0;
+				for( set .@r,0; .@r < getarraysize(@itemuse); set .@r,.@r+1 ) {
+					if(.@up >= getarraysize(@itemuse)) break;
+					set .@itemup[.@up], countitem(@itemuse[.@up])/@itemusemany[.@up];
+					if(.@up == 0) set @itemgetmany,.@itemup[.@up];
+					if(@itemgetmany > .@itemup[.@up]) set @itemgetmany,.@itemup[.@up];
+					set .@up,.@up+1;
+					continue;
+				}
+	check:	
+		dispbottom "=============================================";
+			if(@itemuse[0] <= 0){
+				if (0 == getitemslots( @bought_nameid[.@g])){	dispbottom "ในขณะนี้ "+getitemname(@bought_nameid[.@g])+" ไม่มี Quest ให้แลก";	}
+				if (1 <= getitemslots( @bought_nameid[.@g])){	dispbottom "ในขณะนี้ "+getitemname(@bought_nameid[.@g])+" ["+getitemslots( @bought_nameid[.@g])+"] ไม่มี Quest ให้แลก";	}
+			}
+			else if (@itemgetmany == 0){
+				if (0 == getitemslots( @bought_nameid[.@g])){	dispbottom "Item ที่ต้องการแลกกับ "+getitemname(@bought_nameid[.@g])+" จำนวน 1 ea";	}
+				if (1 <= getitemslots( @bought_nameid[.@g])){	dispbottom "Item ที่ต้องการแลกกับ "+getitemname(@bought_nameid[.@g])+" ["+getitemslots( @bought_nameid[.@g])+"] จำนวน 1 ea.";	}
+				set .@d,0;
+				for( set .@i,0; .@i < getarraysize(@itemuse); set .@i,.@i+1 ) {
+					if(.@d >= getarraysize(@itemuse)) break;
+					if (0 == getitemslots( @itemuse[.@d])){	dispbottom " "+(.@d+1)+"> "+getitemname(@itemuse[.@d])+" จำนวน "+callfunc("F_InsertComma",@itemusemany[.@d])+" ea.";	}
+					if (1 <= getitemslots( @itemuse[.@d])){	dispbottom " "+(.@d+1)+"> "+getitemname(@itemuse[.@d])+" ["+getitemslots( @itemuse[.@d])+"] จำนวน "+callfunc("F_InsertComma",@itemusemany[.@d])+" ea";	}
+					set .@d,.@d+1;
+					continue;
+				}
+				if(@broken != 0) {	set .@failmake,100-@broken;	dispbottom " --> มีโอกาสเสียหาย "+.@failmake+" % ";	}
+				if(@zenyuse != 0) {	dispbottom	"และใช้เงินจำนวน "+callfunc("F_InsertComma",@zenyuse)+" zeny";	}
+			}
+			else if (@bought_quantity[.@g] > @itemgetmany){
+				dispbottom "จาก Item ที่ท่านมี ท่านสามารถแลก "+getitemname(@bought_nameid[.@g])+" ได้ไม่เกิน "+callfunc("F_InsertComma",@itemgetmany)+" ea.";
+			}
+			else if (zeny < (@zenyuse*@bought_quantity[.@g])){	
+				if (@bought_quantity[.@g] == 1)	dispbottom "เงินที่ท่านเตรียมมามีไม่พอ ต้องใช้เงินจำนวน "+@zenyuse+" zeny ในการแลก "+getitemname(@bought_nameid[.@g])+"";
+				else if (@bought_quantity[.@g] >= 2)	dispbottom "เงินที่ท่านเตรียมมามีไม่พอ ต้องใช้เงินจำนวน "+callfunc("F_InsertComma",(@zenyuse*@bought_quantity[.@g]))+" zeny ในการแลก "+getitemname(@bought_nameid[.@g])+" จำนวน "+callfunc("F_InsertComma",@bought_quantity[.@g])+" ea.";
+			}
+			else if ((@bought_quantity[.@g] <= @itemgetmany) && (zeny >= (@zenyuse*@bought_quantity[.@g]))){
+				set .@r,0;	set .@up,0;
+				for( set .@r,0; .@r < getarraysize(@itemuse); set .@r,.@r+1 ) {
+					if(.@up >= getarraysize(@itemuse)) break;
+					delitem @itemuse[.@up],@itemusemany[.@up]*@bought_quantity[.@g];
+					dispbottom "-> "+getitemname(@itemuse[.@up])+" ได้ถูกนำไปใช้จำนวน "+callfunc("F_InsertComma",(@itemusemany[.@up]*@bought_quantity[.@g]))+" ea.";
+					set .@up,.@up+1;
+					continue;
+				}
+				if(@zenyuse != 0) {	
+					set zeny,(zeny-@zenyuse*@bought_quantity[.@g]);
+					dispbottom "-> เงินได้ถูกนำไปใช้จำนวน "+callfunc("F_InsertComma",(@zenyuse*@bought_quantity[.@g]))+" zeny.";
+				}
+				if(@broken != 0) {	
+					set .@RTget,rand(1,100);
+					if(@broken < .@RTget) {
+						emotion 23;
+						specialeffect2 155;
+						dispbottom "Gang Gang Gang Boommmm !!";
+						dispbottom "การเจาะรู "+getitemname(@bought_nameid[.@g])+" ["+getitemslots( @bought_nameid[.@g])+"] ล้มเหลว เสียใจด้วย !!";
+						set @bought_quantity[.@g],0;
+					}
+					if(@broken >= .@RTget) {
+						emotion 21;
+						specialeffect2 154;
+						dispbottom "Gang Gang Gang Gang !!";
+						dispbottom "การเจาะรู "+getitemname(@bought_nameid[.@g])+" ["+getitemslots( @bought_nameid[.@g])+"] เสร็จสมบูรณ์ !!";
+					}
+				} 
+				if(@broken == 0) {
+					emotion 33;
+					specialeffect2 488;
+				}
+				getitem @bought_nameid[.@g],@bought_quantity[.@g];
+			}
+	}
+	dispbottom "=============================================";
+	deletearray @bought_nameid[0],getarraysize(@bought_nameid);
+	deletearray @bought_quantity[0],getarraysize(@bought_quantity);
+	deletearray @itemuse[0],getarraysize(@itemuse);
+	deletearray @itemusemany[0],getarraysize(@itemusemany);
+	set @broken,0;	set @zenyuse, 0;
+	end;
+}
