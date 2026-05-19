@@ -1,0 +1,18 @@
+morocc,174,101,4	script	Voucher Shop	564,{
+    switch(select("~ Monster Voucher:~ Mini Boss Voucher:~ MVP Voucher")) {
+        case 1:
+            callshop "MTV_Shop1",1;	end;
+        case 2:
+            callshop "MNBV_Shop1",1;	end;
+        case 3:
+            callshop "MVPV_Shop1",1;	end;
+    }		
+    
+	OnInit:
+		waitingroom ":: Voucher Shop ::",0;
+		end;
+} 
+
+-	Itemshop	MTV_Shop1	-1,7617,33016:50,33013:500,33014:1000,33015:2000,33012:1000
+-	Itemshop	MNBV_Shop1	-1,7616,33016:5,33013:50,33014:100,33015:200,33012:100
+-	Itemshop	MVPV_Shop1	-1,7615,33016:1,33013:5,33014:10,33015:20,33012:10

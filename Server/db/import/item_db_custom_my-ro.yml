@@ -157,8 +157,51 @@ Body:
     AegisName: MYRO_Infinite_Convex_Mirror
     Name: Infinite Convex Mirror
     Type: Usable
-    Buy: 0
+    Flags:
+      NoConsume: true
+      NoSell: true
     Weight: 0
+    Script: |
+      sc_start SC_BOSSMAPINFO,600000,0;
+  - Id: 33013
+    AegisName: MYRO_Infinite_Center_Potion
+    Name: Infinite Concentration Potion
+    Type: DelayConsume
+    Buy: 10
+    Trade:
+      NoSell: true
+    Script: |
+      sc_start SC_ASPDPOTION0,1800000,4;
+      specialeffect2 EF_POTION_CON;
+  - Id: 33014
+    AegisName: MYRO_Infinite_Awakening_Potion
+    Name: Infinite Awakening Potion
+    Type: DelayConsume
+    Buy: 10
+    Trade:
+      NoSell: true
+    Script: |
+      sc_start SC_ASPDPOTION1,1800000,6;
+      specialeffect2 EF_POTION_;
+  - Id: 33015
+    AegisName: MYRO_Infinite_Berserk_Potion
+    Name: Infinite Berserk Potion
+    Type: DelayConsume
+    Buy: 10
+    Trade:
+      NoSell: true
+    Script: |
+      sc_start SC_ASPDPOTION2,1800000,9;
+      specialeffect2 EF_POTION_BERSERK;
+  - Id: 33016
+    AegisName: MYRO_Infinite_Wing_Of_Fly
+    Name: Infinite Flywing
+    Type: Usable
+    Flags:
+      NoConsume: true
+      NoSell: true
+    Script: |
+      itemskill "AL_TELEPORT",1;
   - Id: 33100
     AegisName: MYRO_Novice_Soul
     Name: Novice Soul
