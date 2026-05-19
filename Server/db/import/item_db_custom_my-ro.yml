@@ -103,6 +103,8 @@ Body:
     Weight: 0
     Script: |
       percentheal rand(5,10),rand(5,10);
+      specialeffect2 EF_POTION2;
+      specialeffect2 EF_POTION5;
   - Id: 33004
     AegisName: MYRO_Angpao
     Name: Angpao
