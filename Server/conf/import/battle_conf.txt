@@ -190,6 +190,17 @@ boss_spawn_delay: 10
 // Zeny from mobs
 zeny_from_mobs: yes
 
+// Chance of mob casting a skill (Note 2)
+// Higher rates lead to 100% mob skill usage with no/few normal attacks.
+// Set to 0 to disable mob skills.
+mob_skill_rate: 10
+
+// Mob skill delay adjust (Note 2)
+// After a mob has casted a skill, there is a delay before being able to
+// re-cast it. Note that skills with a delay of 0 can't be affected by this
+// setting.
+mob_skill_delay: 300
+
 //--------------------------------------------------------------
 // party.conf
 
