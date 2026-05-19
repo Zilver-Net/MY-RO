@@ -25,10 +25,10 @@
 		.@dropTicket = 6673;									// Bossnia Ticket
 		.@drophp = 33003;										// Dried Fish
 		//setarray .@dropBox[0],33005,33006,33007,33008;			// Costume Box
-		.@dropelu,7619;											// Enriched Elunium
-		.@dropbra,6226;											// HD Bradium
-		.@dropori,7620;											// Enriched Oridecon
-		.@dropcar,6225;											// HD Carnium
+		.@dropelu = 7619;											// Enriched Elunium
+		.@dropbra = 6226;											// HD Bradium
+		.@dropori = 7620;											// Enriched Oridecon
+		.@dropcar = 6225;											// HD Carnium
 		//setarray .@dropsoul[0],6814,6815,6816,6817,6818,6819;	// Soul
 		.@dropvouchermvp = 7615;								// MVP Voucher
 		.@dropvouchermini = 7616;								// Miniboss Voucher
