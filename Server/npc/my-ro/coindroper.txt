@@ -99,16 +99,22 @@
 		if( rand(.@droprate) < 100 ) { // Drop Rate 1.00%
 			makeitem .@dropblessing,rand(1,3),.@map$,.@x,.@y;
 		}
-		if( rand(.@droprate) < 50 ) { // Drop Rate 0.50%
-			makeitem .@dropori[rand(3)],rand(1,3),.@map$,.@x,.@y;
+		if( rand(.@droprate) < 5000 ) { // Drop Rate 50.00%
+			makeitem .@dropelu,rand(1,3),.@map$,.@x,.@y;
 		}
-		if( rand(.@droprate) < 50 ) { // Drop Rate 0.50%
-			makeitem .@dropelu[rand(3)],rand(1,3),.@map$,.@x,.@y;
+		if( rand(.@droprate) < 5000 ) { // Drop Rate 50.00%
+			makeitem .@dropori,rand(1,3),.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 5000 ) { // Drop Rate 50.00%
+			makeitem .@dropbra,rand(1,3),.@map$,.@x,.@y;
+		}
+		if( rand(.@droprate) < 5000 ) { // Drop Rate 50.00%
+			makeitem .@dropcar,rand(1,3),.@map$,.@x,.@y;
 		}
 		/*if( rand(.@droprate) < 30 ) { // Drop Rate 0.30%
 			makeitem .@dropsoul[rand(6)],rand(1,4),.@map$,.@x,.@y;
 		}*/
-		if( rand(.@droprate) < 10 ) { // Drop Rate 0.10%
+		if( rand(.@droprate) < 100 ) { // Drop Rate 1.00%
 			makeitem .@dropAngpaw,rand(1,5),.@map$,.@x,.@y;
 		}
 		if( rand(.@droprate) < 30 ) { // Drop Rate 0.30%
