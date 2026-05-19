@@ -23,7 +23,7 @@ function	script	Exccb_Buy	{
         setarray @itemusemany[0], 10;
         set @zenyuse, 500;
     } else if (@bought_nameid == 985) {    // Elunium
-        setarray @itemuse[0], 755;         // Rough Elunium
+        setarray @itemuse[0], 757;         // Rough Elunium
         setarray @itemusemany[0], 10;
         set @zenyuse, 500;
     } else if (@bought_nameid == 6223) {   // Carnium
