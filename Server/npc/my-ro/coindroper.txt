@@ -15,23 +15,25 @@
 //==============================Script==============================\\
 
 -	script	DropExtraTreasure	-1,{
-
-	.@droprate = 10000;										// Drop Rate 100.00%
-	.@dropcoin = 33999;										// Gold Coin
-	.@dropblessing = 6635;									// Blacksmith Blessing
-	.@dropToken = 7621;										// Token Of Siegfried
-	.@dropAngpaw = 33004;									// Angpaw
-	.@dropTicket = 6673;									// Bossnia Ticket
-	.@drophp = 33003;										// Dried Fish
-	//setarray .@dropBox[0],33005,33006,33007,33008;			// Costume Box
-	setarray .@dropelu[0],985,7619,6224;					// Elunium, Enriched Elunium, Bradium
-	setarray .@dropori[0],984,7620,6223;					// Oridecon, Enriched Oridecon, Carnium
-	//setarray .@dropsoul[0],6814,6815,6816,6817,6818,6819;	// Soul
-	.@dropvouchermvp = 7615;								// MVP Voucher
-	.@dropvouchermini = 7616;								// Miniboss Voucher
-	.@dropvoucher = 7617;									// Monster Voucher
-
+	
 	OnNPCKillEvent:
+		.@droprate = 10000;										// Drop Rate 100.00%
+		.@dropcoin = 33999;										// Gold Coin
+		.@dropblessing = 6635;									// Blacksmith Blessing
+		.@dropToken = 7621;										// Token Of Siegfried
+		.@dropAngpaw = 33004;									// Angpaw
+		.@dropTicket = 6673;									// Bossnia Ticket
+		.@drophp = 33003;										// Dried Fish
+		//setarray .@dropBox[0],33005,33006,33007,33008;			// Costume Box
+		.@dropelu,7619;											// Enriched Elunium
+		.@dropbra,6226;											// HD Bradium
+		.@dropori,7620;											// Enriched Oridecon
+		.@dropcar,6225;											// HD Carnium
+		//setarray .@dropsoul[0],6814,6815,6816,6817,6818,6819;	// Soul
+		.@dropvouchermvp = 7615;								// MVP Voucher
+		.@dropvouchermini = 7616;								// Miniboss Voucher
+		.@dropvoucher = 7617;									// Monster Voucher
+		
 		if (!playerattached())
 			end;
 		getunitdata killedgid, .@v;
@@ -39,8 +41,7 @@
 		.@y = .@v[UMOB_Y];
 		.@z = .@v[UMOB_CLASS];
 		.@map$ = strcharinfo(3);
-		
-		
+				
 		if( getmonsterinfo( killedrid,MOB_MVPEXP ) ){ // MVP Check
 			for (set @i,0; @i < rand(7,10); set @i,@i+1) {
 				makeitem .@dropvouchermvp,rand(1,5),.@map$,.@x,.@y;
@@ -48,10 +49,16 @@
 				makeitem .@drophp,rand(1,18),.@map$,rand(.@x-2,.@x+2),rand(.@y-2,.@y+2);
 			}
 			if( rand(.@droprate) < 5000 ) { // Drop Rate 50.00%
-				makeitem .@dropelu[rand(3)],rand(1,7),.@map$,.@x,.@y;
+				makeitem .@dropelu,rand(1,7),.@map$,.@x,.@y;
 			}
 			if( rand(.@droprate) < 5000 ) { // Drop Rate 50.00%
-				makeitem .@dropori[rand(3)],rand(1,7),.@map$,.@x,.@y;
+				makeitem .@dropori,rand(1,7),.@map$,.@x,.@y;
+			}
+			if( rand(.@droprate) < 5000 ) { // Drop Rate 50.00%
+				makeitem .@dropbra,rand(1,7),.@map$,.@x,.@y;
+			}
+			if( rand(.@droprate) < 5000 ) { // Drop Rate 50.00%
+				makeitem .@dropcar,rand(1,7),.@map$,.@x,.@y;
 			}
 			/*if( rand(.@droprate) < 5000 ) { // Drop Rate 50.00%
 				makeitem .@dropbox[rand(6)],rand(1,7),.@map$,.@x,.@y;
