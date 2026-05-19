@@ -109,6 +109,8 @@ Body:
     AegisName: MYRO_Angpao
     Name: Angpao
     Type: Usable
+    Trade:
+      NoSell: true
     Buy: 0
     Weight: 0
     Script: |
@@ -121,6 +123,8 @@ Body:
     Weight: 0
     Flags:
       Container: true
+    Trade:
+      NoSell: true
     Script: |
       getgroupitem(IG_MYRO_COSTUMEBOX_UPPER);
   - Id: 33006
@@ -131,6 +135,8 @@ Body:
     Weight: 0
     Flags:
       Container: true
+    Trade:
+      NoSell: true
     Script: |
       getgroupitem(IG_MYRO_COSTUMEBOX_MIDDLE);
   - Id: 33007
@@ -141,6 +147,8 @@ Body:
     Weight: 0
     Flags:
       Container: true
+    Trade:
+      NoSell: true
     Script: |
       getgroupitem(IG_MYRO_COSTUMEBOX_LOWER);
   - Id: 33008
@@ -151,6 +159,8 @@ Body:
     Weight: 0
     Flags:
       Container: true
+    Trade:
+      NoSell: true
     Script: |
       getgroupitem(IG_MYRO_COSTUMEBOX_GARMENT);
   - Id: 33012
@@ -159,6 +169,7 @@ Body:
     Type: Usable
     Flags:
       NoConsume: true
+    Trade:
       NoSell: true
     Weight: 0
     Script: |
@@ -199,6 +210,7 @@ Body:
     Type: Usable
     Flags:
       NoConsume: true
+    Trade:
       NoSell: true
     Script: |
       itemskill "AL_TELEPORT",1;
@@ -512,6 +524,8 @@ Body:
     AegisName: MYRO_Gold_Coin
     Name: Gold Coin
     Type: Usable
+    Trade:
+      NoSell: true
     Buy: 0
     Weight: 0
     Script: |
