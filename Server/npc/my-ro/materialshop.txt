@@ -20,11 +20,11 @@ function	script	Exccb_Buy	{
 
 	if (@bought_nameid == 984) {           // Oridecon
         setarray @itemuse[0], 756;         // Rough Oridecon
-        setarray @itemusemany[0], 10;
+        setarray @itemusemany[0], 5;
         set @zenyuse, 500;
     } else if (@bought_nameid == 985) {    // Elunium
         setarray @itemuse[0], 757;         // Rough Elunium
-        setarray @itemusemany[0], 10;
+        setarray @itemusemany[0], 5;
         set @zenyuse, 500;
     } else if (@bought_nameid == 6223) {   // Carnium
 		setarray @itemuse[0], 985;         // Elunium
