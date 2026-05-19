@@ -39,6 +39,7 @@ return;
 }
 
 morocc,128,106,6	script	Lucy	581,{
+	
 	set $@tr$,"^000080[ Lucy ]^000000";
 	mes $@tr$;
 	mes "ท่านต้องการแลกแร่สำหรับตีบวกไอเทมหรือไม่?";
@@ -46,8 +47,8 @@ morocc,128,106,6	script	Lucy	581,{
 	switch(select("~ แลก")) {
 		case 1:
 			callfunc "Shop_Exccb","exchangcarbra",1;
-	}		
-	
+	}
+
 	OnBuyItem:
 		callfunc "Exccb_ItemBuy";
 		
