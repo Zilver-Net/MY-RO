@@ -1,0 +1,7 @@
+morocc,159,90,6	script	TestingNPC	581,{
+    switch(select("~ openstylist")) {
+        case 1:
+            openstylist;
+    }		
+    end;
+}
