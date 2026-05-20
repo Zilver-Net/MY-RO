@@ -42,7 +42,7 @@ morocc,147,107,6	script	Rily	436,{
 	OnInit:
 		waitingroom ":: Card to Zeny :: ",0;
 		
-		.multiplier = 5000; // ราคาการ์ด
+		.multiplier = 1000; // ราคาการ์ด
 		
 		end;
 }
