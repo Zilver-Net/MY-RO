@@ -371,7 +371,9 @@
 			set SkillPoint,0;
 		}
 		specialeffect2 EF_ANGEL2;
-		specialeffect2 EF_ELECTRIC;
+		specialeffect2 EF_ELECTRIC;		
+		sc_end SC_EXPBOOST;
+		sc_end SC_JEXPBOOST;
 		if (.@previous_class != Class) {
 			if (.Platinum)
 				callfunc "F_GetPlatinumSkills";
