@@ -1,18 +1,19 @@
-morocc,159,90,6	script	TestingNPC	581,{
-    switch(select("~ Monster Voucher:~ Mini Boss Voucher:~ MVP Voucher")) {
-        case 1:
-            callshop "MTV_Shop1",1;	end;
-        case 2:
-            callshop "MNBV_Shop1",1;	end;
-        case 3:
-            callshop "MVPV_Shop1",1;	end;
-    }		
+morocc,159,90,6	script	TestingNPC	581,{    
+	.@BF_boost = 100;
+	.@PCLevel = BaseLevel;
+    if (.@PCLevel < 99) {
+        set .@BF_LOWLVLMULT,10 * (99 - .@PCLevel);
+        set .@BF_boost,.@BF_boost + .@BF_LOWLVLMULT;
+        set .@BF_EXPMULT,.@BF_boost + .@PCLevel;
+    }
+
+    mes "BF_boost: "+.@BF_boost;
+    mes "PCLevel: "+.@PCLevel;
+    mes "BF_LOWLVLMULT: "+.@BF_LOWLVLMULT;
+    mes "BF_EXPMULT: "+.@BF_EXPMULT;
+    close;
     
 	OnInit:
 		waitingroom ":: Testing NPC ::",0;
 		end;
 } 
-
--	Itemshop	MTV_Shop1	-1,7617,18940:20,19038:20,5105:20,5106:20,5688:20,18828:20,18829:20,18830:20,18831:20,18610:20,18579:20
--	Itemshop	MNBV_Shop1	-1,7616,18940:20,19038:20,5105:20,5106:20,5688:20,18828:20,18829:20,18830:20,18831:20,18610:20,18579:20
--	Itemshop	MVPV_Shop1	-1,7615,18940:20,19038:20,5105:20,5106:20,5688:20,18828:20,18829:20,18830:20,18831:20,18610:20,18579:20

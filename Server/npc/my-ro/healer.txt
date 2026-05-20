@@ -15,35 +15,28 @@
 // Custom by ZilverNet
 //========Update Detail========
 //= V. 1.0
-//= à¸ªà¸ÿà¸£à¸´à¸ÿà¸®à¸µà¸¥à¹€à¸¥à¸­à¸£à¹ÿà¸ÿà¸·à¹ÿà¸ÿà¸ÿà¸²à¸ÿ
-//= à¸®à¸µà¸¥ HP/SP à¹ÿà¸¥à¸°à¸¥à¸ÿà¸ªà¸–à¸²à¸ÿà¸°à¸ÿà¸´à¸”à¸ÿà¸ÿà¸•à¸´
-//= à¸ÿà¸£à¸±à¸ÿà¹ÿà¸•à¹ÿà¸ÿà¹ÿà¸«à¹ÿà¹€à¸ÿà¹ÿà¸²à¸ÿà¸±à¸ÿà¸•à¸±à¸§à¹€à¸ÿà¸´à¸ÿà¹€à¸§à¸­à¸£à¹ÿ
-//= à¸ÿà¸£à¸±à¸ÿà¹ÿà¸•à¹ÿà¸ÿà¹ÿà¸«à¹ÿà¸®à¸µà¸¥à¹ÿà¸”à¹ÿà¸•à¸²à¸¡à¸£à¸°à¸”à¸±à¸ÿà¸—à¸µà¹ÿà¸ÿà¸³à¸«à¸ÿà¸”
-//= à¸ÿà¸£à¸±à¸ÿà¹ÿà¸•à¹ÿà¸ÿà¹ÿà¸«à¹ÿà¸ÿà¸±à¸ÿà¹ÿà¸”à¹ÿà¸•à¸²à¸¡à¸£à¸°à¸”à¸±à¸ÿà¸—à¸µà¹ÿà¸ÿà¸³à¸«à¸ÿà¸”
-//= à¸ÿà¸£à¸±à¸ÿà¹ÿà¸•à¹ÿà¸ÿà¹ÿà¸«à¹ÿà¸ÿà¸±à¸ÿà¹ÿà¸”à¹ÿà¸•à¸²à¸¡à¸£à¸°à¸”à¸±à¸ÿà¸—à¸µà¹ÿà¸ÿà¸³à¸«à¸ÿà¸”à¹ÿà¸¢à¸ÿà¸ÿà¸±à¸ÿà¸ªà¸³à¸«à¸£à¸±à¸ÿà¸ÿà¸±à¸ÿà¸ÿà¸£à¸°à¹€à¸ à¸—à¸•à¹ÿà¸²à¸ÿà¹ÿ
-//= à¸ÿà¸£à¸±à¸ÿà¹ÿà¸•à¹ÿà¸ÿà¹ÿà¸«à¹ÿà¸ÿà¸±à¸ÿà¸­à¸²à¸«à¸²à¸£à¹ÿà¸”à¹ÿà¸•à¸²à¸¡à¸£à¸°à¸”à¸±à¸ÿà¸—à¸µà¹ÿà¸ÿà¸³à¸«à¸ÿà¸”
-//= à¸ÿà¸£à¸±à¸ÿà¹ÿà¸•à¹ÿà¸ÿà¹ÿà¸«à¹ÿà¸ÿà¸±à¸ÿ CP à¹ÿà¸”à¹ÿà¸•à¸²à¸¡à¸£à¸°à¸”à¸±à¸ÿà¸—à¸µà¹ÿà¸ÿà¸³à¸«à¸ÿà¸”
-//= à¸ÿà¸£à¸±à¸ÿà¹ÿà¸•à¹ÿà¸ÿà¹ÿà¸«à¹ÿà¸®à¸µà¸¥à¹ÿà¸”à¹ÿà¸•à¸²à¸¡à¹€à¸§à¸¥à¸²à¸—à¸µà¹ÿà¸ÿà¸³à¸«à¸ÿà¸”
-//= à¸ÿà¸£à¸±à¸ÿà¹ÿà¸•à¹ÿà¸ÿà¹ÿà¸«à¹ÿà¸ÿà¸±à¸ÿà¹ÿà¸”à¹ÿà¸•à¸²à¸¡à¹€à¸§à¸¥à¸²à¸—à¸µà¹ÿà¸ÿà¸³à¸«à¸ÿà¸”
-//= à¸ÿà¸£à¸±à¸ÿà¹ÿà¸•à¹ÿà¸ÿà¹ÿà¸«à¹ÿà¸ÿà¸±à¸ÿà¹ÿà¸”à¹ÿà¸•à¸²à¸¡à¹€à¸§à¸¥à¸²à¸—à¸µà¹ÿà¸ÿà¸³à¸«à¸ÿà¸”à¹ÿà¸¢à¸ÿà¸ÿà¸±à¸ÿà¸ªà¸³à¸«à¸£à¸±à¸ÿà¸ÿà¸±à¸ÿà¸ÿà¸£à¸°à¹€à¸ à¸—à¸•à¹ÿà¸²à¸ÿà¹ÿ
-//= à¸ÿà¸£à¸±à¸ÿà¹ÿà¸•à¹ÿà¸ÿà¹ÿà¸«à¹ÿà¸ÿà¸±à¸ÿà¸­à¸²à¸«à¸²à¸£à¹ÿà¸”à¹ÿà¸•à¸²à¸¡à¹€à¸§à¸¥à¸²à¸—à¸µà¹ÿà¸ÿà¸³à¸«à¸ÿà¸”
-//= à¸ÿà¸£à¸±à¸ÿà¹ÿà¸•à¹ÿà¸ÿà¹ÿà¸«à¹ÿà¸ÿà¸±à¸ÿ CP à¹ÿà¸”à¹ÿà¸•à¸²à¸¡à¹€à¸§à¸¥à¸²à¸—à¸µà¹ÿà¸ÿà¸³à¸«à¸ÿà¸”
-//= à¸ÿà¸£à¸±à¸ÿà¹ÿà¸•à¹ÿà¸ÿà¹ÿà¸«à¹ÿà¸•à¸£à¸§à¸ÿà¹€à¸ÿà¹ÿà¸ÿà¸­à¸¸à¸ÿà¸ÿà¸£à¸“à¹ÿà¸—à¸µà¹ÿà¹€à¸ªà¸µà¸¢à¸«à¸²à¸¢à¹ÿà¸¥à¸°à¸ÿà¹ÿà¸­à¸¡à¹ÿà¸ÿà¸¡à¹ÿà¸«à¹ÿà¸ÿà¹ÿà¸­à¸ÿà¸ÿà¸±à¸ÿ
-//= à¸ÿà¸£à¸±à¸ÿà¹ÿà¸•à¹ÿà¸ÿà¹ÿà¸«à¹ÿà¸•à¸£à¸§à¸ÿà¹€à¸ÿà¹ÿà¸ÿà¹ÿà¸­à¹€à¸—à¸¡à¸—à¸µà¹ÿà¸¢à¸±à¸ÿà¹ÿà¸¡à¹ÿà¸£à¸°à¸ÿà¸¸à¹ÿà¸¥à¸°à¸£à¸°à¸ÿà¸¸à¹ÿà¸«à¹ÿà¸ÿà¹ÿà¸­à¸ÿà¸ÿà¸±à¸ÿ
+//= Ê¤ÃÔ»ÊÓËÃÑº NPC Healer ·Õè¨Ð¤ÍÂãËéºÃÔ¡ÒÃºÑ¾µèÒ§ æ á¡è¼ÙéàÅè¹
+//= â´Â¨ÐÁÕ¡ÒÃµÑé§¤èÒµèÒ§ æ àªè¹ ÃÐÂÐàÇÅÒºÑ¾ ÃÐ´ÑººÑ¾ áÅÐÍ×è¹ æ ·ÕèÊÒÁÒÃ¶»ÃÑºáµè§ä´éµÒÁµéÍ§¡ÒÃ
+//= V. 1.1
+//= á¡éä¢ÃÐÂÐàÇÅÒºÑ¾ãËéàËÁÒÐÊÁ¡Ñºà«ÍàÇÍÃì áÅÐà¾ÔèÁºÑ¾ÍÒËÒÃÊÓËÃÑº¼ÙéàÅè¹
 //==============================Script==============================\\
 
 -	script	Healer_master	-1,{
 
-	.@BF_Delay = 600000;		// 60000 = 1 min
-	.@BF_level = 10;
-	.@BF_boost = 100;
-	.@Buffs1 = 1;			// Also buff players? (1: yes / 0: no) AB only.
-	.@Buffs2 = 0;			// Also buff players? (1: yes / 0: no) Buff ETC.
-	.@Buffs3 = 0;			// Also buff players? (1: yes / 0: no) Buff EXP/BRAGI.
+	.@BF_Delay = 600000;	// 60000 = 1 min
+	.@BF_level = 10;		// Base level for buffs
+	.@BF_boost = 200;		// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
+	.@PCLevel = BaseLevel;
+	.@BuffsAB = 1;			// Also buff players? (1: yes / 0: no) AB only.
+	.@BuffsETC = 0;			// Also buff players? (1: yes / 0: no) Buff ETC.
+	.@BuffsBRAGI = 1;		// Also buff players? (1: yes / 0: no) Buff BRAGI.
+	.@BuffEXP = 1;			// Also buff players? (1: yes / 0: no) Buff EXP.
 	.@Indentified = 1;		// Also indentified item? (1: yes / 0: no)
 	.@Delay = 3;			// Heal delay, in seconds
 	.@Food = 0;				// Also food buff for players? (1: yes / 0: no)
 	.@CP = 0;				// Also buff CP players? (1: yes / 0: no)
+	.@LOWLVLMULT = 1;		// Also multiplier for low level players (below level 100) (1: yes / 0: no).
+
 
 	if (@HD > gettimetick(2))
 		end;
@@ -51,6 +44,8 @@
 	percentheal 100,100;
 	npcskill "AL_HEAL",11,99,60;
 
+	sc_end SC_EXPBOOST;
+	sc_end SC_JEXPBOOST;
 	sc_end SC_STONE;
 	sc_end SC_FREEZE;
 	sc_end SC_STUN;
@@ -68,27 +63,31 @@
 	sc_end SC_STAN;
 	sc_end SA_REVERSEORCISH;
 
-	if (.@Buffs1) {
+	if (.@LOWLVLMULT) {
+		if (.@PCLevel < 99) {
+        set .@BF_LOWLVLMULT,5 * (99 - .@PCLevel);
+        set .@BF_boost,.@BF_boost + .@BF_LOWLVLMULT;
+		}
+	}
+	if (.@BuffsAB) {
 		sc_start SC_BLESSING,.@BF_Delay,.@BF_level;
 		sc_start SC_INCREASEAGI,.@BF_Delay,.@BF_level;
-		sc_start4 SC_POEMBRAGI,.@BF_Delay,.@BF_level,80,100,0;
-		sc_start4 SC_SERVICE4U,.@BF_Delay,.@BF_level,40,40,0;
-		sc_start SC_EXPBOOST,.@BF_Delay,.@BF_boost+BaseLevel;
-		sc_start SC_JEXPBOOST,.@BF_Delay,.@BF_boost+BaseLevel;
 	}
-	if (.@Buffs2) {
+	if (.@BuffsETC) {
 		sc_start SC_IMPOSITIO,.@BF_Delay,.@BF_level;
 		sc_start SC_GLORIA,.@BF_Delay,.@BF_level;
 		sc_start SC_ASSUMPTIO,.@BF_Delay,.@BF_level;
 		sc_start SC_ANGELUS,.@BF_Delay,.@BF_level;
 		sc_start SC_MAGNIFICAT,.@BF_Delay,.@BF_level;
 	}
-	if (.@Buffs3) {
-		sc_start SC_EXPBOOST,.@BF_Delay,.@BF_boost+BaseLevel;
-		sc_start SC_JEXPBOOST,.@BF_Delay,.@BF_boost+BaseLevel;
-		sc_start SC_ITEMBOOST,.@BF_Delay,.@BF_boost;
+	if (.@BuffsBRAGI) {
 		sc_start4 SC_POEMBRAGI,.@BF_Delay,.@BF_level,80,100,0;
 		sc_start4 SC_SERVICE4U,.@BF_Delay,.@BF_level,40,40,0;
+	}
+	if (.@BuffEXP) {
+			set .@BF_EXPMULT,.@BF_boost + (10 * .@PCLevel);
+			sc_start SC_EXPBOOST,.@BF_Delay,.@BF_EXPMULT;
+			sc_start SC_JEXPBOOST,.@BF_Delay,.@BF_EXPMULT;
 	}
 	if (.@CP) {
 		sc_start SC_CP_WEAPON,.@BF_Delay,.@BF_level;

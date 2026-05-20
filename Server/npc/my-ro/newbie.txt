@@ -6,6 +6,8 @@
 //= V. 1.1
 //= แก้ไขไอเทมเริ่มต้นให้เหมาะสมกับเซอเวอร์
 //= เพิ่มการลบไอเทมที่ไม่จำเป็นออกจากตัวละคร
+//= V. 1.2
+//= เพิ่มระบบบัพ EXP สำหรับผู้เล่นใหม่ที่ยังไม่ถึงเลเวล 100 เพื่อช่วยให้การเก็บเลเวลเป็นไปได้ง่ายขึ้น
 // ==============================Script==============================\\
 
 iz_int,56,11,0	script	intro_to_morocc	WARPNPC,2,2,{
@@ -17,9 +19,30 @@ iz_int,56,11,0	script	intro_to_morocc	WARPNPC,2,2,{
 		callfunc "getstartitem";
 }
 
--	script	levelcheck	-1,{
+-	script	levelcheck	-1,{	
+
 	OnPCBaseLvUpEvent:
-		if(DoIntro == 1) { 
+		// Check if player is below level 100 and apply EXP buff if enabled		
+		.@BuffEXP = 1;				// Also buff EXP? (1: yes / 0: no).
+		.@LOWLVLMULT = 1;			// Also multiplier for low level players (below level 100) (1: yes / 0: no).
+		.@BF_boost = 200;			// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
+		.@BF_Delay = 600000;		// 60000 = 1 min
+		.@PCLevel = BaseLevel;
+		if (.@LOWLVLMULT) {
+			if (.@PCLevel < 99) {
+			set .@BF_LOWLVLMULT,5 * (99 - .@PCLevel);
+			set .@BF_boost,.@BF_boost + .@BF_LOWLVLMULT;
+			}
+		}
+		if (.@BuffEXP) {
+			set .@BF_EXPMULT,.@BF_boost + (10 * .@PCLevel);
+			sc_end SC_EXPBOOST;
+			sc_end SC_JEXPBOOST;
+			sc_start SC_EXPBOOST,.@BF_Delay,.@BF_EXPMULT;
+			sc_start SC_JEXPBOOST,.@BF_Delay,.@BF_EXPMULT;
+		}
+		// End of EXP buff system for new players
+		if(DoIntro) { 
 			end; 
 		} else if(readparam(BaseLevel) >= 12){
 			cutin "malaya_nurseb",2;
