@@ -26,7 +26,6 @@ morocc,147,107,6	script	Rily	436,{
 			delitem .@item_id,.@sell_amount;
 			dispbottom "ท่านได้แลกการ์ด "+(getitemname(.@item_id))+" จำนวน "+callfunc("F_InsertComma",.@sell_amount)+" ใบ เป็นเงิน "+callfunc("F_InsertComma",.@finalize)+" zeny.";
 		}
-
 		freeloop(0);
 	}
 	if (.@sell_amount == 0){
@@ -35,8 +34,6 @@ morocc,147,107,6	script	Rily	436,{
 		dispbottom "ข้อควรระวัง ** ระบบจะตรวจการ์ดในกระเป๋าของผู้เล่นทั้งหมด และลบการ์ดที่นำมาแลกออกจากตัวละคร ดังนั้นควรตรวจสอบให้แน่ใจว่าท่านได้เก็บการ์ดที่ไม่ต้องต้องการแลกไว้ในคลังแล้วนะคะ";
 		end;
 	}
-	
-	dispbottom "ดำเนินการเรียบร้อยค่ะ";
 	end;
 	
 	OnInit:
