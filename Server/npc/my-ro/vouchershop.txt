@@ -1,3 +1,10 @@
+// Created by ZilverNet
+//========Update Detail========
+//= V. 1.0
+//= เพิ่มร้านแลกบัตรต่าง ๆ สำหรับมอนสเตอร์ทั่วไป มินิบอส และ MVP
+//= บัตรต่าง ๆ สามารถนำไปแลกไอเทมพิเศษได้ที่ร้านค้าในเมือง Morocc
+//==============================Script==============================\\ 
+
 morocc,174,101,4	script	Voucher Shop	564,{
     switch(select("~ Monster Voucher:~ Mini Boss Voucher:~ MVP Voucher")) {
         case 1:
