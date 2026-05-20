@@ -1,0 +1,177 @@
+// Created by ZilverNet
+//========Update Detail========
+//= V. 1.0
+//= เพิ่มร้านแลกวิญญาณต่าง ๆ สำหรับอาชีพหลักทั้ง 6 อาชีพ
+//= วิญญาณต่าง ๆ สามารถนำไปแลกไอเทมพิเศษได้ที่ร้านค้าในเมือง Morocc
+//==============================Script==============================\\ 
+
+-	shop	ExchangSoul	-1,33101:100,33102:100,33103:100,33104:100,33105:100,33106:100
+
+function	script	Soul_Exccb_Buy	{
+
+	if (@bought_nameid == 33101) {          // Swordman Soul Equipment.
+        setarray @itemuse[0], 6814;         // Swordman Soul ETC.
+        setarray @itemusemany[0], 100;
+        set @zenyuse, 100;
+    } else if (@bought_nameid == 33102) {   // Merchant Soul Equipment.
+        setarray @itemuse[0], 6815;         // Merchant Soul ETC.
+        setarray @itemusemany[0], 100;
+        set @zenyuse, 100;
+    } else if (@bought_nameid == 33103) {   // Thief Soul Equipment.
+        setarray @itemuse[0], 6816;         // Thief Soul ETC.
+        setarray @itemusemany[0], 100;
+        set @zenyuse, 100;
+    } else if (@bought_nameid == 33104) {   // Mage Soul Equipment.
+        setarray @itemuse[0], 6817;         // Mage Soul ETC.
+        setarray @itemusemany[0], 100;
+        set @zenyuse, 100;
+    } else if (@bought_nameid == 33105) {   // Archer Soul Equipment.
+        setarray @itemuse[0], 6818;         // Archer Soul ETC.
+        setarray @itemusemany[0], 100;
+        set @zenyuse, 100;
+    } else if (@bought_nameid == 33106) {   // Acolyte Soul Equipment.
+        setarray @itemuse[0], 6819;         // Acolyte Soul ETC.
+        setarray @itemusemany[0], 100;
+        set @zenyuse, 100;
+	}
+return;
+}
+
+morocc,178,101,4	script	Soul Shop	564,{
+	switch(select("~ แลก")) {
+		case 1:
+			callfunc "Soul_Shop_Exccb","ExchangSoul",1;
+	}
+
+	OnBuyItem:
+		callfunc "Soul_Exccb_ItemBuy";
+		
+	OnInit: 
+		waitingroom ":: Soul Shop ::",0;
+		end;
+}
+
+// ============================================ Function Run Shop ===========================================
+function	script	Soul_Shop_Exccb	{	npcshopattach getarg(0),1;	callshop getarg(0),1;	end;	}
+
+// ============================================ Function Check Item ==========================================
+function	script	Soul_Exccb_ItemBuy	{
+	for (set .@g,0; .@g < getarraysize(@bought_nameid); set .@g,.@g+1) {
+		sleep2 1;
+		set @bought_nameid,@bought_nameid[.@g];
+		deletearray @itemuse[0],getarraysize(@itemuse);
+		deletearray @itemusemany[0],getarraysize(@itemusemany);
+		set @broken,0;	set @zenyuse, 0;
+		callfunc "Soul_Exccb_Buy";
+			if(@itemuse[0] <= 0)	goto check;	
+				set .@r,0;	set .@up,0;	set @itemgetmany,0;
+				for( set .@r,0; .@r < getarraysize(@itemuse); set .@r,.@r+1 ) {
+					if(.@up >= getarraysize(@itemuse)) break;
+					set .@itemup[.@up], countitem(@itemuse[.@up])/@itemusemany[.@up];
+					if(.@up == 0) set @itemgetmany,.@itemup[.@up];
+					if(@itemgetmany > .@itemup[.@up]) set @itemgetmany,.@itemup[.@up];
+					set .@up,.@up+1;
+					continue;
+				}
+	check:	
+		dispbottom "=============================================";
+			if(@itemuse[0] <= 0){
+				if (0 == getitemslots( @bought_nameid[.@g])){	dispbottom "ในขณะนี้ "+getitemname(@bought_nameid[.@g])+" ไม่มี Quest ให้แลก";	}
+				if (1 <= getitemslots( @bought_nameid[.@g])){	dispbottom "ในขณะนี้ "+getitemname(@bought_nameid[.@g])+" ["+getitemslots( @bought_nameid[.@g])+"] ไม่มี Quest ให้แลก";	}
+			}
+			else if (@itemgetmany == 0){
+				if (0 == getitemslots( @bought_nameid[.@g])){	dispbottom "Item ที่ต้องการแลกกับ "+getitemname(@bought_nameid[.@g])+" จำนวน 1 ea";	}
+				if (1 <= getitemslots( @bought_nameid[.@g])){	dispbottom "Item ที่ต้องการแลกกับ "+getitemname(@bought_nameid[.@g])+" ["+getitemslots( @bought_nameid[.@g])+"] จำนวน 1 ea.";	}
+				set .@d,0;
+				for( set .@i,0; .@i < getarraysize(@itemuse); set .@i,.@i+1 ) {
+					if(.@d >= getarraysize(@itemuse)) break;
+					if (0 == getitemslots( @itemuse[.@d])){	dispbottom " "+(.@d+1)+"> "+getitemname(@itemuse[.@d])+" จำนวน "+callfunc("F_InsertComma",@itemusemany[.@d])+" ea.";	}
+					if (1 <= getitemslots( @itemuse[.@d])){	dispbottom " "+(.@d+1)+"> "+getitemname(@itemuse[.@d])+" ["+getitemslots( @itemuse[.@d])+"] จำนวน "+callfunc("F_InsertComma",@itemusemany[.@d])+" ea";	}
+					set .@d,.@d+1;
+					continue;
+				}
+				if(@broken != 0) {	set .@failmake,100-@broken;	dispbottom " --> มีโอกาสเสียหาย "+.@failmake+" % ";	}
+				if(@zenyuse != 0) {	dispbottom	"และใช้เงินจำนวน "+callfunc("F_InsertComma",@zenyuse)+" zeny";	}
+			}
+			else if (@bought_quantity[.@g] > @itemgetmany){
+				dispbottom "จาก Item ที่ท่านมี ท่านสามารถแลก "+getitemname(@bought_nameid[.@g])+" ได้ไม่เกิน "+callfunc("F_InsertComma",@itemgetmany)+" ea.";
+			}
+			else if (zeny < (@zenyuse*@bought_quantity[.@g])){	
+				if (@bought_quantity[.@g] == 1)	dispbottom "เงินที่ท่านเตรียมมามีไม่พอ ต้องใช้เงินจำนวน "+@zenyuse+" zeny ในการแลก "+getitemname(@bought_nameid[.@g])+"";
+				else if (@bought_quantity[.@g] >= 2)	dispbottom "เงินที่ท่านเตรียมมามีไม่พอ ต้องใช้เงินจำนวน "+callfunc("F_InsertComma",(@zenyuse*@bought_quantity[.@g]))+" zeny ในการแลก "+getitemname(@bought_nameid[.@g])+" จำนวน "+callfunc("F_InsertComma",@bought_quantity[.@g])+" ea.";
+			}
+			else if ((@bought_quantity[.@g] <= @itemgetmany) && (zeny >= (@zenyuse*@bought_quantity[.@g]))){
+				set .@r,0;	set .@up,0;
+				for( set .@r,0; .@r < getarraysize(@itemuse); set .@r,.@r+1 ) {
+					if(.@up >= getarraysize(@itemuse)) break;
+					delitem @itemuse[.@up],@itemusemany[.@up]*@bought_quantity[.@g];
+					dispbottom "-> "+getitemname(@itemuse[.@up])+" ได้ถูกนำไปใช้จำนวน "+callfunc("F_InsertComma",(@itemusemany[.@up]*@bought_quantity[.@g]))+" ea.";
+					set .@up,.@up+1;
+					continue;
+				}
+				if(@zenyuse != 0) {	
+					set zeny,(zeny-@zenyuse*@bought_quantity[.@g]);
+					dispbottom "-> เงินได้ถูกนำไปใช้จำนวน "+callfunc("F_InsertComma",(@zenyuse*@bought_quantity[.@g]))+" zeny.";
+				}
+				if(@broken != 0) {	
+					set .@RTget,rand(1,100);
+					if(@broken < .@RTget) {
+						emotion 23;
+						specialeffect2 155;
+						dispbottom "Gang Gang Gang Boommmm !!";
+						dispbottom "การเจาะรู "+getitemname(@bought_nameid[.@g])+" ["+getitemslots( @bought_nameid[.@g])+"] ล้มเหลว เสียใจด้วย !!";
+						set @bought_quantity[.@g],0;
+					}
+					if(@broken >= .@RTget) {
+						emotion 21;
+						specialeffect2 154;
+						dispbottom "Gang Gang Gang Gang !!";
+						dispbottom "การเจาะรู "+getitemname(@bought_nameid[.@g])+" ["+getitemslots( @bought_nameid[.@g])+"] เสร็จสมบูรณ์ !!";
+					}
+				} 
+				if(@broken == 0) {
+					emotion 33;
+					specialeffect2 488;
+				}
+				getitem @bought_nameid[.@g],@bought_quantity[.@g];
+			}
+	}
+	dispbottom "=============================================";
+	deletearray @bought_nameid[0],getarraysize(@bought_nameid);
+	deletearray @bought_quantity[0],getarraysize(@bought_quantity);
+	deletearray @itemuse[0],getarraysize(@itemuse);
+	deletearray @itemusemany[0],getarraysize(@itemusemany);
+	set @broken,0;	set @zenyuse, 0;
+	end;
+}
+
+// ----------------------- Itemshop (Notworking) -----------------------
+/*
+morocc,178,101,4	script	Soul Shop	564,{
+    switch(select("~ Acolyte Soul:~ Archer Soul:~ Mage Soul:~ Merchant Soul:~ Sword Man Soul:~ Thief Soul")) {
+        case 1:
+            callshop "ACO_Shop1",1;	end;
+        case 2:
+            callshop "ARC_Shop1",1;	end;
+        case 3:
+            callshop "MAG_Shop1",1;	end;
+        case 4:
+            callshop "MER_Shop1",1;	end;
+        case 5:
+            callshop "SWD_Shop1",1;	end;
+        case 6:
+            callshop "THF_Shop1",1;	end;
+    }		
+    
+	OnInit:
+		waitingroom ":: Soul Shop ::",0;
+		end;
+} 
+
+-	Itemshop	SWD_Shop1	-1,6814,33101:100
+-	Itemshop	MER_Shop1	-1,6815,33102:100
+-	Itemshop	THF_Shop1	-1,6816,33103:100
+-	Itemshop	MAG_Shop1	-1,6817,33104:100
+-	Itemshop	ARC_Shop1	-1,6818,33105:100
+-	Itemshop	ACO_Shop1	-1,6819,33106:100
+*/

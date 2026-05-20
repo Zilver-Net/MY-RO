@@ -29,7 +29,7 @@
 		.@dropbra = 6226;											// HD Bradium
 		.@dropori = 7620;											// Enriched Oridecon
 		.@dropcar = 6225;											// HD Carnium
-		//setarray .@dropsoul[0],6814,6815,6816,6817,6818,6819;	// Soul
+		setarray .@dropsoul[0],6814,6815,6816,6817,6818,6819;	// Soul, Swordman, Merchant, Thief, Mage, Archer, Acolyte
 		.@dropvouchermvp = 7615;								// MVP Voucher
 		.@dropvouchermini = 7616;								// Miniboss Voucher
 		.@dropvoucher = 7617;									// Monster Voucher
