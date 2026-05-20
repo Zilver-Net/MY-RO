@@ -220,8 +220,6 @@ Body:
     Type: Armor
     Buy: 0
     Weight: 100
-    Jobs:
-      Novice: true
     Locations:
       Costume_Head_Low: true
     ArmorLevel: 1
@@ -251,8 +249,6 @@ Body:
     Type: Armor
     Buy: 0
     Weight: 100
-    Jobs:
-      Swordman: true
     Locations:
       Costume_Head_Low: true
     ArmorLevel: 1
@@ -277,8 +273,6 @@ Body:
     Type: Armor
     Buy: 0
     Weight: 100
-    Jobs:
-      Merchant: true
     Locations:
       Costume_Head_Low: true
     ArmorLevel: 1
@@ -303,8 +297,6 @@ Body:
     Type: Armor
     Buy: 0
     Weight: 100
-    Jobs:
-      Thief: true
     Locations:
       Costume_Head_Low: true
     ArmorLevel: 1
@@ -328,8 +320,6 @@ Body:
     Type: Armor
     Buy: 0
     Weight: 100
-    Jobs:
-      Mage: true
     Locations:
       Costume_Head_Low: true
     ArmorLevel: 1
@@ -360,8 +350,6 @@ Body:
     Type: Armor
     Buy: 0
     Weight: 100
-    Jobs:
-      Archer: true
     Locations:
       Costume_Head_Low: true
     ArmorLevel: 1
@@ -385,8 +373,6 @@ Body:
     Type: Armor
     Buy: 0
     Weight: 100
-    Jobs:
-      Acolyte: true
     Locations:
       Costume_Head_Low: true
     ArmorLevel: 1
