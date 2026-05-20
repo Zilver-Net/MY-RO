@@ -25,8 +25,7 @@
 
 	.@BF_Delay = 600000;	// 60000 = 1 min
 	.@BF_level = 10;		// Base level for buffs
-	.@BF_boost = 200;		// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
-	.@PCLevel = BaseLevel;
+	.@BF_boost = 100;		// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
 	.@BuffsAB = 1;			// Also buff players? (1: yes / 0: no) AB only.
 	.@BuffsETC = 0;			// Also buff players? (1: yes / 0: no) Buff ETC.
 	.@BuffsBRAGI = 1;		// Also buff players? (1: yes / 0: no) Buff BRAGI.
@@ -35,7 +34,12 @@
 	.@Delay = 3;			// Heal delay, in seconds
 	.@Food = 0;				// Also food buff for players? (1: yes / 0: no)
 	.@CP = 0;				// Also buff CP players? (1: yes / 0: no)
-	.@LOWLVLMULT = 1;		// Also multiplier for low level players (below level 100) (1: yes / 0: no).
+	.@BF_LOWLVL = 1;		// Also multiplier for low level players (below level 100) (1: yes / 0: no).
+	.@PCLevel = BaseLevel;
+	.@BF_LOWLVLMULT = 5;	// Additional boost for low level players, calculated based on how many levels they are below 99.
+	.@BF_BASELVLMULT = 15;	// Base boost based on player's level, calculated as 10% of their level.
+	set .@BF_LOWLVLMULT,.@BF_LOWLVLMULT * (99 - .@PCLevel);	// Additional boost for low level players, calculated based on how many levels they are below 99.
+	set .@BF_BASELVLMULT,(.@BF_BASELVLMULT * .@PCLevel);		// Base boost based on player's level, calculated as 10% of their level.
 
 
 	if (@HD > gettimetick(2))
@@ -63,10 +67,9 @@
 	sc_end SC_STAN;
 	sc_end SA_REVERSEORCISH;
 
-	if (.@LOWLVLMULT) {
+	if (.@BF_LOWLVL) {
 		if (.@PCLevel < 99) {
-        set .@BF_LOWLVLMULT,5 * (99 - .@PCLevel);
-        set .@BF_boost,.@BF_boost + .@BF_LOWLVLMULT;
+        set .@BF_boost,.@BF_boost + .@BF_LOWLVLMULT;	// Total boost is the sum of base boost and additional low level boost
 		}
 	}
 	if (.@BuffsAB) {
@@ -85,7 +88,7 @@
 		sc_start4 SC_SERVICE4U,.@BF_Delay,.@BF_level,40,40,0;
 	}
 	if (.@BuffEXP) {
-			set .@BF_EXPMULT,.@BF_boost + (10 * .@PCLevel);
+			set .@BF_EXPMULT,.@BF_boost + .@BF_BASELVLMULT;	// Total EXP boost is the sum of the calculated boost and the base level multiplier
 			sc_start SC_EXPBOOST,.@BF_Delay,.@BF_EXPMULT;
 			sc_start SC_JEXPBOOST,.@BF_Delay,.@BF_EXPMULT;
 	}

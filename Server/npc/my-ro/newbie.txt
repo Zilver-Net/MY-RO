@@ -23,19 +23,20 @@ iz_int,56,11,0	script	intro_to_morocc	WARPNPC,2,2,{
 
 	OnPCBaseLvUpEvent:
 		// Check if player is below level 100 and apply EXP buff if enabled		
-		.@BuffEXP = 1;				// Also buff EXP? (1: yes / 0: no).
-		.@LOWLVLMULT = 1;			// Also multiplier for low level players (below level 100) (1: yes / 0: no).
-		.@BF_boost = 200;			// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
-		.@BF_Delay = 600000;		// 60000 = 1 min
+		.@BuffEXP = 1;										// Also buff EXP? (1: yes / 0: no).
+		.@LOWLVLMULT = 1;									// Also multiplier for low level players (below level 100) (1: yes / 0: no).
+		.@BF_boost = 100;									// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
+		.@BF_Delay = 600000;								// 60000 = 1 min
 		.@PCLevel = BaseLevel;
+		set .@BF_LOWLVLMULT,2 * (99 - .@PCLevel);			// Additional boost for low level players, calculated based on how many levels they are below 99.
+		set .@BF_BASELVLMULT,(10 * .@PCLevel);				// Base boost based on player's level, calculated as 10% of their level.
 		if (.@LOWLVLMULT) {
 			if (.@PCLevel < 99) {
-			set .@BF_LOWLVLMULT,5 * (99 - .@PCLevel);
-			set .@BF_boost,.@BF_boost + .@BF_LOWLVLMULT;
+			set .@BF_boost,.@BF_boost + .@BF_LOWLVLMULT;	// Total boost is the sum of base boost and additional low level boost
 			}
 		}
 		if (.@BuffEXP) {
-			set .@BF_EXPMULT,.@BF_boost + (10 * .@PCLevel);
+			set .@BF_EXPMULT,.@BF_boost + .@BF_BASELVLMULT; // Total EXP boost is the sum of the calculated boost and the base level multiplier
 			sc_end SC_EXPBOOST;
 			sc_end SC_JEXPBOOST;
 			sc_start SC_EXPBOOST,.@BF_Delay,.@BF_EXPMULT;
