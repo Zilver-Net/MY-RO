@@ -223,9 +223,10 @@ Body:
     Jobs:
       Novice: true
     Locations:
-      Both_Accessory: true
+      Costume_Head_Low: true
     ArmorLevel: 1
     EquipLevelMin: 1
+    View: 3100
     Script: |
       bonus bAllStats,10;
       bonus bBaseAtk,25;
@@ -241,6 +242,9 @@ Body:
       bonus3 bAutoSpell,"MG_COLDBOLT",10,50;
       bonus3 bAutoSpell,"MG_FIREBOLT",10,50;
       bonus3 bAutoSpell,"MG_LIGHTNINGBOLT",10,50;
+      hateffect HAT_EF_CIRCLEPOWER,true;
+    UnEquipScript: |
+      hateffect HAT_EF_CIRCLEPOWER,false;
   - Id: 33101
     AegisName: MYRO_Swordman_Soul
     Name: Swordman Soul
@@ -250,9 +254,10 @@ Body:
     Jobs:
       Swordman: true
     Locations:
-      Both_Accessory: true
+      Costume_Head_Low: true
     ArmorLevel: 1
     EquipLevelMin: 1
+    View: 3101
     Script: |
       bonus bAllStats,1;
       bonus bBaseAtk,25;
@@ -263,6 +268,9 @@ Body:
       bonus3 bAutoSpell,"SM_BASH",1,50;
       bonus2 bSkillAtk,"SM_BASH",50;
       bonus4 bAutoSpellWhenHit,"SM_ENDURE",1,10,0; 
+      hateffect HAT_EF_CIRCLEPOWER,true;
+    UnEquipScript: |
+      hateffect HAT_EF_CIRCLEPOWER,false;
   - Id: 33102
     AegisName: MYRO_Merchant_Soul
     Name: Merchant Soul
@@ -272,9 +280,10 @@ Body:
     Jobs:
       Merchant: true
     Locations:
-      Both_Accessory: true
+      Costume_Head_Low: true
     ArmorLevel: 1
     EquipLevelMin: 1
+    View: 3102
     Script: |
       bonus bAllStats,1;
       bonus bBaseAtk,25;
@@ -285,6 +294,9 @@ Body:
       bonus2 bSkillAtk,"MC_MAMMONITE",50;
       skill "MC_DISCOUNT",1;
       skill "MC_OVERCHARGE",1;
+      hateffect HAT_EF_CIRCLEPOWER,true;
+    UnEquipScript: |
+      hateffect HAT_EF_CIRCLEPOWER,false;
   - Id: 33103
     AegisName: MYRO_Thief_Soul
     Name: Thief Soul
@@ -294,9 +306,10 @@ Body:
     Jobs:
       Thief: true
     Locations:
-      Both_Accessory: true
+      Costume_Head_Low: true
     ArmorLevel: 1
     EquipLevelMin: 1
+    View: 3103
     Script: |
       bonus bAllStats,1;
       bonus bBaseAtk,25;
@@ -306,6 +319,9 @@ Body:
       bonus bSpeedAddRate,15;
       skill "TF_DOUBLE",1;
       bonus3 bAutoSpell,"TF_STEAL",1,50;
+      hateffect HAT_EF_CIRCLEPOWER,true;
+    UnEquipScript: |
+      hateffect HAT_EF_CIRCLEPOWER,false;
   - Id: 33104
     AegisName: MYRO_Mage_Soul
     Name: Mage Soul
@@ -315,9 +331,10 @@ Body:
     Jobs:
       Mage: true
     Locations:
-      Both_Accessory: true
+      Costume_Head_Low: true
     ArmorLevel: 1
     EquipLevelMin: 1
+    View: 3104
     Script: |
       bonus bAllStats,1;
       bonus bBaseMatk,25;
@@ -334,6 +351,9 @@ Body:
       bonus2 bSkillAtk,"MG_COLDBOLT",50;
       bonus2 bSkillAtk,"MG_FIREBOLT",50;
       bonus2 bSkillAtk,"MG_LIGHTNINGBOLT",50;
+      hateffect HAT_EF_CIRCLEPOWER,true;
+    UnEquipScript: |
+      hateffect HAT_EF_CIRCLEPOWER,false;
   - Id: 33105
     AegisName: MYRO_Archer_Soul
     Name: Archer Soul
@@ -343,9 +363,10 @@ Body:
     Jobs:
       Archer: true
     Locations:
-      Both_Accessory: true
+      Costume_Head_Low: true
     ArmorLevel: 1
     EquipLevelMin: 1
+    View: 3105
     Script: |
       bonus bAllStats,1;
       bonus bBaseAtk,25;
@@ -355,6 +376,9 @@ Body:
       bonus bSpeedAddRate,15;
       bonus3 bAutoSpell,"AC_DOUBLE",1,50;
       bonus2 bSkillAtk,"AC_DOUBLE",50;
+      hateffect HAT_EF_CIRCLEPOWER,true;
+    UnEquipScript: |
+      hateffect HAT_EF_CIRCLEPOWER,false;
   - Id: 33106
     AegisName: MYRO_Acolyte_Soul
     Name: Acolyte Soul
@@ -364,9 +388,10 @@ Body:
     Jobs:
       Acolyte: true
     Locations:
-      Both_Accessory: true
+      Costume_Head_Low: true
     ArmorLevel: 1
     EquipLevelMin: 1
+    View: 3106
     Script: |
       bonus bAllStats,1;
       bonus bBaseAtk,25;
@@ -377,6 +402,9 @@ Body:
       bonus bSpeedAddRate,15;
       bonus4 bAutoSpellWhenHit,"AL_PNEUMA",1,10,0;
       bonus4 bAutoSpellWhenHit,"AL_HEAL",1,10,0;
+      hateffect HAT_EF_CIRCLEPOWER,true;
+    UnEquipScript: |
+      hateffect HAT_EF_CIRCLEPOWER,false;
   - Id: 33199
     AegisName: MYRO_Administrator_Sign
     Name: Administrator Sign
@@ -385,11 +413,14 @@ Body:
       Costume_Head_Top: true
     ArmorLevel: 1
     EquipLevelMin: 1
-    View: 2812
+    View: 3199
     Script: |
       bonus bDef,999;
       bonus bMdef,999;
       bonus bSpeedAddRate,45;
+      hateffect HAT_EF_SUBJECT_AURA_WHITE,true;
+    UnEquipScript: |
+      hateffect HAT_EF_SUBJECT_AURA_WHITE,false;
   - Id: 33201
     AegisName: MYRO_Special_Katar
     Name: Special Katar
