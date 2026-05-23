@@ -22,6 +22,8 @@
 //= เพิ่ม Duplicate NPC เพื่อให้ง่ายต่อการแก้ไขและปรับแต่งในอนาคต
 //= V. 1.1
 //= เพิ่มตัวเลือก NoReset เพื่อป้องกันการรีเซ็ตเลเวลเมื่อทำการรีเบิร์ธ
+//= V. 1.2
+//= แก้ไขการรีเซ็ทเลเวลและสกิลเมื่อทำการรีเบิร์ธ เพิ่มค่าเช็คการรีเบิร์ธสำหรับรีเซ็ทสเตตัส
 //==============================Script==============================\\
 
 -	script	Job_Master	-1,{
@@ -361,7 +363,9 @@
 		jobchange .@to_cls;
 		if (.@to_cls == Job_Novice_High) {	// NoReset option prevents resetting for rebirth
 			if (.NoReset) { 
-				resetlvl(2); 
+				resetlvl(3); 
+				resetlvl(4);
+				IsRebirth = 1;	// Rebirth check for reset status.
 			} else
 				resetlvl(1);
 		}

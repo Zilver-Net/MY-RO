@@ -19,28 +19,13 @@
 //= โดยจะมีการตั้งค่าต่าง ๆ เช่น ระยะเวลาบัพ ระดับบัพ และอื่น ๆ ที่สามารถปรับแต่งได้ตามต้องการ
 //= V. 1.1
 //= แก้ไขระยะเวลาบัพให้เหมาะสมกับเซอเวอร์ และเพิ่มบัพอาหารสำหรับผู้เล่น
+//= V. 1.2
+//= ปรับปรุงโค้ดบัฟ exp ให้ทำงานผ่านฟังก์ชั่นแยก เพื่อความสะดวกในการปรับแต่งและเรียกใช้งานผ่าน NPC อื่น ๆ
+//= V. 1.3
+//= ปรับปรุงโค้ดให้มีประสิทธิภาพมากขึ้น ง่ายต่อการแก้ไขในอนาคต
 //==============================Script==============================\\
 
 -	script	Healer_master	-1,{
-
-	.@BF_Delay = 600000;	// 60000 = 1 min
-	.@BF_level = 10;		// Base level for buffs
-	.@BF_boost = 100;		// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
-	.@BuffsAB = 1;			// Also buff players? (1: yes / 0: no) AB only.
-	.@BuffsETC = 0;			// Also buff players? (1: yes / 0: no) Buff ETC.
-	.@BuffsBRAGI = 1;		// Also buff players? (1: yes / 0: no) Buff BRAGI.
-	.@BuffEXP = 1;			// Also buff players? (1: yes / 0: no) Buff EXP.
-	.@Indentified = 1;		// Also indentified item? (1: yes / 0: no)
-	.@Delay = 3;			// Heal delay, in seconds
-	.@Food = 0;				// Also food buff for players? (1: yes / 0: no)
-	.@CP = 0;				// Also buff CP players? (1: yes / 0: no)
-	.@BF_LOWLVL = 1;		// Also multiplier for low level players (below level 100) (1: yes / 0: no).
-	.@PCLevel = BaseLevel;
-	.@BF_LOWLVLMULT = 5;	// Additional boost for low level players, calculated based on how many levels they are below 99.
-	.@BF_BASELVLMULT = 15;	// Base boost based on player's level, calculated as 10% of their level.
-	set .@BF_LOWLVLMULT,.@BF_LOWLVLMULT * (99 - .@PCLevel);	// Additional boost for low level players, calculated based on how many levels they are below 99.
-	set .@BF_BASELVLMULT,(.@BF_BASELVLMULT * .@PCLevel);		// Base boost based on player's level, calculated as 10% of their level.
-
 
 	if (@HD > gettimetick(2))
 		end;
@@ -48,8 +33,6 @@
 	percentheal 100,100;
 	npcskill "AL_HEAL",11,99,60;
 
-	sc_end SC_EXPBOOST;
-	sc_end SC_JEXPBOOST;
 	sc_end SC_STONE;
 	sc_end SC_FREEZE;
 	sc_end SC_STUN;
@@ -66,12 +49,177 @@
 	sc_end SC_ORCISH;
 	sc_end SC_STAN;
 	sc_end SA_REVERSEORCISH;
+	
+	if (.IsBuffsAB) {
+		sc_start SC_BLESSING,.BF_Delay,.BF_level;
+		sc_start SC_INCREASEAGI,.BF_Delay,.BF_level;
+	}
+	if (.IsBuffsETC) {
+		sc_start SC_IMPOSITIO,.BF_Delay,.BF_level;
+		sc_start SC_GLORIA,.BF_Delay,.BF_level;
+		sc_start SC_ASSUMPTIO,.BF_Delay,.BF_level;
+		sc_start SC_ANGELUS,.BF_Delay,.BF_level;
+		sc_start SC_MAGNIFICAT,.BF_Delay,.BF_level;
+	}
+	if (.IsBuffsBRAGI) {
+		sc_start4 SC_POEMBRAGI,.BF_Delay,.BF_level,80,100,0;
+		sc_start4 SC_SERVICE4U,.BF_Delay,.BF_level,40,40,0;
+	}
+	if (.IsCP) {
+		sc_start SC_CP_WEAPON,.BF_Delay,.BF_level;
+		sc_start SC_CP_SHIELD,.BF_Delay,.BF_level;
+		sc_start SC_CP_ARMOR,.BF_Delay,.BF_level;
+		sc_start SC_CP_HELM,.BF_Delay,.BF_level;
+	}
+	if (.IsFood) {
+		sc_start SC_STRFood,.BF_Delay,.BF_level;
+		sc_start SC_AGIFood,.BF_Delay,.BF_level;
+		sc_start SC_VITFood,.BF_Delay,.BF_level;
+		sc_start SC_INTFood,.BF_Delay,.BF_level;
+		sc_start SC_DEXFood,.BF_Delay,.BF_level;
+		sc_start SC_LUKFood,.BF_Delay,.BF_level;
+		sc_start SC_HITFood,.BF_Delay,.BF_level;
+		sc_start SC_FLEEFood,.BF_Delay,.BF_level;
+		sc_start SC_BATKFood,.BF_Delay,.BF_level;
+		sc_start SC_MATKFood,.BF_Delay,.BF_level;
+		sc_start SC_COMMONSC_RESIST,.BF_Delay,.BF_level;
+		sc_start SC_ASPDPOTION2,.BF_Delay,.BF_level;
+	}
 
-	if (.@BF_LOWLVL) {
-		if (.@PCLevel < 99) {
-        set .@BF_boost,.@BF_boost + .@BF_LOWLVLMULT;	// Total boost is the sum of base boost and additional low level boost
+	if (getbrokenid(1) > 0) { 
+		repairall;
+	}
+
+	if (.IsIndentified) {
+		if (identifyall(false) > 0) {
+			identifyall(true);
 		}
 	}
+	
+	if (.Delay)
+		@HD = gettimetick(2) + .Delay;
+		
+	if (.IsBuffEXP) {
+		callfunc "getexpbuff";
+	}
+	end;
+
+	OnInIt:
+		.BF_Delay = 600000;											// Buff duration, in milliseconds. Default: 600000 (10 minutes)
+		.BF_level = 10;												// Base level for buffs
+		.BF_boost = 100;											// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
+		.IsBuffEXP = 1;												// Also buff EXP? (1: yes / 0: no).
+		.IsBuffsAB = 1;												// Also buff players? (1: yes / 0: no) AB only.
+		.IsBuffsETC = 0;											// Also buff players? (1: yes / 0: no) Buff ETC.
+		.IsBuffsBRAGI = 1;											// Also buff players? (1: yes / 0: no) Buff BRAGI.
+		.IsIndentified = 1;											// Also indentified item? (1: yes / 0: no)
+		.Delay = 3;													// Heal delay, in seconds
+		.Food = 0;													// Also food buff for players? (1: yes / 0: no)
+		.CP = 0;													// Also buff CP players? (1: yes / 0: no)
+		end;
+}
+
+function	script	getexpbuff	{
+	//============================== Configuration for EXP Buff ==============================\\
+	.@IsBuffEXP = 1;												// Also buff EXP? (1: yes / 0: no).
+	.@IsMulEXPLowLVL = 1;											// Also multiplier for low level players (below level 175) (1: yes / 0: no).
+	.@BF_boost = 100;												// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
+	.@BF_Delay = 600000;											// Buff duration, in milliseconds. Default: 600000 (10 minutes)
+	.@MaxLevel = 175;												// Maximum level for low level multiplier to apply. Default: 175 (RE: 175, Pre-RE: 99)
+	.@BF_LOWLVLMULT = 2;											// Additional boost for low level players, calculated based on how many levels they are below 175.
+	.@BF_BASELVLMULT = 20;											// Base boost based on player's level, calculated as 10% of their level.
+	.@PCLevel = BaseLevel;											// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
+	set .@BF_LOWLVLMULT,.@BF_LOWLVLMULT * (.@MaxLevel - .@PCLevel);	// Additional boost for low level players, calculated based on how many levels they are below 175.
+	set .@BF_BASELVLMULT,(.@BF_BASELVLMULT * .@PCLevel);			// Base boost based on player's level, calculated as 10% of their level.
+
+	//============================== End of Configuration ==============================\\
+
+	if (.@IsMulEXPLowLVL) {
+		if (.@PCLevel < .@MaxLevel) {
+		set .@BF_boost,.@BF_boost + .@BF_LOWLVLMULT;				// Total boost is the sum of base boost and additional low level boost
+		}
+	}
+	if (.@IsBuffEXP) {
+		set .@BF_EXPMULT,.@BF_boost + .@BF_BASELVLMULT; 			// Total EXP boost is the sum of the calculated boost and the base level multiplier
+		sc_end SC_EXPBOOST;
+		sc_end SC_JEXPBOOST;
+		sc_start SC_EXPBOOST,.@BF_Delay,.@BF_EXPMULT;
+		sc_start SC_JEXPBOOST,.@BF_Delay,.@BF_EXPMULT;
+	}
+	return;
+}
+// Duplicates
+//============================================================
+morocc,151,97,6	duplicate(Healer_master)	Healer#mor	569
+iz_int,17,36,4	duplicate(Healer_master)	Healer#newb1	569
+iz_int,61,34,4	duplicate(Healer_master)	Healer#newb2	569
+
+//============================== V. 1.2 ==============================\\
+/*
+function	script	getexpbuff	{
+	.@BuffEXP = 1;														// Also buff EXP? (1: yes / 0: no).
+	.@MulEXPLowLVL = 1;													// Also multiplier for low level players (below level 100) (1: yes / 0: no).
+	.@BF_boost = 100;													// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
+	.@BF_Delay = 600000;												// 60000 = 1 min
+	.@PCLevel = BaseLevel;
+	.@MaxLevel = 175;													// Maximum level for low level multiplier to apply. Default: 175 (RE: 175, Pre-RE: 99)
+	.@BF_LOWLVL = 1;													// Also multiplier for low level players (below level 100) (1: yes / 0: no).
+	.@BF_LOWLVLMULT = 2;												// Additional boost for low level players, calculated based on how many levels they are below 99.
+	.@BF_BASELVLMULT = 20;												// Base boost based on player's level, calculated as 10% of their level.
+	set .@BF_LOWLVLMULT,.@BF_LOWLVLMULT * (.@MaxLevel - .@PCLevel);		// Additional boost for low level players, calculated based on how many levels they are below 99.
+	set .@BF_BASELVLMULT,(.@BF_BASELVLMULT * .@PCLevel);				// Base boost based on player's level, calculated as 10% of their level.
+	if (.@MulEXPLowLVL) {
+		if (.@PCLevel < .@MaxLevel) {
+		set .@BF_boost,.@BF_boost + .@BF_LOWLVLMULT;					// Total boost is the sum of base boost and additional low level boost
+		}
+	}
+	if (.@BuffEXP) {
+		set .@BF_EXPMULT,.@BF_boost + .@BF_BASELVLMULT; 				// Total EXP boost is the sum of the calculated boost and the base level multiplier
+		sc_end SC_EXPBOOST;
+		sc_end SC_JEXPBOOST;
+		sc_start SC_EXPBOOST,.@BF_Delay,.@BF_EXPMULT;
+		sc_start SC_JEXPBOOST,.@BF_Delay,.@BF_EXPMULT;
+	}
+	end;
+}
+
+-	script	Healer_master	-1,{	
+
+	.@BF_Delay = 600000;	// 60000 = 1 min
+	.@BF_level = 10;		// Base level for buffs
+	.@BF_boost = 100;		// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
+	.@BuffEXP = 1;			// Also buff EXP? (1: yes / 0: no).
+	.@BuffsAB = 1;			// Also buff players? (1: yes / 0: no) AB only.
+	.@BuffsETC = 0;			// Also buff players? (1: yes / 0: no) Buff ETC.
+	.@BuffsBRAGI = 1;		// Also buff players? (1: yes / 0: no) Buff BRAGI.
+	.@Indentified = 1;		// Also indentified item? (1: yes / 0: no)
+	.@Delay = 3;			// Heal delay, in seconds
+	.@Food = 0;				// Also food buff for players? (1: yes / 0: no)
+	.@CP = 0;				// Also buff CP players? (1: yes / 0: no)
+
+	if (@HD > gettimetick(2))
+		end;
+
+	percentheal 100,100;
+	npcskill "AL_HEAL",11,99,60;
+
+	sc_end SC_STONE;
+	sc_end SC_FREEZE;
+	sc_end SC_STUN;
+	sc_end SC_SLEEP;
+	sc_end SC_POISON;
+	sc_end SC_CURSE;
+	sc_end SC_SILENCE;
+	sc_end SC_CONFUSION;
+	sc_end SC_BLIND;
+	sc_end SC_Hallucination;
+	sc_end SC_BLEEDING;
+	sc_end SC_DPOISON;
+	sc_end SC_HELLPOWER;
+	sc_end SC_ORCISH;
+	sc_end SC_STAN;
+	sc_end SA_REVERSEORCISH;
+	
 	if (.@BuffsAB) {
 		sc_start SC_BLESSING,.@BF_Delay,.@BF_level;
 		sc_start SC_INCREASEAGI,.@BF_Delay,.@BF_level;
@@ -86,11 +234,6 @@
 	if (.@BuffsBRAGI) {
 		sc_start4 SC_POEMBRAGI,.@BF_Delay,.@BF_level,80,100,0;
 		sc_start4 SC_SERVICE4U,.@BF_Delay,.@BF_level,40,40,0;
-	}
-	if (.@BuffEXP) {
-			set .@BF_EXPMULT,.@BF_boost + .@BF_BASELVLMULT;	// Total EXP boost is the sum of the calculated boost and the base level multiplier
-			sc_start SC_EXPBOOST,.@BF_Delay,.@BF_EXPMULT;
-			sc_start SC_JEXPBOOST,.@BF_Delay,.@BF_EXPMULT;
 	}
 	if (.@CP) {
 		sc_start SC_CP_WEAPON,.@BF_Delay,.@BF_level;
@@ -125,6 +268,10 @@
 	
 	if (.@Delay)
 		@HD = gettimetick(2) + .@Delay;
+		
+	if (.@BuffEXP) {
+		callfunc "getexpbuff";
+	}
 	end;
 }
 
@@ -175,3 +322,4 @@ iz_int,61,34,4	duplicate(Healer_master)	Healer#newb2	569
 //verus04,125,243,4	duplicate(Healer_master)	Healer#verus	569
 //harboro1,294,206,4	duplicate(Healer_master)	Healer#rockr	569
 //sp_cor,157,171,4	duplicate(Healer_master)	Healer#rudus	569
+*/
