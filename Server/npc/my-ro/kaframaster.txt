@@ -12,11 +12,14 @@
 //= เพิ่มเช่านก / รถเข็น
 //= V. 2.2
 //= เพิ่มระบบถอดการ์ด  / รีเซท  / เพิ่มความจุน้ำหนัก / แปลงเพศ /  เปลื่ยนชื่อ 
+//= V. 2.3
+//= เพิ่มระบบการแลกสกิลพิเศษ และปรับปรุงโค้ดให้ง่ายต่อการแก้ไขในอนาคต
 //==============================Script==============================\\
 
 -	script	Kafra_master	-1,{
+
 	cutin "kafra_09",2;
-	switch(select("~ Save:~ เปิดคลัง:~ เช่านก / รถเข็น ฯ:~ ถอดการ์ด:~ รีเซท:~ เพิ่มความจุน้ำหนัก:~ แปลงเพศ:~ เปลื่ยนชื่อ:~ ตรวจสอบจำนวนผู้เล่น:~ Reset Quest Instant")) {
+	switch(select("~ Save:~ เปิดคลัง:~ เช่านก / รถเข็น ฯ:~ ถอดการ์ด:~ รีเซท:~ เพิ่มสกิลพิเศษ:~ แปลงเพศ:~ เปลื่ยนชื่อ:~ ตรวจสอบจำนวนผู้เล่น:~ Reset Quest Instant")) {
 		case 1:
 			getmapxy(@mapname$,.@x,.@y,BL_PC);
 			dispbottom "บันทึกจุดเซฟเรียบร้อยค่ะ";
@@ -95,6 +98,7 @@
 					} else
 						set zeny,zeny-=.@prizeresetstat;*/
 						resetstatus;
+						if(IsReBirth) { set statuspoint,statuspoint+1173; }
 						dispbottom "ดำเนินการเรียบร้อยค่ะ";
 						cutin "",255;
 						end;
@@ -105,51 +109,131 @@
 						end;
 					} else
 						set zeny,zeny-=.@prizeresetsskill;*/
-						resetskill; 						
+						resetskill;
+						if(IsReBirth) { set skillpoint,skillpoint+98; }					
 						dispbottom "ดำเนินการเรียบร้อยค่ะ";
 						cutin "",255;
 						end;
 			}
 
 		case 6:
-			switch(select("~ ตกลง:~ ไม่ล่ะ")) {
-				case 1:
-					if (gympassmemory == 0 && countitem(7776) == 0) {
-						dispbottom "ท่านไม่มี Gym Pass ค่ะ";
-						cutin "",255;
-						end;
-					} else
-					if (gympassmemory < 10) {
-						set .@add_carry,gympassmemory + 1;
-						set .@remain_carry,10 - .@add_carry;
-						if (countitem(7776) > 0) {
-							specialeffect2 EF_EARTHSPIKE;
-							sleep2 300;
-							specialeffect2 EF_DEVIL;
-							sleep2 300;
-							specialeffect2 EF_COIN;
-							sleep2 300;
-							specialeffect2 EF_SIGHTRASHER;
-							dispbottom "ดำเนินการเรียบร้อยค่ะ";
-							delitem 7776,1; //Max_Weight_Up_Scroll
-							set gympassmemory,.@add_carry;
-							skill "ALL_INCCARRY",.@add_carry,SKILL_PERM_GRANT;
-							cutin "",255;
-							end;
-						} else {
-							dispbottom "ท่านไม่มี Gym Pass ค่ะ";
-							cutin "",255;
-							end;
-						} 
-					} else {
-						dispbottom "ท่านถึงขีดจำกัดแล้วค่ะ";
-						cutin "",255;
-						end;
-					}
-				case 2:
-					cutin "",255;
-					end;
-			}
+            AddSkillMenu:
+                menu    "~ เพิ่มความจุน้ำหนัก ("+AddSkillWeightMemory+"/"+.AddSkillWeight[1]+")",AddSkillWeight,
+                        "~ Greed ("+AddSkillGreedMemory+"/"+.AddSkillGreed[1]+")",AddSkillGreed,
+                        "~ Heal ("+AddSkillHealMemory+"/"+.AddSkillHeal[1]+")",AddSkillHeal,
+                        "~ Teleport ("+AddSkillTeleportMemory+"/"+.AddSkillTeleport[1]+")",AddSkillTeleport;
+
+                AddSkillWeight:
+                    if (AddSkillWeightMemory < .AddSkillWeight[1]) {
+                        if (countitem(.AddSkillWeight[0]) >= .AddSkillWeight[2]) {
+                            specialeffect2 EF_EARTHSPIKE; sleep2 300;
+                            specialeffect2 EF_DEVIL; sleep2 300;
+                            specialeffect2 EF_COIN; sleep2 300;
+                            specialeffect2 EF_SIGHTRASHER;
+                            dispbottom "ดำเนินการเรียบร้อยค่ะ";
+                            delitem .AddSkillWeight[0],.AddSkillWeight[2];
+                            set AddSkillWeightMemory, AddSkillWeightMemory + 1;
+                            skill .AddSkillWeight[3],AddSkillWeightMemory,SKILL_PERM_GRANT;
+                            
+                            if (select("~ ดำเนินการต่อ") == 1) { 
+                                goto AddSkillMenu; 
+                            }
+                            cutin "",255;
+                            end;
+                        } else {
+                            dispbottom "ท่านไม่มี "+getitemname(.AddSkillWeight[0])+" ค่ะ";
+                            cutin "",255;
+                            end;
+                        } 
+                    } else {
+                        dispbottom "ท่านถึงขีดจำกัดแล้วค่ะ";
+                        cutin "",255;
+                        end;
+                    }
+
+                AddSkillGreed:
+                    if (AddSkillGreedMemory < .AddSkillGreed[1]) {
+                        if (countitem(.AddSkillGreed[0]) >= .AddSkillGreed[2]) {
+                            specialeffect2 EF_EARTHSPIKE; sleep2 300;
+                            specialeffect2 EF_DEVIL; sleep2 300;
+                            specialeffect2 EF_COIN; sleep2 300;
+                            specialeffect2 EF_SIGHTRASHER;
+                            dispbottom "ดำเนินการเรียบร้อยค่ะ";
+                            delitem .AddSkillGreed[0],.AddSkillGreed[2];
+                            set AddSkillGreedMemory, AddSkillGreedMemory + 1;
+                            skill .AddSkillGreed[3],AddSkillGreedMemory,SKILL_PERM_GRANT;
+                            
+                            if (select("~ ดำเนินการต่อ") == 1) { 
+                                goto AddSkillMenu; 
+                            }
+                            cutin "",255;
+                            end;
+                        } else {
+                            dispbottom "ท่านไม่มี "+getitemname(.AddSkillGreed[0])+" ค่ะ";
+                            cutin "",255;
+                            end;
+                        } 
+                    } else {
+                        dispbottom "ท่านถึงขีดจำกัดแล้วค่ะ";
+                        cutin "",255;
+                        end;
+                    }
+
+                AddSkillHeal:
+                    if (AddSkillHealMemory < .AddSkillHeal[1]) {
+                        if (countitem(.AddSkillHeal[0]) >= .AddSkillHeal[2]) {
+                            specialeffect2 EF_EARTHSPIKE; sleep2 300;
+                            specialeffect2 EF_DEVIL; sleep2 300;
+                            specialeffect2 EF_COIN; sleep2 300;
+                            specialeffect2 EF_SIGHTRASHER;
+                            dispbottom "ดำเนินการเรียบร้อยค่ะ";
+                            delitem .AddSkillHeal[0],.AddSkillHeal[2];
+                            set AddSkillHealMemory, AddSkillHealMemory + 1;
+                            skill .AddSkillHeal[3],AddSkillHealMemory,SKILL_PERM_GRANT;
+                            
+                            if (select("~ ดำเนินการต่อ") == 1) { 
+                                goto AddSkillMenu; 
+                            }
+                            cutin "",255;
+                            end;
+                        } else {
+                            dispbottom "ท่านไม่มี "+getitemname(.AddSkillHeal[0])+" ค่ะ";
+                            cutin "",255;
+                            end;
+                        } 
+                    } else {
+                        dispbottom "ท่านถึงขีดจำกัดแล้วค่ะ";
+                        cutin "",255;
+                        end;
+                    }
+
+                AddSkillTeleport:
+                    if (AddSkillTeleportMemory < .AddSkillTeleport[1]) {
+                        if (countitem(.AddSkillTeleport[0]) >= .AddSkillTeleport[2]) {
+                            specialeffect2 EF_EARTHSPIKE; sleep2 300;
+                            specialeffect2 EF_DEVIL; sleep2 300;
+                            specialeffect2 EF_COIN; sleep2 300;
+                            specialeffect2 EF_SIGHTRASHER;
+                            dispbottom "ดำเนินการเรียบร้อยค่ะ";
+                            delitem .AddSkillTeleport[0],.AddSkillTeleport[2];
+                            set AddSkillTeleportMemory, AddSkillTeleportMemory + 1;
+                            skill .AddSkillTeleport[3],AddSkillTeleportMemory,SKILL_PERM_GRANT;
+                            
+                            if (select("~ ดำเนินการต่อ") == 1) { 
+                                goto AddSkillMenu; 
+                            }
+                            cutin "",255;
+                            end;
+                        } else {
+                            dispbottom "ท่านไม่มี "+getitemname(.AddSkillTeleport[0])+" ค่ะ";
+                            cutin "",255;
+                            end;
+                        } 
+                    } else {
+                        dispbottom "ท่านถึงขีดจำกัดแล้วค่ะ";
+                        cutin "",255;
+                        end;
+                    }
 
 		case 7:
 			switch(select("~ ชาย:~ หญิง")){
@@ -213,6 +297,13 @@
 						end;
 			}
 	}
+	
+	OnInit:
+        setarray .AddSkillWeight[0],7776,10,1,681;              //  Gym Pass,Maxlvl 10, Use per time 1, ALL_INCCARRY
+        setarray .AddSkillGreed[0],33009,1,10,1013;             //  Skill Scroll, Maxlvl 1, Use per time 10, BS_GREED
+        setarray .AddSkillHeal[0],33009,1,10,28;                //  Skill Scroll, Maxlvl 1, Use per time 10, AL_HEAL
+        setarray .AddSkillTeleport[0],33009,1,10,26;            //  Skill Scroll, Maxlvl 1, Use per time 10, AL_TELEPORT
+        end;
 }
 
 alb2trea,55,70,6	duplicate(Kafra_master)	Kafra#tre	861
