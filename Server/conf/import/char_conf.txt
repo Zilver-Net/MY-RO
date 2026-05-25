@@ -14,6 +14,17 @@ passwd: ragnarok1
 //       ... or else guild emblems won't work client-side!
 server_name: MY-RO
 
+// Login Server IP
+// The character server connects to the login server using this IP address.
+// NOTE: This is useful when you are running behind a firewall or are on
+// a machine with multiple interfaces.
+login_ip: 192.168.1.2
+
+// Character Server IP
+// The IP address which clients will use to connect.
+// Set this to what your server's public IP address is.
+char_ip: 10.98.170.164
+
 // Manage possible letters/symbol in the name of charater. Control character (0x00-0x1f) are never accepted. Possible values are:
 // NOTE: Applies to character, party and guild names.
 // 0: no restriction (default)
