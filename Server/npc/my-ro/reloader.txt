@@ -37,9 +37,9 @@
 		.@target_file$ = "npc/my-ro/" + .@atcmd_parameters$[0] + ".txt";
 		dispbottom "[Reloader] กำลังรีโหลด: " + .@target_file$;
 	
-		unloadnpcfile .@target_file$;
+		atcommand "@unloadnpcfile " + .@target_file$;
 		sleep2 100;
-		loadnpc .@target_file$;
+		atcommand "@loadnpc " + .@target_file$;
 	
 		dispbottom "[Reloader] รีโหลดสคริปต์เสร็จสิ้นเรียบร้อยแล้ว!";
 		end;
