@@ -1,0 +1,668 @@
+//===== rAthena Script =======================================
+//= Multi-Category Dynamic Cash Shop System (V.5.0 - Static Menu Fix)
+//============================================================
+//= Fixed & Finalized by Gemini / Designed by ZilverNet
+//= Date: 27-05-2026
+//==============================Script==============================\\
+
+-	script	Equipment_Cash	-,{
+	// ส่งค่า ID ระบุหมวดหมู่หลักเข้าไปตรงๆ
+	callfunc "F_CashShop_Engine", 1;
+	end;
+	OnInit:
+		waitingroom ":: Equipment Cash ::",0;
+		end;
+}
+
+-	script	Accessory_Cash	-,{
+	callfunc "F_CashShop_Engine", 2;
+	end;
+	OnInit:
+		waitingroom ":: Accessory Cash ::",0;
+		end;
+}
+
+-	script	Shadow_Gear_Cash	-,{
+	callfunc "F_CashShop_Engine", 3;
+	end;
+	OnInit:
+		waitingroom ":: Shadow Gear Cash ::",0;
+		end;
+}
+
+-	script	Headgear_Cash	-,{
+	callfunc "F_CashShop_Engine", 4;
+	end;
+	OnInit:
+		waitingroom ":: Headgear Cash ::",0;
+	end;
+}
+
+-	script	Costume_Cash	-,{
+	callfunc "F_CashShop_Engine", 5;
+	end;
+	OnInit:
+		waitingroom ":: Costume Cash ::",0;
+		end;
+}
+
+-	script	Weapon_Cash	-,{
+	callfunc "F_CashShop_Engine", 6;
+	end;
+	OnInit:
+		waitingroom ":: Weapon Cash ::",0;
+	end;
+}
+
+// ==========================================================
+// คอร์เอนจิ้นหลัก - ใช้โครงสร้างแยกสวิตช์เมนูมาตรฐาน ปลอดภัย ไร้ค้าง
+// ==========================================================
+function	script	F_CashShop_Engine	{
+	set .@main_cat, getarg(0);
+	set .@chosen_cat$, "";
+
+	mes "[ Cash Shop ]";
+	mes "กรุณาเลือกหมวดหมู่ที่ต้องการสั่งซื้อ:";
+	
+	// [STEP 1] แตกเมนูแบบ Hard-coded แยกตาม NPC เพื่อแก้ปัญหาเมนูขึ้นอันเดียว
+	switch(.@main_cat) {
+		case 1: // Equipment
+			set .@s, select("~ Armor", "~ Shield", "~ Garment", "~ Footgear", "~ Others");
+			if (.@s == 1) .@chosen_cat$ = "armor";
+			if (.@s == 2) .@chosen_cat$ = "shield";
+			if (.@s == 3) .@chosen_cat$ = "garment";
+			if (.@s == 4) .@chosen_cat$ = "footgear";
+			if (.@s == 5) .@chosen_cat$ = "others";
+			break;
+		case 2: // Accessory
+			.@chosen_cat$ = "accessory";
+			break;
+		case 3: // ShadowGear
+			.@chosen_cat$ = "shadowgear";
+			break;
+		case 4: // Headgear
+			set .@s, select("~ Upper Headgear", "~ Middle Headgear", "~ Lower Headgear", "~ Headgear All");
+			if (.@s == 1) .@chosen_cat$ = "upper_headgear";
+			if (.@s == 2) .@chosen_cat$ = "middle_headgear";
+			if (.@s == 3) .@chosen_cat$ = "lower_headgear";
+			if (.@s == 4) .@chosen_cat$ = "headgear_all";
+			break;
+		case 5: // Costume
+			set .@s, select("~ Costume Upper", "~ Costume Middle", "~ Costume Lower", "~ Costume Garment", "~ Costume Headgear All");
+			if (.@s == 1) .@chosen_cat$ = "costume_upper";
+			if (.@s == 2) .@chosen_cat$ = "costume_middle";
+			if (.@s == 3) .@chosen_cat$ = "costume_lower";
+			if (.@s == 4) .@chosen_cat$ = "costume_garment";
+			if (.@s == 5) .@chosen_cat$ = "costume_headgear_all";
+			break;
+		case 6: // Weapon
+			set .@s, select("~ Axe", "~ Book", "~ Bow", "~ Dagger/Knife", "~ Firearms", "~ Huuma", "~ Katar", "~ Knuckle", "~ Mace", "~ Musical/Whip", "~ Spear", "~ Staff", "~ Sword");
+			if (.@s == 1) .@chosen_cat$ = "weapon_axe";
+			if (.@s == 2) .@chosen_cat$ = "weapon_book";
+			//============================== Fixed by GPT ==============================\\
+			if (.@s == 3) .@chosen_cat$ = "weapon_bow";
+			//============================== Old Code from Gemini 3.5 Extended==============================\\
+			/*	
+			if (.@s == 3) .@weapon_cat$ = "weapon_bow";
+			*/
+			if (.@s == 4) .@chosen_cat$ = "weapon_dagger_knife";
+			if (.@s == 5) .@chosen_cat$ = "weapon_firearms";
+			if (.@s == 6) .@chosen_cat$ = "weapon_huuma";
+			if (.@s == 7) .@chosen_cat$ = "weapon_katar";
+			if (.@s == 8) .@chosen_cat$ = "weapon_knuckle";
+			if (.@s == 9) .@chosen_cat$ = "weapon_mace";
+			if (.@s == 10) .@chosen_cat$ = "weapon_musical_whip";
+			if (.@s == 11) .@chosen_cat$ = "weapon_spear";
+			if (.@s == 12) .@chosen_cat$ = "weapon_staff";
+			if (.@s == 13) .@chosen_cat$ = "weapon_sword";
+			break;
+	}
+
+	next;
+
+	//============================== Fixed by GPT ==============================\\
+	// [STEP 2] เลือกตัวอักษรนำหน้าไอเทมแบบ Dynamic
+		set .@alphabet_str$, getd("$@" + .@chosen_cat$ + "_chars$");
+
+		if (.@alphabet_str$ == "") {
+			debugmes "ERROR: No char data found for category [" + .@chosen_cat$ + "]";
+			mes "[ Cash Shop ]";
+			mes "Category data not found.";
+			close;
+		}
+
+		set .@total_chars, explode(.@available_chars$, .@alphabet_str$, ":");
+
+		if (.@total_chars <= 0) {
+			debugmes "ERROR: explode() failed for [" + .@chosen_cat$ + "]";
+			mes "[ Cash Shop ]";
+			mes "Character list failed to load.";
+			close;
+		}
+
+		mes "[ ค้นหาอักษรนำหน้า ]";
+
+		set .@menu$, "";
+
+		for (set .@i, 0; .@i < .@total_chars; set .@i, .@i + 1) {
+
+			set .@c$, .@available_chars$[.@i];
+
+			if (.@c$ == "0_9") {
+				set .@display$, "~ 0-9";
+			} else {
+				set .@display$, "~ " + strtoupper(.@c$);
+			}
+
+			if (.@i > 0)
+				set .@menu$, .@menu$ + ":";
+
+			set .@menu$, .@menu$ + .@display$;
+		}
+
+		set .@char_choice, select(.@menu$) - 1;
+
+		if (.@char_choice < 0 || .@char_choice >= .@total_chars) {
+			close;
+		}
+
+		set .@chosen_char$, .@available_chars$[.@char_choice];
+	//============================== Old Code from Gemini 3.5 Extended==============================\\
+	/*
+	// [STEP 2] เลือกตัวอักษรนำหน้าไอเทมแบบ Dynamic
+	set .@alphabet_str$, getd("$@" + .@chosen_cat$ + "_chars$");
+	setarray .@available_chars$[0], "";
+	set .@total_chars, explode(.@available_chars$, .@alphabet_str$, ":");
+	
+	// ใช้โครงสร้างการแตกเมนูย่อยแบบวนลูปเข้าตัวแปรอาร์เรย์สคริปต์แทน String คั่นด้วยเครื่องหมายโคลอน
+	mes "[ ค้นหาอักษรนำหน้า ]";
+	setarray .@menu_display$[0], "";
+	for (set .@i, 0; .@i < .@total_chars; set .@i, .@i + 1) {
+		set .@c$, .@available_chars$[.@i];
+		if (.@c$ == "0_9") {
+			set .@menu_display$[.@i], "~ 0-9";
+		} else {
+			set .@pos, strpos("abcdefghijklmnopqrstuvwxyz", .@c$);
+			set .@upper_c$, (.@pos != -1) ? charat("ABCDEFGHIJKLMNOPQRSTUVWXYZ", .@pos) : .@c$;
+			set .@menu_display$[.@i], "~ " + .@upper_c$;
+		}
+	}
+	
+	// เรียก select แบบเลือกจากก้อนอาร์เรย์ตรงๆ (เอนจิ้น rAthena ยอมรับแบบนี้)
+	set .@char_choice, select(.@menu_display$[0], .@menu_display$[1], .@menu_display$[2], .@menu_display$[3], .@menu_display$[4], .@menu_display$[5], .@menu_display$[6], .@menu_display$[7], .@menu_display$[8], .@menu_display$[9], .@menu_display$[10], .@menu_display$[11], .@menu_display$[12], .@menu_display$[13], .@menu_display$[14], .@menu_display$[15], .@menu_display$[16], .@menu_display$[17], .@menu_display$[18], .@menu_display$[19], .@menu_display$[20], .@menu_display$[21], .@menu_display$[22], .@menu_display$[23], .@menu_display$[24], .@menu_display$[25], .@menu_display$[26]) - 1;
+	if (.@char_choice < 0) { close; end; }
+	set .@chosen_char$, .@available_chars$[.@char_choice]; 
+	*/
+
+	// [STEP 3] คำนวณหน้าย่อย
+	set .@max_pages, getd("$@" + .@chosen_cat$ + "_pages[" + .@char_choice + "]");
+	set .@target_page, 1;
+	
+	if (.@max_pages > 1) {
+		next;
+		mes "[ เลือกหน้าย่อย ]";
+		setarray .@page_display$[0], "";
+		for (set .@p, 1; .@p <= .@max_pages; set .@p, .@p + 1) {
+			set .@page_display$[.@p-1], "~ หน้า " + .@p;
+		}
+		set .@target_page, select(.@page_display$[0], .@page_display$[1], .@page_display$[2], .@page_display$[3], .@page_display$[4], .@page_display$[5], .@page_display$[6]);
+		if (.@target_page <= 0) { close; end; }
+	}
+
+	// [STEP 4] จบประโยคสนทนาอย่างสมบูรณ์แบบด้วย close; แล้วปล่อยให้สคริปต์จบงาน ห้ามใช้ close2 ค้างไว้
+	sprintf(.@shop_real_name$, "shop_%s_%s_%d", .@chosen_cat$, .@chosen_char$, .@target_page);
+	
+	// ใช้มาตรการความปลอดภัยสูงสุดในการกางร้านค้าของ rAthena เพื่อไม่ให้เกิดอาการ Task In Progress
+	mes "กำลังเปิดร้านค้า...";	
+	//============================== Fixed by GPT ==============================\\
+	close2;
+	//============================== Old Code from Gemini 3.5 Extended==============================\\
+	/*
+	close;
+	*/
+	// ให้เรียกเปิดร้านแยกหลังจากปิดหน้าต่างเรียบร้อยแล้ว
+	callshop .@shop_real_name$, 1;
+	end;
+}
+
+// ==========================================================
+// ฐานข้อมูลสถิติจำนวนหน้า 
+// ==========================================================
+-	script	CashShop_DB_Loader	-,{
+	end;
+OnInit:
+    // --- ACCESSORY ---
+    set $@accessory_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:x:y:z";
+    setarray $@accessory_pages[0], 1,2,2,4,1,2,2,2,2,1,1,1,1,3,1,1,3,1,4,5,2,1,1,1,1,1,1;
+
+    // --- ARMOR ---
+    set $@armor_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:r:s:t:u:v:w:y:z";
+    setarray $@armor_pages[0], 1,2,1,2,1,1,1,2,1,2,1,1,1,1,2,1,1,2,2,1,1,1,1,1,1;
+
+    // --- COSTUME GARMENT ---
+    set $@costume_garment_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:p:q:r:s:t:u:v:w";
+    setarray $@costume_garment_pages[0], 2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1;
+
+    // --- COSTUME HEADGEAR ALL ---
+    set $@costume_headgear_all_chars$, "0_9:a:b:c:d:e:f:g:h:j:k:l:m:n:o:p:q:r:s:t:w:y:z";
+    setarray $@costume_headgear_all_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- COSTUME LOWER ---
+    set $@costume_lower_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:y:z";
+    setarray $@costume_lower_pages[0], 1,2,2,3,1,1,2,1,1,1,1,1,3,1,1,1,1,1,2,4,1,1,1,2,1,1;
+
+    // --- COSTUME MIDDLE ---
+    set $@costume_middle_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:y:z";
+    setarray $@costume_middle_pages[0], 1,2,3,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,3,1,1,1,1,1,1;
+
+    // --- COSTUME UPPER ---
+    set $@costume_upper_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:y:z";
+    setarray $@costume_upper_pages[0], 1,4,4,4,3,2,3,3,3,1,2,1,2,3,1,1,3,1,4,5,2,1,1,2,1,1;
+
+    // --- FOOTGEAR ---
+    set $@footgear_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:p:r:s:t:u:v:w:y:z";
+    setarray $@footgear_pages[0], 1,2,1,1,1,1,2,1,1,1,1,1,1,2,1,1,1,2,2,1,1,1,1,1;
+
+    // --- GARMENT ---
+    set $@garment_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:r:s:t:u:v:w:y:z";
+    setarray $@garment_pages[0], 1,2,1,2,1,1,1,1,1,1,1,1,1,2,1,1,1,1,2,1,1,1,1,1,1;
+
+    // --- HEADGEAR ALL ---
+    set $@headgear_all_chars$, "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:w:z";
+    setarray $@headgear_all_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- LOWER HEADGEAR ---
+    set $@lower_headgear_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:y:z";
+    setarray $@lower_headgear_pages[0], 1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1;
+
+    // --- MIDDLE HEADGEAR ---
+    set $@middle_headgear_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:r:s:t:v:w:y";
+    setarray $@middle_headgear_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- OTHERS ---
+    set $@others_chars$, "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:w:x:y:z";
+    setarray $@others_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- SHADOWGEAR ---
+    set $@shadowgear_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:r:s:t:u:v:w";
+    setarray $@shadowgear_pages[0], 2,3,2,3,2,2,2,2,2,2,1,1,1,3,1,1,2,2,7,2,1,1,1;
+
+    // --- SHIELD ---
+    set $@shield_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:p:r:s:t:u:v:w";
+    setarray $@shield_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- UPPER HEADGEAR ---
+    set $@upper_headgear_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:y:z";
+    setarray $@upper_headgear_pages[0], 2,3,4,5,2,2,5,3,2,1,1,1,2,2,1,1,3,1,4,5,3,1,2,2,1,1;
+
+    // --- WEAPON AXE ---
+    set $@weapon_axe_chars$, "0_9:a:b:c:d:e:f:g:h:k:m:n:o:p:r:s:t:u:v:w:z";
+    setarray $@weapon_axe_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON BOOK ---
+    set $@weapon_book_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:o:p:r:s:t:u:v:w:z";
+    setarray $@weapon_book_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON BOW ---
+    set $@weapon_bow_chars$, "0_9:a:b:c:d:e:f:g:h:i:k:l:m:n:p:r:s:t:u:v:w:z";
+    setarray $@weapon_bow_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON DAGGER KNIFE ---
+    set $@weapon_dagger_knife_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:r:s:t:u:v:w:z";
+    setarray $@weapon_dagger_knife_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON FIREARMS ---
+    set $@weapon_firearms_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:r:s:t:u:v:w:z";
+    setarray $@weapon_firearms_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON HUUMA ---
+    set $@weapon_huuma_chars$, "0_9:a:b:d:e:f:g:h:k:m:n:p:r:s:t:u:v:w:z";
+    setarray $@weapon_huuma_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON KATAR ---
+    set $@weapon_katar_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:p:r:s:t:u:v:w:z";
+    setarray $@weapon_katar_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON KNUCKLE ---
+    set $@weapon_knuckle_chars$, "0_9:a:b:c:d:e:f:g:h:i:k:l:m:p:r:s:t:u:v:w:z";
+    setarray $@weapon_knuckle_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON MACE ---
+    set $@weapon_mace_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:z";
+    setarray $@weapon_mace_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON MUSICAL WHIP ---
+    set $@weapon_musical_whip_chars$, "0_9:a:b:c:d:e:f:g:h:k:l:m:n:o:p:q:r:s:t:u:v:w:z";
+    setarray $@weapon_musical_whip_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON SPEAR ---
+    set $@weapon_spear_chars$, "0_9:a:b:c:d:e:f:g:h:j:k:l:m:n:o:p:r:s:t:u:v:w:z";
+    setarray $@weapon_spear_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON STAFF ---
+    set $@weapon_staff_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:r:s:t:u:v:w:z";
+    setarray $@weapon_staff_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1;
+
+    // --- WEAPON SWORD ---
+    set $@weapon_sword_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:r:s:t:u:v:w:z";
+    setarray $@weapon_sword_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1;
+
+    end;
+}
+
+// ==========================================================
+// พิกัดจุดตั้งสถานี NPC (Duplicate Zone)
+// ==========================================================
+morocc,143,90,7	duplicate(Headgear_Cash)	Headgear Cash#mor	442
+morocc,139,90,7	duplicate(Accessory_Cash)	Accessory Cash#mor	443
+morocc,139,87,8	duplicate(Equipment_Cash)	Equipment Cash#mor	436
+morocc,139,84,8	duplicate(Weapon_Cash)	Weapon Cash#mor	437
+morocc,136,92,8	duplicate(Costume_Cash)	Costume Cash#mor	437
+morocc,132,92,8	duplicate(Shadow_Gear_Cash)	Shadow Cash#mor	446
+
+
+//============================== Old Code from Gemini 3.5 Extended==============================\\
+/*
+//===== rAthena Script =======================================
+//= Multi-Category Dynamic Cash Shop System (V.5.0 - Static Menu Fix)
+//============================================================
+//= Fixed & Finalized by Gemini / Designed by ZilverNet
+//= Date: 27-05-2026
+//==============================Script==============================\\
+
+-	script	Equipment_Cash	-,{
+	// ส่งค่า ID ระบุหมวดหมู่หลักเข้าไปตรงๆ
+	callfunc "F_CashShop_Engine", 1;
+	end;
+	OnInit:
+		waitingroom ":: Equipment Cash ::",0;
+		end;
+}
+
+-	script	Accessory_Cash	-,{
+	callfunc "F_CashShop_Engine", 2;
+	end;
+	OnInit:
+		waitingroom ":: Accessory Cash ::",0;
+		end;
+}
+
+-	script	Shadow_Gear_Cash	-,{
+	callfunc "F_CashShop_Engine", 3;
+	end;
+	OnInit:
+		waitingroom ":: Shadow Gear Cash ::",0;
+		end;
+}
+
+-	script	Headgear_Cash	-,{
+	callfunc "F_CashShop_Engine", 4;
+	end;
+	OnInit:
+		waitingroom ":: Headgear Cash ::",0;
+	end;
+}
+
+-	script	Costume_Cash	-,{
+	callfunc "F_CashShop_Engine", 5;
+	end;
+	OnInit:
+		waitingroom ":: Costume Cash ::",0;
+		end;
+}
+
+-	script	Weapon_Cash	-,{
+	callfunc "F_CashShop_Engine", 6;
+	end;
+	OnInit:
+		waitingroom ":: Weapon Cash ::",0;
+	end;
+}
+
+// ==========================================================
+// คอร์เอนจิ้นหลัก - ใช้โครงสร้างแยกสวิตช์เมนูมาตรฐาน ปลอดภัย ไร้ค้าง
+// ==========================================================
+function	script	F_CashShop_Engine	{
+	set .@main_cat, getarg(0);
+	set .@chosen_cat$, "";
+
+	mes "[ Cash Shop ]";
+	mes "กรุณาเลือกหมวดหมู่ที่ต้องการสั่งซื้อ:";
+	
+	// [STEP 1] แตกเมนูแบบ Hard-coded แยกตาม NPC เพื่อแก้ปัญหาเมนูขึ้นอันเดียว
+	switch(.@main_cat) {
+		case 1: // Equipment
+			set .@s, select("~ Armor", "~ Shield", "~ Garment", "~ Footgear", "~ Others");
+			if (.@s == 1) .@chosen_cat$ = "armor";
+			if (.@s == 2) .@chosen_cat$ = "shield";
+			if (.@s == 3) .@chosen_cat$ = "garment";
+			if (.@s == 4) .@chosen_cat$ = "footgear";
+			if (.@s == 5) .@chosen_cat$ = "others";
+			break;
+		case 2: // Accessory
+			.@chosen_cat$ = "accessory";
+			break;
+		case 3: // ShadowGear
+			.@chosen_cat$ = "shadowgear";
+			break;
+		case 4: // Headgear
+			set .@s, select("~ Upper Headgear", "~ Middle Headgear", "~ Lower Headgear", "~ Headgear All");
+			if (.@s == 1) .@chosen_cat$ = "upper_headgear";
+			if (.@s == 2) .@chosen_cat$ = "middle_headgear";
+			if (.@s == 3) .@chosen_cat$ = "lower_headgear";
+			if (.@s == 4) .@chosen_cat$ = "headgear_all";
+			break;
+		case 5: // Costume
+			set .@s, select("~ Costume Upper", "~ Costume Middle", "~ Costume Lower", "~ Costume Garment", "~ Costume Headgear All");
+			if (.@s == 1) .@chosen_cat$ = "costume_upper";
+			if (.@s == 2) .@chosen_cat$ = "costume_middle";
+			if (.@s == 3) .@chosen_cat$ = "costume_lower";
+			if (.@s == 4) .@chosen_cat$ = "costume_garment";
+			if (.@s == 5) .@chosen_cat$ = "costume_headgear_all";
+			break;
+		case 6: // Weapon
+			set .@s, select("~ Axe", "~ Book", "~ Bow", "~ Dagger/Knife", "~ Firearms", "~ Huuma", "~ Katar", "~ Knuckle", "~ Mace", "~ Musical/Whip", "~ Spear", "~ Staff", "~ Sword");
+			if (.@s == 1) .@chosen_cat$ = "weapon_axe";
+			if (.@s == 2) .@chosen_cat$ = "weapon_book";
+			if (.@s == 3) .@weapon_cat$ = "weapon_bow";
+			if (.@s == 4) .@chosen_cat$ = "weapon_dagger_knife";
+			if (.@s == 5) .@chosen_cat$ = "weapon_firearms";
+			if (.@s == 6) .@chosen_cat$ = "weapon_huuma";
+			if (.@s == 7) .@chosen_cat$ = "weapon_katar";
+			if (.@s == 8) .@chosen_cat$ = "weapon_knuckle";
+			if (.@s == 9) .@chosen_cat$ = "weapon_mace";
+			if (.@s == 10) .@chosen_cat$ = "weapon_musical_whip";
+			if (.@s == 11) .@chosen_cat$ = "weapon_spear";
+			if (.@s == 12) .@chosen_cat$ = "weapon_staff";
+			if (.@s == 13) .@chosen_cat$ = "weapon_sword";
+			break;
+	}
+
+	next;
+
+	// [STEP 2] เลือกตัวอักษรนำหน้าไอเทมแบบ Dynamic
+	set .@alphabet_str$, getd("$@" + .@chosen_cat$ + "_chars$");
+	setarray .@available_chars$[0], "";
+	set .@total_chars, explode(.@available_chars$, .@alphabet_str$, ":");
+	
+	// ใช้โครงสร้างการแตกเมนูย่อยแบบวนลูปเข้าตัวแปรอาร์เรย์สคริปต์แทน String คั่นด้วยเครื่องหมายโคลอน
+	mes "[ ค้นหาอักษรนำหน้า ]";
+	setarray .@menu_display$[0], "";
+	for (set .@i, 0; .@i < .@total_chars; set .@i, .@i + 1) {
+		set .@c$, .@available_chars$[.@i];
+		if (.@c$ == "0_9") {
+			set .@menu_display$[.@i], "~ 0-9";
+		} else {
+			set .@pos, strpos("abcdefghijklmnopqrstuvwxyz", .@c$);
+			set .@upper_c$, (.@pos != -1) ? charat("ABCDEFGHIJKLMNOPQRSTUVWXYZ", .@pos) : .@c$;
+			set .@menu_display$[.@i], "~ " + .@upper_c$;
+		}
+	}
+	
+	// เรียก select แบบเลือกจากก้อนอาร์เรย์ตรงๆ (เอนจิ้น rAthena ยอมรับแบบนี้)
+	set .@char_choice, select(.@menu_display$[0], .@menu_display$[1], .@menu_display$[2], .@menu_display$[3], .@menu_display$[4], .@menu_display$[5], .@menu_display$[6], .@menu_display$[7], .@menu_display$[8], .@menu_display$[9], .@menu_display$[10], .@menu_display$[11], .@menu_display$[12], .@menu_display$[13], .@menu_display$[14], .@menu_display$[15], .@menu_display$[16], .@menu_display$[17], .@menu_display$[18], .@menu_display$[19], .@menu_display$[20], .@menu_display$[21], .@menu_display$[22], .@menu_display$[23], .@menu_display$[24], .@menu_display$[25], .@menu_display$[26]) - 1;
+	if (.@char_choice < 0) { close; end; }
+	set .@chosen_char$, .@available_chars$[.@char_choice]; 
+
+	// [STEP 3] คำนวณหน้าย่อย
+	set .@max_pages, getd("$@" + .@chosen_cat$ + "_pages[" + .@char_choice + "]");
+	set .@target_page, 1;
+	
+	if (.@max_pages > 1) {
+		next;
+		mes "[ เลือกหน้าย่อย ]";
+		setarray .@page_display$[0], "";
+		for (set .@p, 1; .@p <= .@max_pages; set .@p, .@p + 1) {
+			set .@page_display$[.@p-1], "~ หน้า " + .@p;
+		}
+		set .@target_page, select(.@page_display$[0], .@page_display$[1], .@page_display$[2], .@page_display$[3], .@page_display$[4], .@page_display$[5], .@page_display$[6]);
+		if (.@target_page <= 0) { close; end; }
+	}
+
+	// [STEP 4] จบประโยคสนทนาอย่างสมบูรณ์แบบด้วย close; แล้วปล่อยให้สคริปต์จบงาน ห้ามใช้ close2 ค้างไว้
+	sprintf(.@shop_real_name$, "shop_%s_%s_%d", .@chosen_cat$, .@chosen_char$, .@target_page);
+	
+	// ใช้มาตรการความปลอดภัยสูงสุดในการกางร้านค้าของ rAthena เพื่อไม่ให้เกิดอาการ Task In Progress
+	mes "กำลังเปิดร้านค้า...";
+	close;
+	
+	// ให้เรียกเปิดร้านแยกหลังจากปิดหน้าต่างเรียบร้อยแล้ว
+	callshop .@shop_real_name$, 1;
+	end;
+}
+
+// ==========================================================
+// ฐานข้อมูลสถิติจำนวนหน้า 
+// ==========================================================
+-	script	CashShop_DB_Loader	-,{
+	end;
+OnInit:
+    // --- ACCESSORY ---
+    set $@accessory_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:x:y:z";
+    setarray $@accessory_pages[0], 1,2,2,4,1,2,2,2,2,1,1,1,1,3,1,1,3,1,4,5,2,1,1,1,1,1,1;
+
+    // --- ARMOR ---
+    set $@armor_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:r:s:t:u:v:w:y:z";
+    setarray $@armor_pages[0], 1,2,1,2,1,1,1,2,1,2,1,1,1,1,2,1,1,2,2,1,1,1,1,1,1;
+
+    // --- COSTUME GARMENT ---
+    set $@costume_garment_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:p:q:r:s:t:u:v:w";
+    setarray $@costume_garment_pages[0], 2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1;
+
+    // --- COSTUME HEADGEAR ALL ---
+    set $@costume_headgear_all_chars$, "0_9:a:b:c:d:e:f:g:h:j:k:l:m:n:o:p:q:r:s:t:w:y:z";
+    setarray $@costume_headgear_all_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- COSTUME LOWER ---
+    set $@costume_lower_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:y:z";
+    setarray $@costume_lower_pages[0], 1,2,2,3,1,1,2,1,1,1,1,1,3,1,1,1,1,1,2,4,1,1,1,2,1,1;
+
+    // --- COSTUME MIDDLE ---
+    set $@costume_middle_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:y:z";
+    setarray $@costume_middle_pages[0], 1,2,3,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,3,1,1,1,1,1,1;
+
+    // --- COSTUME UPPER ---
+    set $@costume_upper_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:y:z";
+    setarray $@costume_upper_pages[0], 1,4,4,4,3,2,3,3,3,1,2,1,2,3,1,1,3,1,4,5,2,1,1,2,1,1;
+
+    // --- FOOTGEAR ---
+    set $@footgear_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:p:r:s:t:u:v:w:y:z";
+    setarray $@footgear_pages[0], 1,2,1,1,1,1,2,1,1,1,1,1,1,2,1,1,1,2,2,1,1,1,1,1;
+
+    // --- GARMENT ---
+    set $@garment_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:r:s:t:u:v:w:y:z";
+    setarray $@garment_pages[0], 1,2,1,2,1,1,1,1,1,1,1,1,1,2,1,1,1,1,2,1,1,1,1,1,1;
+
+    // --- HEADGEAR ALL ---
+    set $@headgear_all_chars$, "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:w:z";
+    setarray $@headgear_all_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- LOWER HEADGEAR ---
+    set $@lower_headgear_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:y:z";
+    setarray $@lower_headgear_pages[0], 1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1;
+
+    // --- MIDDLE HEADGEAR ---
+    set $@middle_headgear_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:r:s:t:v:w:y";
+    setarray $@middle_headgear_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- OTHERS ---
+    set $@others_chars$, "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:w:x:y:z";
+    setarray $@others_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- SHADOWGEAR ---
+    set $@shadowgear_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:r:s:t:u:v:w";
+    setarray $@shadowgear_pages[0], 2,3,2,3,2,2,2,2,2,2,1,1,1,3,1,1,2,2,7,2,1,1,1;
+
+    // --- SHIELD ---
+    set $@shield_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:p:r:s:t:u:v:w";
+    setarray $@shield_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- UPPER HEADGEAR ---
+    set $@upper_headgear_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:y:z";
+    setarray $@upper_headgear_pages[0], 2,3,4,5,2,2,5,3,2,1,1,1,2,2,1,1,3,1,4,5,3,1,2,2,1,1;
+
+    // --- WEAPON AXE ---
+    set $@weapon_axe_chars$, "0_9:a:b:c:d:e:f:g:h:k:m:n:o:p:r:s:t:u:v:w:z";
+    setarray $@weapon_axe_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON BOOK ---
+    set $@weapon_book_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:o:p:r:s:t:u:v:w:z";
+    setarray $@weapon_book_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON BOW ---
+    set $@weapon_bow_chars$, "0_9:a:b:c:d:e:f:g:h:i:k:l:m:n:p:r:s:t:u:v:w:z";
+    setarray $@weapon_bow_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON DAGGER KNIFE ---
+    set $@weapon_dagger_knife_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:r:s:t:u:v:w:z";
+    setarray $@weapon_dagger_knife_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON FIREARMS ---
+    set $@weapon_firearms_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:r:s:t:u:v:w:z";
+    setarray $@weapon_firearms_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON HUUMA ---
+    set $@weapon_huuma_chars$, "0_9:a:b:d:e:f:g:h:k:m:n:p:r:s:t:u:v:w:z";
+    setarray $@weapon_huuma_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON KATAR ---
+    set $@weapon_katar_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:p:r:s:t:u:v:w:z";
+    setarray $@weapon_katar_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON KNUCKLE ---
+    set $@weapon_knuckle_chars$, "0_9:a:b:c:d:e:f:g:h:i:k:l:m:p:r:s:t:u:v:w:z";
+    setarray $@weapon_knuckle_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON MACE ---
+    set $@weapon_mace_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:z";
+    setarray $@weapon_mace_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON MUSICAL WHIP ---
+    set $@weapon_musical_whip_chars$, "0_9:a:b:c:d:e:f:g:h:k:l:m:n:o:p:q:r:s:t:u:v:w:z";
+    setarray $@weapon_musical_whip_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON SPEAR ---
+    set $@weapon_spear_chars$, "0_9:a:b:c:d:e:f:g:h:j:k:l:m:n:o:p:r:s:t:u:v:w:z";
+    setarray $@weapon_spear_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+
+    // --- WEAPON STAFF ---
+    set $@weapon_staff_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:r:s:t:u:v:w:z";
+    setarray $@weapon_staff_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1;
+
+    // --- WEAPON SWORD ---
+    set $@weapon_sword_chars$, "0_9:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:r:s:t:u:v:w:z";
+    setarray $@weapon_sword_pages[0], 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1;
+
+    end;
+}
+
+// ==========================================================
+// พิกัดจุดตั้งสถานี NPC (Duplicate Zone)
+// ==========================================================
+morocc,143,90,7	duplicate(Headgear_Cash)	Headgear Cash#mor	442
+morocc,139,90,7	duplicate(Accessory_Cash)	Accessory Cash#mor	443
+morocc,139,87,8	duplicate(Equipment_Cash)	Equipment Cash#mor	436
+morocc,139,84,8	duplicate(Weapon_Cash)	Weapon Cash#mor	437
+morocc,136,92,8	duplicate(Costume_Cash)	Costume Cash#mor	437
+morocc,132,92,8	duplicate(Shadow_Gear_Cash)	Shadow Cash#mor	446
+*/
