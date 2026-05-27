@@ -1,764 +1,821 @@
-morocc,171,103,3	cashshop	ร้านค้าเหรียญทอง	564,33999:1,101047:1,12997:5,12998:5,7776:10,12622:10,33016:5,33013:50,33014:100,33015:200,33012:100,12246:10,12114:5,12115:5,12116:5,12117:5
+morocc,171,103,3	cashshop	ร้านค้าเหรียญทอง	564,33999:1,101047:1,33010:100,33001:10,33002:10,16260:10,16261:10,6673:10,7776:10,12622:10,33009:10,33016:5,33013:50,33014:100,33015:200,33012:100,12246:10,12114:5,12115:5,12116:5,12117:5,23204:5,12883:10
+//morocc,128,92,7	cashshop	New Item	442,18972:20,410080:20,19244:20,15128:20,1659:20,2190:20,20773:20,22197:20,32209:20,2864:20,29513:20,400204:20,29514:20,31386:20,29157:20,1000018:20,24273:20,24260:20,24305:20,24292:20,24252:20,24248:20,25464:20,19437:20,28502:20,28902:20,610012:20,28509:20
 
-morocc,143,90,7	script	Headgear Cash	442,{
-	switch(select("~ Upperheadgear","~ Middleheadgear","~ Lowerheadgear","~ ส่วนบน-กลาง","~ ส่วนกลาง-ล่าง","~ ส่วนบน-ล่าง","~ ส่วนบน-กลาง-ล่าง")) {
+-	script	Headgear_Cash	-,{
+	switch(select("~ Upper Headgear","~ Middle Headgear","~ Lower Headgear","~ Headgear All")) {
 		case 1:
-			switch(select("~ Upperheadgear_1-9","~ Upperheadgear_A","~ Upperheadgear_B","~ Upperheadgear_C","~ Upperheadgear_D","~ Upperheadgear_E","~ Upperheadgear_F","~ Upperheadgear_G","~ Upperheadgear_H","~ Upperheadgear_I","~ Upperheadgear_J","~ Upperheadgear_K","~ Upperheadgear_L","~ Upperheadgear_M","~ Upperheadgear_N","~ Upperheadgear_O","~ Upperheadgear_P","~ Upperheadgear_Q","~ Upperheadgear_R","~ Upperheadgear_S1","~ Upperheadgear_S2","~ Upperheadgear_T","~ Upperheadgear_U","~ Upperheadgear_V","~ Upperheadgear_W","~ Upperheadgear_X","~ Upperheadgear_Y","~ Upperheadgear_Z")) {
-				case 1:	callshop "C256Upperheadgear_1",1;	end;
-				case 5:	callshop "C256Upperheadgear_A",1;	end;
-				case 6:	callshop "C256Upperheadgear_B",1;	end;
-				case 7:	callshop "C256Upperheadgear_C",1;	end;
-				case 8:	callshop "C256Upperheadgear_D",1;	end;
-				case 9:	callshop "C256Upperheadgear_E",1;	end;
-				case 10:	callshop "C256Upperheadgear_F",1;	end;
-				case 11:	callshop "C256Upperheadgear_G",1;	end;
-				case 12:	callshop "C256Upperheadgear_H",1;	end;
-				case 13:	callshop "C256Upperheadgear_I",1;	end;
-				case 14:	callshop "C256Upperheadgear_J",1;	end;
-				case 15:	callshop "C256Upperheadgear_K",1;	end;
-				case 16:	callshop "C256Upperheadgear_L",1;	end;
-				case 17:	callshop "C256Upperheadgear_M",1;	end;
-				case 18:	callshop "C256Upperheadgear_N",1;	end;
-				case 19:	callshop "C256Upperheadgear_O",1;	end;
-				case 20:	callshop "C256Upperheadgear_P",1;	end;
-				case 21:	callshop "C256Upperheadgear_Q",1;	end;
-				case 22:	callshop "C256Upperheadgear_R",1;	end;
-				case 23:	callshop "C256Upperheadgear_S",1;	end;
-				case 24:	callshop "C256Upperheadgear_S2",1;	end;
-				case 25:	callshop "C256Upperheadgear_T",1;	end;
-				case 26:	callshop "C256Upperheadgear_U",1;	end;
-				case 27:	callshop "C256Upperheadgear_V",1;	end;
-				case 28:	callshop "C256Upperheadgear_W",1;	end;
-				case 29:	callshop "C256Upperheadgear_X",1;	end;
-				case 30:	callshop "C256Upperheadgear_Y",1;	end;
-				case 31:	callshop "C256Upperheadgear_Z",1;	end;
-			}
-			end;
+			switch(select("~ [Upper Headgear] 0-9","~ [Upper Headgear] A","~ [Upper Headgear] B","~ [Upper Headgear] C","~ [Upper Headgear] D","~ [Upper Headgear] E","~ [Upper Headgear] F","~ [Upper Headgear] G","~ [Upper Headgear] H","~ [Upper Headgear] I","~ [Upper Headgear] J","~ [Upper Headgear] K","~ [Upper Headgear] L","~ [Upper Headgear] M","~ [Upper Headgear] N","~ [Upper Headgear] O","~ [Upper Headgear] P","~ [Upper Headgear] Q","~ [Upper Headgear] R","~ [Upper Headgear] S","~ [Upper Headgear] T","~ [Upper Headgear] U","~ [Upper Headgear] V","~ [Upper Headgear] W","~ [Upper Headgear] Y","~ [Upper Headgear] Z")) {
+				case 1: switch(select("~ [Upper Headgear 0-9] Page-1","~ [Upper Headgear 0-9] Page-2")) { case 1: callshop "shop_upper_headgear_0_9_1",1; end; case 2: callshop "shop_upper_headgear_0_9_2",1; end; } end;
+				case 2: switch(select("~ [Upper Headgear A] Page-1","~ [Upper Headgear A] Page-2","~ [Upper Headgear A] Page-3")) { case 1: callshop "shop_upper_headgear_a_1",1; end; case 2: callshop "shop_upper_headgear_a_2",1; end; case 3: callshop "shop_upper_headgear_a_3",1; end; } end;
+				case 3: switch(select("~ [Upper Headgear B] Page-1","~ [Upper Headgear B] Page-2","~ [Upper Headgear B] Page-3","~ [Upper Headgear B] Page-4")) { case 1: callshop "shop_upper_headgear_b_1",1; end; case 2: callshop "shop_upper_headgear_b_2",1; end; case 3: callshop "shop_upper_headgear_b_3",1; end; case 4: callshop "shop_upper_headgear_b_4",1; end; } end;
+				case 4: switch(select("~ [Upper Headgear C] Page-1","~ [Upper Headgear C] Page-2","~ [Upper Headgear C] Page-3","~ [Upper Headgear C] Page-4","~ [Upper Headgear C] Page-5")) { case 1: callshop "shop_upper_headgear_c_1",1; end; case 2: callshop "shop_upper_headgear_c_2",1; end; case 3: callshop "shop_upper_headgear_c_3",1; end; case 4: callshop "shop_upper_headgear_c_4",1; end; case 5: callshop "shop_upper_headgear_c_5",1; end; } end;
+				case 5: switch(select("~ [Upper Headgear D] Page-1","~ [Upper Headgear D] Page-2")) { case 1: callshop "shop_upper_headgear_d_1",1; end; case 2: callshop "shop_upper_headgear_d_2",1; end; } end;
+				case 6: switch(select("~ [Upper Headgear E] Page-1","~ [Upper Headgear E] Page-2")) { case 1: callshop "shop_upper_headgear_e_1",1; end; case 2: callshop "shop_upper_headgear_e_2",1; end; } end;
+				case 7: switch(select("~ [Upper Headgear F] Page-1","~ [Upper Headgear F] Page-2","~ [Upper Headgear F] Page-3","~ [Upper Headgear F] Page-4","~ [Upper Headgear F] Page-5")) { case 1: callshop "shop_upper_headgear_f_1",1; end; case 2: callshop "shop_upper_headgear_f_2",1; end; case 3: callshop "shop_upper_headgear_f_3",1; end; case 4: callshop "shop_upper_headgear_f_4",1; end; case 5: callshop "shop_upper_headgear_f_5",1; end; } end;
+				case 8: switch(select("~ [Upper Headgear G] Page-1","~ [Upper Headgear G] Page-2","~ [Upper Headgear G] Page-3")) { case 1: callshop "shop_upper_headgear_g_1",1; end; case 2: callshop "shop_upper_headgear_g_2",1; end; case 3: callshop "shop_upper_headgear_g_3",1; end; } end;
+				case 9: switch(select("~ [Upper Headgear H] Page-1","~ [Upper Headgear H] Page-2")) { case 1: callshop "shop_upper_headgear_h_1",1; end; case 2: callshop "shop_upper_headgear_h_2",1; end; } end;
+				case 10: callshop "shop_upper_headgear_i_1",1; end;
+				case 11: callshop "shop_upper_headgear_j_1",1; end;
+				case 12: callshop "shop_upper_headgear_k_1",1; end;
+				case 13: switch(select("~ [Upper Headgear L] Page-1","~ [Upper Headgear L] Page-2")) { case 1: callshop "shop_upper_headgear_l_1",1; end; case 2: callshop "shop_upper_headgear_l_2",1; end; } end;
+				case 14: switch(select("~ [Upper Headgear M] Page-1","~ [Upper Headgear M] Page-2")) { case 1: callshop "shop_upper_headgear_m_1",1; end; case 2: callshop "shop_upper_headgear_m_2",1; end; } end;
+				case 15: callshop "shop_upper_headgear_n_1",1; end;
+				case 16: callshop "shop_upper_headgear_o_1",1; end;
+				case 17: switch(select("~ [Upper Headgear P] Page-1","~ [Upper Headgear P] Page-2","~ [Upper Headgear P] Page-3")) { case 1: callshop "shop_upper_headgear_p_1",1; end; case 2: callshop "shop_upper_headgear_p_2",1; end; case 3: callshop "shop_upper_headgear_p_3",1; end; } end;
+				case 18: callshop "shop_upper_headgear_q_1",1; end;
+				case 19: switch(select("~ [Upper Headgear R] Page-1","~ [Upper Headgear R] Page-2","~ [Upper Headgear R] Page-3","~ [Upper Headgear R] Page-4")) { case 1: callshop "shop_upper_headgear_r_1",1; end; case 2: callshop "shop_upper_headgear_r_2",1; end; case 3: callshop "shop_upper_headgear_r_3",1; end; case 4: callshop "shop_upper_headgear_r_4",1; end; } end;
+				case 20: switch(select("~ [Upper Headgear S] Page-1","~ [Upper Headgear S] Page-2","~ [Upper Headgear S] Page-3","~ [Upper Headgear S] Page-4","~ [Upper Headgear S] Page-5")) { case 1: callshop "shop_upper_headgear_s_1",1; end; case 2: callshop "shop_upper_headgear_s_2",1; end; case 3: callshop "shop_upper_headgear_s_3",1; end; case 4: callshop "shop_upper_headgear_s_4",1; end; case 5: callshop "shop_upper_headgear_s_5",1; end; } end;
+				case 21: switch(select("~ [Upper Headgear T] Page-1","~ [Upper Headgear T] Page-2","~ [Upper Headgear T] Page-3")) { case 1: callshop "shop_upper_headgear_t_1",1; end; case 2: callshop "shop_upper_headgear_t_2",1; end; case 3: callshop "shop_upper_headgear_t_3",1; end; } end;
+				case 22: callshop "shop_upper_headgear_u_1",1; end;
+				case 23: switch(select("~ [Upper Headgear V] Page-1","~ [Upper Headgear V] Page-2")) { case 1: callshop "shop_upper_headgear_v_1",1; end; case 2: callshop "shop_upper_headgear_v_2",1; end; } end;
+				case 24: switch(select("~ [Upper Headgear W] Page-1","~ [Upper Headgear W] Page-2")) { case 1: callshop "shop_upper_headgear_w_1",1; end; case 2: callshop "shop_upper_headgear_w_2",1; end; } end;
+				case 25: callshop "shop_upper_headgear_y_1",1; end;
+				case 26: callshop "shop_upper_headgear_z_1",1; end;
+			} end;
 		case 2:
-			switch(select("~ Middleheadgear_1","~ Middleheadgear_2","~ Middleheadgear_3","~ Middleheadgear_A","~ Middleheadgear_B","~ Middleheadgear_C","~ Middleheadgear_D","~ Middleheadgear_E","~ Middleheadgear_F","~ Middleheadgear_G","~ Middleheadgear_H","~ Middleheadgear_I","~ Middleheadgear_J","~ Middleheadgear_K","~ Middleheadgear_M","~ Middleheadgear_N","~ Middleheadgear_O","~ Middleheadgear_P","~ Middleheadgear_R","~ Middleheadgear_S","~ Middleheadgear_T","~ Middleheadgear_V","~ Middleheadgear_W","~ Middleheadgear_Y","~ Middleheadgear_Z")) {
-				case 1:	callshop "C512Middleheadgear_1",1;	end;
-				case 2:	callshop "C512Middleheadgear_2",1;	end;
-				case 3:	callshop "C512Middleheadgear_3",1;	end;
-				case 4:	callshop "C512Middleheadgear_A",1;	end;
-				case 5:	callshop "C512Middleheadgear_B",1;	end;
-				case 6:	callshop "C512Middleheadgear_C",1;	end;
-				case 7:	callshop "C512Middleheadgear_D",1;	end;
-				case 8:	callshop "C512Middleheadgear_E",1;	end;
-				case 9:	callshop "C512Middleheadgear_F",1;	end;
-				case 10:	callshop "C512Middleheadgear_G",1;	end;
-				case 11:	callshop "C512Middleheadgear_H",1;	end;
-				case 12:	callshop "C512Middleheadgear_I",1;	end;
-				case 13:	callshop "C512Middleheadgear_J",1;	end;
-				case 14:	callshop "C512Middleheadgear_K",1;	end;
-				case 15:	callshop "C512Middleheadgear_M",1;	end;
-				case 16:	callshop "C512Middleheadgear_N",1;	end;
-				case 17:	callshop "C512Middleheadgear_O",1;	end;
-				case 18:	callshop "C512Middleheadgear_P",1;	end;
-				case 19:	callshop "C512Middleheadgear_R",1;	end;
-				case 20:	callshop "C512Middleheadgear_S",1;	end;
-				case 21:	callshop "C512Middleheadgear_T",1;	end;
-				case 22:	callshop "C512Middleheadgear_V",1;	end;
-				case 23:	callshop "C512Middleheadgear_W",1;	end;
-				case 24:	callshop "C512Middleheadgear_Y",1;	end;
-				case 25:	callshop "C512Middleheadgear_Z",1;	end;
-			}
-			end;
+				switch(select("~ [Middle Headgear] 0-9","~ [Middle Headgear] A","~ [Middle Headgear] B","~ [Middle Headgear] C","~ [Middle Headgear] D","~ [Middle Headgear] E","~ [Middle Headgear] F","~ [Middle Headgear] G","~ [Middle Headgear] H","~ [Middle Headgear] I","~ [Middle Headgear] J","~ [Middle Headgear] K","~ [Middle Headgear] L","~ [Middle Headgear] M","~ [Middle Headgear] N","~ [Middle Headgear] O","~ [Middle Headgear] P","~ [Middle Headgear] R","~ [Middle Headgear] S","~ [Middle Headgear] T","~ [Middle Headgear] V","~ [Middle Headgear] W","~ [Middle Headgear] Y")) {
+					case 1: callshop "shop_middle_headgear_0_9_1",1; end;
+					case 2: callshop "shop_middle_headgear_a_1",1; end;
+					case 3: callshop "shop_middle_headgear_b_1",1; end;
+					case 4: callshop "shop_middle_headgear_c_1",1; end;
+					case 5: callshop "shop_middle_headgear_d_1",1; end;
+					case 6: callshop "shop_middle_headgear_e_1",1; end;
+					case 7: callshop "shop_middle_headgear_f_1",1; end;
+					case 8: callshop "shop_middle_headgear_g_1",1; end;
+					case 9: callshop "shop_middle_headgear_h_1",1; end;
+					case 10: callshop "shop_middle_headgear_i_1",1; end;
+					case 11: callshop "shop_middle_headgear_j_1",1; end;
+					case 12: callshop "shop_middle_headgear_k_1",1; end;
+					case 13: callshop "shop_middle_headgear_l_1",1; end;
+					case 14: callshop "shop_middle_headgear_m_1",1; end;
+					case 15: callshop "shop_middle_headgear_n_1",1; end;
+					case 16: callshop "shop_middle_headgear_o_1",1; end;
+					case 17: callshop "shop_middle_headgear_p_1",1; end;
+					case 18: callshop "shop_middle_headgear_r_1",1; end;
+					case 19: callshop "shop_middle_headgear_s_1",1; end;
+					case 20: callshop "shop_middle_headgear_t_1",1; end;
+					case 21: callshop "shop_middle_headgear_v_1",1; end;
+					case 22: callshop "shop_middle_headgear_w_1",1; end;
+					case 23: callshop "shop_middle_headgear_y_1",1; end;
+				} end;
 		case 3:
-			switch(select("~ Lowerheadgear_4","~ Lowerheadgear_A","~ Lowerheadgear_B","~ Lowerheadgear_C","~ Lowerheadgear_D","~ Lowerheadgear_E","~ Lowerheadgear_F","~ Lowerheadgear_G","~ Lowerheadgear_H","~ Lowerheadgear_I","~ Lowerheadgear_J","~ Lowerheadgear_L","~ Lowerheadgear_M","~ Lowerheadgear_N","~ Lowerheadgear_O","~ Lowerheadgear_P","~ Lowerheadgear_R","~ Lowerheadgear_S","~ Lowerheadgear_T","~ Lowerheadgear_U","~ Lowerheadgear_V","~ Lowerheadgear_W","~ Lowerheadgear_Y")) {
-				case 1:	callshop "C1Lowerheadgear_4",1;	end;
-				case 2:	callshop "C1Lowerheadgear_A",1;	end;
-				case 3:	callshop "C1Lowerheadgear_B",1;	end;
-				case 4:	callshop "C1Lowerheadgear_C",1;	end;
-				case 5:	callshop "C1Lowerheadgear_D",1;	end;
-				case 6:	callshop "C1Lowerheadgear_E",1;	end;
-				case 7:	callshop "C1Lowerheadgear_F",1;	end;
-				case 8:	callshop "C1Lowerheadgear_G",1;	end;
-				case 9:	callshop "C1Lowerheadgear_H",1;	end;
-				case 10:	callshop "C1Lowerheadgear_I",1;	end;
-				case 11:	callshop "C1Lowerheadgear_J",1;	end;
-				case 12:	callshop "C1Lowerheadgear_L",1;	end;
-				case 13:	callshop "C1Lowerheadgear_M",1;	end;
-				case 14:	callshop "C1Lowerheadgear_N",1;	end;
-				case 15:	callshop "C1Lowerheadgear_O",1;	end;
-				case 16:	callshop "C1Lowerheadgear_P",1;	end;
-				case 17:	callshop "C1Lowerheadgear_R",1;	end;
-				case 18:	callshop "C1Lowerheadgear_S",1;	end;
-				case 19:	callshop "C1Lowerheadgear_T",1;	end;
-				case 20:	callshop "C1Lowerheadgear_U",1;	end;
-				case 21:	callshop "C1Lowerheadgear_V",1;	end;
-				case 22:	callshop "C1Lowerheadgear_W",1;	end;
-				case 23:	callshop "C1Lowerheadgear_Y",1;	end;
-			}
-			end;
-		case 4:	callshop "upmid",1;	end;
-		case 5:	callshop "midlow",1;	end;
-		case 6:	callshop "uplow",1;	end;
-		case 7:	callshop "upmidlow",1;	end;
-	}
-	OnInit:
-		waitingroom ":: Headgear Cash ::",0;
-		end;
+			switch(select("~ [Lower Headgear] 0-9","~ [Lower Headgear] A","~ [Lower Headgear] B","~ [Lower Headgear] C","~ [Lower Headgear] D","~ [Lower Headgear] E","~ [Lower Headgear] F","~ [Lower Headgear] G","~ [Lower Headgear] H","~ [Lower Headgear] I","~ [Lower Headgear] J","~ [Lower Headgear] K","~ [Lower Headgear] L","~ [Lower Headgear] M","~ [Lower Headgear] N","~ [Lower Headgear] O","~ [Lower Headgear] P","~ [Lower Headgear] Q","~ [Lower Headgear] R","~ [Lower Headgear] S","~ [Lower Headgear] T","~ [Lower Headgear] U","~ [Lower Headgear] V","~ [Lower Headgear] W","~ [Lower Headgear] Y","~ [Lower Headgear] Z")) {
+				case 1: callshop "shop_lower_headgear_0_9_1",1; end;
+				case 2: callshop "shop_lower_headgear_a_1",1; end;
+				case 3: callshop "shop_lower_headgear_b_1",1; end;
+				case 4: switch(select("~ [Lower Headgear C] Page-1","~ [Lower Headgear C] Page-2")) { case 1: callshop "shop_lower_headgear_c_1",1; end; case 2: callshop "shop_lower_headgear_c_2",1; end; } end;
+				case 5: callshop "shop_lower_headgear_d_1",1; end;
+				case 6: callshop "shop_lower_headgear_e_1",1; end;
+				case 7: callshop "shop_lower_headgear_f_1",1; end;
+				case 8: callshop "shop_lower_headgear_g_1",1; end;
+				case 9: callshop "shop_lower_headgear_h_1",1; end;
+				case 10: callshop "shop_lower_headgear_i_1",1; end;
+				case 11: callshop "shop_lower_headgear_j_1",1; end;
+				case 12: callshop "shop_lower_headgear_k_1",1; end;
+				case 13: callshop "shop_lower_headgear_l_1",1; end;
+				case 14: callshop "shop_lower_headgear_m_1",1; end;
+				case 15: callshop "shop_lower_headgear_n_1",1; end;
+				case 16: callshop "shop_lower_headgear_o_1",1; end;
+				case 17: callshop "shop_lower_headgear_p_1",1; end;
+				case 18: callshop "shop_lower_headgear_q_1",1; end;
+				case 19: callshop "shop_lower_headgear_r_1",1; end;
+				case 20: switch(select("~ [Lower Headgear S] Page-1","~ [Lower Headgear S] Page-2")) { case 1: callshop "shop_lower_headgear_s_1",1; end; case 2: callshop "shop_lower_headgear_s_2",1; end; } end;
+				case 21: callshop "shop_lower_headgear_t_1",1; end;
+				case 22: callshop "shop_lower_headgear_u_1",1; end;
+				case 23: callshop "shop_lower_headgear_v_1",1; end;
+				case 24: callshop "shop_lower_headgear_w_1",1; end;
+				case 25: callshop "shop_lower_headgear_y_1",1; end;
+				case 26: callshop "shop_lower_headgear_z_1",1; end;
+			} end;
+		case 4:	
+			switch(select("~ [Headgear All] A","~ [Headgear All] B","~ [Headgear All] C","~ [Headgear All] D","~ [Headgear All] E","~ [Headgear All] F","~ [Headgear All] G","~ [Headgear All] H","~ [Headgear All] I","~ [Headgear All] J","~ [Headgear All] K","~ [Headgear All] L","~ [Headgear All] M","~ [Headgear All] N","~ [Headgear All] O","~ [Headgear All] P","~ [Headgear All] Q","~ [Headgear All] R","~ [Headgear All] S","~ [Headgear All] T","~ [Headgear All] W","~ [Headgear All] Z")) {
+				case 1: callshop "shop_headgear_all_a_1",1; end;
+				case 2: callshop "shop_headgear_all_b_1",1; end;
+				case 3: callshop "shop_headgear_all_c_1",1; end;
+				case 4: callshop "shop_headgear_all_d_1",1; end;
+				case 5: callshop "shop_headgear_all_e_1",1; end;
+				case 6: callshop "shop_headgear_all_f_1",1; end;
+				case 7: callshop "shop_headgear_all_g_1",1; end;
+				case 8: callshop "shop_headgear_all_h_1",1; end;
+				case 9: callshop "shop_headgear_all_i_1",1; end;
+				case 10: callshop "shop_headgear_all_j_1",1; end;
+				case 11: callshop "shop_headgear_all_k_1",1; end;
+				case 12: callshop "shop_headgear_all_l_1",1; end;
+				case 13: callshop "shop_headgear_all_m_1",1; end;
+				case 14: callshop "shop_headgear_all_n_1",1; end;
+				case 15: callshop "shop_headgear_all_o_1",1; end;
+				case 16: callshop "shop_headgear_all_p_1",1; end;
+				case 17: callshop "shop_headgear_all_q_1",1; end;
+				case 18: callshop "shop_headgear_all_r_1",1; end;
+				case 19: callshop "shop_headgear_all_s_1",1; end;
+				case 20: callshop "shop_headgear_all_t_1",1; end;
+				case 21: callshop "shop_headgear_all_w_1",1; end;
+				case 22: callshop "shop_headgear_all_z_1",1; end;
+			} end;
+	} end;
+	OnInit: waitingroom ":: Headgear Cash ::",0; end;
 }
 
-morocc,139,90,7	script	Accessory Cash	443,{
-	switch(select("~ A","~ B","~ C","~ D","~ E","~ F","~ G","~ H - J","~ K","~ L","~ M","~ N","~ O","~ P","~ R","~ S","~ T - W")) {
-		case 1:	callshop "aca",1;	end;
-		case 2:	callshop "acb",1;	end;
-		case 3:	callshop "acc",1;	end;
-		case 4:	callshop "acd",1;	end;
-		case 5:	callshop "ace",1;	end;
-		case 6:	callshop "acf",1;	end;
-		case 7:	callshop "acg",1;	end;
-		case 8:	callshop "achij",1;	end;
-		case 9:	callshop "ack",1;	end;
-		case 10:	callshop "acl",1;	end;
-		case 11:	callshop "acm",1;	end;
-		case 12:	callshop "acn",1;	end;
-		case 13:	callshop "aco",1;	end;
-		case 14:	callshop "acp",1;	end;
-		case 15:	callshop "acr",1;	end;
-		case 16:	callshop "acs",1;	end;
-		case 17:	callshop "actuvw",1;	end;
-	}
-	OnInit:
-		waitingroom ":: Accessory Cash ::",0;
-		end;
+-	script	Accessory_Cash	-,{
+	switch(select("~ [Accessory] 0-9","~ [Accessory] A","~ [Accessory] B","~ [Accessory] C","~ [Accessory] D","~ [Accessory] E","~ [Accessory] F","~ [Accessory] G","~ [Accessory] H","~ [Accessory] I","~ [Accessory] J","~ [Accessory] K","~ [Accessory] L","~ [Accessory] M","~ [Accessory] N","~ [Accessory] O","~ [Accessory] P","~ [Accessory] Q","~ [Accessory] R","~ [Accessory] S","~ [Accessory] T","~ [Accessory] U","~ [Accessory] V","~ [Accessory] W","~ [Accessory] X","~ [Accessory] Y","~ [Accessory] Z")) {
+		case 1: callshop "shop_accessory_0_9_1",1; end;
+		case 2: switch(select("~ [Accessory A] Page-1","~ [Accessory A] Page-2")) { case 1: callshop "shop_accessory_a_1",1; end; case 2: callshop "shop_accessory_a_2",1; end; } end;
+		case 3: switch(select("~ [Accessory B] Page-1","~ [Accessory B] Page-2")) { case 1: callshop "shop_accessory_b_1",1; end; case 2: callshop "shop_accessory_b_2",1; end; } end;
+		case 4: switch(select("~ [Accessory C] Page-1","~ [Accessory C] Page-2","~ [Accessory C] Page-3","~ [Accessory C] Page-4")) { case 1: callshop "shop_accessory_c_1",1; end; case 2: callshop "shop_accessory_c_2",1; end; case 3: callshop "shop_accessory_c_3",1; end; case 4: callshop "shop_accessory_c_4",1; end; } end;
+		case 5: callshop "shop_accessory_d_1",1; end;
+		case 6: switch(select("~ [Accessory E] Page-1","~ [Accessory E] Page-2")) { case 1: callshop "shop_accessory_e_1",1; end; case 2: callshop "shop_accessory_e_2",1; end; } end;
+		case 7: switch(select("~ [Accessory F] Page-1","~ [Accessory F] Page-2")) { case 1: callshop "shop_accessory_f_1",1; end; case 2: callshop "shop_accessory_f_2",1; end; } end;
+		case 8: switch(select("~ [Accessory G] Page-1","~ [Accessory G] Page-2")) { case 1: callshop "shop_accessory_g_1",1; end; case 2: callshop "shop_accessory_g_2",1; end; } end;
+		case 9: switch(select("~ [Accessory H] Page-1","~ [Accessory H] Page-2")) { case 1: callshop "shop_accessory_h_1",1; end; case 2: callshop "shop_accessory_h_2",1; end; } end;
+		case 10: callshop "shop_accessory_i_1",1; end;
+		case 11: callshop "shop_accessory_j_1",1; end;
+		case 12: callshop "shop_accessory_k_1",1; end;
+		case 13: callshop "shop_accessory_l_1",1; end;
+		case 14: switch(select("~ [Accessory M] Page-1","~ [Accessory M] Page-2","~ [Accessory M] Page-3")) { case 1: callshop "shop_accessory_m_1",1; end; case 2: callshop "shop_accessory_m_2",1; end; case 3: callshop "shop_accessory_m_3",1; end; } end;
+		case 15: callshop "shop_accessory_n_1",1; end;
+		case 16: callshop "shop_accessory_o_1",1; end;
+		case 17: switch(select("~ [Accessory P] Page-1","~ [Accessory P] Page-2","~ [Accessory P] Page-3")) { case 1: callshop "shop_accessory_p_1",1; end; case 2: callshop "shop_accessory_p_2",1; end; case 3: callshop "shop_accessory_p_3",1; end; } end;
+		case 18: callshop "shop_accessory_q_1",1; end;
+		case 19: switch(select("~ [Accessory R] Page-1","~ [Accessory R] Page-2","~ [Accessory R] Page-3","~ [Accessory R] Page-4")) { case 1: callshop "shop_accessory_r_1",1; end; case 2: callshop "shop_accessory_r_2",1; end; case 3: callshop "shop_accessory_r_3",1; end; case 4: callshop "shop_accessory_r_4",1; end; } end;
+		case 20: switch(select("~ [Accessory S] Page-1","~ [Accessory S] Page-2","~ [Accessory S] Page-3","~ [Accessory S] Page-4","~ [Accessory S] Page-5")) { case 1: callshop "shop_accessory_s_1",1; end; case 2: callshop "shop_accessory_s_2",1; end; case 3: callshop "shop_accessory_s_3",1; end; case 4: callshop "shop_accessory_s_4",1; end; case 5: callshop "shop_accessory_s_5",1; end; } end;
+		case 21: switch(select("~ [Accessory T] Page-1","~ [Accessory T] Page-2")) { case 1: callshop "shop_accessory_t_1",1; end; case 2: callshop "shop_accessory_t_2",1; end; } end;
+		case 22: callshop "shop_accessory_u_1",1; end;
+		case 23: callshop "shop_accessory_v_1",1; end;
+		case 24: callshop "shop_accessory_w_1",1; end;
+		case 25: callshop "shop_accessory_x_1",1; end;
+		case 26: callshop "shop_accessory_y_1",1; end;
+		case 27: callshop "shop_accessory_z_1",1; end;
+	} end;
+	OnInit: waitingroom ":: Accessory Cash ::",0; end;
 }
 
-morocc,139,87,8	script	Armor Cash	436,{
+-	script	Equipment_Cash	-,{
 	switch(select("~ Armor","~ Shield","~ Garment","~ Footgear")) {
 		case 1:
-			switch(select("~ Armor_2","~ Armor_A","~ Armor_B","~ Armor_C","~ Armor_D","~ Armor_E","~ Armor_F","~ Armor_G","~ Armor_H","~ Armor_I","~ Armor_J","~ Armor_K","~ Armor_L","~ Armor_M","~ Armor_N","~ Armor_O","~ Armor_P","~ Armor_R","~ Armor_S","~ Armor_T","~ Armor_U","~ Armor_V","~ Armor_W")) {
-				case 1:	callshop "C16Armor_2",1;	end;
-				case 2:	callshop "C16Armor_A",1;	end;
-				case 3:	callshop "C16Armor_B",1;	end;
-				case 4:	callshop "C16Armor_C",1;	end;
-				case 5:	callshop "C16Armor_D",1;	end;
-				case 6:	callshop "C16Armor_E",1;	end;
-				case 7:	callshop "C16Armor_F",1;	end;
-				case 8:	callshop "C16Armor_G",1;	end;
-				case 9:	callshop "C16Armor_H",1;	end;
-				case 10:	callshop "C16Armor_I",1;	end;
-				case 11:	callshop "C16Armor_J",1;	end;
-				case 12:	callshop "C16Armor_K",1;	end;
-				case 13:	callshop "C16Armor_L",1;	end;
-				case 14:	callshop "C16Armor_M",1;	end;
-				case 15:	callshop "C16Armor_N",1;	end;
-				case 16:	callshop "C16Armor_O",1;	end;
-				case 17:	callshop "C16Armor_P",1;	end;
-				case 18:	callshop "C16Armor_R",1;	end;
-				case 19:	callshop "C16Armor_S",1;	end;
-				case 20:	callshop "C16Armor_T",1;	end;
-				case 21:	callshop "C16Armor_U",1;	end;
-				case 22:	callshop "C16Armor_V",1;	end;
-				case 23:	callshop "C16Armor_W",1;	end;
-			}
-			end;
+			switch(select("~ [Armor] 0-9","~ [Armor] A","~ [Armor] B","~ [Armor] C","~ [Armor] D","~ [Armor] E","~ [Armor] F","~ [Armor] G","~ [Armor] H","~ [Armor] I","~ [Armor] J","~ [Armor] K","~ [Armor] L","~ [Armor] M","~ [Armor] N","~ [Armor] O","~ [Armor] P","~ [Armor] R","~ [Armor] S","~ [Armor] T","~ [Armor] U","~ [Armor] V","~ [Armor] W","~ [Armor] Y","~ [Armor] Z")) {
+				case 1: callshop "shop_armor_0_9_1",1; end;
+				case 2: switch(select("~ [Armor A] Page-1","~ [Armor A] Page-2")) { case 1: callshop "shop_armor_a_1",1; end; case 2: callshop "shop_armor_a_2",1; end; } end;
+				case 3: callshop "shop_armor_b_1",1; end;
+				case 4: switch(select("~ [Armor C] Page-1","~ [Armor C] Page-2")) { case 1: callshop "shop_armor_c_1",1; end; case 2: callshop "shop_armor_c_2",1; end; } end;
+				case 5: callshop "shop_armor_d_1",1; end;
+				case 6: callshop "shop_armor_e_1",1; end;
+				case 7: callshop "shop_armor_f_1",1; end;
+				case 8: switch(select("~ [Armor G] Page-1","~ [Armor G] Page-2")) { case 1: callshop "shop_armor_g_1",1; end; case 2: callshop "shop_armor_g_2",1; end; } end;
+				case 9: callshop "shop_armor_h_1",1; end;
+				case 10: switch(select("~ [Armor I] Page-1","~ [Armor I] Page-2")) { case 1: callshop "shop_armor_i_1",1; end; case 2: callshop "shop_armor_i_2",1; end; } end;
+				case 11: callshop "shop_armor_j_1",1; end;
+				case 12: callshop "shop_armor_k_1",1; end;
+				case 13: callshop "shop_armor_l_1",1; end;
+				case 14: callshop "shop_armor_m_1",1; end;
+				case 15: switch(select("~ [Armor N] Page-1","~ [Armor N] Page-2")) { case 1: callshop "shop_armor_n_1",1; end; case 2: callshop "shop_armor_n_2",1; end; } end;
+				case 16: callshop "shop_armor_o_1",1; end;
+				case 17: callshop "shop_armor_p_1",1; end;
+				case 18: switch(select("~ [Armor R] Page-1","~ [Armor R] Page-2")) { case 1: callshop "shop_armor_r_1",1; end; case 2: callshop "shop_armor_r_2",1; end; } end;
+				case 19: switch(select("~ [Armor S] Page-1","~ [Armor S] Page-2")) { case 1: callshop "shop_armor_s_1",1; end; case 2: callshop "shop_armor_s_2",1; end; } end;
+				case 20: callshop "shop_armor_t_1",1; end;
+				case 21: callshop "shop_armor_u_1",1; end;
+				case 22: callshop "shop_armor_v_1",1; end;
+				case 23: callshop "shop_armor_w_1",1; end;
+				case 24: callshop "shop_armor_y_1",1; end;
+				case 25: callshop "shop_armor_z_1",1; end;
+			} end;
 		case 2:
-			switch(select("~ A - G","~ H - S")) {
-				case 1:	callshop "shag",1;	end;
-				case 2:	callshop "shhs",1;	end;
-			}
-			end;
+			switch(select("~ [Shield] 0-9","~ [Shield] A","~ [Shield] B","~ [Shield] C","~ [Shield] D","~ [Shield] E","~ [Shield] F","~ [Shield] G","~ [Shield] H","~ [Shield] I","~ [Shield] J","~ [Shield] K","~ [Shield] L","~ [Shield] M","~ [Shield] N","~ [Shield] P","~ [Shield] R","~ [Shield] S","~ [Shield] T","~ [Shield] U","~ [Shield] V","~ [Shield] W")) {
+				case 1: callshop "shop_shield_0_9_1",1; end;
+				case 2: callshop "shop_shield_a_1",1; end;
+				case 3: callshop "shop_shield_b_1",1; end;
+				case 4: callshop "shop_shield_c_1",1; end;
+				case 5: callshop "shop_shield_d_1",1; end;
+				case 6: callshop "shop_shield_e_1",1; end;
+				case 7: callshop "shop_shield_f_1",1; end;
+				case 8: callshop "shop_shield_g_1",1; end;
+				case 9: callshop "shop_shield_h_1",1; end;
+				case 10: callshop "shop_shield_i_1",1; end;
+				case 11: callshop "shop_shield_j_1",1; end;
+				case 12: callshop "shop_shield_k_1",1; end;
+				case 13: callshop "shop_shield_l_1",1; end;
+				case 14: callshop "shop_shield_m_1",1; end;
+				case 15: callshop "shop_shield_n_1",1; end;
+				case 16: callshop "shop_shield_p_1",1; end;
+				case 17: callshop "shop_shield_r_1",1; end;
+				case 18: callshop "shop_shield_s_1",1; end;
+				case 19: callshop "shop_shield_t_1",1; end;
+				case 20: callshop "shop_shield_u_1",1; end;
+				case 21: callshop "shop_shield_v_1",1; end;
+				case 22: callshop "shop_shield_w_1",1; end;
+			} end;
 		case 3:	
-			switch(select("~ Garment_A","~ Garment_B","~ Garment_C","~ Garment_D","~ Garment_E","~ Garment_F","~ Garment_G","~ Garment_H","~ Garment_J","~ Garment_K","~ Garment_L","~ Garment_M","~ Garment_N","~ Garment_O","~ Garment_P","~ Garment_R","~ Garment_S","~ Garment_T","~ Garment_U","~ Garment_V","~ Garment_W")) {
-				case 1:	callshop "C4Garment_A",1;	end;
-				case 2:	callshop "C4Garment_B",1;	end;
-				case 3:	callshop "C4Garment_C",1;	end;
-				case 4:	callshop "C4Garment_D",1;	end;
-				case 5:	callshop "C4Garment_E",1;	end;
-				case 6:	callshop "C4Garment_F",1;	end;
-				case 7:	callshop "C4Garment_G",1;	end;
-				case 8:	callshop "C4Garment_H",1;	end;
-				case 9:	callshop "C4Garment_J",1;	end;
-				case 10:	callshop "C4Garment_K",1;	end;
-				case 11:	callshop "C4Garment_L",1;	end;
-				case 12:	callshop "C4Garment_M",1;	end;
-				case 13:	callshop "C4Garment_N",1;	end;
-				case 14:	callshop "C4Garment_O",1;	end;
-				case 15:	callshop "C4Garment_P",1;	end;
-				case 16:	callshop "C4Garment_R",1;	end;
-				case 17:	callshop "C4Garment_S",1;	end;
-				case 18:	callshop "C4Garment_T",1;	end;
-				case 19:	callshop "C4Garment_U",1;	end;
-				case 20:	callshop "C4Garment_V",1;	end;
-				case 21:	callshop "C4Garment_W",1;	end;
-			}
-			end;
+			switch(select("~ [Garment] 0-9","~ [Garment] A","~ [Garment] B","~ [Garment] C","~ [Garment] D","~ [Garment] E","~ [Garment] F","~ [Garment] G","~ [Garment] H","~ [Garment] I","~ [Garment] J","~ [Garment] K","~ [Garment] L","~ [Garment] M","~ [Garment] N","~ [Garment] O","~ [Garment] P","~ [Garment] R","~ [Garment] S","~ [Garment] T","~ [Garment] U","~ [Garment] V","~ [Garment] W","~ [Garment] Y","~ [Garment] Z")) {
+				case 1: callshop "shop_garment_0_9_1",1; end;
+				case 2: switch(select("~ [Garment A] Page-1","~ [Garment A] Page-2")) { case 1: callshop "shop_garment_a_1",1; end; case 2: callshop "shop_garment_a_2",1; end; } end;
+				case 3: callshop "shop_garment_b_1",1; end;
+				case 4: switch(select("~ [Garment C] Page-1","~ [Garment C] Page-2")) { case 1: callshop "shop_garment_c_1",1; end; case 2: callshop "shop_garment_c_2",1; end; } end;
+				case 5: callshop "shop_garment_d_1",1; end;
+				case 6: callshop "shop_garment_e_1",1; end;
+				case 7: callshop "shop_garment_f_1",1; end;
+				case 8: callshop "shop_garment_g_1",1; end;
+				case 9: callshop "shop_garment_h_1",1; end;
+				case 10: callshop "shop_garment_i_1",1; end;
+				case 11: callshop "shop_garment_j_1",1; end;
+				case 12: callshop "shop_garment_k_1",1; end;
+				case 13: callshop "shop_garment_l_1",1; end;
+				case 14: switch(select("~ [Garment M] Page-1","~ [Garment M] Page-2")) { case 1: callshop "shop_garment_m_1",1; end; case 2: callshop "shop_garment_m_2",1; end; } end;
+				case 15: callshop "shop_garment_n_1",1; end;
+				case 16: callshop "shop_garment_o_1",1; end;
+				case 17: callshop "shop_garment_p_1",1; end;
+				case 18: callshop "shop_garment_r_1",1; end;
+				case 19: switch(select("~ [Garment S] Page-1","~ [Garment S] Page-2")) { case 1: callshop "shop_garment_s_1",1; end; case 2: callshop "shop_garment_s_2",1; end; } end;
+				case 20: callshop "shop_garment_t_1",1; end;
+				case 21: callshop "shop_garment_u_1",1; end;
+				case 22: callshop "shop_garment_v_1",1; end;
+				case 23: callshop "shop_garment_w_1",1; end;
+				case 24: callshop "shop_garment_y_1",1; end;
+				case 25: callshop "shop_garment_z_1",1; end;
+			} end;
 		case 4:
-			switch(select("~ Shoes_A","~ Shoes_B","~ Shoes_C","~ Shoes_D","~ Shoes_E","~ Shoes_F","~ Shoes_G","~ Shoes_H","~ Shoes_I","~ Shoes_J","~ Shoes_L","~ Shoes_M","~ Shoes_N","~ Shoes_P","~ Shoes_R","~ Shoes_S","~ Shoes_T","~ Shoes_U","~ Shoes_V","~ Shoes_W")) {
-				case 1:	callshop "C64Shoes_A",1;	end;
-				case 2:	callshop "C64Shoes_B",1;	end;
-				case 3:	callshop "C64Shoes_C",1;	end;
-				case 4:	callshop "C64Shoes_D",1;	end;
-				case 5:	callshop "C64Shoes_E",1;	end;
-				case 6:	callshop "C64Shoes_F",1;	end;
-				case 7:	callshop "C64Shoes_G",1;	end;
-				case 8:	callshop "C64Shoes_H",1;	end;
-				case 9:	callshop "C64Shoes_I",1;	end;
-				case 10:	callshop "C64Shoes_J",1;	end;
-				case 11:	callshop "C64Shoes_L",1;	end;
-				case 12:	callshop "C64Shoes_M",1;	end;
-				case 13:	callshop "C64Shoes_N",1;	end;
-				case 14:	callshop "C64Shoes_P",1;	end;
-				case 15:	callshop "C64Shoes_R",1;	end;
-				case 16:	callshop "C64Shoes_S",1;	end;
-				case 17:	callshop "C64Shoes_T",1;	end;
-				case 18:	callshop "C64Shoes_U",1;	end;
-				case 19:	callshop "C64Shoes_V",1;	end;
-				case 20:	callshop "C64Shoes_W",1;	end;
-			}
-			end;
-	}
-	OnInit:
-		waitingroom ":: Armor Cash ::",0;
-		end;
+			switch(select("~ [Footgear] 0-9","~ [Footgear] A","~ [Footgear] B","~ [Footgear] C","~ [Footgear] D","~ [Footgear] E","~ [Footgear] F","~ [Footgear] G","~ [Footgear] H","~ [Footgear] I","~ [Footgear] J","~ [Footgear] K","~ [Footgear] L","~ [Footgear] M","~ [Footgear] N","~ [Footgear] P","~ [Footgear] R","~ [Footgear] S","~ [Footgear] T","~ [Footgear] U","~ [Footgear] V","~ [Footgear] W","~ [Footgear] Y","~ [Footgear] Z")) {
+				case 1: callshop "shop_footgear_0_9_1",1; end;
+				case 2: switch(select("~ [Footgear A] Page-1","~ [Footgear A] Page-2")) { case 1: callshop "shop_footgear_a_1",1; end; case 2: callshop "shop_footgear_a_2",1; end; } end;
+				case 3: callshop "shop_footgear_b_1",1; end;
+				case 4: callshop "shop_footgear_c_1",1; end;
+				case 5: callshop "shop_footgear_d_1",1; end;
+				case 6: callshop "shop_footgear_e_1",1; end;
+				case 7: switch(select("~ [Footgear F] Page-1","~ [Footgear F] Page-2")) { case 1: callshop "shop_footgear_f_1",1; end; case 2: callshop "shop_footgear_f_2",1; end; } end;
+				case 8: callshop "shop_footgear_g_1",1; end;
+				case 9: callshop "shop_footgear_h_1",1; end;
+				case 10: callshop "shop_footgear_i_1",1; end;
+				case 11: callshop "shop_footgear_j_1",1; end;
+				case 12: callshop "shop_footgear_k_1",1; end;
+				case 13: callshop "shop_footgear_l_1",1; end;
+				case 14: switch(select("~ [Footgear M] Page-1","~ [Footgear M] Page-2")) { case 1: callshop "shop_footgear_m_1",1; end; case 2: callshop "shop_footgear_m_2",1; end; } end;
+				case 15: callshop "shop_footgear_n_1",1; end;
+				case 16: callshop "shop_footgear_p_1",1; end;
+				case 17: callshop "shop_footgear_r_1",1; end;
+				case 18: switch(select("~ [Footgear S] Page-1","~ [Footgear S] Page-2")) { case 1: callshop "shop_footgear_s_1",1; end; case 2: callshop "shop_footgear_s_2",1; end; } end;
+				case 19: switch(select("~ [Footgear T] Page-1","~ [Footgear T] Page-2")) { case 1: callshop "shop_footgear_t_1",1; end; case 2: callshop "shop_footgear_t_2",1; end; } end;
+				case 20: callshop "shop_footgear_u_1",1; end;
+				case 21: callshop "shop_footgear_v_1",1; end;
+				case 22: callshop "shop_footgear_w_1",1; end;
+				case 23: callshop "shop_footgear_y_1",1; end;
+				case 24: callshop "shop_footgear_z_1",1; end;
+			} end;
+	} end;
+	OnInit:	waitingroom ":: Equipment Cash ::",0; end;
 }
 
-morocc,139,84,8	script	Weapon Cash	437,{
-	switch(select("~ Dagger","~ Sword","~ Spear","~ Axe","~ Mace","~ Wand","~ Bow","~ Katar","~ Knuckle","~ Music Instrument","~ Whip","~ Book","~ Gun","~ Fuuma Shuriken")) {
-		case 1:	callshop "dagger",1;	end;
-		case 2:	callshop "sword",1;	end;
-		case 3:	callshop "spear",1;	end;
-		case 4:	callshop "axe",1;	end;
-		case 5:	callshop "mace",1;	end;
-		case 6:	callshop "wand",1;	end;
-		case 7:	callshop "bow",1;	end;
-		case 8:	callshop "katar",1;	end;
-		case 9:	callshop "knuckle",1;	end;
-		case 10:	callshop "music",1;	end;
-		case 11:	callshop "whip",1;	end;
-		case 12:	callshop "book",1;	end;
-		case 13:	callshop "gun",1;	end;
-		case 14:	callshop "shuri",1;	end;
-	}
-	OnInit:
-		waitingroom ":: Weapon Cash ::",0;
-		end;
-}
-
-morocc,136,92,8	script	Costume Cash	437,{
-	switch(select("~ Upperheadgear","~ Middleheadgear","~ Lowerheadgear","~ Garment")) {
-		case 1:
-			switch(select("~ CostumeUpperheadgear_1","~ CostumeUpperheadgear_C_1","~ CostumeUpperheadgear_C_2","~ CostumeUpperheadgear_C_3","~ CostumeUpperheadgear_C_4","~ CostumeUpperheadgear_C_5","~ CostumeUpperheadgear_C_6","~ CostumeUpperheadgear_F","~ CostumeUpperheadgear_G","~ CostumeUpperheadgear_J","~ CostumeUpperheadgear_M","~ CostumeUpperheadgear_O","~ CostumeUpperheadgear_R","~ CostumeUpperheadgear_S","~ CostumeUpperheadgear_T","~ CostumeUpperheadgear_W","~ CostumeUpperheadgear_Y")) {
-				case 1:	callshop "C1024CostumeUpperheadgear_1",1;	end;
-				case 2:	callshop "C1024CostumeUpperheadgear_C_1",1;	end;
-				case 3:	callshop "C1024CostumeUpperheadgear_C_2",1;	end;
-				case 4:	callshop "C1024CostumeUpperheadgear_C_3",1;	end;
-				case 5:	callshop "C1024CostumeUpperheadgear_C_4",1;	end;
-				case 6:	callshop "C1024CostumeUpperheadgear_C_5",1;	end;
-				case 7:	callshop "C1024CostumeUpperheadgear_C_6",1;	end;
-				case 8:	callshop "C1024CostumeUpperheadgear_F",1;	end;
-				case 9:	callshop "C1024CostumeUpperheadgear_G",1;	end;
-				case 10:	callshop "C1024CostumeUpperheadgear_J",1;	end;
-				case 11:	callshop "C1024CostumeUpperheadgear_M",1;	end;
-				case 12:	callshop "C1024CostumeUpperheadgear_O",1;	end;
-				case 13:	callshop "C1024CostumeUpperheadgear_R",1;	end;
-				case 14:	callshop "C1024CostumeUpperheadgear_S",1;	end;
-				case 15:	callshop "C1024CostumeUpperheadgear_T",1;	end;
-				case 16:	callshop "C1024CostumeUpperheadgear_W",1;	end;
-				case 17:	callshop "C1024CostumeUpperheadgear_Y",1;	end;
-			}
-			end;
-		case 2:	
-			switch(select("~ CostumeMiddleheadgear_B","~ CostumeMiddleheadgear_C","~ CostumeMiddleheadgear_H","~ CostumeMiddleheadgear_M","~ CostumeMiddleheadgear_S","~ CostumeMiddleheadgear_T","~ CostumeMiddleheadgear_U")) {
-				case 1:	callshop "C2048CostumeMiddleheadgear_B",1;	end;
-				case 2:	callshop "C2048CostumeMiddleheadgear_C",1;	end;
-				case 3:	callshop "C2048CostumeMiddleheadgear_H",1;	end;
-				case 4:	callshop "C2048CostumeMiddleheadgear_M",1;	end;
-				case 5:	callshop "C2048CostumeMiddleheadgear_S",1;	end;
-				case 6:	callshop "C2048CostumeMiddleheadgear_T",1;	end;
-				case 7:	callshop "C2048CostumeMiddleheadgear_U",1;	end;
-			}
-			end;
-		case 3:	
-			switch(select("~ CostumeLowerheadgear_C","~ CostumeLowerheadgear_T")) {
-				case 1:	callshop "C4096CostumeLowerheadgear_C",1;	end;
-				case 2:	callshop "C4096CostumeLowerheadgear_T",1;	end;
-			}
-			end;
-		case 4:
-			switch(select("~ CostumeGarment_A-G","~ CostumeGarment_H-L")) {
-				case 1:	callshop "CostumeGar_AG",1;	end;
-				case 2:	callshop "CostumeGar_HL",1;	end;
-			}
-			end;
-	}
-	OnInit:
-		waitingroom ":: Costume Cash ::",0;
-		end;
-}
-
-morocc,132,92,8	script	Shadow Cash	446,{
-	switch(select("~ Armor","~ Shield","~ Shoes","~ Earring","~ Pandant","~ Weapon")) {
-		case 1:
-			switch(select("~ Armor_A","~ Armor_B","~ Armor_C","~ Armor_D","~ Armor_E","~ Armor_F","~ Armor_G","~ Armor_H","~ Armor_I","~ Armor_K","~ Armor_L","~ Armor_M","~ Armor_O-P","~ Armor_R","~ Armor_S","~ Armor_T","~ Armor_U","~ Armor_V-W")) {
-				case 1:	callshop "ShadowArmor_A",1;	end;
-				case 2:	callshop "ShadowArmor_B",1;	end;
-				case 3:	callshop "ShadowArmor_C",1;	end;
-				case 4:	callshop "ShadowArmor_D",1;	end;
-				case 5:	callshop "ShadowArmor_E",1;	end;
-				case 6:	callshop "ShadowArmor_F",1;	end;
-				case 7:	callshop "ShadowArmor_G",1;	end;
-				case 8:	callshop "ShadowArmor_H",1;	end;
-				case 9:	callshop "ShadowArmor_I",1;	end;
-				case 10:	callshop "ShadowArmor_K",1;	end;
-				case 11:	callshop "ShadowArmor_L",1;	end;
-				case 12:	callshop "ShadowArmor_M",1;	end;
-				case 13:	callshop "ShadowArmor_OP",1;	end;
-				case 14:	callshop "ShadowArmor_R",1;	end;
-				case 15:	callshop "ShadowArmor_S",1;	end;
-				case 16:	callshop "ShadowArmor_T",1;	end;
-				case 17:	callshop "ShadowArmor_U",1;	end;
-				case 18:	callshop "ShadowArmor_VW",1;	end;
-			}
-			end;
+-	script	Weapon_Cash	-,{
+	switch(select("~ Dagger/Knife","~ Sword","~ Spear","~ Axe","~ Mace","~ Staff","~ Bow","~ Katar","~ Knuckle","~ Musical/Whip","~ Book","~ Firearms","~ Huuma")) {
+		case 1:	
+			switch(select("~ [Dagger/Knife] 0-9","~ [Dagger/Knife] A","~ [Dagger/Knife] B","~ [Dagger/Knife] C","~ [Dagger/Knife] D","~ [Dagger/Knife] E","~ [Dagger/Knife] F","~ [Dagger/Knife] G","~ [Dagger/Knife] H","~ [Dagger/Knife] I","~ [Dagger/Knife] J","~ [Dagger/Knife] K","~ [Dagger/Knife] L","~ [Dagger/Knife] M","~ [Dagger/Knife] N","~ [Dagger/Knife] O","~ [Dagger/Knife] P","~ [Dagger/Knife] R","~ [Dagger/Knife] S","~ [Dagger/Knife] T","~ [Dagger/Knife] U","~ [Dagger/Knife] V","~ [Dagger/Knife] W","~ [Dagger/Knife] Z")) {
+				case 1: callshop "shop_weapon_dagger_knife_0_9_1",1; end;
+				case 2: callshop "shop_weapon_dagger_knife_a_1",1; end;
+				case 3: callshop "shop_weapon_dagger_knife_b_1",1; end;
+				case 4: callshop "shop_weapon_dagger_knife_c_1",1; end;
+				case 5: callshop "shop_weapon_dagger_knife_d_1",1; end;
+				case 6: callshop "shop_weapon_dagger_knife_e_1",1; end;
+				case 7: callshop "shop_weapon_dagger_knife_f_1",1; end;
+				case 8: callshop "shop_weapon_dagger_knife_g_1",1; end;
+				case 9: callshop "shop_weapon_dagger_knife_h_1",1; end;
+				case 10: callshop "shop_weapon_dagger_knife_i_1",1; end;
+				case 11: callshop "shop_weapon_dagger_knife_j_1",1; end;
+				case 12: callshop "shop_weapon_dagger_knife_k_1",1; end;
+				case 13: callshop "shop_weapon_dagger_knife_l_1",1; end;
+				case 14: callshop "shop_weapon_dagger_knife_m_1",1; end;
+				case 15: callshop "shop_weapon_dagger_knife_n_1",1; end;
+				case 16: callshop "shop_weapon_dagger_knife_o_1",1; end;
+				case 17: callshop "shop_weapon_dagger_knife_p_1",1; end;
+				case 18: callshop "shop_weapon_dagger_knife_r_1",1; end;
+				case 19: callshop "shop_weapon_dagger_knife_s_1",1; end;
+				case 20: callshop "shop_weapon_dagger_knife_t_1",1; end;
+				case 21: callshop "shop_weapon_dagger_knife_u_1",1; end;
+				case 22: callshop "shop_weapon_dagger_knife_v_1",1; end;
+				case 23: callshop "shop_weapon_dagger_knife_w_1",1; end;
+				case 24: callshop "shop_weapon_dagger_knife_z_1",1; end;
+			} end;
 		case 2:
-			switch(select("~ Shield_A","~ Shield_B","~ Shield_C","~ Shield_D","~ Shield_E","~ Shield_F","~ Shield_G","~ Shield_H-I","~ Shield_M","~ Shield_N-P","~ Shield_R","~ Shield_S","~ Shield_T","~ Shield_U-V","~ Shield_W")) {
-				case 1:	callshop "ShadowShield_A",1;	end;
-				case 2:	callshop "ShadowShield_B",1;	end;
-				case 3:	callshop "ShadowShield_C",1;	end;
-				case 4:	callshop "ShadowShield_D",1;	end;
-				case 5:	callshop "ShadowShield_E",1;	end;
-				case 6:	callshop "ShadowShield_F",1;	end;
-				case 7:	callshop "ShadowShield_G",1;	end;
-				case 8:	callshop "ShadowShield_HI",1;	end;
-				case 9:	callshop "ShadowShield_M",1;	end;
-				case 10:	callshop "ShadowShield_NP",1;	end;
-				case 11:	callshop "ShadowShield_R",1;	end;
-				case 12:	callshop "ShadowShield_S",1;	end;
-				case 13:	callshop "ShadowShield_T",1;	end;
-				case 14:	callshop "ShadowShield_UV",1;	end;
-				case 15:	callshop "ShadowShield_W",1;	end;
-			}
-			end;
+			switch(select("~ [Sword] 0-9","~ [Sword] A","~ [Sword] B","~ [Sword] C","~ [Sword] D","~ [Sword] E","~ [Sword] F","~ [Sword] G","~ [Sword] H","~ [Sword] I","~ [Sword] J","~ [Sword] K","~ [Sword] L","~ [Sword] M","~ [Sword] N","~ [Sword] O","~ [Sword] P","~ [Sword] R","~ [Sword] S","~ [Sword] T","~ [Sword] U","~ [Sword] V","~ [Sword] W","~ [Sword] Z")) {
+				case 1: callshop "shop_weapon_sword_0_9_1",1; end;
+				case 2: callshop "shop_weapon_sword_a_1",1; end;
+				case 3: callshop "shop_weapon_sword_b_1",1; end;
+				case 4: callshop "shop_weapon_sword_c_1",1; end;
+				case 5: callshop "shop_weapon_sword_d_1",1; end;
+				case 6: callshop "shop_weapon_sword_e_1",1; end;
+				case 7: callshop "shop_weapon_sword_f_1",1; end;
+				case 8: callshop "shop_weapon_sword_g_1",1; end;
+				case 9: callshop "shop_weapon_sword_h_1",1; end;
+				case 10: callshop "shop_weapon_sword_i_1",1; end;
+				case 11: callshop "shop_weapon_sword_j_1",1; end;
+				case 12: callshop "shop_weapon_sword_k_1",1; end;
+				case 13: callshop "shop_weapon_sword_l_1",1; end;
+				case 14: callshop "shop_weapon_sword_m_1",1; end;
+				case 15: callshop "shop_weapon_sword_n_1",1; end;
+				case 16: callshop "shop_weapon_sword_o_1",1; end;
+				case 17: callshop "shop_weapon_sword_p_1",1; end;
+				case 18: callshop "shop_weapon_sword_r_1",1; end;
+				case 19: switch(select("~ [Sword S] Page-1","~ [Sword S] Page-2")) { case 1: callshop "shop_weapon_sword_s_1",1; end; case 2: callshop "shop_weapon_sword_s_2",1; end; } end;
+				case 20: callshop "shop_weapon_sword_t_1",1; end;
+				case 21: callshop "shop_weapon_sword_u_1",1; end;
+				case 22: callshop "shop_weapon_sword_v_1",1; end;
+				case 23: callshop "shop_weapon_sword_w_1",1; end;
+				case 24: callshop "shop_weapon_sword_z_1",1; end;
+			} end;
 		case 3:
-			switch(select("~ Shoes_A","~ Shoes_B","~ Shoes_C","~ Shoes_D","~ Shoes_E-F","~ Shoes_G","~ Shoes_H","~ Shoes_I","~ Shoes_K-L","~ Shoes_M","~ Shoes_O-P","~ Shoes_R","~ Shoes_S","~ Shoes_T","~ Shoes_V-W")) {
-				case 1:	callshop "ShadowShoes_A",1;	end;
-				case 2:	callshop "ShadowShoes_B",1;	end;
-				case 3:	callshop "ShadowShoes_C",1;	end;
-				case 4:	callshop "ShadowShoes_D",1;	end;
-				case 5:	callshop "ShadowShoes_EF",1;	end;
-				case 6:	callshop "ShadowShoes_G",1;	end;
-				case 7:	callshop "ShadowShoes_H",1;	end;
-				case 8:	callshop "ShadowShoes_I",1;	end;
-				case 9:	callshop "ShadowShoes_KL",1;	end;
-				case 10:	callshop "ShadowShoes_M",1;	end;
-				case 11:	callshop "ShadowShoes_OP",1;	end;
-				case 12:	callshop "ShadowShoes_R",1;	end;
-				case 13:	callshop "ShadowShoes_S",1;	end;
-				case 14:	callshop "ShadowShoes_T",1;	end;
-				case 15:	callshop "ShadowShoes_VW",1;	end;
-			}
-			end;
-		case 4:	
-			switch(select("~ Earring_A","~ Earring_B","~ Earring_C","~ Earring_E","~ Earring_F","~ Earring_G","~ Earring_H","~ Earring_I","~ Earring_M","~ Earring_N-P","~ Earring_R-S","~ Earring_T","~ Earring_U-W")) {
-				case 1:	callshop "ShadowEarring_A",1;	end;
-				case 2:	callshop "ShadowEarring_B",1;	end;
-				case 3:	callshop "ShadowEarring_C",1;	end;
-				case 4:	callshop "ShadowEarring_E",1;	end;
-				case 5:	callshop "ShadowEarring_F",1;	end;
-				case 6:	callshop "ShadowEarring_G",1;	end;
-				case 7:	callshop "ShadowEarring_H",1;	end;
-				case 8:	callshop "ShadowEarring_I",1;	end;
-				case 9:	callshop "ShadowEarring_M",1;	end;
-				case 10:	callshop "ShadowEarring_NP",1;	end;
-				case 11:	callshop "ShadowEarring_RS",1;	end;
-				case 12:	callshop "ShadowEarring_T",1;	end;
-				case 13:	callshop "ShadowEarring_UVW",1;	end;
-			}
-			end;
+			switch(select("~ [Spear] 0-9","~ [Spear] A","~ [Spear] B","~ [Spear] C","~ [Spear] D","~ [Spear] E","~ [Spear] F","~ [Spear] G","~ [Spear] H","~ [Spear] J","~ [Spear] K","~ [Spear] L","~ [Spear] M","~ [Spear] N","~ [Spear] O","~ [Spear] P","~ [Spear] R","~ [Spear] S","~ [Spear] T","~ [Spear] U","~ [Spear] V","~ [Spear] W","~ [Spear] Z")) {
+				case 1: callshop "shop_weapon_spear_0_9_1",1; end;
+				case 2: callshop "shop_weapon_spear_a_1",1; end;
+				case 3: callshop "shop_weapon_spear_b_1",1; end;
+				case 4: callshop "shop_weapon_spear_c_1",1; end;
+				case 5: callshop "shop_weapon_spear_d_1",1; end;
+				case 6: callshop "shop_weapon_spear_e_1",1; end;
+				case 7: callshop "shop_weapon_spear_f_1",1; end;
+				case 8: callshop "shop_weapon_spear_g_1",1; end;
+				case 9: callshop "shop_weapon_spear_h_1",1; end;
+				case 10: callshop "shop_weapon_spear_j_1",1; end;
+				case 11: callshop "shop_weapon_spear_k_1",1; end;
+				case 12: callshop "shop_weapon_spear_l_1",1; end;
+				case 13: callshop "shop_weapon_spear_m_1",1; end;
+				case 14: callshop "shop_weapon_spear_n_1",1; end;
+				case 15: callshop "shop_weapon_spear_o_1",1; end;
+				case 16: callshop "shop_weapon_spear_p_1",1; end;
+				case 17: callshop "shop_weapon_spear_r_1",1; end;
+				case 18: callshop "shop_weapon_spear_s_1",1; end;
+				case 19: callshop "shop_weapon_spear_t_1",1; end;
+				case 20: callshop "shop_weapon_spear_u_1",1; end;
+				case 21: callshop "shop_weapon_spear_v_1",1; end;
+				case 22: callshop "shop_weapon_spear_w_1",1; end;
+				case 23: callshop "shop_weapon_spear_z_1",1; end;
+			} end;
+		case 4:
+			switch(select("~ [Axe] 0-9","~ [Axe] A","~ [Axe] B","~ [Axe] C","~ [Axe] D","~ [Axe] E","~ [Axe] F","~ [Axe] G","~ [Axe] H","~ [Axe] K","~ [Axe] M","~ [Axe] N","~ [Axe] O","~ [Axe] P","~ [Axe] R","~ [Axe] S","~ [Axe] T","~ [Axe] U","~ [Axe] V","~ [Axe] W","~ [Axe] Z")) {
+				case 1: callshop "shop_weapon_axe_0_9_1",1; end;
+				case 2: callshop "shop_weapon_axe_a_1",1; end;
+				case 3: callshop "shop_weapon_axe_b_1",1; end;
+				case 4: callshop "shop_weapon_axe_c_1",1; end;
+				case 5: callshop "shop_weapon_axe_d_1",1; end;
+				case 6: callshop "shop_weapon_axe_e_1",1; end;
+				case 7: callshop "shop_weapon_axe_f_1",1; end;
+				case 8: callshop "shop_weapon_axe_g_1",1; end;
+				case 9: callshop "shop_weapon_axe_h_1",1; end;
+				case 10: callshop "shop_weapon_axe_k_1",1; end;
+				case 11: callshop "shop_weapon_axe_m_1",1; end;
+				case 12: callshop "shop_weapon_axe_n_1",1; end;
+				case 13: callshop "shop_weapon_axe_o_1",1; end;
+				case 14: callshop "shop_weapon_axe_p_1",1; end;
+				case 15: callshop "shop_weapon_axe_r_1",1; end;
+				case 16: callshop "shop_weapon_axe_s_1",1; end;
+				case 17: callshop "shop_weapon_axe_t_1",1; end;
+				case 18: callshop "shop_weapon_axe_u_1",1; end;
+				case 19: callshop "shop_weapon_axe_v_1",1; end;
+				case 20: callshop "shop_weapon_axe_w_1",1; end;
+				case 21: callshop "shop_weapon_axe_z_1",1; end;
+			} end;
 		case 5:
-			switch(select("~ Pandant_A","~ Pandant_B","~ Pandant_C","~ Pandant_E","~ Pandant_F","~ Pandant_G","~ Pandant_H","~ Pandant_I","~ Pandant_M","~ Pandant_N-P","~ Pandant_R","~ Pandant_S","~ Pandant_T","~ Pandant_U-V")) {
-				case 1:	callshop "ShadowPandant_A",1;	end;
-				case 2:	callshop "ShadowPandant_B",1;	end;
-				case 3:	callshop "ShadowPandant_C",1;	end;
-				case 4:	callshop "ShadowPandant_E",1;	end;
-				case 5:	callshop "ShadowPandant_F",1;	end;
-				case 6:	callshop "ShadowPandant_G",1;	end;
-				case 7:	callshop "ShadowPandant_H",1;	end;
-				case 8:	callshop "ShadowPandant_I",1;	end;
-				case 9:	callshop "ShadowPandant_M",1;	end;
-				case 10:	callshop "ShadowPandant_NP",1;	end;
-				case 11:	callshop "ShadowPandant_R",1;	end;
-				case 12:	callshop "ShadowPandant_S",1;	end;
-				case 13:	callshop "ShadowPandant_T",1;	end;
-				case 14:	callshop "ShadowPandant_UV",1;	end;
-			}
-			end;
+			switch(select("~ [Mace] 0-9","~ [Mace] A","~ [Mace] B","~ [Mace] C","~ [Mace] D","~ [Mace] E","~ [Mace] F","~ [Mace] G","~ [Mace] H","~ [Mace] I","~ [Mace] J","~ [Mace] K","~ [Mace] L","~ [Mace] M","~ [Mace] N","~ [Mace] O","~ [Mace] P","~ [Mace] Q","~ [Mace] R","~ [Mace] S","~ [Mace] T","~ [Mace] U","~ [Mace] V","~ [Mace] W","~ [Mace] Z")) {
+				case 1: callshop "shop_weapon_mace_0_9_1",1; end;
+				case 2: callshop "shop_weapon_mace_a_1",1; end;
+				case 3: callshop "shop_weapon_mace_b_1",1; end;
+				case 4: callshop "shop_weapon_mace_c_1",1; end;
+				case 5: callshop "shop_weapon_mace_d_1",1; end;
+				case 6: callshop "shop_weapon_mace_e_1",1; end;
+				case 7: callshop "shop_weapon_mace_f_1",1; end;
+				case 8: callshop "shop_weapon_mace_g_1",1; end;
+				case 9: callshop "shop_weapon_mace_h_1",1; end;
+				case 10: callshop "shop_weapon_mace_i_1",1; end;
+				case 11: callshop "shop_weapon_mace_j_1",1; end;
+				case 12: callshop "shop_weapon_mace_k_1",1; end;
+				case 13: callshop "shop_weapon_mace_l_1",1; end;
+				case 14: callshop "shop_weapon_mace_m_1",1; end;
+				case 15: callshop "shop_weapon_mace_n_1",1; end;
+				case 16: callshop "shop_weapon_mace_o_1",1; end;
+				case 17: callshop "shop_weapon_mace_p_1",1; end;
+				case 18: callshop "shop_weapon_mace_q_1",1; end;
+				case 19: callshop "shop_weapon_mace_r_1",1; end;
+				case 20: callshop "shop_weapon_mace_s_1",1; end;
+				case 21: callshop "shop_weapon_mace_t_1",1; end;
+				case 22: callshop "shop_weapon_mace_u_1",1; end;
+				case 23: callshop "shop_weapon_mace_v_1",1; end;
+				case 24: callshop "shop_weapon_mace_w_1",1; end;
+				case 25: callshop "shop_weapon_mace_z_1",1; end;
+			} end;
 		case 6:
-			switch(select("~ Weapon_A","~ Weapon_B","~ Weapon_C","~ Weapon_D","~ Weapon_E","~ Weapon_F","~ Weapon_G","~ Weapon_H","~ Weapon_I","~ Weapon_K-L","~ Weapon_M","~ Weapon_N","~ Weapon_P","~ Weapon_R","~ Weapon_S","~ Weapon_T","~ Weapon_U","~ Weapon_W")) {
-				case 1:	callshop "ShadowWeapon_A",1;	end;
-				case 2:	callshop "ShadowWeapon_B",1;	end;
-				case 3:	callshop "ShadowWeapon_C",1;	end;
-				case 4:	callshop "ShadowWeapon_D",1;	end;
-				case 5:	callshop "ShadowWeapon_E",1;	end;
-				case 6:	callshop "ShadowWeapon_F",1;	end;
-				case 7:	callshop "ShadowWeapon_G",1;	end;
-				case 8:	callshop "ShadowWeapon_H",1;	end;
-				case 9:	callshop "ShadowWeapon_I",1;	end;
-				case 10:	callshop "ShadowWeapon_KL",1;	end;
-				case 11:	callshop "ShadowWeapon_M",1;	end;
-				case 12:	callshop "ShadowWeapon_N",1;	end;
-				case 13:	callshop "ShadowWeapon_P",1;	end;
-				case 14:	callshop "ShadowWeapon_R",1;	end;
-				case 15:	callshop "ShadowWeapon_S",1;	end;
-				case 16:	callshop "ShadowWeapon_T",1;	end;
-				case 17:	callshop "ShadowWeapon_U",1;	end;
-				case 18:	callshop "ShadowWeapon_W",1;	end;
-			}
-			end;
-	}
-	OnInit:
-		waitingroom ":: Shadow Cash ::",0;
-		end;
+			switch(select("~ [Staff] 0-9","~ [Staff] A","~ [Staff] B","~ [Staff] C","~ [Staff] D","~ [Staff] E","~ [Staff] F","~ [Staff] G","~ [Staff] H","~ [Staff] I","~ [Staff] J","~ [Staff] K","~ [Staff] L","~ [Staff] M","~ [Staff] N","~ [Staff] O","~ [Staff] P","~ [Staff] R","~ [Staff] S","~ [Staff] T","~ [Staff] U","~ [Staff] V","~ [Staff] W","~ [Staff] Z")) {
+				case 1: callshop "shop_weapon_staff_0_9_1",1; end;
+				case 2: callshop "shop_weapon_staff_a_1",1; end;
+				case 3: callshop "shop_weapon_staff_b_1",1; end;
+				case 4: callshop "shop_weapon_staff_c_1",1; end;
+				case 5: callshop "shop_weapon_staff_d_1",1; end;
+				case 6: callshop "shop_weapon_staff_e_1",1; end;
+				case 7: callshop "shop_weapon_staff_f_1",1; end;
+				case 8: callshop "shop_weapon_staff_g_1",1; end;
+				case 9: callshop "shop_weapon_staff_h_1",1; end;
+				case 10: callshop "shop_weapon_staff_i_1",1; end;
+				case 11: callshop "shop_weapon_staff_j_1",1; end;
+				case 12: callshop "shop_weapon_staff_k_1",1; end;
+				case 13: callshop "shop_weapon_staff_l_1",1; end;
+				case 14: callshop "shop_weapon_staff_m_1",1; end;
+				case 15: callshop "shop_weapon_staff_n_1",1; end;
+				case 16: callshop "shop_weapon_staff_o_1",1; end;
+				case 17: callshop "shop_weapon_staff_p_1",1; end;
+				case 18: callshop "shop_weapon_staff_r_1",1; end;
+				case 19: switch(select("~ [Staff S] Page-1","~ [Staff S] Page-2")) { case 1: callshop "shop_weapon_staff_s_1",1; end; case 2: callshop "shop_weapon_staff_s_2",1; end; } end;
+				case 20: callshop "shop_weapon_staff_t_1",1; end;
+				case 21: callshop "shop_weapon_staff_u_1",1; end;
+				case 22: callshop "shop_weapon_staff_v_1",1; end;
+				case 23: callshop "shop_weapon_staff_w_1",1; end;
+				case 24: callshop "shop_weapon_staff_z_1",1; end;
+			} end;
+		case 7:
+			switch(select("~ [Bow] 0-9","~ [Bow] A","~ [Bow] B","~ [Bow] C","~ [Bow] D","~ [Bow] E","~ [Bow] F","~ [Bow] G","~ [Bow] H","~ [Bow] I","~ [Bow] K","~ [Bow] L","~ [Bow] M","~ [Bow] N","~ [Bow] P","~ [Bow] R","~ [Bow] S","~ [Bow] T","~ [Bow] U","~ [Bow] V","~ [Bow] W","~ [Bow] Z")) {
+				case 1: callshop "shop_weapon_bow_0_9_1",1; end;
+				case 2: callshop "shop_weapon_bow_a_1",1; end;
+				case 3: callshop "shop_weapon_bow_b_1",1; end;
+				case 4: callshop "shop_weapon_bow_c_1",1; end;
+				case 5: callshop "shop_weapon_bow_d_1",1; end;
+				case 6: callshop "shop_weapon_bow_e_1",1; end;
+				case 7: callshop "shop_weapon_bow_f_1",1; end;
+				case 8: callshop "shop_weapon_bow_g_1",1; end;
+				case 9: callshop "shop_weapon_bow_h_1",1; end;
+				case 10: callshop "shop_weapon_bow_i_1",1; end;
+				case 11: callshop "shop_weapon_bow_k_1",1; end;
+				case 12: callshop "shop_weapon_bow_l_1",1; end;
+				case 13: callshop "shop_weapon_bow_m_1",1; end;
+				case 14: callshop "shop_weapon_bow_n_1",1; end;
+				case 15: callshop "shop_weapon_bow_p_1",1; end;
+				case 16: callshop "shop_weapon_bow_r_1",1; end;
+				case 17: callshop "shop_weapon_bow_s_1",1; end;
+				case 18: callshop "shop_weapon_bow_t_1",1; end;
+				case 19: callshop "shop_weapon_bow_u_1",1; end;
+				case 20: callshop "shop_weapon_bow_v_1",1; end;
+				case 21: callshop "shop_weapon_bow_w_1",1; end;
+				case 22: callshop "shop_weapon_bow_z_1",1; end;
+			} end;
+		case 8:
+			switch(select("~ [Katar] 0-9","~ [Katar] A","~ [Katar] B","~ [Katar] C","~ [Katar] D","~ [Katar] E","~ [Katar] F","~ [Katar] G","~ [Katar] H","~ [Katar] I","~ [Katar] J","~ [Katar] K","~ [Katar] L","~ [Katar] M","~ [Katar] N","~ [Katar] P","~ [Katar] R","~ [Katar] S","~ [Katar] T","~ [Katar] U","~ [Katar] V","~ [Katar] W","~ [Katar] Z")) {
+				case 1: callshop "shop_weapon_katar_0_9_1",1; end;
+				case 2: callshop "shop_weapon_katar_a_1",1; end;
+				case 3: callshop "shop_weapon_katar_b_1",1; end;
+				case 4: callshop "shop_weapon_katar_c_1",1; end;
+				case 5: callshop "shop_weapon_katar_d_1",1; end;
+				case 6: callshop "shop_weapon_katar_e_1",1; end;
+				case 7: callshop "shop_weapon_katar_f_1",1; end;
+				case 8: callshop "shop_weapon_katar_g_1",1; end;
+				case 9: callshop "shop_weapon_katar_h_1",1; end;
+				case 10: callshop "shop_weapon_katar_i_1",1; end;
+				case 11: callshop "shop_weapon_katar_j_1",1; end;
+				case 12: callshop "shop_weapon_katar_k_1",1; end;
+				case 13: callshop "shop_weapon_katar_l_1",1; end;
+				case 14: callshop "shop_weapon_katar_m_1",1; end;
+				case 15: callshop "shop_weapon_katar_n_1",1; end;
+				case 16: callshop "shop_weapon_katar_p_1",1; end;
+				case 17: callshop "shop_weapon_katar_r_1",1; end;
+				case 18: callshop "shop_weapon_katar_s_1",1; end;
+				case 19: callshop "shop_weapon_katar_t_1",1; end;
+				case 20: callshop "shop_weapon_katar_u_1",1; end;
+				case 21: callshop "shop_weapon_katar_v_1",1; end;
+				case 22: callshop "shop_weapon_katar_w_1",1; end;
+				case 23: callshop "shop_weapon_katar_z_1",1; end;
+			} end;
+		case 9:
+			switch(select("~ [Knuckle] 0-9","~ [Knuckle] A","~ [Knuckle] B","~ [Knuckle] C","~ [Knuckle] D","~ [Knuckle] E","~ [Knuckle] F","~ [Knuckle] G","~ [Knuckle] H","~ [Knuckle] I","~ [Knuckle] K","~ [Knuckle] L","~ [Knuckle] M","~ [Knuckle] P","~ [Knuckle] R","~ [Knuckle] S","~ [Knuckle] T","~ [Knuckle] U","~ [Knuckle] V","~ [Knuckle] W","~ [Knuckle] Z")) {
+				case 1: callshop "shop_weapon_knuckle_0_9_1",1; end;
+				case 2: callshop "shop_weapon_knuckle_a_1",1; end;
+				case 3: callshop "shop_weapon_knuckle_b_1",1; end;
+				case 4: callshop "shop_weapon_knuckle_c_1",1; end;
+				case 5: callshop "shop_weapon_knuckle_d_1",1; end;
+				case 6: callshop "shop_weapon_knuckle_e_1",1; end;
+				case 7: callshop "shop_weapon_knuckle_f_1",1; end;
+				case 8: callshop "shop_weapon_knuckle_g_1",1; end;
+				case 9: callshop "shop_weapon_knuckle_h_1",1; end;
+				case 10: callshop "shop_weapon_knuckle_i_1",1; end;
+				case 11: callshop "shop_weapon_knuckle_k_1",1; end;
+				case 12: callshop "shop_weapon_knuckle_l_1",1; end;
+				case 13: callshop "shop_weapon_knuckle_m_1",1; end;
+				case 14: callshop "shop_weapon_knuckle_p_1",1; end;
+				case 15: callshop "shop_weapon_knuckle_r_1",1; end;
+				case 16: callshop "shop_weapon_knuckle_s_1",1; end;
+				case 17: callshop "shop_weapon_knuckle_t_1",1; end;
+				case 18: callshop "shop_weapon_knuckle_u_1",1; end;
+				case 19: callshop "shop_weapon_knuckle_v_1",1; end;
+				case 20: callshop "shop_weapon_knuckle_w_1",1; end;
+				case 21: callshop "shop_weapon_knuckle_z_1",1; end;
+			} end;
+		case 10:
+			switch(select("~ [Musical/Whip] 0-9","~ [Musical/Whip] A","~ [Musical/Whip] B","~ [Musical/Whip] C","~ [Musical/Whip] D","~ [Musical/Whip] E","~ [Musical/Whip] F","~ [Musical/Whip] G","~ [Musical/Whip] H","~ [Musical/Whip] K","~ [Musical/Whip] L","~ [Musical/Whip] M","~ [Musical/Whip] N","~ [Musical/Whip] O","~ [Musical/Whip] P","~ [Musical/Whip] Q","~ [Musical/Whip] R","~ [Musical/Whip] S","~ [Musical/Whip] T","~ [Musical/Whip] U","~ [Musical/Whip] V","~ [Musical/Whip] W","~ [Musical/Whip] Z")) {
+				case 1: callshop "shop_weapon_musical_whip_0_9_1",1; end;
+				case 2: callshop "shop_weapon_musical_whip_a_1",1; end;
+				case 3: callshop "shop_weapon_musical_whip_b_1",1; end;
+				case 4: callshop "shop_weapon_musical_whip_c_1",1; end;
+				case 5: callshop "shop_weapon_musical_whip_d_1",1; end;
+				case 6: callshop "shop_weapon_musical_whip_e_1",1; end;
+				case 7: callshop "shop_weapon_musical_whip_f_1",1; end;
+				case 8: callshop "shop_weapon_musical_whip_g_1",1; end;
+				case 9: callshop "shop_weapon_musical_whip_h_1",1; end;
+				case 10: callshop "shop_weapon_musical_whip_k_1",1; end;
+				case 11: callshop "shop_weapon_musical_whip_l_1",1; end;
+				case 12: callshop "shop_weapon_musical_whip_m_1",1; end;
+				case 13: callshop "shop_weapon_musical_whip_n_1",1; end;
+				case 14: callshop "shop_weapon_musical_whip_o_1",1; end;
+				case 15: callshop "shop_weapon_musical_whip_p_1",1; end;
+				case 16: callshop "shop_weapon_musical_whip_q_1",1; end;
+				case 17: callshop "shop_weapon_musical_whip_r_1",1; end;
+				case 18: callshop "shop_weapon_musical_whip_s_1",1; end;
+				case 19: callshop "shop_weapon_musical_whip_t_1",1; end;
+				case 20: callshop "shop_weapon_musical_whip_u_1",1; end;
+				case 21: callshop "shop_weapon_musical_whip_v_1",1; end;
+				case 22: callshop "shop_weapon_musical_whip_w_1",1; end;
+				case 23: callshop "shop_weapon_musical_whip_z_1",1; end;
+			} end;
+		case 11:
+			switch(select("~ [Book] 0-9","~ [Book] A","~ [Book] B","~ [Book] C","~ [Book] D","~ [Book] E","~ [Book] F","~ [Book] G","~ [Book] H","~ [Book] I","~ [Book] J","~ [Book] K","~ [Book] L","~ [Book] M","~ [Book] O","~ [Book] P","~ [Book] R","~ [Book] S","~ [Book] T","~ [Book] U","~ [Book] V","~ [Book] W","~ [Book] Z")) {
+				case 1: callshop "shop_weapon_book_0_9_1",1; end;
+				case 2: callshop "shop_weapon_book_a_1",1; end;
+				case 3: callshop "shop_weapon_book_b_1",1; end;
+				case 4: callshop "shop_weapon_book_c_1",1; end;
+				case 5: callshop "shop_weapon_book_d_1",1; end;
+				case 6: callshop "shop_weapon_book_e_1",1; end;
+				case 7: callshop "shop_weapon_book_f_1",1; end;
+				case 8: callshop "shop_weapon_book_g_1",1; end;
+				case 9: callshop "shop_weapon_book_h_1",1; end;
+				case 10: callshop "shop_weapon_book_i_1",1; end;
+				case 11: callshop "shop_weapon_book_j_1",1; end;
+				case 12: callshop "shop_weapon_book_k_1",1; end;
+				case 13: callshop "shop_weapon_book_l_1",1; end;
+				case 14: callshop "shop_weapon_book_m_1",1; end;
+				case 15: callshop "shop_weapon_book_o_1",1; end;
+				case 16: callshop "shop_weapon_book_p_1",1; end;
+				case 17: callshop "shop_weapon_book_r_1",1; end;
+				case 18: callshop "shop_weapon_book_s_1",1; end;
+				case 19: callshop "shop_weapon_book_t_1",1; end;
+				case 20: callshop "shop_weapon_book_u_1",1; end;
+				case 21: callshop "shop_weapon_book_v_1",1; end;
+				case 22: callshop "shop_weapon_book_w_1",1; end;
+				case 23: callshop "shop_weapon_book_z_1",1; end;
+			} end;
+		case 12:
+			switch(select("~ [Firearms] 0-9","~ [Firearms] A","~ [Firearms] B","~ [Firearms] C","~ [Firearms] D","~ [Firearms] E","~ [Firearms] F","~ [Firearms] G","~ [Firearms] H","~ [Firearms] I","~ [Firearms] J","~ [Firearms] K","~ [Firearms] L","~ [Firearms] M","~ [Firearms] N","~ [Firearms] O","~ [Firearms] P","~ [Firearms] R","~ [Firearms] S","~ [Firearms] T","~ [Firearms] U","~ [Firearms] V","~ [Firearms] W","~ [Firearms] Z")) {
+				case 1: callshop "shop_weapon_firearms_0_9_1",1; end;
+				case 2: callshop "shop_weapon_firearms_a_1",1; end;
+				case 3: callshop "shop_weapon_firearms_b_1",1; end;
+				case 4: callshop "shop_weapon_firearms_c_1",1; end;
+				case 5: callshop "shop_weapon_firearms_d_1",1; end;
+				case 6: callshop "shop_weapon_firearms_e_1",1; end;
+				case 7: callshop "shop_weapon_firearms_f_1",1; end;
+				case 8: callshop "shop_weapon_firearms_g_1",1; end;
+				case 9: callshop "shop_weapon_firearms_h_1",1; end;
+				case 10: callshop "shop_weapon_firearms_i_1",1; end;
+				case 11: callshop "shop_weapon_firearms_j_1",1; end;
+				case 12: callshop "shop_weapon_firearms_k_1",1; end;
+				case 13: callshop "shop_weapon_firearms_l_1",1; end;
+				case 14: callshop "shop_weapon_firearms_m_1",1; end;
+				case 15: callshop "shop_weapon_firearms_n_1",1; end;
+				case 16: callshop "shop_weapon_firearms_o_1",1; end;
+				case 17: callshop "shop_weapon_firearms_p_1",1; end;
+				case 18: callshop "shop_weapon_firearms_r_1",1; end;
+				case 19: callshop "shop_weapon_firearms_s_1",1; end;
+				case 20: callshop "shop_weapon_firearms_t_1",1; end;
+				case 21: callshop "shop_weapon_firearms_u_1",1; end;
+				case 22: callshop "shop_weapon_firearms_v_1",1; end;
+				case 23: callshop "shop_weapon_firearms_w_1",1; end;
+				case 24: callshop "shop_weapon_firearms_z_1",1; end;
+			} end;
+		case 13:
+			switch(select("~ [Huuma] 0-9","~ [Huuma] A","~ [Huuma] B","~ [Huuma] D","~ [Huuma] E","~ [Huuma] F","~ [Huuma] G","~ [Huuma] H","~ [Huuma] K","~ [Huuma] M","~ [Huuma] N","~ [Huuma] P","~ [Huuma] R","~ [Huuma] S","~ [Huuma] T","~ [Huuma] U","~ [Huuma] V","~ [Huuma] W","~ [Huuma] Z")) {
+				case 1: callshop "shop_weapon_huuma_0_9_1",1; end;
+				case 2: callshop "shop_weapon_huuma_a_1",1; end;
+				case 3: callshop "shop_weapon_huuma_b_1",1; end;
+				case 4: callshop "shop_weapon_huuma_d_1",1; end;
+				case 5: callshop "shop_weapon_huuma_e_1",1; end;
+				case 6: callshop "shop_weapon_huuma_f_1",1; end;
+				case 7: callshop "shop_weapon_huuma_g_1",1; end;
+				case 8: callshop "shop_weapon_huuma_h_1",1; end;
+				case 9: callshop "shop_weapon_huuma_k_1",1; end;
+				case 10: callshop "shop_weapon_huuma_m_1",1; end;
+				case 11: callshop "shop_weapon_huuma_n_1",1; end;
+				case 12: callshop "shop_weapon_huuma_p_1",1; end;
+				case 13: callshop "shop_weapon_huuma_r_1",1; end;
+				case 14: callshop "shop_weapon_huuma_s_1",1; end;
+				case 15: callshop "shop_weapon_huuma_t_1",1; end;
+				case 16: callshop "shop_weapon_huuma_u_1",1; end;
+				case 17: callshop "shop_weapon_huuma_v_1",1; end;
+				case 18: callshop "shop_weapon_huuma_w_1",1; end;
+				case 19: callshop "shop_weapon_huuma_z_1",1; end;
+			} end;
+	} end;
+	OnInit:	waitingroom ":: Weapon Cash ::",0; end;
 }
 
-//------------- Headgear -------------
+-	script	Costume_Cash	-,{
+	switch(select("~ Costume Upper","~ Costume Middle","~ Costume Lower","~ Costume Headgear All","~ Costume Garment")) {
+		case 1:
+			switch(select("~ [Costume Upper] 0-9","~ [Costume Upper] A","~ [Costume Upper] B","~ [Costume Upper] C","~ [Costume Upper] D","~ [Costume Upper] E","~ [Costume Upper] F","~ [Costume Upper] G","~ [Costume Upper] H","~ [Costume Upper] I","~ [Costume Upper] J","~ [Costume Upper] K","~ [Costume Upper] L","~ [Costume Upper] M","~ [Costume Upper] N","~ [Costume Upper] O","~ [Costume Upper] P","~ [Costume Upper] Q","~ [Costume Upper] R","~ [Costume Upper] S","~ [Costume Upper] T","~ [Costume Upper] U","~ [Costume Upper] V","~ [Costume Upper] W","~ [Costume Upper] Y","~ [Costume Upper] Z")) {
+				case 1: callshop "shop_costume_upper_0_9_1",1; end;
+				case 2: switch(select("~ [Costume Upper A] Page-1","~ [Costume Upper A] Page-2","~ [Costume Upper A] Page-3","~ [Costume Upper A] Page-4")) { case 1: callshop "shop_costume_upper_a_1",1; end; case 2: callshop "shop_costume_upper_a_2",1; end; case 3: callshop "shop_costume_upper_a_3",1; end; case 4: callshop "shop_costume_upper_a_4",1; end; } end;
+				case 3: switch(select("~ [Costume Upper B] Page-1","~ [Costume Upper B] Page-2","~ [Costume Upper B] Page-3","~ [Costume Upper B] Page-4")) { case 1: callshop "shop_costume_upper_b_1",1; end; case 2: callshop "shop_costume_upper_b_2",1; end; case 3: callshop "shop_costume_upper_b_3",1; end; case 4: callshop "shop_costume_upper_b_4",1; end; } end;
+				case 4: switch(select("~ [Costume Upper C] Page-1","~ [Costume Upper C] Page-2","~ [Costume Upper C] Page-3","~ [Costume Upper C] Page-4")) { case 1: callshop "shop_costume_upper_c_1",1; end; case 2: callshop "shop_costume_upper_c_2",1; end; case 3: callshop "shop_costume_upper_c_3",1; end; case 4: callshop "shop_costume_upper_c_4",1; end; } end;
+				case 5: switch(select("~ [Costume Upper D] Page-1","~ [Costume Upper D] Page-2","~ [Costume Upper D] Page-3")) { case 1: callshop "shop_costume_upper_d_1",1; end; case 2: callshop "shop_costume_upper_d_2",1; end; case 3: callshop "shop_costume_upper_d_3",1; end; } end;
+				case 6: switch(select("~ [Costume Upper E] Page-1","~ [Costume Upper E] Page-2")) { case 1: callshop "shop_costume_upper_e_1",1; end; case 2: callshop "shop_costume_upper_e_2",1; end; } end;
+				case 7: switch(select("~ [Costume Upper F] Page-1","~ [Costume Upper F] Page-2","~ [Costume Upper F] Page-3")) { case 1: callshop "shop_costume_upper_f_1",1; end; case 2: callshop "shop_costume_upper_f_2",1; end; case 3: callshop "shop_costume_upper_f_3",1; end; } end;
+				case 8: switch(select("~ [Costume Upper G] Page-1","~ [Costume Upper G] Page-2","~ [Costume Upper G] Page-3")) { case 1: callshop "shop_costume_upper_g_1",1; end; case 2: callshop "shop_costume_upper_g_2",1; end; case 3: callshop "shop_costume_upper_g_3",1; end; } end;
+				case 9: switch(select("~ [Costume Upper H] Page-1","~ [Costume Upper H] Page-2","~ [Costume Upper H] Page-3")) { case 1: callshop "shop_costume_upper_h_1",1; end; case 2: callshop "shop_costume_upper_h_2",1; end; case 3: callshop "shop_costume_upper_h_3",1; end; } end;
+				case 10: callshop "shop_costume_upper_i_1",1; end;
+				case 11: switch(select("~ [Costume Upper J] Page-1","~ [Costume Upper J] Page-2")) { case 1: callshop "shop_costume_upper_j_1",1; end; case 2: callshop "shop_costume_upper_j_2",1; end; } end;
+				case 12: callshop "shop_costume_upper_k_1",1; end;
+				case 13: switch(select("~ [Costume Upper L] Page-1","~ [Costume Upper L] Page-2")) { case 1: callshop "shop_costume_upper_l_1",1; end; case 2: callshop "shop_costume_upper_l_2",1; end; } end;
+				case 14: switch(select("~ [Costume Upper M] Page-1","~ [Costume Upper M] Page-2","~ [Costume Upper M] Page-3")) { case 1: callshop "shop_costume_upper_m_1",1; end; case 2: callshop "shop_costume_upper_m_2",1; end; case 3: callshop "shop_costume_upper_m_3",1; end; } end;
+				case 15: callshop "shop_costume_upper_n_1",1; end;
+				case 16: callshop "shop_costume_upper_o_1",1; end;
+				case 17: switch(select("~ [Costume Upper P] Page-1","~ [Costume Upper P] Page-2","~ [Costume Upper P] Page-3")) { case 1: callshop "shop_costume_upper_p_1",1; end; case 2: callshop "shop_costume_upper_p_2",1; end; case 3: callshop "shop_costume_upper_p_3",1; end; } end;
+				case 18: callshop "shop_costume_upper_q_1",1; end;
+				case 19: switch(select("~ [Costume Upper R] Page-1","~ [Costume Upper R] Page-2","~ [Costume Upper R] Page-3","~ [Costume Upper R] Page-4")) { case 1: callshop "shop_costume_upper_r_1",1; end; case 2: callshop "shop_costume_upper_r_2",1; end; case 3: callshop "shop_costume_upper_r_3",1; end; case 4: callshop "shop_costume_upper_r_4",1; end; } end;
+				case 20: switch(select("~ [Costume Upper S] Page-1","~ [Costume Upper S] Page-2","~ [Costume Upper S] Page-3","~ [Costume Upper S] Page-4","~ [Costume Upper S] Page-5")) { case 1: callshop "shop_costume_upper_s_1",1; end; case 2: callshop "shop_costume_upper_s_2",1; end; case 3: callshop "shop_costume_upper_s_3",1; end; case 4: callshop "shop_costume_upper_s_4",1; end; case 5: callshop "shop_costume_upper_s_5",1; end; } end;
+				case 21: switch(select("~ [Costume Upper T] Page-1","~ [Costume Upper T] Page-2")) { case 1: callshop "shop_costume_upper_t_1",1; end; case 2: callshop "shop_costume_upper_t_2",1; end; } end;
+				case 22: callshop "shop_costume_upper_u_1",1; end;
+				case 23: callshop "shop_costume_upper_v_1",1; end;
+				case 24: switch(select("~ [Costume Upper W] Page-1","~ [Costume Upper W] Page-2")) { case 1: callshop "shop_costume_upper_w_1",1; end; case 2: callshop "shop_costume_upper_w_2",1; end; } end;
+				case 25: callshop "shop_costume_upper_y_1",1; end;
+				case 26: callshop "shop_costume_upper_z_1",1; end;
+			} end;
+		case 2:	
+			switch(select("~ [Costume Middle] 0-9","~ [Costume Middle] A","~ [Costume Middle] B","~ [Costume Middle] C","~ [Costume Middle] D","~ [Costume Middle] E","~ [Costume Middle] F","~ [Costume Middle] G","~ [Costume Middle] H","~ [Costume Middle] I","~ [Costume Middle] J","~ [Costume Middle] K","~ [Costume Middle] L","~ [Costume Middle] M","~ [Costume Middle] N","~ [Costume Middle] O","~ [Costume Middle] P","~ [Costume Middle] Q","~ [Costume Middle] R","~ [Costume Middle] S","~ [Costume Middle] T","~ [Costume Middle] U","~ [Costume Middle] V","~ [Costume Middle] W","~ [Costume Middle] Y","~ [Costume Middle] Z")) {
+				case 1: callshop "shop_costume_middle_0_9_1",1; end;
+				case 2: switch(select("~ [Costume Middle A] Page-1","~ [Costume Middle A] Page-2")) { case 1: callshop "shop_costume_middle_a_1",1; end; case 2: callshop "shop_costume_middle_a_2",1; end; } end;
+				case 3: switch(select("~ [Costume Middle B] Page-1","~ [Costume Middle B] Page-2","~ [Costume Middle B] Page-3")) { case 1: callshop "shop_costume_middle_b_1",1; end; case 2: callshop "shop_costume_middle_b_2",1; end; case 3: callshop "shop_costume_middle_b_3",1; end; } end;
+				case 4: switch(select("~ [Costume Middle C] Page-1","~ [Costume Middle C] Page-2")) { case 1: callshop "shop_costume_middle_c_1",1; end; case 2: callshop "shop_costume_middle_c_2",1; end; } end;
+				case 5: callshop "shop_costume_middle_d_1",1; end;
+				case 6: callshop "shop_costume_middle_e_1",1; end;
+				case 7: callshop "shop_costume_middle_f_1",1; end;
+				case 8: callshop "shop_costume_middle_g_1",1; end;
+				case 9: callshop "shop_costume_middle_h_1",1; end;
+				case 10: callshop "shop_costume_middle_i_1",1; end;
+				case 11: callshop "shop_costume_middle_j_1",1; end;
+				case 12: callshop "shop_costume_middle_k_1",1; end;
+				case 13: switch(select("~ [Costume Middle L] Page-1","~ [Costume Middle L] Page-2")) { case 1: callshop "shop_costume_middle_l_1",1; end; case 2: callshop "shop_costume_middle_l_2",1; end; } end;
+				case 14: callshop "shop_costume_middle_m_1",1; end;
+				case 15: callshop "shop_costume_middle_n_1",1; end;
+				case 16: callshop "shop_costume_middle_o_1",1; end;
+				case 17: callshop "shop_costume_middle_p_1",1; end;
+				case 18: callshop "shop_costume_middle_q_1",1; end;
+				case 19: callshop "shop_costume_middle_r_1",1; end;
+				case 20: switch(select("~ [Costume Middle S] Page-1","~ [Costume Middle S] Page-2","~ [Costume Middle S] Page-3")) { case 1: callshop "shop_costume_middle_s_1",1; end; case 2: callshop "shop_costume_middle_s_2",1; end; case 3: callshop "shop_costume_middle_s_3",1; end; } end;
+				case 21: callshop "shop_costume_middle_t_1",1; end;
+				case 22: callshop "shop_costume_middle_u_1",1; end;
+				case 23: callshop "shop_costume_middle_v_1",1; end;
+				case 24: callshop "shop_costume_middle_w_1",1; end;
+				case 25: callshop "shop_costume_middle_y_1",1; end;
+				case 26: callshop "shop_costume_middle_z_1",1; end;
+			} end;
+		case 3:	
+			switch(select("~ [Costume Lower] 0-9","~ [Costume Lower] A","~ [Costume Lower] B","~ [Costume Lower] C","~ [Costume Lower] D","~ [Costume Lower] E","~ [Costume Lower] F","~ [Costume Lower] G","~ [Costume Lower] H","~ [Costume Lower] I","~ [Costume Lower] J","~ [Costume Lower] K","~ [Costume Lower] L","~ [Costume Lower] M","~ [Costume Lower] N","~ [Costume Lower] O","~ [Costume Lower] P","~ [Costume Lower] Q","~ [Costume Lower] R","~ [Costume Lower] S","~ [Costume Lower] T","~ [Costume Lower] U","~ [Costume Lower] V","~ [Costume Lower] W","~ [Costume Lower] Y","~ [Costume Lower] Z")) {
+				case 1: callshop "shop_costume_lower_0_9_1",1; end;
+				case 2: switch(select("~ [Costume Lower A] Page-1","~ [Costume Lower A] Page-2")) { case 1: callshop "shop_costume_lower_a_1",1; end; case 2: callshop "shop_costume_lower_a_2",1; end; } end;
+				case 3: switch(select("~ [Costume Lower B] Page-1","~ [Costume Lower B] Page-2")) { case 1: callshop "shop_costume_lower_b_1",1; end; case 2: callshop "shop_costume_lower_b_2",1; end; } end;
+				case 4: switch(select("~ [Costume Lower C] Page-1","~ [Costume Lower C] Page-2","~ [Costume Lower C] Page-3")) { case 1: callshop "shop_costume_lower_c_1",1; end; case 2: callshop "shop_costume_lower_c_2",1; end; case 3: callshop "shop_costume_lower_c_3",1; end; } end;
+				case 5: callshop "shop_costume_lower_d_1",1; end;
+				case 6: callshop "shop_costume_lower_e_1",1; end;
+				case 7: switch(select("~ [Costume Lower F] Page-1","~ [Costume Lower F] Page-2")) { case 1: callshop "shop_costume_lower_f_1",1; end; case 2: callshop "shop_costume_lower_f_2",1; end; } end;
+				case 8: callshop "shop_costume_lower_g_1",1; end;
+				case 9: callshop "shop_costume_lower_h_1",1; end;
+				case 10: callshop "shop_costume_lower_i_1",1; end;
+				case 11: callshop "shop_costume_lower_j_1",1; end;
+				case 12: callshop "shop_costume_lower_k_1",1; end;
+				case 13: switch(select("~ [Costume Lower L] Page-1","~ [Costume Lower L] Page-2","~ [Costume Lower L] Page-3")) { case 1: callshop "shop_costume_lower_l_1",1; end; case 2: callshop "shop_costume_lower_l_2",1; end; case 3: callshop "shop_costume_lower_l_3",1; end; } end;
+				case 14: callshop "shop_costume_lower_m_1",1; end;
+				case 15: callshop "shop_costume_lower_n_1",1; end;
+				case 16: callshop "shop_costume_lower_o_1",1; end;
+				case 17: callshop "shop_costume_lower_p_1",1; end;
+				case 18: callshop "shop_costume_lower_q_1",1; end;
+				case 19: switch(select("~ [Costume Lower R] Page-1","~ [Costume Lower R] Page-2")) { case 1: callshop "shop_costume_lower_r_1",1; end; case 2: callshop "shop_costume_lower_r_2",1; end; } end;
+				case 20: switch(select("~ [Costume Lower S] Page-1","~ [Costume Lower S] Page-2","~ [Costume Lower S] Page-3","~ [Costume Lower S] Page-4")) { case 1: callshop "shop_costume_lower_s_1",1; end; case 2: callshop "shop_costume_lower_s_2",1; end; case 3: callshop "shop_costume_lower_s_3",1; end; case 4: callshop "shop_costume_lower_s_4",1; end; } end;
+				case 21: callshop "shop_costume_lower_t_1",1; end;
+				case 22: callshop "shop_costume_lower_u_1",1; end;
+				case 23: callshop "shop_costume_lower_v_1",1; end;
+				case 24: switch(select("~ [Costume Lower W] Page-1","~ [Costume Lower W] Page-2")) { case 1: callshop "shop_costume_lower_w_1",1; end; case 2: callshop "shop_costume_lower_w_2",1; end; } end;
+				case 25: callshop "shop_costume_lower_y_1",1; end;
+				case 26: callshop "shop_costume_lower_z_1",1; end;
+			} end;
+		case 4:
+			switch(select("~ [Costume Headgear All] 0-9","~ [Costume Headgear All] A","~ [Costume Headgear All] B","~ [Costume Headgear All] C","~ [Costume Headgear All] D","~ [Costume Headgear All] E","~ [Costume Headgear All] F","~ [Costume Headgear All] G","~ [Costume Headgear All] H","~ [Costume Headgear All] J","~ [Costume Headgear All] K","~ [Costume Headgear All] L","~ [Costume Headgear All] M","~ [Costume Headgear All] N","~ [Costume Headgear All] O","~ [Costume Headgear All] P","~ [Costume Headgear All] Q","~ [Costume Headgear All] R","~ [Costume Headgear All] S","~ [Costume Headgear All] T","~ [Costume Headgear All] W","~ [Costume Headgear All] Y","~ [Costume Headgear All] Z")) {
+				case 1: callshop "shop_costume_headgear_all_0_9_1",1; end;
+				case 2: callshop "shop_costume_headgear_all_a_1",1; end;
+				case 3: callshop "shop_costume_headgear_all_b_1",1; end;
+				case 4: callshop "shop_costume_headgear_all_c_1",1; end;
+				case 5: callshop "shop_costume_headgear_all_d_1",1; end;
+				case 6: callshop "shop_costume_headgear_all_e_1",1; end;
+				case 7: callshop "shop_costume_headgear_all_f_1",1; end;
+				case 8: callshop "shop_costume_headgear_all_g_1",1; end;
+				case 9: callshop "shop_costume_headgear_all_h_1",1; end;
+				case 10: callshop "shop_costume_headgear_all_j_1",1; end;
+				case 11: callshop "shop_costume_headgear_all_k_1",1; end;
+				case 12: callshop "shop_costume_headgear_all_l_1",1; end;
+				case 13: callshop "shop_costume_headgear_all_m_1",1; end;
+				case 14: callshop "shop_costume_headgear_all_n_1",1; end;
+				case 15: callshop "shop_costume_headgear_all_o_1",1; end;
+				case 16: callshop "shop_costume_headgear_all_p_1",1; end;
+				case 17: callshop "shop_costume_headgear_all_q_1",1; end;
+				case 18: callshop "shop_costume_headgear_all_r_1",1; end;
+				case 19: callshop "shop_costume_headgear_all_s_1",1; end;
+				case 20: callshop "shop_costume_headgear_all_t_1",1; end;
+				case 21: callshop "shop_costume_headgear_all_w_1",1; end;
+				case 22: callshop "shop_costume_headgear_all_y_1",1; end;
+				case 23: callshop "shop_costume_headgear_all_z_1",1; end;
+			} end;
+		case 5:
+			switch(select("~ [Costume Garment] 0-9","~ [Costume Garment] A","~ [Costume Garment] B","~ [Costume Garment] C","~ [Costume Garment] D","~ [Costume Garment] E","~ [Costume Garment] F","~ [Costume Garment] G","~ [Costume Garment] H","~ [Costume Garment] I","~ [Costume Garment] J","~ [Costume Garment] K","~ [Costume Garment] L","~ [Costume Garment] M","~ [Costume Garment] N","~ [Costume Garment] P","~ [Costume Garment] Q","~ [Costume Garment] R","~ [Costume Garment] S","~ [Costume Garment] T","~ [Costume Garment] U","~ [Costume Garment] V","~ [Costume Garment] W")) {
+				case 1: switch(select("~ [Costume Garment 0-9] Page-1","~ [Costume Garment 0-9] Page-2")) { case 1: callshop "shop_costume_garment_0_9_1",1; end; case 2: callshop "shop_costume_garment_0_9_2",1; end; } end;
+				case 2: callshop "shop_costume_garment_a_1",1; end;
+				case 3: switch(select("~ [Costume Garment B] Page-1","~ [Costume Garment B] Page-2")) { case 1: callshop "shop_costume_garment_b_1",1; end; case 2: callshop "shop_costume_garment_b_2",1; end; } end;
+				case 4: callshop "shop_costume_garment_c_1",1; end;
+				case 5: callshop "shop_costume_garment_d_1",1; end;
+				case 6: callshop "shop_costume_garment_e_1",1; end;
+				case 7: callshop "shop_costume_garment_f_1",1; end;
+				case 8: callshop "shop_costume_garment_g_1",1; end;
+				case 9: callshop "shop_costume_garment_h_1",1; end;
+				case 10: callshop "shop_costume_garment_i_1",1; end;
+				case 11: callshop "shop_costume_garment_j_1",1; end;
+				case 12: callshop "shop_costume_garment_k_1",1; end;
+				case 13: callshop "shop_costume_garment_l_1",1; end;
+				case 14: callshop "shop_costume_garment_m_1",1; end;
+				case 15: callshop "shop_costume_garment_n_1",1; end;
+				case 16: callshop "shop_costume_garment_p_1",1; end;
+				case 17: callshop "shop_costume_garment_q_1",1; end;
+				case 18: callshop "shop_costume_garment_r_1",1; end;
+				case 19: switch(select("~ [Costume Garment S] Page-1","~ [Costume Garment S] Page-2")) { case 1: callshop "shop_costume_garment_s_1",1; end; case 2: callshop "shop_costume_garment_s_2",1; end; } end;
+				case 20: callshop "shop_costume_garment_t_1",1; end;
+				case 21: callshop "shop_costume_garment_u_1",1; end;
+				case 22: callshop "shop_costume_garment_v_1",1; end;
+				case 23: callshop "shop_costume_garment_w_1",1; end;
+			} end;
+	} end;
+	OnInit: waitingroom ":: Costume Cash ::",0; end;
+}
 
--	cashshop	C256Upperheadgear_1	-1,18940:20,19038:20,5105:20,5106:20,5688:20,18828:20,18829:20,18830:20,18831:20,18610:20,18579:20
--	cashshop	C256Upperheadgear_A	-1,2254:20,2261:20,2284:20,2285:20,5011:20,5125:20,5132:20,5136:20,5137:20,5153:20,5174:20,5189:20,5207:20,5246:20,5264:20,5265:20,5270:20,5312:20,5386:20,5406:20,5407:20,5474:20,5486:20,5512:20,5513:20,5545:20,5546:20,5670:20,5685:20,5766:20,18550:20,18570:20,18618:20,18662:20,18701:20,18776:20,18814:20,18855:20,18879:20,18880:20,18887:20,18938:20,19026:20,19047:20,19164:20,19165:20
--	cashshop	C256Upperheadgear_B	-1,2211:20,2214:20,2216:20,2217:20,2244:20,2279:20,5016:20,5017:20,5034:20,5042:20,5052:20,5057:20,5065:20,5076:20,5114:20,5116:20,5120:20,5129:20,5147:20,5162:20,5172:20,5183:20,5191:20,5199:20,5229:20,5231:20,5233:20,5235:20,5236:20,5240:20,5241:20,5266:20,5280:20,5300:20,5308:20,5321:20,5338:20,5344:20,5348:20,5349:20,5378:20,5382:20,5398:20,5404:20,5416:20,5427:20,5429:20,5432:20,5436:20,5477:20,5480:20,5491:20,5506:20,5531:20,5560:20,5567:20,5600:20,5601:20,5683:20,5754:20,5765:20,5776:20,5778:20,5809:20,5827:20,5845:20,5870:20,5884:20,5885:20,18510:20,18544:20,18549:20,18561:20,18562:20,18584:20,18587:20,18613:20,18629:20,18635:20,18636:20,18709:20,18756:20,18806:20
--	cashshop	C256Upperheadgear_C	-1,2226:20,2227:20,2232:20,2233:20,2235:20,2249:20,2250:20,5019:20,5024:20,5026:20,5028:20,5036:20,5048:20,5075:20,5080:20,5081:20,5140:20,5145:20,5163:20,5165:20,5178:20,5184:20,5200:20,5260:20,5283:20,5307:20,5320:20,5331:20,5414:20,5417:20,5431:20,5434:20,5438:20,5439:20,5440:20,5441:20,5446:20,5478:20,5581:20,5582:20,5606:20,5609:20,5737:20,5744:20,5745:20,5815:20,5818:20,5819:20,5857:20,5874:20,5919:20,18547:20,18600:20,18638:20,18646:20,18667:20,18669:20,18706:20,18708:20,18730:20,18739:20,18752:20,18849:20,18857:20,19129:20,19708:20
--	cashshop	C256Upperheadgear_D	-1,2273:20,5038:20,5058:20,5082:20,5198:20,5211:20,5252:20,5254:20,5290:20,5292:20,5296:20,5340:20,5369:20,5455:20,5459:20,5496:20,5563:20,5573:20,5591:20,5608:20,5653:20,5671:20,5749:20,5760:20,5762:20,5779:20,5849:20,5875:20,5968:20,18527:20,18528:20,18531:20,18605:20,18630:20,18653:20,18668:20,18672:20,18673:20,18704:20,18815:20,18893:20,19142:20,19157:20
--	cashshop	C256Upperheadgear_E	-1,2255:20,2283:20,5015:20,5044:20,5146:20,5215:20,5216:20,5217:20,5218:20,5219:20,5222:20,5259:20,5282:20,5364:20,5460:20,5533:20,5583:20,5595:20,5655:20,5679:20,5695:20,5696:20,5699:20,5700:20,5701:20,5702:20,5703:20,5704:20,5705:20,5706:20,5708:20,5709:20,5710:20,5711:20,5712:20,5713:20,5714:20,5715:20,5716:20,5717:20,5718:20,5719:20,5720:20,5721:20,5722:20,5723:20,5725:20,5729:20,5731:20,5734:20,5741:20,5852:20,18514:20,18522:20,18728:20,18765:20,18766:20,18768:20,18805:20,18816:20,18817:20,18864:20,18929:20,19019:20,19177:20,19178:20
--	cashshop	C256Upperheadgear_F	-1,2207:20,2215:20,2290:20,5018:20,5047:20,5056:20,5061:20,5124:20,5170:20,5180:20,5202:20,5210:20,5269:20,5302:20,5303:20,5306:20,5317:20,5334:20,5339:20,5356:20,5376:20,5380:20,5390:20,5405:20,5424:20,5425:20,5437:20,5447:20,5522:20,5525:20,5528:20,5540:20,5541:20,5542:20,5543:20,5552:20,5553:20,5612:20,5613:20,5616:20,5617:20,5618:20,5619:20,5620:20,5621:20,5622:20,5623:20,5625:20,5626:20,5627:20,5628:20,5629:20,5630:20,5631:20,5632:20,5633:20,5634:20,5635:20,5636:20,5637:20,5638:20,5639:20,5640:20,5642:20,5647:20,5649:20,5652:20,5771:20,5792:20,5824:20,5847:20,18593:20,18755:20,18934:20,19022:20,19053:20,19144:20
--	cashshop	C256Upperheadgear_G	-1,2230:20,2231:20,2246:20,2274:20,2298:20,5007:20,5021:20,5063:20,5111:20,5128:20,5144:20,5159:20,5179:20,5186:20,5193:20,5228:20,5230:20,5239:20,5262:20,5268:20,5336:20,5341:20,5346:20,5374:20,5433:20,5518:20,5569:20,5570:20,5660:20,5666:20,5681:20,5735:20,5769:20,5785:20,5821:20,5850:20,5859:20,5883:20,18508:20,18551:20,18555:20,18590:20,18614:20,18626:20,18634:20,18675:20,18724:20,18748:20,18889:20,18890:20,18930:20,19021:20
--	cashshop	C256Upperheadgear_H	-1,2210:20,2220:20,2221:20,2228:20,2229:20,2282:20,5001:20,5025:20,5041:20,5070:20,5097:20,5139:20,5319:20,5360:20,5363:20,5383:20,5444:20,5465:20,5467:20,5481:20,5484:20,5551:20,5654:20,5673:20,5812:20,5873:20,5887:20,18532:20,18533:20,18563:20,18568:20,18578:20,18595:20,18714:20,18758:20,18810:20,18820:20,18842:20,18891:20
--	cashshop	C256Upperheadgear_I	-1,5010:20,5071:20,5072:20,5190:20,5423:20,5500:20,5658:20,5853:20,18651:20,18660:20,18760:20,18761:20,18762:20,18763:20,18764:20,18792:20,18908:20,18909:20,18910:20
--	cashshop	C256Upperheadgear_J	-1,2230:20,2231:20,2246:20,2274:20,2298:20,5007:20,5021:20,5063:20,5111:20,5128:20,5144:20,5159:20,5179:20,5186:20,5193:20,5228:20,5230:20,5239:20,5262:20,5268:20,5336:20,5341:20,5346:20,5374:20,5433:20,5518:20,5569:20,5570:20,5660:20,5666:20,5681:20,5735:20,5769:20,5785:20,5821:20,5850:20,5859:20,5883:20,18508:20,18551:20,18555:20,18590:20,18614:20,18626:20,18634:20,18675:20,18724:20,18748:20,18889:20,18890:20,18930:20,19021:20
--	cashshop	C256Upperheadgear_K	-1,2213:20,5020:20,5069:20,5291:20,5322:20,5330:20,5372:20,5426:20,5497:20,5537:20,18554:20,18572:20,18785:20,18882:20,19168:20
--	cashshop	C256Upperheadgear_L	-1,5013:20,5084:20,5185:20,5209:20,5253:20,5311:20,5324:20,5366:20,5392:20,5393:20,5418:20,5422:20,5489:20,5527:20,5555:20,5558:20,5588:20,5589:20,5607:20,5662:20,5663:20,5803:20,5822:20,18541:20,18571:20,18574:20,18848:20,18931:20,18960:20,19111:20
--	cashshop	C256Upperheadgear_M	-1,2251:20,2256:20,2259:20,5027:20,5031:20,5045:20,5073:20,5117:20,5122:20,5126:20,5127:20,5138:20,5141:20,5158:20,5160:20,5173:20,5226:20,5323:20,5354:20,5365:20,5399:20,5457:20,5469:20,5503:20,5561:20,5584:20,5586:20,5587:20,5747:20,5751:20,5752:20,5753:20,5869:20,18537:20,18553:20,18594:20,18597:20,18598:20,18692:20,18707:20,18713:20,18729:20,18749:20,18888:20,18970:20,19130:20,19179:20
--	cashshop	C256Upperheadgear_N	-1,2277:20,5037:20,5055:20,5099:20,5387:20,5442:20,5473:20,5678:20,5686:20,5693:20,5694:20,5759:20,5773:20,5985:20,18583:20,18592:20,18639:20
--	cashshop	C256Upperheadgear_O	-1,2299:20,5157:20,5196:20,5370:20,5408:20,5554:20,5684:20,5687:20,5743:20,5807:20,5906:20,5943:20,18585:20,18696:20,18971:20,18972:20,18973:20,18974:20,18975:20,18976:20,18977:20,18978:20,18979:20,18980:20,18981:20,18982:20,18983:20,18984:20
--	cashshop	C256Upperheadgear_P	-1,2287:20,2289:20,2293:20,5008:20,5012:20,5023:20,5030:20,5035:20,5060:20,5118:20,5134:20,5148:20,5182:20,5194:20,5201:20,5225:20,5232:20,5237:20,5286:20,5318:20,5337:20,5347:20,5350:20,5352:20,5409:20,5413:20,5415:20,5454:20,5458:20,5468:20,5487:20,5495:20,5499:20,5501:20,5507:20,5514:20,5515:20,5519:20,5559:20,5590:20,5669:20,5674:20,5781:20,5784:20,5806:20,5810:20,5816:20,5856:20,5871:20,18535:20,18552:20,18633:20,18674:20,18681:20,18695:20,18850:20,18878:20,19084:20
--	cashshop	C256Upperheadgear_Q	-1,5689:20,5969:20
--	cashshop	C256Upperheadgear_R	-1,19197:20,19190:20,19191:20,19189:20,19200:20,19199:20,19196:20,19195:20,19192:20,19194:20,19198:20,19201:20,19193:20,2208:20,2209:20,2247:20,2275:20,5033:20,5039:20,5083:20,5108:20,5109:20,5195:20,5208:20,5227:20,5238:20,5279:20,5281:20,5293:20,5333:20,5435:20,5451:20,5452:20,5453:20,5472:20,5530:20,5547:20,5571:20,5575:20,5580:20,5603:20,5604:20,5605:20,5661:20,5690:20,5742:20,5746:20,5758:20,5763:20,5772:20,5774:20,5777:20,5795:20,5801:20,5813:20,5882:20,5892:20,5893:20,5894:20,5895:20,18509:20,18601:20,18622:20,18623:20,18624:20,18625:20,18631:20,18641:20,18671:20,18691:20,18694:20,18700:20,18718:20,18779:20,18780:20,18781:20,18790:20,18796:20,18803:20,18821:20,18832:20,18860:20,18932:20,18987:20,18997:20,19033:20,19116:20,19131:20,19166:20
--	cashshop	C256Upperheadgear_S	-1,2236:20,2245:20,2253:20,2258:20,2272:20,2280:20,2294:20,5009:20,5029:20,5032:20,5049:20,5062:20,5064:20,5066:20,5067:20,5078:20,5100:20,5103:20,5112:20,5119:20,5133:20,5149:20,5161:20,5212:20,5213:20,5247:20,5257:20,5261:20,5267:20,5297:20,5310:20,5342:20,5351:20,5355:20,5359:20,5381:20,5388:20,5395:20,5443:20,5450:20,5456:20,5479:20,5492:20,5508:20
--	cashshop	C256Upperheadgear_S2	-1,5509:20,5510:20,5523:20,5524:20,5535:20,5572:20,5656:20,5659:20,5665:20,5672:20,5676:20,5677:20,5691:20,5692:20,5738:20,5739:20,5740:20,5750:20,5761:20,5768:20,5770:20,5841:20,18513:20,18539:20,18558:20,18565:20,18569:20,18588:20,18589:20,18596:20,18640:20,18645:20,18647:20,18663:20,18684:20,18685:20,18693:20,18699:20,18727:20,18791:20,18793:20,18841:20,18843:20,18865:20,18872:20,18873:20,18901:20,18902:20,19020:20,19140:20,19426:20
--	cashshop	C256Upperheadgear_T	-1,2222:20,2223:20,2234:20,5059:20,5077:20,5164:20,5187:20,5255:20,5343:20,5379:20,5384:20,5430:20,5488:20,5526:20,5544:20,5549:20,5550:20,5611:20,5682:20,5780:20,5791:20,18523:20,18548:20,18619:20,18628:20,18661:20,18680:20,18732:20,18733:20,18734:20,18753:20,18852:20,18853:20
--	cashshop	C256Upperheadgear_U	-1,2257:20,5123:20,5316:20,5493:20,5802:20,18892:20
--	cashshop	C256Upperheadgear_V	-1,5171:20,5256:20,5285:20,5287:20,5289:20,5301:20,5578:20,5598:20,5599:20,5805:20,5826:20,5858:20,18586:20,18652:20,18827:20,18851:20
--	cashshop	C256Upperheadgear_W	-1,2206:20,2248:20,2252:20,5050:20,5115:20,5188:20,5197:20,5284:20,5345:20,5368:20,5411:20,5466:20,5557:20,5668:20,5756:20,5830:20,5831:20,5832:20,5833:20,5834:20,5835:20,5836:20,5881:20,18525:20,18543:20,18545:20,18573:20,18612:20,18656:20,18856:20,19051:20,19134:20
--	cashshop	C256Upperheadgear_X	-1,5079:20
--	cashshop	C256Upperheadgear_Y	-1,5192:20,5234:20,5242:20,5277:20,5278:20,5385:20,5783:20,5886:20,18580:20,18632:20,18807:20,18854:20,18898:20
--	cashshop	C256Upperheadgear_Z	-1,5464:20,18861:20
+-	script	Shadow_Gear_Cash	-,{
+	switch(select("~ [Shadowgear] 0-9","~ [Shadowgear] A","~ [Shadowgear] B","~ [Shadowgear] C","~ [Shadowgear] D","~ [Shadowgear] E","~ [Shadowgear] F","~ [Shadowgear] G","~ [Shadowgear] H","~ [Shadowgear] I","~ [Shadowgear] J","~ [Shadowgear] K","~ [Shadowgear] L","~ [Shadowgear] M","~ [Shadowgear] N","~ [Shadowgear] O","~ [Shadowgear] P","~ [Shadowgear] R","~ [Shadowgear] S","~ [Shadowgear] T","~ [Shadowgear] U","~ [Shadowgear] V","~ [Shadowgear] W")) {
+		case 1: switch(select("~ [Shadowgear 0-9] Page-1","~ [Shadowgear 0-9] Page-2")) { case 1: callshop "shop_shadowgear_0_9_1",1; end; case 2: callshop "shop_shadowgear_0_9_2",1; end; } end;
+		case 2: switch(select("~ [Shadowgear A] Page-1","~ [Shadowgear A] Page-2","~ [Shadowgear A] Page-3")) { case 1: callshop "shop_shadowgear_a_1",1; end; case 2: callshop "shop_shadowgear_a_2",1; end; case 3: callshop "shop_shadowgear_a_3",1; end; } end;
+		case 3: switch(select("~ [Shadowgear B] Page-1","~ [Shadowgear B] Page-2")) { case 1: callshop "shop_shadowgear_b_1",1; end; case 2: callshop "shop_shadowgear_b_2",1; end; } end;
+		case 4: switch(select("~ [Shadowgear C] Page-1","~ [Shadowgear C] Page-2","~ [Shadowgear C] Page-3")) { case 1: callshop "shop_shadowgear_c_1",1; end; case 2: callshop "shop_shadowgear_c_2",1; end; case 3: callshop "shop_shadowgear_c_3",1; end; } end;
+		case 5: switch(select("~ [Shadowgear D] Page-1","~ [Shadowgear D] Page-2")) { case 1: callshop "shop_shadowgear_d_1",1; end; case 2: callshop "shop_shadowgear_d_2",1; end; } end;
+		case 6: switch(select("~ [Shadowgear E] Page-1","~ [Shadowgear E] Page-2")) { case 1: callshop "shop_shadowgear_e_1",1; end; case 2: callshop "shop_shadowgear_e_2",1; end; } end;
+		case 7: switch(select("~ [Shadowgear F] Page-1","~ [Shadowgear F] Page-2")) { case 1: callshop "shop_shadowgear_f_1",1; end; case 2: callshop "shop_shadowgear_f_2",1; end; } end;
+		case 8: switch(select("~ [Shadowgear G] Page-1","~ [Shadowgear G] Page-2")) { case 1: callshop "shop_shadowgear_g_1",1; end; case 2: callshop "shop_shadowgear_g_2",1; end; } end;
+		case 9: switch(select("~ [Shadowgear H] Page-1","~ [Shadowgear H] Page-2")) { case 1: callshop "shop_shadowgear_h_1",1; end; case 2: callshop "shop_shadowgear_h_2",1; end; } end;
+		case 10: switch(select("~ [Shadowgear I] Page-1","~ [Shadowgear I] Page-2")) { case 1: callshop "shop_shadowgear_i_1",1; end; case 2: callshop "shop_shadowgear_i_2",1; end; } end;
+		case 11: callshop "shop_shadowgear_j_1",1; end;
+		case 12: callshop "shop_shadowgear_k_1",1; end;
+		case 13: callshop "shop_shadowgear_l_1",1; end;
+		case 14: switch(select("~ [Shadowgear M] Page-1","~ [Shadowgear M] Page-2","~ [Shadowgear M] Page-3")) { case 1: callshop "shop_shadowgear_m_1",1; end; case 2: callshop "shop_shadowgear_m_2",1; end; case 3: callshop "shop_shadowgear_m_3",1; end; } end;
+		case 15: callshop "shop_shadowgear_n_1",1; end;
+		case 16: callshop "shop_shadowgear_o_1",1; end;
+		case 17: switch(select("~ [Shadowgear P] Page-1","~ [Shadowgear P] Page-2")) { case 1: callshop "shop_shadowgear_p_1",1; end; case 2: callshop "shop_shadowgear_p_2",1; end; } end;
+		case 18: switch(select("~ [Shadowgear R] Page-1","~ [Shadowgear R] Page-2")) { case 1: callshop "shop_shadowgear_r_1",1; end; case 2: callshop "shop_shadowgear_r_2",1; end; } end;
+		case 19: switch(select("~ [Shadowgear S] Page-1","~ [Shadowgear S] Page-2","~ [Shadowgear S] Page-3","~ [Shadowgear S] Page-4","~ [Shadowgear S] Page-5","~ [Shadowgear S] Page-6","~ [Shadowgear S] Page-7")) { case 1: callshop "shop_shadowgear_s_1",1; end; case 2: callshop "shop_shadowgear_s_2",1; end; case 3: callshop "shop_shadowgear_s_3",1; end; case 4: callshop "shop_shadowgear_s_4",1; end; case 5: callshop "shop_shadowgear_s_5",1; end; case 6: callshop "shop_shadowgear_s_6",1; end; case 7: callshop "shop_shadowgear_s_7",1; end; } end;
+		case 20: switch(select("~ [Shadowgear T] Page-1","~ [Shadowgear T] Page-2")) { case 1: callshop "shop_shadowgear_t_1",1; end; case 2: callshop "shop_shadowgear_t_2",1; end; } end;
+		case 21: callshop "shop_shadowgear_u_1",1; end;
+		case 22: callshop "shop_shadowgear_v_1",1; end;
+		case 23: callshop "shop_shadowgear_w_1",1; end;
+	} end;
+	OnInit: waitingroom ":: Shadow Gear Cash ::",0;	end;
+}
 
--	cashshop	C512Middleheadgear_1	-1,19039:20
--	cashshop	C512Middleheadgear_2	-1,18577:20
--	cashshop	C512Middleheadgear_3	-1,5788:20,5794:20
--	cashshop	C512Middleheadgear_A	-1,2276:20,5074:20,5389:20,5786:20,5973:20,18518:20,18556:20,18772:20,18773:20,18786:20,18897:20,19087:20
--	cashshop	C512Middleheadgear_B	-1,2295:20,2296:20,5040:20,5102:20,5401:20,5800:20,5820:20,18511:20,18599:20,18603:20,18607:20,18611:20,18664:20,18782:20,18877:20,19082:20,19088:20,19089:20
--	cashshop	C512Middleheadgear_C	-1,5135:20,5175:20,18736:20,18874:20,18895:20
--	cashshop	C512Middleheadgear_D	-1,2205:20,5104:20,5329:20,18557:20,18609:20,19155:20
--	cashshop	C512Middleheadgear_E	-1,2212:20,2286:20,2686:20,5068:20,5221:20,5244:20,5245:20,5328:20,5421:20,5470:20,5698:20,5707:20,5724:20,5732:20,18507:20,18519:20,18711:20,18747:20,19128:20
--	cashshop	C512Middleheadgear_F	-1,5014:20,5154:20,5615:20,5624:20,5641:20,5650:20,5664:20,18559:20,18737:20,19031:20,19176:20
--	cashshop	C512Middleheadgear_G	-1,2203:20,2204:20,2243:20,5918:20,18655:20,19093:20
--	cashshop	C512Middleheadgear_H	-1,5249:20,5471:20,5516:20,5517:20,5680:20,18620:20,18676:20
--	cashshop	C512Middleheadgear_I	-1,5610:20,18615:20,18771:20,18823:20
--	cashshop	C512Middleheadgear_J	-1,2203:20,2204:20,2243:20,5918:20,18655:20,19093:20
--	cashshop	C512Middleheadgear_K	-1,5966:20
--	cashshop	C512Middleheadgear_M	-1,2239:20,2260:20,2291:20,5006:20,5326:20,5402:20,5864:20,5971:20,18591:20,18937:20,19083:20,19092:20,19126:20,19132:20
--	cashshop	C512Middleheadgear_N	-1,18813:20,19181:20
--	cashshop	C512Middleheadgear_O	-1,5043:20,5315:20,19091:20
--	cashshop	C512Middleheadgear_P	-1,2242:20,5358:20,5804:20,18657:20,18839:20,18896:20,19024:20,19117:20,19118:20
--	cashshop	C512Middleheadgear_R	-1,5248:20,5250:20,5251:20,5288:20,5325:20,5793:20,5848:20,18515:20,18516:20,18517:20,18894:20,19052:20,19086:20
--	cashshop	C512Middleheadgear_S	-1,2201:20,2202:20,5085:20,5397:20,5592:20,18503:20,18538:20,18608:20,18690:20,18846:20,19085:20,19138:20,19162:20
--	cashshop	C512Middleheadgear_T	-1,5101:20,18682:20
--	cashshop	C512Middleheadgear_V	-1,19109:20
--	cashshop	C512Middleheadgear_W	-1,5837:20,5838:20,5839:20,5840:20,18759:20,18808:20
--	cashshop	C512Middleheadgear_Y	-1,18576:20
--	cashshop	C512Middleheadgear_Z	-1,2263:20
+-	script	Others_Cash	-,{
+	switch(select("~ [Others] A","~ [Others] B","~ [Others] C","~ [Others] D","~ [Others] E","~ [Others] F","~ [Others] G","~ [Others] H","~ [Others] I","~ [Others] J","~ [Others] K","~ [Others] L","~ [Others] M","~ [Others] N","~ [Others] O","~ [Others] P","~ [Others] Q","~ [Others] R","~ [Others] S","~ [Others] T","~ [Others] W","~ [Others] X","~ [Others] Y","~ [Others] Z")) {
+		case 1: callshop "shop_others_a_1",1; end;
+		case 2: callshop "shop_others_b_1",1; end;
+		case 3: callshop "shop_others_c_1",1; end;
+		case 4: callshop "shop_others_d_1",1; end;
+		case 5: callshop "shop_others_e_1",1; end;
+		case 6: callshop "shop_others_f_1",1; end;
+		case 7: callshop "shop_others_g_1",1; end;
+		case 8: callshop "shop_others_h_1",1; end;
+		case 9: callshop "shop_others_i_1",1; end;
+		case 10: callshop "shop_others_j_1",1; end;
+		case 11: callshop "shop_others_k_1",1; end;
+		case 12: callshop "shop_others_l_1",1; end;
+		case 13: callshop "shop_others_m_1",1; end;
+		case 14: callshop "shop_others_n_1",1; end;
+		case 15: callshop "shop_others_o_1",1; end;
+		case 16: callshop "shop_others_p_1",1; end;
+		case 17: callshop "shop_others_q_1",1; end;
+		case 18: callshop "shop_others_r_1",1; end;
+		case 19: callshop "shop_others_s_1",1; end;
+		case 20: callshop "shop_others_t_1",1; end;
+		case 21: callshop "shop_others_w_1",1; end;
+		case 22: callshop "shop_others_x_1",1; end;
+		case 23: callshop "shop_others_y_1",1; end;
+		case 24: callshop "shop_others_z_1",1; end;
+	} end;
+	OnInit: waitingroom ":: Others Cash ::",0;	end;
+}
+	
 
--	cashshop	C1Lowerheadgear_4	-1,5596:20
--	cashshop	C1Lowerheadgear_A	-1,5054:20,5096:20,5113:20,5521:20,18679:20,18774:20,18859:20,19152:20,19154:20
--	cashshop	C1Lowerheadgear_B	-1,2237:20,2240:20,5110:20,5394:20,5597:20,5846:20,5868:20,18754:20,18819:20,18844:20,18845:20
--	cashshop	C1Lowerheadgear_C	-1,2262:20,2267:20,5107:20,5445:20,5657:20,5775:20,5796:20,5797:20,5798:20,5799:20,5972:20,18500:20,18501:20,18502:20,18526:20,18666:20,18677:20,18683:20,18698:20,18745:20,18746:20
--	cashshop	C1Lowerheadgear_D	-1,5594:20,18627:20,19147:20,19151:20
--	cashshop	C1Lowerheadgear_E	-1,5220:20,5697:20,5730:20
--	cashshop	C1Lowerheadgear_F	-1,2218:20,2219:20,5155:20,5156:20,5403:20,5614:20,5648:20,5967:20,18536:20,18560:20,18712:20
--	cashshop	C1Lowerheadgear_G	-1,2241:20,2265:20,5361:20,5377:20,18621:20,18925:20,18936:20,19153:20
--	cashshop	C1Lowerheadgear_H	-1,18658:20,18670:20,19095:20
--	cashshop	C1Lowerheadgear_I	-1,2266:20
--	cashshop	C1Lowerheadgear_J	-1,2241:20,2265:20,5361:20,5377:20,18621:20,18925:20,18936:20,19153:20
--	cashshop	C1Lowerheadgear_L	-1,5419:20,18521:20,18546:20,18564:20,18616:20,18678:20,18917:20,18918:20
--	cashshop	C1Lowerheadgear_M	-1,2238:20,19146:20,19150:20
--	cashshop	C1Lowerheadgear_N	-1,5362:20,18566:20
--	cashshop	C1Lowerheadgear_O	-1,5004:20,18617:20,18665:20,18948:20
--	cashshop	C1Lowerheadgear_P	-1,2268:20,5051:20,5305:20,5532:20,5675:20,18644:20,18858:20,19143:20,19149:20
--	cashshop	C1Lowerheadgear_R	-1,2269:20,2270:20,5204:20,5206:20,5463:20,18643:20,18650:20,18818:20
--	cashshop	C1Lowerheadgear_S	-1,2687:20,5412:20,5462:20,5548:20,5767:20,5811:20,18567:20,18642:20,18697:20,18702:20,18703:20,18710:20,18716:20,19139:20,19148:20
--	cashshop	C1Lowerheadgear_T	-1,5391:20,5978:20,18648:20,18949:20
--	cashshop	C1Lowerheadgear_U	-1,18505:20
--	cashshop	C1Lowerheadgear_V	-1,18867:20,18870:20,18871:20
--	cashshop	C1Lowerheadgear_W	-1,5574:20,5576:20,18602:20,18900:20,19145:20
--	cashshop	C1Lowerheadgear_Y	-1,5917:20
-
--	cashshop	upmid	-1,18529:20,5258:20,18637:20,5505:20,20721:20,18582:20,18659:20,5169:20,5152:20,5564:20,5373:20,5091:20,5313:20,5298:20,5205:20,18534:20,5276:20,5295:20,5476:20,5273:20,5095:20,5371:20,5130:20,18542:20,5562:20,5275:20,5214:20,5177:20,5502:20,5151:20,5375:20,5271:20,5568:20,5593:20,5520:20,18581:20,5757:20,5585:20,5511:20,5529:20,5274:20,5667:20,5098:20,5790:20,5538:20,5579:20,5498:20,5504:20,5357:20
-
--	cashshop	midlow	-1,18868:20,18524:20,5565:20,18540:20,18604:20,5534:20,5314:20,5332:20,18649:20,5475:20,5483:20,2281:20,5755:20,5203:20,18530:20,5789:20,5566:20
-
--	cashshop	uplow	-1,5166:20
-
--	cashshop	upmidlow	-1,5449:20,18504:20,5814:20,5410:20,5304:20,5131:20,5482:20,5577:20,5461:20,5400:20,18506:20,5367:20,5448:20,5539:20,5764:20,5420:20,5167:20,5263:20,5299:20,5556:20,5485:20,5294:20,5309:20,18575:20
-
-//------------- Accessory -------------
-
--	cashshop	aca	-1,2751:20,2767:20,2776:20,2925:20,2741:20,2769:20,2781:20,28430:20
--	cashshop	acb	-1,2960:20,5825:20,2910:20,2911:20,2907:20,2753:20,2664:20,2790:20,2788:20,2630:20,28326:20,28327:20,2977:20,2874:20
--	cashshop	acc	-1,2841:20,2873:20,2708:20,2784:20,2688:20
--	cashshop	acd	-1,2779:20,2780:20,2827:20,2732:20,2948:20,2995:20,2927:20
--	cashshop	ace	-1,2842:20,2915:20,2980:20,2665:20
--	cashshop	acf	-1,2916:20,2641:20,2959:20,2737:20,2791:20,2832:20
--	cashshop	acg	-1,2663:20,2692:20,2984:20,2983:20,2829:20,2985:20
--	cashshop	achij	-1,2857:20,2856:20,2924:20,28332:20
--	cashshop	ack	-1,2640:20,2978:20,2799:20,2954:20,32233:20,32229:20,32232:20,32230:20,32228:20,32231:20
--	cashshop	acl	-1,2657:20,2666:20,2844:20,2675:20,5823:20,2742:20,2928:20,2775:20
--	cashshop	acm	-1,2768:20,2794:20,2629:200,2771:20,2645:20,2885:20
--	cashshop	acn	-1,2736:20,2691:20,2763:20,2647:20,2845:20,2765:20
--	cashshop	aco	-1,2639:20,2833:20,2739:20,2785:20,2881:20,2988:20
--	cashshop	acp	-1,2991:20,2858:20,2990:20,2992:20,2752:20
--	cashshop	acr	-1,2936:20,2976:20,2996:20,2667:20,2690:20,2782:20,2694:20,2731:20,2740:20
--	cashshop	acs	-1,2638:20,2695:20,28310:20,28311:20,2761:20,2888:20,2730:20,2778:20,2777:20,2738:20,2637:20,2949:20,2899:20,2786:20,2923:20,2750:20,2766:20,28394:20
--	cashshop	actuvw	-1,2644:20,2913:20,2828:20,2963:20,5817:20,2926:20,2673:20,2855:20,2914:20
-
-//------------- Armor -------------
-
--	cashshop	C16Armor_2	-1,15035:20,15059:20
--	cashshop	C16Armor_A	-1,2305:20,2306:20,2348:20,2349:20,2355:20,2358:20,2376:20,2378:20,2389:20,15024:20,15026:20,15045:20,15049:20,15050:20,15055:20,15068:20,15073:20,15090:20,15116:20,15138:20,15181:20,15182:20,15183:20,15184:20,15185:20
--	cashshop	C16Armor_B	-1,2356:20,2361:20,2383:20,15000:20,15022:20,15041:20,15043:20,15051:20,15052:20
--	cashshop	C16Armor_C	-1,2301:20,2302:20,2309:20,2310:20,2314:20,2315:20,2350:20,2351:20,2386:20,15013:20,15027:20,15070:20,15164:20
--	cashshop	C16Armor_D	-1,2366:20,2374:20,2375:20,2399:20
--	cashshop	C16Armor_E	-1,2377:20,2381:20,2382:20,15009:20,15010:20,15011:20,15014:20,15061:20,15066:20,15145:20,15156:20,15189:20,18863:20,19048:20
--	cashshop	C16Armor_F	-1,2316:20,2317:20,2320:20,2369:20,15003:20,15004:20,15005:20,15006:20,15008:20,15028:20,15100:20,15104:20,15146:20,15163:20
--	cashshop	C16Armor_G	-1,2319:20,2354:20,2368:20,2394:20,2395:20,2396:20,15025:20,15044:20,15074:20
--	cashshop	C16Armor_H	-1,2327:20,2373:20,15023:20,15093:20,15094:20,15095:20,15096:20,15097:20,15098:20,15101:20
--	cashshop	C16Armor_I	-1,2390:20,2397:20,15147:20
--	cashshop	C16Armor_J	-1,2319:20,2354:20,2368:20,2394:20,2395:20,2396:20,15025:20,15044:20,15074:20
--	cashshop	C16Armor_K	-1,2388:20,15103:20,15105:20,15186:20,15388:20
--	cashshop	C16Armor_L	-1,2318:20,2341:20,2342:20,2344:20,2345:20,2391:20,15129:20,15162:20
--	cashshop	C16Armor_M	-1,2307:20,2308:20,2311:20,2334:20,2364:20,2372:20,2380:20,15089:20
--	cashshop	C16Armor_N	-1,2337:20,2340:20,2359:20,2393:20,15039:20,15054:20
--	cashshop	C16Armor_O	-1,2353:20,2365:20,2392:20,5829:20,15001:20
--	cashshop	C16Armor_P	-1,2312:20,2313:20,2339:20,2371:20,15012:20,15031:20,15037:20,15040:20,15057:20,15126:20
--	cashshop	C16Armor_R	-1,2343:20,2360:20,2362:20,2385:20,15002:20,15029:20,15030:20,15058:20,15067:20,15091:20,15111:20,15141:20
--	cashshop	C16Armor_S	-1,2321:20,2322:20,2323:20,2324:20,2325:20,2326:20,2332:20,2333:20,2346:20,2347:20,2367:20,2384:20,2387:20,2398:20,15038:20,15046:20,15047:20,15048:20,15053:20,15056:20,15060:20,15069:20,15088:20,15110:20,15121:20,15174:20
--	cashshop	C16Armor_T	-1,2330:20,2331:20,2335:20,2336:20,2352:20,15007:20,15032:20,15033:20,15034:20,15062:20,15063:20,15064:20,15117:20
--	cashshop	C16Armor_U	-1,2370:20,15015:20,15016:20,15017:20,15018:20,15019:20,15020:20,15021:20,15036:20,15152:20,15153:20,15154:20,15155:20
--	cashshop	C16Armor_V	-1,2357:20
--	cashshop	C16Armor_W	-1,2328:20,2329:20,2338:20,2363:20,2379:20,15042:20,15123:20,15150:20,15151:20,15212:20
-
-//------------- Shield -------------
-
--	cashshop	shag	-1,2183:20,2120:20,2190:20,2152:20,2118:20,2170:20,2156:20,2187:20,2176:20,2164:20,2136:20,2173:20,2140:20,2141:20,2126:20
--	cashshop	shhs	-1,2181:20,2168:20,2137:20,2127:20,2135:20,2132:20,2177:20,2188:20
-
-//------------- Garment -------------
-
--	cashshop	C4Garment_A	-1,2507:20,2525:20,2541:20,2567:20,2573:20,2576:20,20706:20,20756:20,20823:20,20824:20,20825:20,20826:20
--	cashshop	C4Garment_B	-1,2546:20,2565:20,2581:20,2590:20,2591:20,2592:20
--	cashshop	C4Garment_C	-1,2526:20,2535:20,2538:20,2539:20,2547:20,2551:20,20743:20,20748:20,20749:20
--	cashshop	C4Garment_D	-1,2527:20,2537:20,2553:20
--	cashshop	C4Garment_E	-1,2515:20,2560:20,2571:20,20700:20,20790:20,20797:20
--	cashshop	C4Garment_F	-1,2516:20,2533:20,2535:20,2542:20,2547:20,2550:20,2551:20,2553:20,2555:20,2556:20,2557:20,2558:20,2564:20,2589:20,2593:20,20700:20,20743:20,20749:20,20718:20
--	cashshop	C4Garment_G	-1,2520:20,2549:20,2599:20,20717:20,20718:20
--	cashshop	C4Garment_H	-1,2501:20,2502:20,2513:20,2566:20,2583:20,20783:20
--	cashshop	C4Garment_J	-1,2520:20,2549:20,2599:20,20717:20,20718:20
--	cashshop	C4Garment_K	-1,2572:20,20707:20,15389:20
--	cashshop	C4Garment_L	-1,2544:20,2568:20,20724:20,20753:20,20789:20
--	cashshop	C4Garment_M	-1,2503:20,2504:20,2505:20,2506:20,2518:20,2519:20,2532:20,2545:20,2552:20,2579:20,2585:20,20709:20,20711:20,20721:20
--	cashshop	C4Garment_N	-1,2512:20,2548:20,2554:20,2578:20
--	cashshop	C4Garment_O	-1,20819:20
--	cashshop	C4Garment_P	-1,2514:20,2575:20,20788:20
--	cashshop	C4Garment_R	-1,2508:20,2529:20,2530:20,2534:20,2588:20,2598:20,20725:20,20733:20,20779:20
--	cashshop	C4Garment_S	-1,2509:20,2510:20,2511:20,2536:20,2540:20,2543:20,2569:20,2570:20,2577:20,2582:20,2586:20,2587:20,2597:20,20732:20,20815:20
--	cashshop	C4Garment_T	-1,2559:20,20702:20,20703:20,20704:20,20744:20
--	cashshop	C4Garment_U	-1,2522:20,2523:20,2531:20,2561:20,2562:20,2563:20,2574:20,20780:20,20781:20,20782:20,20787:20
--	cashshop	C4Garment_V	-1,2517:20,2524:20
--	cashshop	C4Garment_W	-1,2528:20,2580:20,2584:20,2594:20,20830:20,20856:20
-
-//------------- Footgear -------------
-
--	cashshop	C64Shoes_A	-1,2420:20,2447:20,2448:20,2468:20,22015:20,22059:20,22101:20,22122:20,22123:20,22124:20,22125:20,22126:20,29151:20
--	cashshop	C64Shoes_B	-1,22195:20,2415:20,2425:20,2434:20,2435:20,2437:20,2441:20,2480:20,2491:20,2492:20,22033:20,22046:20
--	cashshop	C64Shoes_C	-1,2407:20,2436:20,2469:20,2494:20,22034:20,22089:20,29150:20
--	cashshop	C64Shoes_D	-1,2433:20,2465:20
--	cashshop	C64Shoes_E	-1,2456:20,2457:20,2458:20,2473:20,2495:20,22014:20,22085:20,22103:20
--	cashshop	C64Shoes_F	-1,2417:20,2428:20,2443:20,2451:20,2452:20,2453:20,2454:20,2463:20,2470:20,2488:20
--	cashshop	C64Shoes_G	-1,2411:20,2412:20,2419:20,2427:20,2444:20,2445:20,2446:20,2467:20,2493:20,22106:20
--	cashshop	C64Shoes_H	-1,2409:20,2422:20,2432:20,22035:20,22036:20,22037:20,22072:20
--	cashshop	C64Shoes_I	-1,2429:20,2430:20
--	cashshop	C64Shoes_J	-1,2411:20,2412:20,2419:20,2427:20,2444:20,2445:20,2446:20,2467:20,2493:20,22106:20
--	cashshop	C64Shoes_L	-1,2474:20,22069:20,22084:20,29148:20
--	cashshop	C64Shoes_M	-1,5920:20,22012:20
--	cashshop	C64Shoes_N	-1,2414:20,2416:20,2464:20,2478:20
--	cashshop	C64Shoes_P	-1,2438:20,2476:20,22082:20,22083:20,29149:20
--	cashshop	C64Shoes_R	-1,2439:20,2442:20,2481:20,22044:20,22075:20,22077:20
--	cashshop	C64Shoes_S	-1,2401:20,2402:20,2403:20,2404:20,2408:20,2410:20,2413:20,2426:20,2440:20,2462:20,2471:20,2472:20,2477:20,2482:20,2483:20,2484:20,2485:20,2486:20,22018:20,22043:20,22045:20,22067:20,29152:20
--	cashshop	C64Shoes_T	-1,2424:20,2455:20,2466:20,2496:20,2497:20,2498:20,2499:20,22000:20,22001:20,22002:20,22003:20,22004:20,22005:20,22006:20,22007:20,22008:20,22009:20,22010:20,22011:20,22042:20,22047:20,22064:20,29153:20
--	cashshop	C64Shoes_U	-1,2459:20,2460:20,2461:20,2475:20,22078:20,22079:20,22080:20,22081:20
--	cashshop	C64Shoes_V	-1,2418:20,2421:20,2423:20,2431:20,2449:20,2450:20,2487:20,2489:20
--	cashshop	C64Shoes_W	-1,2479:20,22076:20,22141:20
-
-//------------- Weapon -------------
-
--	cashshop	dagger	-1,13005:20,13094:20,13088:20,1244:20,28703:20,13067:20,13049:20,13032:20,13079:20,13078:20,13068:20,13093:20,13071:20,13072:20,28765:20,28766:20,28767:20,28768:20
--	cashshop	sword	-1,1134:20,13440:20,1137:20,13420:20,13438:20,13442:20,13444:20,13428:20,13441:20,1139:20,21004:20,1198:20,1179:20,21011:20,21014:20,21005:20,21009:20,21000:20,21018:20,21051:20,21052:20,32350:20,32351:20
--	cashshop	spear	-1,1414:20,1427:20,1438:20,1416:20,1488:20,1467:20,1475:20,1489:20,1493:20,1494:20,1496:20,1491:20,1492:20,26016:20,32023:20,32024:20,32025:20
--	cashshop	axe		-1,28101:20,1305:20,1318:20,16028:20,1383:20,28105:20,1398:20,1367:20,1394:20,1333:20,28138:20
--	cashshop	mace	-1,16015:20,16018:20,16027:20,1535:20,16038:20,16013:20,1547:20,1530:20,16022:20,16029:20,1549:20,16031:20,16030:20,16032:20,16033:20,1526:20,16019:20,16092:20,16093:20,16094:20,16095:20,16096:20
--	cashshop	wand	-1,1676:20,1671:20,1644:20,1669:20,2024:20,2020:20,2018:20,2006:20,2023:20,2015:20,2027:20,2055:20,2056:20,2057:20,26161:20,26158:20,26159:20,26160:20
--	cashshop	bow		-1,18120:20,18123:20,18122:20,18128:20,1735:20,18107:20,18116:20,1719:20,18117:20,18119:20,18112:20,18108:20,18184:20,18185:20,18186:20,18187:20,18188:20
--	cashshop	katar	-1,1295:20,28001:20,1298:20,1283:20,1296:20,28000:20,1292:20,28010:20,28042:20,28044:20
--	cashshop	knuckle	-1,1833:20,1837:20,1817:20,1828:20,1836:20,1865:20,1866:20
--	cashshop	music	-1,1934:20,1938:20,1935:20,1928:20,1933:20,32107:20,32108:20
--	cashshop	whip	-1,1990:20,1994:20,1982:20,1989:20,1988:20,26212:20,26213:20
--	cashshop	book	-1,1562:20,1578:20,1579:20,1590:20,1566:20,1581:20,1596:20,1580:20,1588:20,1567:20,1563:20,1585:20,28633:20
--	cashshop	gun		-1,13124:20,13105:20,13126:20,13125:20,13111:20,13115:20,13166:20,13175:20,13199:20,13196:20,13162:20,28202:20
--	cashshop	shuri	-1,13313:20,13308:20,13309:20,13322:20,13323:20,13310:20,13312:20,13311:20,13315:20,13316:20
-
-//------------- Costume -------------
-
-//------------- Headgear -------------
-
--	cashshop	C1024CostumeUpperheadgear_1	-1,19577:20
--	cashshop	C1024CostumeUpperheadgear_C_1	-1,5980:20,18741:20,18743:20,19507:20,19517:20,19521:20,19524:20,19525:20,19526:20,19527:20,19529:20,19530:20,19533:20,19535:20,19536:20,19537:20,19539:20,19544:20,19545:20,19546:20,19547:20,19548:20,19549:20,19557:20,19558:20,19559:20,19560:20,19561:20,19565:20,19567:20,19568:20,19569:20,19570:20,19571:20,19572:20,19573:20,19575:20,19576:20,19579:20,19581:20,19582:20,19585:20,19586:20,19587:20,19588:20,19589:20,19590:20,19591:20,19592:20,19593:20,19594:20,19595:20,19596:20,19597:20,19598:20,19599:20,19600:20,19601:20,19602:20,19607:20,19608:20,19613:20,19614:20,19616:20,19617:20,19618:20,19619:20,19620:20,19622:20,19623:20,19625:20,19627:20,19628:20,19629:20,19630:20,19631:20,19632:20,19633:20,19635:20,19637:20,19639:20,19640:20,19643:20,19645:20,19646:20,19647:20,19648:20,19649:20,19650:20,19652:20,19653:20,19654:20,19655:20,19657:20,19658:20,19659:20,19660:20,19661:20,19664:20,19665:20,19666:20,19667:20,19668:20,19670:20,19671:20,19676:20,19677:20,19678:20,19682:20,19685:20,19686:20,19687:20,19690:20,19695:20,19696:20,19697:20,19701:20
--	cashshop	C1024CostumeUpperheadgear_C_2	-1,19702:20,19706:20,19707:20,19709:20,19712:20,19714:20,19716:20,19717:20,19718:20,19719:20,19720:20,19721:20,19723:20,19724:20,19727:20,19728:20,19729:20,19731:20,19733:20,19734:20,19735:20,19737:20,19738:20,19739:20,19741:20,19744:20,19745:20,19749:20,19750:20,19751:20,19753:20,19757:20,19758:20,19759:20,19761:20,19762:20,19763:20,19767:20,19768:20,19772:20,19775:20,19777:20,19778:20,19779:20,19780:20,19782:20,19783:20,19784:20,19786:20,19789:20,19790:20,19792:20,19793:20,19794:20,19795:20,19796:20,19797:20,19798:20,19799:20,19800:20,19821:20,19824:20,19825:20,19827:20,19828:20,19829:20,19831:20,19832:20,19833:20,19834:20,19835:20,19836:20,19839:20,19841:20,19842:20,19843:20,19844:20,19845:20,19847:20,19848:20,19851:20,19852:20,19854:20,19856:20,19857:20,19858:20,19859:20,19860:20,19861:20,19862:20,19863:20,19865:20,19876:20,19878:20,19883:20,19884:20,19889:20,19903:20,19910:20,19913:20,19914:20,19916:20,19917:20,19928:20,19929:20,19930:20,19934:20,19935:20,19936:20,19937:20,19939:20,19941:20,19949:20,19953:20,19955:20,19956:20,19957:20,19958:20
--	cashshop	C1024CostumeUpperheadgear_C_3	-1,19959:20,19960:20,19961:20,19962:20,19963:20,19964:20,19965:20,19966:20,19967:20,19968:20,19969:20,19970:20,19971:20,19972:20,19973:20,19974:20,19976:20,19977:20,19978:20,19979:20,19980:20,19982:20,19983:20,19984:20,19985:20,19986:20,19987:20,19988:20,19990:20,19991:20,19994:20,19997:20,19998:20,19999:20,20000:20,20001:20,20002:20,20003:20,20004:20,20005:20,20007:20,20008:20,20009:20,20011:20,20012:20,20013:20,20014:20,20015:20,20016:20,20017:20,20018:20,20019:20,20020:20,20021:20,20023:20,20024:20,20025:20,20026:20,20027:20,20028:20,20031:20,20032:20,20033:20,20036:20,20037:20,20038:20,20040:20,20041:20,20042:20,20044:20,20045:20,20046:20,20047:20,20048:20,20049:20,20050:20,20051:20,20052:20,20053:20,20055:20,20056:20,20057:20,20058:20,20060:20,20062:20,20063:20,20064:20,20065:20,20066:20,20067:20,20068:20,20069:20,20073:20,20074:20,20075:20,20076:20,20078:20,20079:20,20080:20,20081:20,20082:20,20083:20,20084:20,20085:20,20086:20,20087:20,20088:20,20089:20,20090:20,20091:20,20092:20,20093:20,20094:20,20095:20,20096:20,20097:20,20098:20,20100:20,20101:20
--	cashshop	C1024CostumeUpperheadgear_C_4	-1,20103:20,20104:20,20105:20,20106:20,20109:20,20110:20,20111:20,20112:20,20113:20,20114:20,20118:20,20119:20,20120:20,20121:20,20122:20,20127:20,20128:20,20129:20,20130:20,20133:20,20134:20,20135:20,20137:20,20138:20,20139:20,20140:20,20151:20,20153:20,20155:20,20156:20,20157:20,20158:20,20159:20,20160:20,20161:20,20164:20,20165:20,20167:20,20170:20,20171:20,20172:20,20173:20,20174:20,20175:20,20177:20,20178:20,20179:20,20180:20,20181:20,20182:20,20184:20,20185:20,20186:20,20187:20,20188:20,20189:20,20190:20,20191:20,20194:20,20196:20,20197:20,20198:20,20199:20,20200:20,20203:20,20204:20,20205:20,20207:20,20208:20,20209:20,20212:20,20214:20,20216:20,20217:20,20218:20,20219:20,20222:20,20224:20,20225:20,20226:20,20227:20,20228:20,20231:20,20232:20,20233:20,20236:20,20237:20,20238:20,20241:20,20242:20,20243:20,20245:20,20247:20,20251:20,20252:20,20253:20,20254:20,20256:20,20257:20,20258:20,20260:20,20262:20,20263:20,20265:20,20266:20,20267:20,20268:20,20269:20,20271:20,20272:20,20273:20,20274:20,20277:20,20278:20,20281:20,20282:20
--	cashshop	C1024CostumeUpperheadgear_C_5	-1,20283:20,20284:20,20287:20,20288:20,20292:20,20293:20,20294:20,20296:20,20297:20,20301:20,20302:20,20303:20,20304:20,20316:20,20317:20,20320:20,20322:20,20324:20,20327:20,20329:20,20330:20,20331:20,20332:20,20333:20,20334:20,20338:20,20339:20,20346:20,20347:20,20348:20,20371:20,20372:20,20373:20,20374:20,20375:20,20377:20,20378:20,20379:20,20380:20,20381:20,20382:20,20383:20,20384:20,20386:20,20393:20,20394:20,20396:20,20398:20,20401:20,20402:20,20403:20,20408:20,20409:20,20431:20,20432:20,20433:20,20434:20,20435:20,20436:20,20437:20,20442:20,20446:20,20447:20,20449:20,20450:20,20451:20,20452:20,20455:20,20456:20,20458:20,20460:20,20463:20,20464:20,20466:20,20467:20,20470:20,20490:20,20491:20,20492:20,20495:20,20496:20,20498:20,20499:20,20508:20,31027:20,31028:20,31031:20,31032:20,31034:20,31035:20,31036:20,31037:20,31038:20,31039:20,31040:20,31041:20,31042:20,31043:20,31044:20,31046:20,31048:20,31049:20,31050:20,31051:20,31053:20,31054:20,31058:20,31059:20,31060:20,31061:20,31062:20,31063:20,31064:20,31065:20,31066:20,31067:20,31068:20,31069:20,31070:20
--	cashshop	C1024CostumeUpperheadgear_C_6	-1,31071:20,31072:20,31073:20,31074:20,31075:20,31076:20,31077:20,31078:20,31079:20,31080:20,31081:20,31082:20,31083:20,31084:20,31085:20,31086:20,31088:20,31090:20,31091:20,31092:20,31094:20,31104:20,31105:20,31113:20,31114:20,31119:20,31123:20,31124:20,31125:20,31126:20,31128:20,31130:20,31131:20,31132:20,31135:20,31136:20,31140:20,31141:20,31144:20,31145:20,31147:20,31148:20,31149:20,31160:20,31163:20,31165:20,31166:20,31169:20,31170:20,31171:20
--	cashshop	C1024CostumeUpperheadgear_F	-1,19538:20,20099:20
--	cashshop	C1024CostumeUpperheadgear_G	-1,19523:20
--	cashshop	C1024CostumeUpperheadgear_J	-1,19523:20
--	cashshop	C1024CostumeUpperheadgear_M	-1,19522:20
--	cashshop	C1024CostumeUpperheadgear_O	-1,19543:20
--	cashshop	C1024CostumeUpperheadgear_R	-1,18740:20,19518:20,19520:20,19532:20,20117:20
--	cashshop	C1024CostumeUpperheadgear_S	-1,19516:20
--	cashshop	C1024CostumeUpperheadgear_T	-1,19501:20,19506:20,19508:20,19519:20
--	cashshop	C1024CostumeUpperheadgear_W	-1,19656:20
--	cashshop	C1024CostumeUpperheadgear_Y	-1,19515:20
-
--	cashshop	C2048CostumeMiddleheadgear_B	-1,19509:20
--	cashshop	C2048CostumeMiddleheadgear_C	-1,31301:20,18742:20,18744:20,19158:20,19542:20,19550:20,19551:20,19583:20,19603:20,19609:20,19611:20,19621:20,19624:20,19638:20,19644:20,19669:20,19710:20,19722:20,19732:20,19736:20,19742:20,19746:20,19752:20,19755:20,19765:20,19781:20,19791:20,19826:20,19830:20,19853:20,19871:20,19885:20,19886:20,19887:20,19888:20,19925:20,19954:20,19989:20,20010:20,20039:20,20077:20,20108:20,20123:20,20124:20,20125:20,20131:20,20136:20,20141:20,20142:20,20144:20,20145:20,20146:20,20147:20,20148:20,20149:20,20154:20,20213:20,20215:20,20221:20,20246:20,20255:20,20270:20,20286:20,20295:20,20298:20,20311:20,20312:20,20314:20,20318:20,20319:20,20321:20,20325:20,20335:20,20345:20,20376:20,20399:20,20404:20,20406:20,20430:20,20439:20,20459:20,20461:20,20465:20,31047:20,31089:20,31106:20,31107:20,31120:20,31133:20,31168:20
--	cashshop	C2048CostumeMiddleheadgear_H	-1,19511:20,19512:20
--	cashshop	C2048CostumeMiddleheadgear_M	-1,20116:20
--	cashshop	C2048CostumeMiddleheadgear_S	-1,19510:20
--	cashshop	C2048CostumeMiddleheadgear_T	-1,19504:20
--	cashshop	C2048CostumeMiddleheadgear_U	-1,20115:20
-
--	cashshop	C4096CostumeLowerheadgear_C	-1,5914:20,5979:20,19513:20,19514:20,19528:20,19541:20,19552:20,19553:20,19566:20,19584:20,19604:20,19605:20,19606:20,19634:20,19636:20,19651:20,19713:20,19715:20,19726:20,19785:20,19882:20,19902:20,19931:20,19932:20,19952:20,19992:20,20022:20,20029:20,20030:20,20034:20,20035:20,20043:20,20054:20,20061:20,20071:20,20107:20,20132:20,20143:20,20150:20,20169:20,20192:20,20193:20,20201:20,20202:20,20223:20,20235:20,20239:20,20240:20,20259:20,20264:20,20279:20,20280:20,20285:20,20307:20,20313:20,20315:20,20323:20,20326:20,20328:20,20340:20,20341:20,20342:20,20350:20,20351:20,20352:20,20353:20,20354:20,20355:20,20356:20,20357:20,20358:20,20359:20,20360:20,20361:20,20362:20,20363:20,20364:20,20365:20,20366:20,20367:20,20368:20,20369:20,20370:20,20400:20,20405:20,20407:20,20416:20,20417:20,20418:20,20419:20,20420:20,20421:20,20424:20,20425:20,20426:20,20427:20,20428:20,20429:20,20438:20,20440:20,20441:20,20448:20,20462:20,20497:20,20798:20,31029:20,31045:20,31055:20,31057:20,31087:20,31093:20,31134:20,31142:20,31162:20,31164:20
--	cashshop	C4096CostumeLowerheadgear_T	-1,19505:20  
-
-//------------- Garment -------------
-
--	cashshop	CostumeGar_AG	-1,20586:20,20500:20,20511:20,20727:20,20512:20,20763:20,20504:20,20535:20,20764:20,20519:20,20547:20,20546:20,20762:20
--	cashshop	CostumeGar_HL	-1,20761:20,20737:20,20502:20,20515:20,20548:20,20507:20,20746:20,20524:20,20510:20,20514:20,20516:20,20509:20,20506:20,20730:20
-
-//------------- Shadow Gear -------------
-
-//------------- Armor -------------
--	cashshop	ShadowArmor_A	-1,24272:20,24029:20,24097:20,24275:20,24216:20
--	cashshop	ShadowArmor_B	-1,24280:20,24186:20,24180:20,24337:20,24387:20,24271:20,24344:20,24024:20
--	cashshop	ShadowArmor_C	-1,24242:20,24330:20,24132:20,24219:20,15280:20,24030:20,24270:20
--	cashshop	ShadowArmor_D	-1,24193:20,24281:20,24037:20,24195:20,24410:20,24408:20
--	cashshop	ShadowArmor_E	-1,24222:20,24192:20,24375:20,24194:20,24376:20
--	cashshop	ShadowArmor_F	-1,24220:20,24379:20,24190:20
--	cashshop	ShadowArmor_G	-1,24084:20,24114:20
--	cashshop	ShadowArmor_H	-1,24187:20,24028:20,24091:20,24197:20,24120:20,24126:20,24279:20
--	cashshop	ShadowArmor_I	-1,24027:20,24093:20
--	cashshop	ShadowArmor_K	-1,24403:20,24401:20,24269:20
--	cashshop	ShadowArmor_L	-1,24072:20,24221:20,24040:20
--	cashshop	ShadowArmor_M	-1,24334:20,24347:20,24348:20,24351:20,24350:20,24349:20,24398:20,24325:20,24081:20,24073:20,24274:20
--	cashshop	ShadowArmor_OP	-1,24404:20,24095:20,24354:20,24395:20,24352:20,24273:20
--	cashshop	ShadowArmor_R	-1,24402:20,24245:20,24331:20,24276:20
--	cashshop	ShadowArmor_S	-1,24278:20,24378:20,24013:20,24000:20,24006:20,24326:20,24074:20,24154:20,24414:20,24112:20,24412:20,24144:20
--	cashshop	ShadowArmor_T	-1,24138:20,24424:20,24417:20
--	cashshop	ShadowArmor_U	-1,24189:20,24188:20
--	cashshop	ShadowArmor_VW	-1,24377:20,24191:20,24277:20
-
-//------------- Weapon -------------
--	cashshop	ShadowWeapon_A	-1,24162:20,24292:20
--	cashshop	ShadowWeapon_B	-1,24183:20,24390:20,24343:20
--	cashshop	ShadowWeapon_C	-1,24110:20,24135:20,24032:20
--	cashshop	ShadowWeapon_D	-1,24156:20,24043:20,24286:20,24287:20,24161:20
--	cashshop	ShadowWeapon_E	-1,24363:20,24383:20,24223:20,24227:20,24233:20,24157:20
--	cashshop	ShadowWeapon_F	-1,24160:20,24328:20,24224:20,24163:20
--	cashshop	ShadowWeapon_G	-1,24087:20,24335:20,24291:20,24117:20,24294:20,24283:20
--	cashshop	ShadowWeapon_H	-1,24123:20,24033:20,24129:20,24164:20,24158:20
--	cashshop	ShadowWeapon_I	-1,24386:20,24159:20
--	cashshop	ShadowWeapon_KL	-1,24031:20,24075:20,24034:20
--	cashshop	ShadowWeapon_M	-1,24299:20,24176:20,24179:20,24170:20,24175:20,24171:20,24174:20,24177:20,24178:20,24172:20,24173:20,24022:20,24290:20,24076:20,24370:20
--	cashshop	ShadowWeapon_N	-1,24104:20,24358:20,24285:20
--	cashshop	ShadowWeapon_P	-1,24019:20,24165:20
--	cashshop	ShadowWeapon_R	-1,24298:20,24289:20,24288:20
--	cashshop	ShadowWeapon_S	-1,24380:20,24295:20,24001:20,24007:20,24012:20,24077:20,24152:20,24297:20,24228:20,24329:20,24078:20,24324:20,24147:20,24282:20,24293:20
--	cashshop	ShadowWeapon_T	-1,24284:20,24141:20,24423:20,24416:20,24360:20
--	cashshop	ShadowWeapon_U	-1,24099:20,24356:20
--	cashshop	ShadowWeapon_W	-1,24300:20,24296:20
-
-//------------- Shield -------------
--	cashshop	ShadowShield_A	-1,24215:20,24342:20,24305:20,24026:20,24039:20
--	cashshop	ShadowShield_B	-1,24198:20,24182:20,24211:20,24388:20,24232:20,24054:20
--	cashshop	ShadowShield_C	-1,24061:20,24241:20,24134:20,24052:20,24332:20
--	cashshop	ShadowShield_D	-1,24205:20,24207:20,24317:20,24316:20,24057:20
--	cashshop	ShadowShield_E	-1,24204:20,24206:20,24209:20
--	cashshop	ShadowShield_F	-1,24202:20,24059:20
--	cashshop	ShadowShield_G	-1,24055:20,24086:20,24336:20,24304:20,24116:20,24307:20,24319:20
--	cashshop	ShadowShield_HI	-1,24199:20,24122:20,24366:20,24128:20,24056:20,24399:20
--	cashshop	ShadowShield_M	-1,24397:20,24083:20,24303:20,24312:20
--	cashshop	ShadowShield_NP	-1,24314:20,24374:20,24394:20
--	cashshop	ShadowShield_R	-1,24311:20,24244:20,24060:20,24213:20,24302:20,24301:20
--	cashshop	ShadowShield_S	-1,24053:20,24200:20,24058:20,24308:20,24015:20,24002:20,24008:20,24327:20,24310:20,24113:20,24323:20,24090:20,24146:20,24318:20,24306:20
--	cashshop	ShadowShield_T	-1,24315:20,24140:20,24345:20,24418:20
--	cashshop	ShadowShield_UV	-1,24201:20,24044:20
--	cashshop	ShadowShield_W	-1,24313:20,24309:20,24203:20
-
-//------------- Shoes -------------
--	cashshop	ShadowShoes_A	-1,24355:20,24214:20,24259:20,24341:20,24098:20,24262:20,24045:20
--	cashshop	ShadowShoes_B	-1,24267:20,24181:20,24338:20,24210:20,24389:20,24069:20,24258:20,24231:20,24062:20
--	cashshop	ShadowShoes_C	-1,24240:20,24025:20,24064:20,24065:20,24133:20,24333:20,24257:20
--	cashshop	ShadowShoes_D	-1,24268:20,24070:20,24411:20,24409:20,24071:20
--	cashshop	ShadowShoes_EF	-1,24208:20,24067:20
--	cashshop	ShadowShoes_G	-1,24085:20,24115:20
--	cashshop	ShadowShoes_H	-1,24400:20,24092:20,24196:20,24320:20,24121:20,24367:20,24127:20,24266:20
--	cashshop	ShadowShoes_I	-1,24066:20,24094:20,24353:20
--	cashshop	ShadowShoes_KL	-1,24406:20,24256:20,24063:20
--	cashshop	ShadowShoes_M	-1,24396:20,24082:20,24261:20
--	cashshop	ShadowShoes_OP	-1,24407:20,24096:20,24373:20,24393:20,24260:20
--	cashshop	ShadowShoes_R	-1,24405:20,24243:20,24263:20,24212:20
--	cashshop	ShadowShoes_S	-1,24265:20,24068:20,24014:20,24003:20,24009:20,24415:20,24111:20,24413:20,24145:20
--	cashshop	ShadowShoes_T	-1,24139:20,24346:20,24419:20
--	cashshop	ShadowShoes_VW	-1,24038:20,24264:20
-
-//------------- Earring -------------
--	cashshop	ShadowEarring_A	-1,24248:20,24339:20,28392:20,24051:20
--	cashshop	ShadowEarring_B	-1,24184:20,24391:20,24217:20,24236:20
--	cashshop	ShadowEarring_C	-1,24109:20,24136:20
--	cashshop	ShadowEarring_E	-1,24364:20,24384:20
--	cashshop	ShadowEarring_F	-1,24225:20,24107:20
--	cashshop	ShadowEarring_G	-1,24088:20,24322:20,24238:20,24118:20
--	cashshop	ShadowEarring_H	-1,24049:20,24124:20,24130:20
--	cashshop	ShadowEarring_I	-1,24150:20,24042:20
--	cashshop	ShadowEarring_M	-1,24021:20,24249:20,24247:20,24371:20
--	cashshop	ShadowEarring_NP	-1,24105:20,24166:20,24018:20,24035:20
--	cashshop	ShadowEarring_RS	-1,24368:20,24318:20,24016:20,24004:20,24010:20,24153:20,24229:20,24079:20,24148:20,24246:20
--	cashshop	ShadowEarring_T	-1,24142:20,24168:20,24420:20,24361:20,28391:20,24234:20
--	cashshop	ShadowEarring_UVW	-1,24100:20,24102:20,24357:20,24050:20
-
-//------------- Pendant -------------
--	cashshop	ShadowPandant_A	-1,24252:20,24340:20,24255:20
--	cashshop	ShadowPandant_B	-1,24185:20,24321:20,24392:20,24218:20,24237:20
--	cashshop	ShadowPandant_C	-1,24048:20,24137:20
--	cashshop	ShadowPandant_E	-1,24365:20,24385:20
--	cashshop	ShadowPandant_F	-1,24226:20,24108:20
--	cashshop	ShadowPandant_G	-1,24089:20,24239:20,24119:20
--	cashshop	ShadowPandant_H	-1,24125:20,24131:20
--	cashshop	ShadowPandant_I	-1,24151:20,24036:20
--	cashshop	ShadowPandant_M	-1,24023:20,24254:20,24251:20,24372:20
--	cashshop	ShadowPandant_NP	-1,24106:20,24167:20,24020:20,24041:20
--	cashshop	ShadowPandant_R	-1,24047:20,24046:20,24369:20
--	cashshop	ShadowPandant_S	-1,24382:20,24017:20,24005:20,24011:20,24155:20,24230:20,24080:20,24149:20,24250:20
--	cashshop	ShadowPandant_T	-1,24143:20,24169:20,24421:20,24362:20,24253:20,24235:20
--	cashshop	ShadowPandant_UV	-1,24359:20,24101:20,24103:20
+// ==========================================================
+// พิกัดจุดตั้งสถานี NPC (Duplicate Zone)
+// ==========================================================
+morocc,143,90,7	duplicate(Headgear_Cash)	Headgear Cash#mor	442
+morocc,139,90,7	duplicate(Accessory_Cash)	Accessory Cash#mor	443
+morocc,139,87,8	duplicate(Equipment_Cash)	Equipment Cash#mor	436
+morocc,139,84,8	duplicate(Weapon_Cash)	Weapon Cash#mor	437
+morocc,136,92,8	duplicate(Costume_Cash)	Costume Cash#mor	437
+morocc,132,92,8	duplicate(Shadow_Gear_Cash)	Shadow Gear Cash#mor	446
+morocc,128,92,8	duplicate(Others_Cash)	Others Cash#mor	446
