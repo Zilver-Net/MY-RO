@@ -1,0 +1,344 @@
+// ===== rAthena Script ====================================================
+//= MY-RO Costume Enchant Express (Remastered Edition - FIXED)
+// =========================================================================
+// = Developed by ZilverNet & Gemini AI
+// = On date: 27/05/2026
+// =========================================================================
+
+-	script	Enchanter	-,{
+	disable_items;
+
+	mes .npc_name$;
+	mes "โปรดเลือกโหมดการ Enchant";
+	selectequipmode:
+	.@mode = select("~ อุปกรณ์สวมใส่","~ Costume");
+	
+		// ล้างค่าตัวแปรก่อนเริ่มสร้างเมนูทุกครั้งเพื่อกันบัคเมนูเบิ้ล
+		.@menu$ = "";
+		.@equipped = 0;
+		cleararray .@chosen_parts[1], 0, 11;
+		.@menu_idx = 1;
+		next;
+		mes .npc_name$;
+		mes "โปรดเลือกอุปกรณ์ที่ต้องการ";
+		
+		// ยุบก้อนอาร์เรย์สล็อตให้อ่านค่าตามโหมดที่เลือกโดยตรง ไม่ต้องเขียนโค้ดซ้ำ
+		if (.@mode == 1) {
+			setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
+		} else {
+			setarray .@indices[1], EQI_COSTUME_HEAD_TOP, EQI_COSTUME_HEAD_MID, EQI_COSTUME_HEAD_LOW, EQI_SHADOW_ARMOR, EQI_SHADOW_SHIELD, EQI_SHADOW_WEAPON, EQI_COSTUME_GARMENT, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_L, EQI_SHADOW_ACC_R;
+		}
+		
+		// ลูปสร้างเมนูอุปกรณ์ชิ้นที่ใส่จริง
+		for(.@i = 1; .@i <= 10; ++.@i) {
+			if (getequipisequiped(.@indices[.@i])) {
+				.@menu$ += "~ " + F_getpositionname(.@indices[.@i]) + "-[ " + getequipname(.@indices[.@i]) + " ]:";
+				.@chosen_parts[.@menu_idx] = .@indices[.@i];
+				.@menu_idx++;
+				.@equipped = 1;
+			}
+		}
+		
+		if (.@equipped == 0) {
+			next;
+			mes .npc_name$;
+			mes "^FF0000ตัวละครของท่านไม่ได้สวมใส่อุปกรณ์ในหมวดนี้อยู่เลย^000000";
+			close;
+		}
+
+		// [FIXED] แยกคำสั่ง select ออกมาประมวลผลก่อน เพื่อไม่ให้สคริปต์พัง
+		.@item_choice = select(.@menu$);
+		.@part = .@chosen_parts[.@item_choice];
+		
+		@equip_id = getequipid(.@part);
+		.@slots = getitemslots(@equip_id);
+		setarray .@equip_card[0], getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
+		.@equip_refine = getequiprefinerycnt(.@part);
+		
+		// แปลงไอดีการ์ด/หินออฟชั่นเป็นข้อความแสดงผล
+		for(.@s = 0; .@s < 4; ++.@s) {
+			if (.@equip_card[.@s] == 0) {
+				@equip_cardname$[.@s] = "^777777ว่าง^000000";
+			} else {
+				@equip_cardname$[.@s] = "^0000FF" + getitemname(.@equip_card[.@s]) + "^000000";
+			}
+		}
+
+		next; // เติม next กั้นตรงนี้ เพื่อให้มันตัดหน้าขึ้นกระดานแสดงรายละเอียดแบบคลีน ๆ
+		mes .npc_name$;
+		mes "รายละเอียดไอเท็มที่ท่านได้เลือก:";
+		callsub L_ShowEquipDetails; // เรียกใช้ฟังก์ชันย่อยแสดงผลสล็อต
+		next;            
+		
+		if (select("~ ยืนยัน:~ เลือกใหม่") == 2) { 
+			next; 
+			goto selectequipmode; 
+		}
+	
+	selectstone:
+		mes .npc_name$;
+		mes "กรุณาเลือกหินออฟชั่นจากในกระเป๋าของท่าน:";
+		next;
+		
+		// ดึงตรรกะ Smart-Lexical มาสแกนหาหินออฟอัตโนมัติ
+		.@menu$ = "";
+		cleararray .@user_stones[0], 0, 100;
+		.@count = 0;
+		
+		getinventorylist;
+		for (.@i = 0; .@i < @inventorylist_count; .@i++) {
+			.@inv_id = @inventorylist_id[.@i];
+			.@inv_name$ = getitemname(.@inv_id);
+			.@inv_type = getiteminfo(.@inv_id, ITEMINFO_TYPE);
+
+			if (compare(.@inv_name$, "Stone") || (.@inv_type == 6 && !compare(.@inv_name$, "Card"))) {
+				.@user_stones[.@count] = .@inv_id;
+				.@menu$ += "~ " + .@inv_name$ + " [มี " + @inventorylist_amount[.@i] + " ก้อน]:";
+				.@count++;
+				if (.@count >= 30) break;
+			}
+		}
+		
+		if (!.@count) {
+			mes .npc_name$;
+			mes "ไม่พบหินออฟชั่นในกระเป๋าของท่านเลย!";
+			close;
+		}
+		
+		// [FIXED] แยกคำสั่ง select ของหินออฟชั่นออกจากตัวแปรอาร์เรย์เช่นกัน
+		.@stone_choice = select(.@menu$) - 1;
+		.@chosen_stone_id = .@user_stones[.@stone_choice];
+		
+		mes .npc_name$;
+		mes "ท่านเลือกหินออฟชั่น: [ <ITEM>"+ getitemname(.@chosen_stone_id)+"<INFO>"+.@chosen_stone_id+"</INFO></ITEM> ]";
+		mes "โปรดเลือก Slot ที่ต้องการจะใส่หินออฟชั่น";
+		callsub L_ShowEquipDetails; // เรียกใช้ฟังก์ชันย่อยแสดงผลสล็อตจุดที่ 2
+		next;
+		
+		// ลูปสร้างเมนูกดเลือก Slot 1-4 แบบอัตโนมัติ
+		.@slot_menu$ = "";
+		for(.@i = 0; .@i < 4; ++.@i) {
+			.@slot_menu$ += "~ Slot ที่ " + (.@i + 1) + " [ " + @equip_cardname$[.@i] + " ]:";
+		}
+		.@slot_menu$ += "~ ขอกลับไปเลือกหินออฟชั่นใหม่";
+
+		.@select_choice = select(.@slot_menu$);
+		if (.@select_choice == 5) {
+			next;
+			goto selectstone;
+		}
+		
+		// แปลงช้อยส์เมนู (1-4) มาเป็นค่า Index สล็อต (0-3) ด้วยคณิตศาสตร์
+		.@chosen_slot = .@select_choice - 1;
+
+		mes .npc_name$;
+		mes "ยืนยันการใช้ [ <ITEM>"+ getitemname(.@chosen_stone_id)+"<INFO>"+.@chosen_stone_id+"</INFO></ITEM> ]";
+		mes "ในไอเท็ม [ ^0000FF" + getitemname(@equip_id) + "^000000 ]";
+		mes "ที่ Slot ["+(1+.@chosen_slot)+"] : [ "+@equip_cardname$[.@chosen_slot]+" ]";
+		
+		// ระบบตรวจจับสล็อตไม่ว่าง แจ้งเตือนก่อนหลอมรวมจริง
+		if (.@equip_card[.@chosen_slot] != 0) {
+			mes "^FF0000** Slot ที่ท่านเลือกไม่ว่าง หากดำเนินการต่อ ไอเท็มที่อยู่ใน Slot นี้จะถูกทำลายและไม่สามารถรับคืนได้ **^000000";
+		}
+		next;
+		
+		if (select("~ ยืนยัน:~ ไม่ล่ะ เปลี่ยนใจแล้ว") == 2) {
+			close;
+		}
+		
+		if (countitem(.@chosen_stone_id) < 1) {
+			mes .npc_name$;
+			mes "ไม่มีหินออฟชั่นดังกล่าวในช่องเก็บของ";
+			close;
+		}
+
+		// ทำการถอดและลบไอเทม
+		delequip .@part;
+		delitem .@chosen_stone_id, 1;
+		
+		// อัปเดตข้อมูลสล็อตและเสกกลับคืนเข้าตัวผู้เล่น
+		.@equip_card[.@chosen_slot] = .@chosen_stone_id;
+		getitem2 @equip_id, 1, 1, .@equip_refine, 0, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3];
+		
+		specialeffect2 EF_REPAIRWEAPON;
+		mes .npc_name$;
+		mes "ดำเนินการเสร็จสิ้น";
+		close;
+
+	// =========================================================================
+	// [ฟังก์ชันย่อย] สำหรับแสดงผลรายละเอียดไอเทมและสล็อต ลดโค้ดซ้ำซ้อน
+	// =========================================================================
+	L_ShowEquipDetails:
+		mes "ชื่อไอเท็ม: [ ^0000FF" + getitemname(@equip_id) + "^000000 ]";
+		for(.@i = 0; .@i < 4; ++.@i) {
+			mes "Slot ที่ " + (.@i + 1) + ": [ " + @equip_cardname$[.@i] + " ]";
+		}
+		return;
+
+	OnInit:
+		.npc_name$ = "[ ^0000FFEnchanter^000000 ]";
+		waitingroom "  :: Enchant ::",0;
+		end;
+}
+
+morocc,127,104,6	duplicate(Enchanter)	Enchanter#mor	4_WHITETIGER
+
+// old code
+/*
+-	script	Enchanter	-,{
+	disable_items;
+	selectequipmode:
+	mes .npc_name$;
+	mes "โปรดเลือกโหมดการ Enchant";
+	.@mode = select("~ อุปกรณ์สวมใส่","~ Costume");
+		.@menu$ = "";
+		.@equipped = 0;
+		cleararray .@chosen_parts[1], 0, 11;
+		.@menu_idx = 1;
+		next;
+		mes .npc_name$;
+		mes "โปรดเลือกอุปกรณ์ที่ต้องการ";
+		if (.@mode == 1) {
+			setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
+		} else {
+			setarray .@indices[1], EQI_COSTUME_HEAD_TOP, EQI_COSTUME_HEAD_MID, EQI_COSTUME_HEAD_LOW, EQI_SHADOW_ARMOR, EQI_SHADOW_SHIELD, EQI_SHADOW_WEAPON, EQI_COSTUME_GARMENT, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_L, EQI_SHADOW_ACC_R;
+		}
+		for(.@i = 1; .@i<=10; ++.@i) {
+			if (getequipisequiped(.@indices[.@i])) {
+				.@menu$ = .@menu$ + F_getpositionname(.@indices[.@i]) + "-[ " + getequipname(.@indices[.@i]) + " ]:";
+				.@chosen_parts[.@menu_idx] = .@indices[.@i];
+				.@menu_idx++;
+				.@equipped = 1;
+			}
+		}
+		if (.@equipped == 0) {
+			mes "^FF0000ตัวละครของท่านไม่ได้สวมใส่อุปกรณ์ใดๆ อยู่เลย^000000";
+			close;
+		}
+
+		.@part = .@chosen_parts[ select(.@menu$) ];
+		set .@equip_id, getequipid(.@part);
+		set .@slots, getitemslots(.@equip_id);
+		setarray .@equip_card[0], getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
+		set .@equip_refine, getequiprefinerycnt(.@part);
+		
+		for(.@s = 0; .@s < 4; ++.@s) {
+			if (.@equip_card[.@s] == 0) {
+				.@equip_cardname$[.@s] = "^777777ว่าง^000000";
+			} else {
+				.@equip_cardname$[.@s] = "^0000FF"+getitemname(.@equip_card[.@s])+"^000000";
+			}
+		}
+		next;
+		mes .npc_name$;
+		mes "รายละเอียดไอเท็มที่ท่านได้เลือก:";
+		mes "ชื่อไอเท็ม: [ ^0000FF"+getitemname(.@equip_id)+"^000000 ]";
+		mes "Slot ที่ 1: [ "+.@equip_cardname$[0]+" ]";
+		mes "Slot ที่ 2: [ "+.@equip_cardname$[1]+" ]";
+		mes "Slot ที่ 3: [ "+.@equip_cardname$[2]+" ]";
+		mes "Slot ที่ 4: [ "+.@equip_cardname$[3]+" ]";
+		next;            
+		switch(select("~ ยืนยัน:~ เลือกใหม่")) {
+			case 2: 
+				next;
+				goto selectequipmode;
+				break; 
+		}
+	
+	selectstone:
+	next;
+	mes .npc_name$;
+	mes "กรุณาเลือกหินออฟคอสตูมจากในกระเป๋าของคุณ:";
+	.@menu$ = "";
+	cleararray .@user_stones[0], 0, 100;
+	.@count = 0;
+	
+	getinventorylist;
+	for (.@i = 0; .@i < @inventorylist_count; .@i++) {
+		.@inv_id = @inventorylist_id[.@i];
+		.@inv_name$ = getitemname(.@inv_id);
+		.@inv_type = getiteminfo(.@inv_id, ITEMINFO_TYPE);
+
+		if (compare(.@inv_name$, "Stone") || (.@inv_type == 6 && !compare(.@inv_name$, "Card"))) {
+			.@user_stones[.@count] = .@inv_id;
+			.@menu$ += "- " + .@inv_name$ + " [มี " + @inventorylist_amount[.@i] + " ก้อน]:";
+			.@count++;
+			if (.@count >= 30) break;
+		}
+	}
+	
+	if (.@count == 0) {
+		mes .npc_name$;
+		mes "ไม่พบหินออฟชั่นคอสตูมในกระเป๋าของคุณเลย!";
+		close;
+	}
+	
+	.@select_stone = select(.@menu$) - 1;
+	.@chosen_stone_id = .@user_stones[.@select_stone];
+	
+	mes .npc_name$;
+	mes "ท่านเลือกหิน: [ <ITEM>"+ getitemname(.@chosen_stone_id)+"<INFO>"+.@chosen_stone_id+"</INFO></ITEM> ]";
+	mes "โปรดเลือก Slot ที่ต้องการจะใส่ไอเท็มที่ท่านเลือก";
+	mes "ชื่อไอเท็ม: [ ^0000FF"+getitemname(.@equip_id)+"^000000 ]";
+	mes "Slot ที่ 1: [ "+.@equip_cardname$[0]+" ]";
+	mes "Slot ที่ 2: [ "+.@equip_cardname$[1]+" ]";
+	mes "Slot ที่ 3: [ "+.@equip_cardname$[2]+" ]";
+	mes "Slot ที่ 4: [ "+.@equip_cardname$[3]+" ]";
+	next;
+	switch(select("~ Slot ที่ 1: [ "+.@equip_cardname$[0]+" ]","~ Slot ที่ 2: [ "+.@equip_cardname$[1]+" ]","~ Slot ที่ 3: [ "+.@equip_cardname$[2]+" ]","~ Slot ที่ 4: [ "+.@equip_cardname$[3]+" ]","~ ขอกลับไปเลือกหินใหม่")) {
+		case 1:
+			.@chosen_slot = 0;
+			break;
+		case 2:
+			.@chosen_slot = 1;
+			break;
+		case 3:
+			.@chosen_slot = 2;
+			break;
+		case 4:
+			.@chosen_slot = 3;
+			break;
+		case 5:
+			goto selectstone;
+			break;
+	}
+
+	mes .npc_name$;
+	mes "ยืนยันการใช้ [ <ITEM>"+ getitemname(.@chosen_stone_id)+"<INFO>"+.@chosen_stone_id+"</INFO></ITEM> ]";
+	mes "ในไอเท็ม [ ^0000FF" + getitemname(.@equip_id) + "^000000 ]";
+	mes "ที่ Slot ["+(1+.@chosen_slot)+"] : [ "+.@equip_cardname$[.@chosen_slot]+" ]";
+	if (.@equip_card[.@chosen_slot] != 0) {
+		mes "^FF0000** Slot ที่ท่านเลือกไม่ว่าง หากดำเนินการต่อ ไอเท็มที่อยู่ใน Slot นี้จะถูกทำลายและไม่สามารถรับคืนได้ **^000000";
+	}
+	next;
+	if (select("~ ยืนยัน:~ ไม่ล่ะ เปลี่ยนใจแล้ว") == 2) {
+		close;
+	}
+	
+	if (countitem(.@chosen_stone_id) < 1) {
+		mes .npc_name$;
+		mes "ไม่มีหินดังกล่าวในช่องเก็บของ";
+		close;
+	}
+
+	delequip .@equip_id;
+	delitem .@chosen_stone_id, 1;
+	
+	.@equip_card[.@chosen_slot] = .@chosen_stone_id;
+	getitem2 .@equip_id, 1, 1, .@equip_refine, 0, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3];
+	
+	specialeffect2 EF_REPAIRWEAPON;
+	mes "[ช่างออฟคอสตูม]";
+	mes "เรียบร้อยแล้วเหมียว! หินถูกหลอมรวมเข้ากับคอสตูมเรียบร้อย!";
+	mes "ข้าส่งไอเทมกลับเข้ากระเป๋าของท่านแล้ว ลองเปิดดูได้เลยเหมียว~";
+	close;
+
+	OnInit:
+		.npc_name$ = "[ ^0000FFEnchanter^000000 ]";
+		waitingroom "  :: Enchant ::",0;
+		end;
+}
+
+morocc,127,104,6	duplicate(Enchanter)	Enchanter#mor	4_WHITETIGER
+
+*/
