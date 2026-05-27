@@ -1,0 +1,23 @@
+// ==========================================================
+// หมวดหมู่หลัก: weapon_huuma
+// ==========================================================
+
+-	cashshop	shop_weapon_huuma_0_9_1	-1,650035:20,650036:20,650010:20,650011:20,650037:20,650012:20,650013:20,650038:20,650039:20
+-	cashshop	shop_weapon_huuma_a_1	-1,650009:20,650008:20,650043:20
+-	cashshop	shop_weapon_huuma_b_1	-1,13305:20,13306:20
+-	cashshop	shop_weapon_huuma_d_1	-1,650028:20,650033:20,650046:20,650047:20,13333:20
+-	cashshop	shop_weapon_huuma_e_1	-1,13346:20,650048:20
+-	cashshop	shop_weapon_huuma_f_1	-1,650029:20,650017:20,650020:20,650058:20
+-	cashshop	shop_weapon_huuma_g_1	-1,650025:20
+-	cashshop	shop_weapon_huuma_h_1	-1,13321:20,1339:20,650030:20,650034:20,13345:20,650024:20,610072:20,13338:20,13308:20,13337:20,13301:20,13309:20,13340:20,13312:20,13323:20,13311:20
+-	cashshop	shop_weapon_huuma_k_1	-1,13307:20
+-	cashshop	shop_weapon_huuma_m_1	-1,650016:20,13322:20,13334:20
+-	cashshop	shop_weapon_huuma_n_1	-1,13339:20
+-	cashshop	shop_weapon_huuma_p_1	-1,13310:20,650019:20,13336:20
+-	cashshop	shop_weapon_huuma_r_1	-1,13347:20,13341:20
+-	cashshop	shop_weapon_huuma_s_1	-1,13335:20,650018:20
+-	cashshop	shop_weapon_huuma_t_1	-1,13317:20,13330:20
+-	cashshop	shop_weapon_huuma_u_1	-1,13329:20,650004:20,13316:20
+-	cashshop	shop_weapon_huuma_v_1	-1,13343:20,650021:20,650022:20
+-	cashshop	shop_weapon_huuma_w_1	-1,650049:20,650000:20,650001:20
+-	cashshop	shop_weapon_huuma_z_1	-1,650044:20,650045:20

@@ -1,0 +1,25 @@
+// ==========================================================
+// หมวดหมู่หลัก: weapon_knuckle
+// ==========================================================
+
+-	cashshop	shop_weapon_knuckle_0_9_1	-1,560043:20,560044:20,560023:20,560022:20,560045:20,560025:20,560024:20,560046:20,560047:20
+-	cashshop	shop_weapon_knuckle_a_1	-1,560019:20,560018:20,560050:20,1866:20
+-	cashshop	shop_weapon_knuckle_b_1	-1,560063:20,1871:20,1816:20,1823:20,1824:20,560000:20,560034:20,1862:20
+-	cashshop	shop_weapon_knuckle_c_1	-1,1810:20,1833:20,1841:20,1846:20,1865:20,1873:20,560007:20
+-	cashshop	shop_weapon_knuckle_d_1	-1,560037:20,560036:20,560061:20,560060:20,1842:20
+-	cashshop	shop_weapon_knuckle_e_1	-1,1867:20,560080:20,1864:20,560068:20
+-	cashshop	shop_weapon_knuckle_f_1	-1,560038:20,1811:20,1807:20,1808:20,1829:20,560011:20,560081:20
+-	cashshop	shop_weapon_knuckle_g_1	-1,560067:20,560032:20
+-	cashshop	shop_weapon_knuckle_h_1	-1,1838:20,1805:20,560040:20,560039:20
+-	cashshop	shop_weapon_knuckle_i_1	-1,1837:20,1847:20,560026:20
+-	cashshop	shop_weapon_knuckle_k_1	-1,1817:20,1803:20,1804:20,1872:20,1826:20,1827:20
+-	cashshop	shop_weapon_knuckle_l_1	-1,1857:20,1858:20
+-	cashshop	shop_weapon_knuckle_m_1	-1,560029:20,1843:20,560048:20,1828:20
+-	cashshop	shop_weapon_knuckle_p_1	-1,1831:20,560012:20,560013:20,560030:20,1845:20,560006:20
+-	cashshop	shop_weapon_knuckle_r_1	-1,1870:20,560002:20,560027:20,1848:20
+-	cashshop	shop_weapon_knuckle_s_1	-1,1844:20,560086:20,1835:20
+-	cashshop	shop_weapon_knuckle_t_1	-1,1834:20,1836:20,560017:20,1840:20,560072:20
+-	cashshop	shop_weapon_knuckle_u_1	-1,560008:20,560009:20
+-	cashshop	shop_weapon_knuckle_v_1	-1,1861:20,560021:20,560020:20
+-	cashshop	shop_weapon_knuckle_w_1	-1,1802:20,1859:20,560003:20
+-	cashshop	shop_weapon_knuckle_z_1	-1,560051:20,560052:20
