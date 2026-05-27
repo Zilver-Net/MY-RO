@@ -57,14 +57,18 @@
 	// Note: This does not include the level checks.
 	function	Can_Change_Fourth	{
 		// To change to fourth class you need to be:
-		// * Transcendent Third Class
+		// * Third Class
+		.@eac = eaclass();
 		if( !.FourthClass )
 			return false; // Fourth job change disabled
-		if( (eaclass()&(EAJL_THIRD|EAJL_UPPER)) != (EAJL_THIRD|EAJL_UPPER) )
-			return false; // Not Transcendent Third Class
-		if( eaclass()&EAJL_FOURTH )
+		if( !(.@eac&EAJL_THIRD) )
+		return false; // Not Third Class
+		if( .@eac&EAJL_FOURTH )
 			return false; // Already Fourth Class
-		if( roclass(eaclass()|EAJL_FOURTH) < 0 )
+		// Get base 3rd job (strips JOBL_UPPER), then add JOBL_FOURTH (4th jobs use JOBL_FOURTH|3rd_job)
+		.@base_third = .@eac & EAJ_THIRDMASK;
+		.@fourth_eac = .@base_third | EAJL_FOURTH;
+		if( roclass(.@fourth_eac) < 0 )
 			return false; // Job has no Fourth Class
 		return true;
 	}
@@ -182,7 +186,9 @@
 		if( .@fourth_possible ) {
 			// Fourth Job change (displayed below rebirth)
 			Require_Level(.Req_Fourth[0], .Req_Fourth[1]);
-			Job_Options(.@job_opt, roclass(.@eac|EAJL_FOURTH));
+			// Get base 3rd job (strips JOBL_UPPER), then add JOBL_FOURTH (4th jobs use JOBL_FOURTH|3rd_job)
+			.@base_third = .@eac & EAJ_THIRDMASK;
+			Job_Options(.@job_opt, roclass(.@base_third | EAJL_FOURTH));
 		}
 		
 		if (.SecondExpanded && 
@@ -534,7 +540,7 @@
 		.LastJob = true;					// Enforce linear class changes?
 		.SkillPointCheck = false;			// Force player to use up all skill points?
 		.Platinum = true;					// Get platinum skills automatically?
-		.GetJobEquip = true;				// Get job equipment (mostly weapons) on job change?
+		.GetJobEquip = false;				// Get job equipment (mostly weapons) on job change?
 		.NoReset = true;					// No reset on rebirth?
 
 		// Level Requirements
@@ -563,4 +569,4 @@
 // --------------------------------------------------
 //	Duplicates (Renewal):
 // --------------------------------------------------
-morocc,159,110,4	duplicate(Job_Master)	JobMaster#mor	811
+morocc,159,110,4	duplicate(Job_Master)	JobMaster#mor	4_EP18_DEMIFREYA
