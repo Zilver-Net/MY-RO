@@ -126,17 +126,17 @@ function	script	getexpbuff	{
 	.@BF_boost = 100;												// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
 	.@BF_Delay = 600000;											// Buff duration, in milliseconds. Default: 600000 (10 minutes)
 	.@MaxLevel = 175;												// Maximum level for low level multiplier to apply. Default: 175 (RE: 175, Pre-RE: 99)
-	.@BF_LOWLVLMULT = 2;											// Additional boost for low level players, calculated based on how many levels they are below 175.
-	.@BF_BASELVLMULT = 20;											// Base boost based on player's level, calculated as 10% of their level.
-	.@PCLevel = BaseLevel;											// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
-	set .@BF_LOWLVLMULT,.@BF_LOWLVLMULT * (.@MaxLevel - .@PCLevel);	// Additional boost for low level players, calculated based on how many levels they are below 175.
+	.@BF_LOWLVLMULT = 1;											// Additional boost for low level players, calculated based on how many levels they are below 175.
+	.@BF_BASELVLMULT = 25;											// Base boost based on player's level, calculated as 10% of their level.
+	.@PCLevel = BaseLevel;											
+	set .@BF_LOWLVLMULT,.@BF_LOWLVLMULT * ((.@MaxLevel - .@PCLevel)/5);	// Additional boost for low level players, calculated based on how many levels they are below 175.
 	set .@BF_BASELVLMULT,(.@BF_BASELVLMULT * .@PCLevel);			// Base boost based on player's level, calculated as 10% of their level.
 
 	//============================== End of Configuration ==============================\\
 
 	if (.@IsMulEXPLowLVL) {
 		if (.@PCLevel < .@MaxLevel) {
-		set .@BF_boost,.@BF_boost + .@BF_LOWLVLMULT;				// Total boost is the sum of base boost and additional low level boost
+		set .@BF_boost,(.@BF_boost/5) + .@BF_LOWLVLMULT;				// Total boost is the sum of base boost and additional low level boost
 		}
 	}
 	if (.@IsBuffEXP) {
