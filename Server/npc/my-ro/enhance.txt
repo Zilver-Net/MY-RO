@@ -1,0 +1,423 @@
+morocc,136,104,6	script	Pinky	612,{
+	set .@itemins,33000;
+	set .@successpercent,80;
+	set .@en_material,6484; // Enchant_Coupon
+	set .@en_price,100000;
+	disable_items;
+	set .@npc_name$,"[^000080Pinky^000000]";
+	enhancemenu:
+	mes .@npc_name$;
+	mes "ข้าสามารถเสริมพลังให้กับอุปกรณ์ได้";
+	mes "โปรดเลือกสิ่งที่ท่านต้องการ";
+	next;
+	switch(select("~ เสริมพลัง Rune:~ เสริมพลัง Option:~ รายละเอียด Rune ต่าง ๆ:~ ถอนการเสริมพลัง")){
+		case 1:
+			goto enchancerune;
+		case 2:
+			goto enchanceoption;	
+		case 3:
+			goto enchancedetail;
+		case 4:
+			goto enchancetakeout;
+	}
+	
+	enchancerune:
+	mes .@npc_name$;
+	mes "โปรดเลือกอุปกรณ์ที่ต้องการเสริมพลัง";
+	mes "^FF0000สามารถเสริมพลังได้เฉพาะอุปกรณ์ที่ slot ไม่สามารถใส่การ์ดได้^000000";
+	setarray .@indices[1], EQI_HEAD_TOP, EQI_HEAD_MID, EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R;
+		for(set .@i,1; .@i<=10; set .@i,.@i+1) {
+			if (getequipisequiped(.@indices[.@i])) {
+				set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + "-[^000080" + getequipname(.@indices[.@i]) + "^000000]";
+				set .@equipped,1;
+			}
+		set .@menu$, .@menu$ + ":";
+		}
+	next;
+	if (.@equipped == 0) {
+		mes .@npc_name$;
+		mes "ท่านไม่ได้สวมใส่อะไรเลย";
+		emotion ET_FRET;
+		close;
+	}
+	set .@part, .@indices[ select(.@menu$) ];
+	if (!getequipisequiped(.@part)) { //custom check
+		mes .@npc_name$;
+		mes "ท่านไม่ได้สวมใส่อะไรเลย";
+		emotion ET_FRET;
+		close;
+	}
+	set .@equip_id, getequipid(.@part); // save id of the item
+	set .@slots, getitemslots(.@equip_id);
+	setarray .@equip_card[0], getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
+	set .@equip_refine, getequiprefinerycnt(.@part); //save refinery count
+		
+	if (
+	.@slots == 0 && .@equip_card[0] != 0 && .@equip_card[1] != 0 && .@equip_card[2] != 0 && .@equip_card[3] != 0 || 
+	.@slots == 1 && .@equip_card[1] != 0 && .@equip_card[2] != 0 && .@equip_card[3] != 0 || 
+	.@slots == 2 && .@equip_card[2] != 0 && .@equip_card[3] != 0 || 
+	.@slots == 3 && .@equip_card[3] != 0 || 
+	.@slots == 4) {
+		mes .@npc_name$;
+		mes "อุปกรณ์ของท่านไม่สามารถเสริมพลังได้";
+		end;
+	}
+	
+	mes .@npc_name$;
+	if (getequiprefinerycnt(.@part) > 0) {
+		mes "อุปกรณ์ ^000080+"+.@equip_refine+" "+getequipname(.@part)+"^000000 ["+.@slots+"]";
+	} else 
+	mes "อุปกรณ์ ^000080"+getequipname(.@part)+"^000000 ["+.@slots+"]";
+	mes "ต้องใช้ <ITEM>"+getitemname(.@en_material)+"<INFO>"+.@en_material+"</INFO></ITEM> ^3399FF1^000000 ea.";
+	mes "และเงิน ^3399FF"+callfunc("F_InsertComma",.@en_price)+"^000000 zeny ในการเสริมพลัง";
+	mes "โอกาสสำเร็จ อยู่ที่ ^FF0000"+.@successpercent+"^000000%";
+	mes "^FF0000หากล้มเหลว อุปกรณ์ของท่านจะสูญหายหายถาวร^000000";
+	mes "หากท่านมีใบรับประกันสินค้าอยู่ ท่านสามารถใช้เพื่อเรียกคืนอุปกรณ์ของท่านได้ แต่ท่านจะเสีย Option ที่เสริมเข้าไปแล้ว";
+	mes "โปรดยืนยันเพื่อดำเนินการต่อ";
+	next;
+	if(select("~ ยืนยัน:~ ยกเลิก") == 2){ 
+		close; 
+	}
+	
+	if((countitem(.@en_material) < 1) || (zeny < .@en_price)) {
+		mes .@npc_name$;
+		mes "ขออภัยด้วย !";
+		mes "ท่านมีเงินไม่พอ หรือไม่มี";
+		mes "<ITEM>"+getitemname(.@en_material)+"<INFO>"+.@en_material+"</INFO></ITEM> สำหรับการเสริมพลัง";
+		close;
+	}
+	
+	// anti-hack
+	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) ||
+		callfunc("F_IsEquipRefineHack", .@part, .@equip_refine)) {
+		mes .@npc_name$;
+		emotion ET_FRET;
+		mes "เดี๋ยวก่อนนะ !";
+		mes "ท่านคิดว่าข้าโง่งั้นหรอ !!!!!";
+		mes "ท่านแอบเปลี่ยนอุปกรณ์ตอนที่ข้าไม่เห็น";
+		mes "ออกไปให้พ้นซะ !!!!!!!";
+		next;
+		warp "morocc",0,0;
+		end;
+	}
+	set .@i, rand(1,50);
+		if (.@i < 5)	set .@enchant,29090; //Acute
+	else if (.@i < 10)	set .@enchant,29110; //Adamantine
+	else if (.@i < 15)	set .@enchant,29120; //Affection
+	else if (.@i < 20)	set .@enchant,29080; //Magic Essence
+	else if (.@i < 25)	set .@enchant,29100; //Master Archer
+	else if (.@i < 30)	set .@enchant,29070; //Mettle
+	else if (.@i < 35)	set .@enchant,33301; //Power Rune
+	else if (.@i < 40)	set .@enchant,33302; //Defender Rune
+	else if (.@i < 45)	set .@enchant,33303; //Magic Power Rune
+	else if (.@i < 50)	set .@enchant,33304; //Magic Defnder Rune
+	else set .@enchant,0;
+
+	delequip .@part;
+	delitem .@en_material,1;
+	set zeny, zeny-=.@en_price;
+	
+	if (.@enchant != 0 || rand(1,100) < .@successpercent) {
+		specialeffect2 EF_REPAIRWEAPON;
+			mes .@npc_name$;
+			if (.@equip_card[3] == 0 && .@slots < 4) { 
+				getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@enchant;
+				mes "Slot ที่ ^9900004^000000 ผ่านการเสริมพลัง!";
+				goto enhancefinish;
+			} else if (.@equip_card[2] == 0 && .@slots < 3) {
+				getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@enchant,.@equip_card[3];
+				mes "Slot ที่ ^9900003^000000 ผ่านการเสริมพลัง!";
+				goto enhancefinish;
+			} else if (.@equip_card[1] == 0 && .@slots < 2) {
+				getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card[0],.@enchant,.@equip_card[2],.@equip_card[3];
+				mes "Slot ที่ ^9900002^000000 ผ่านการเสริมพลัง!";
+				goto enhancefinish;
+			} else if (.@equip_card[0] == 0 && .@slots < 1) {
+				getitem2 .@equip_id,1,1,.@equip_refine,0,.@enchant,.@equip_card[1],.@equip_card[2],.@equip_card[3];
+				mes "Slot ที่ ^9900001^000000 ผ่านการเสริมพลัง!";
+				goto enhancefinish;
+			}
+		enhancefinish:
+		emotion ET_KIK;
+		mes "ช่างเป็นผลงานที่ยอดเยี่ยมจริง ๆ";
+		close;
+	} else	
+		specialeffect2 155;
+		emotion ET_CRY;
+		mes .@npc_name$;
+		mes "อ๊าาาาา !!!!!!";
+		switch(rand(1,3)) {
+			case 1:
+				emotion ET_CRY; 
+				mes "ไม่เอาหน่า อีกแล้วหรอ !";
+				mes "ข้าต้องขอโทษท่านจริง ๆ แต่การฝึกฝนไม่ได้ช่วยอะไรเลย";
+				mes "เอิ่ม.... ถูกไหม ? ฮ่า ฮาาา ...";
+				break;
+			case 2:
+				emotion ET_PROFUSELY_SWEAT; 
+				mes "ม่ายยยยยยยยยยย!";
+				mes "มันแตกไปแล้ว คามือข้าเลยยยยย!";
+				mes "ข- ข้าาาา ! ขอโทษ";
+				break;
+			case 3: 
+				emotion ET_KEK; 
+				mes "บ้าเอ้ย!";
+				mes "อีกนิดเดียวแท้ ๆ";
+				mes "ข้าน่าจะเพิ่มไฟขึ้นอีก!";
+				mes "ต้องขอโทษจริง ๆ ...";
+				break;
+		}
+		if (countitem(.@itemins) >= 1) {
+			next;
+			delitem .@itemins,1;
+			dispbottom ""+getitemname(.@itemins)+" ได้ถูกใช้งาน",0xFF0000;
+			getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+			mes .@npc_name$;
+			mes "ดูเหมือนว่าท่านจะมีใบรับประกันสินค้าอยู่";
+			mes "โปรดรับไอเท็มของท่านกลับไป";
+			close;
+		}
+		close;
+
+	enchancedetail:
+	mes .@npc_name$;
+	mes "<ITEM>"+getitemname(29090)+"<INFO>"+29090+"</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(29110)+"<INFO>"+29110+"</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(29120)+"<INFO>"+29120+"</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(33301)+"<INFO>"+33301+"</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(33302)+"<INFO>"+33302+"</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(33303)+"<INFO>"+33303+"</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(33304)+"<INFO>"+33304+"</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(29080)+"<INFO>"+29080+"</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(29100)+"<INFO>"+29100+"</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(29070)+"<INFO>"+29070+"</INFO></ITEM>";
+	next;
+	if(select("~ ย้อนกลับ:~ ออก") == 1){ goto enhancemenu; }
+	end;
+	
+	enchanceoption:
+	mes .@npc_name$;
+	mes "โปรดเลือกอุปกรณ์ที่ต้องการเสริมพลัง";
+	mes "^FF0000*การเสริมพลัง Option จะหายไป หากท่านล้มเหลวในการอัพเกรด หรือเสริมพลัง Rune และนำไปถอนการเสริมพลัง Rune^000000";
+	setarray .@indices[1], EQI_HEAD_TOP, EQI_HEAD_MID, EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R;
+		for(set .@i,1; .@i<=10; set .@i,.@i+1) {
+			if (getequipisequiped(.@indices[.@i])) {
+				set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + "-[^000080" + getequipname(.@indices[.@i]) + "^000000]";
+				set .@equipped,1;
+			}
+		set .@menu$, .@menu$ + ":";
+		}
+	next;
+	if (.@equipped == 0) {
+		mes .@npc_name$;
+		mes "ท่านไม่ได้สวมใส่อะไรเลย";
+		emotion ET_FRET;
+		close;
+	}
+	set .@part, .@indices[ select(.@menu$) ];
+	if (!getequipisequiped(.@part)) { //custom check
+		mes .@npc_name$;
+		mes "ท่านไม่ได้สวมใส่อะไรเลย";
+		emotion ET_FRET;
+		close;
+	}
+	set .@equip_id, getequipid(.@part); // save id of the item
+	set .@slots, getitemslots(.@equip_id);
+	setarray .@equip_card[0], getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
+	setarray .@equip_option[0], getequiprandomoption(.@part,0,ROA_ID), getequiprandomoption(.@part,1,ROA_ID), getequiprandomoption(.@part,2,ROA_ID), getequiprandomoption(.@part,3,ROA_ID), getequiprandomoption(.@part,4,ROA_ID);
+	set .@equip_refine, getequiprefinerycnt(.@part); //save refinery count
+		
+	if (.@equip_option[0] != 0 && .@equip_option[1] != 0 && .@equip_option[2] != 0 && .@equip_option[3] != 0 && .@equip_option[4] != 0) { 
+		mes .@npc_name$;
+		mes "อุปกรณ์ของท่านผ่านการเสริมพลังแล้ว";
+		mes "หากดำเนินการต่อ จะเป็นการทดแทน Option เดิม";
+		next;
+		if(select("~ ดำเนินการต่อ:~ ยกเลิก") == 2){ close2; }
+	}
+	
+	mes .@npc_name$;
+	if (getequiprefinerycnt(.@part) > 0) {
+		mes "อุปกรณ์ ^000080+"+.@equip_refine+" "+getequipname(.@part)+"^000000 ["+.@slots+"]";
+	} else 
+	mes "อุปกรณ์ ^000080"+getequipname(.@part)+"^000000 ["+.@slots+"]";
+	mes "ต้องใช้ <ITEM>"+getitemname(.@en_material)+"<INFO>"+.@en_material+"</INFO></ITEM> ^3399FF1^000000 ea.";
+	mes "และเงิน ^3399FF"+callfunc("F_InsertComma",.@en_price)+"^000000 zeny ในการเสริมพลัง";
+	mes "โอกาสสำเร็จ อยู่ที่ ^FF0000"+.@successpercent+"^000000%";
+	mes "^FF0000หากล้มเหลว อุปกรณ์ของท่านจะสูญหายหายถาวร^000000";
+	mes "หากท่านมีใบรับประกันสินค้าอยู่ ท่านสามารถใช้เพื่อเรียกคืนอุปกรณ์ของท่านได้ แต่ท่านจะเสีย Option ที่เสริมเข้าไปแล้ว";
+	mes "โปรดยืนยันเพื่อดำเนินการต่อ";
+	next;
+	if(select("~ ยืนยัน:~ ยกเลิก") == 2){ 
+		close; 
+	}
+	
+	if((countitem(.@en_material) < 1) || (zeny < .@en_price)) {
+		mes .@npc_name$;
+		mes "ขออภัยด้วย !";
+		mes "ท่านมีเงินไม่พอ หรือไม่มี";
+		mes "<ITEM>"+getitemname(.@en_material)+"<INFO>"+.@en_material+"</INFO></ITEM> สำหรับการเสริมพลัง";
+		close;
+	}
+	
+	// anti-hack
+	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) ||
+		callfunc("F_IsEquipRefineHack", .@part, .@equip_refine)) {
+		mes .@npc_name$;
+		emotion ET_FRET;
+		mes "เดี๋ยวก่อนนะ !";
+		mes "ท่านคิดว่าข้าโง่งั้นหรอ !!!!!";
+		mes "ท่านแอบเปลี่ยนอุปกรณ์ตอนที่ข้าไม่เห็น";
+		mes "ออกไปให้พ้นซะ !!!!!!!";
+		next;
+		warp "morocc",0,0;
+		end;
+	}
+	
+	delitem .@en_material,1;
+	set zeny, zeny-=.@en_price;
+	
+	if (rand(1,100) < .@successpercent) {
+		specialeffect2 EF_REPAIRWEAPON;
+		setrandomoption(.@part,0,rand(1,192),rand(10,25),rand(10,50),getcharid(0));
+		setrandomoption(.@part,1,rand(1,192),rand(10,25),rand(10,50),getcharid(0));
+		setrandomoption(.@part,2,rand(1,192),rand(10,25),rand(10,50),getcharid(0));
+		setrandomoption(.@part,3,rand(1,192),rand(10,25),rand(10,50),getcharid(0));
+		setrandomoption(.@part,4,rand(1,192),rand(10,25),rand(10,50),getcharid(0));
+		mes .@npc_name$;
+		switch(rand(1,3)) {
+			case 1:
+				emotion ET_KIK;
+				mes "เยี่ยมยอดมากก!";
+				mes "ฮ่า ฮ่า!";
+				mes "อีก 1 ผลงานไร้ที่ติ";
+				mes "จากช่างตีเหล็กมือหนึ่ง";
+				break;
+			case 2:
+				emotion ET_KIK;
+				mes "สำเร็จ...!";
+				mes "อาาาาาาา";
+				mes "มันช่างจ้าซะเหลือเกิน";
+				break;
+			case 3:
+				emotion ET_KIK;
+				mes "ฮ่า ฮ่า!";
+				mes "ข้าทำสำเร็จแล้ว";
+				mes "ท่านต้องพอใจอย่างไม่ต้องสงสัยเลย";
+				break;
+		}
+		close;
+	} else	
+		specialeffect2 155;
+		delequip .@part;
+		emotion ET_CRY;
+		mes .@npc_name$;
+		mes "อ๊าาาาา !!!!!!";
+		switch(rand(1,3)) {
+			case 1:
+				emotion ET_CRY; 
+				mes "ไม่เอาหน่า อีกแล้วหรอ !";
+				mes "ข้าต้องขอโทษท่านจริง ๆ แต่การฝึกฝนไม่ได้ช่วยอะไรเลย";
+				mes "เอิ่ม.... ถูกไหม ? ฮ่า ฮาาา ...";
+				break;
+			case 2:
+				emotion ET_PROFUSELY_SWEAT; 
+				mes "ม่ายยยยยยยยยยย!";
+				mes "มันแตกไปแล้ว คามือข้าเลยยยยย!";
+				mes "ข- ข้าาาา ! ขอโทษ";
+				break;
+			case 3: 
+				emotion ET_KEK; 
+				mes "บ้าเอ้ย!";
+				mes "อีกนิดเดียวแท้ ๆ";
+				mes "ข้าน่าจะเพิ่มไฟขึ้นอีก!";
+				mes "ต้องขอโทษจริง ๆ ...";
+				break;
+		}
+		if (countitem(.@itemins) >= 1) {
+			next;
+			delitem .@itemins,1;
+			dispbottom ""+getitemname(.@itemins)+" ได้ถูกใช้งาน",0xFF0000;
+			getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+			mes .@npc_name$;
+			mes "ดูเหมือนว่าท่านจะมีใบรับประกันสินค้าอยู่";
+			mes "โปรดรับไอเท็มของท่านกลับไป";
+			close;
+		}
+		close;
+		
+	enchancetakeout:
+	mes .@npc_name$;
+	mes "โปรดเลือกอุปกรณ์ที่ต้องการ";
+	mes "^FF0000**โปรดระวัง หากมีการเสริมพลัง Option อยู่ จะสูญหายถาวร และไม่สามารถถอด slot ที่มีการ์ดได้**^000000";
+	setarray .@indices[1], EQI_HEAD_TOP, EQI_HEAD_MID, EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R;
+		for(set .@i,1; .@i<=10; set .@i,.@i+1) {
+			if (getequipisequiped(.@indices[.@i])) {
+				set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + "-[^000080" + getequipname(.@indices[.@i]) + "^000000]";
+				set .@equipped,1;
+			}
+		set .@menu$, .@menu$ + ":";
+		}
+	next;
+	if (.@equipped == 0) {
+		mes .@npc_name$;
+		mes "ท่านไม่ได้สวมใส่อะไรเลย";
+		emotion ET_FRET;
+		close;
+	}
+	set .@part, .@indices[ select(.@menu$) ];
+	
+	if (!getequipisequiped(.@part)) { //custom check
+		mes "ท่านไม่ได้สวมใส่อะไรเลย";
+		emotion ET_FRET;
+		close;
+	}
+	
+	set .@equip_id, getequipid(.@part); // save id of the item
+	set .@slots, getitemslots(.@equip_id);
+	setarray .@equip_card[0], getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
+	set .@equip_refine, getequiprefinerycnt(.@part); //save refinery count
+	
+	if((countitem(.@en_material) < 1) || (zeny < .@en_price)) {
+		mes .@npc_name$;
+		mes "ขออภัยด้วย !";
+		mes "ท่านมีเงินไม่พอ หรือไม่มี <ITEM>"+getitemname(.@en_material)+"<INFO>"+.@en_material+"</INFO></ITEM> สำหรับการถอนการเสริมพลัง";
+		close;
+	}
+	mes .@npc_name$;
+	mes "ต้องใช้ <ITEM>"+getitemname(.@en_material)+"<INFO>"+.@en_material+"</INFO></ITEM> ^3399FF1^000000 ea.";
+	mes "และเงิน ^3399FF"+callfunc("F_InsertComma",.@en_price)+"^000000 zeny ในการถอนการเสริมพลัง";
+	mes "โปรดยืนยัน";
+	next;
+	if (select("~ ยืนยัน:~ ยกเลิก") == 2 ) { end; }
+	mes .@npc_name$;
+	mes "โปรดเลือก Slot ที่ต้องการ";
+	mes "กรุณาใส่เป็นตัวเลข 1 - 4";
+	if (.@equip_card[0] == 0) { mes "Slot 1. ว่าง"; }
+	else {	mes "Slot 1. "+getitemname(.@equip_card[0])+""; }
+	if (.@equip_card[1] == 0) { mes "Slot 2. ว่าง"; }
+	else {	mes "Slot 2. "+getitemname(.@equip_card[1])+""; }
+	if (.@equip_card[2] == 0) { mes "Slot 3. ว่าง"; }
+	else {	mes "Slot 3. "+getitemname(.@equip_card[2])+""; }
+	if (.@equip_card[3] == 0) { mes "Slot 4. ว่าง"; }
+	else {	mes "Slot 4. "+getitemname(.@equip_card[3])+""; }
+	input .@selectslot;
+	next;
+	if (.@selectslot == 0 || .@selectslot > 4) { mes .@npc_name$; mes "ท่านใส่ Slot ไม่ถูกต้อง"; end; }
+	if (.@selectslot == 1 && .@equip_card[0] != 0) { getitem2 .@equip_id , 1 , 1 , .@equip_refine, 0 , 0 , .@equip_card[1], .@equip_card[2], .@equip_card[3]; }
+	else if (.@selectslot == 2 && .@equip_card[1] != 0) { getitem2 .@equip_id , 1 , 1 , .@equip_refine, 0 , .@equip_card[0], 0 , .@equip_card[2], .@equip_card[3]; }
+	else if (.@selectslot == 3 && .@equip_card[2] != 0) { getitem2 .@equip_id , 1 , 1 , .@equip_refine, 0 , .@equip_card[0], .@equip_card[1], 0 , .@equip_card[3]; }
+	else if (.@selectslot == 4 && .@equip_card[3] != 0) { getitem2 .@equip_id , 1 , 1 , .@equip_refine, 0 , .@equip_card[0], .@equip_card[1], .@equip_card[2], 0; }
+	else { mes .@npc_name$; mes "Slot ที่ท่านเลือกนั้นว่างอยู่แล้ว"; end; }
+	specialeffect2 EF_REPAIRWEAPON;
+	delequip .@part;
+	delitem .@en_material,1;
+	set zeny, zeny-=.@en_price;
+	mes .@npc_name$;
+	mes "ดำเนินการเสร็จสิ้น";
+	mes "แล้วพบกันใหม่";
+	close;
+	
+	OnInit:
+		waitingroom ":: Enchance ::",0;
+		end;
+}
