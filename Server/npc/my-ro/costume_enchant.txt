@@ -1,0 +1,122 @@
+// ===== rAthena Script ====================================================
+//= MY-RO Costume Enchant Express (True Classic Bulletproof)
+// =========================================================================
+// = Developed by Gemini 3.5 Flash Extended / Prompt, Design & Reviewed by ZilverNet
+// = On date: 26/05/2026
+// =========================================================================
+// ===== Update List =======================================================
+// = V. 1.0
+// = Finished developed phase
+// = V. 1.1
+// = Refine script for server
+// =========================================================================
+// ===== Script ============================================================
+
+-	script	costume_enchant	-,{
+
+	mes "[ช่างออฟคอสตูม]";
+	mes "สวัสดีกัปตันและผองเพื่อน! อยากออฟหินคอสตูมแบบด่วนพิเศษใช่ไหม?";
+	mes "ใส่หมวกหรือเสื้อคอสตูมที่ต้องการออฟไว้ที่ตัว แล้วเตรียมหินออฟไว้ในกระเป๋าได้เลย!";
+	next;
+	
+	switch(select("1. เริ่มขั้นตอนการออฟชั่น:2. ยกเลิก")) {
+		case 2:
+			mes "[ช่างออฟคอสตูม]";
+			mes "ไว้พร้อมแล้วค่อยมาคุยกันใหม่นะเหมียว~";
+			close;
+			
+		case 1:
+			mes "[ช่างออฟคอสตูม]";
+			mes "เลือกตำแหน่งคอสตูมที่ต้องการจะออฟ:";
+			next;
+			
+			.@parts = select("- หมวกส่วนบน (Upper):- หน้ากากส่วนกลาง (Mid):- คอสส่วนล่าง/ปาก (Low):- คอสตูมส่วนคลุมหลัง (Garment)");
+			
+			if (.@parts == 1) .@equip_slot = EQI_COSTUME_HEAD_TOP;
+			if (.@parts == 2) .@equip_slot = EQI_COSTUME_HEAD_MID;
+			if (.@parts == 3) .@equip_slot = EQI_COSTUME_HEAD_LOW;
+			if (.@parts == 4) .@equip_slot = EQI_COSTUME_GARMENT;
+			
+			// เช็กว่าสวมใส่ไอเทมอยู่ไหม
+			if (getequipid(.@equip_slot) <= 0) {
+				mes "[ช่างออฟคอสตูม]";
+				mes "เหมียว! ไม่พบไอเทมสวมใส่ในตำแหน่งนั้นนะ กรุณาใส่คอสตูมก่อน!";
+				close;
+			}
+			
+			.@equip_id = getequipid(.@equip_slot);
+			mes "[ช่างออฟคอสตูม]";
+			mes "อืม... คุณกำลังจะออฟไอเทม ^FF0000" + getitemname(.@equip_id) + "^000000";
+			mes "กรุณาเลือกหินออฟคอสตูมจากในกระเป๋าของคุณ:";
+			next;
+			
+			// =========================================================================
+			// ?? [ระบบเช็กหินออฟสไตล์คลาสสิก - ปลอดภัย ไม่พึ่งคำสั่งใหม่]
+			// =========================================================================
+			.@menu$ = "";
+			cleararray .@user_stones[0], 0, 50;
+			.@count = 0;
+			
+			// ?? ตรงนี้ให้กัปตันใส่ ID หินออฟคอสตูมทั้งหมดที่มีในเซิร์ฟเวอร์ลงไปได้เลยครับ
+			// คั่นด้วยเครื่องหมายจุลภาค ( , ) และปิดท้ายด้วยเลข 0 เสมอเพื่อให้ลูปหยุดทำงานครับ
+			setarray .@allowed_stones[0], 25000, 25001, 25002, 25003, 25004, 25005, 0;
+			
+			for (.@i = 0; .@i < 100; .@i++) {
+				.@stone_id = .@allowed_stones[.@i];
+				if (.@stone_id == 0) break; // เจอเลข 0 ปุ๊บ สั่งหยุดลูปทันที
+				
+				// ใช้คำสั่ง countitem แบบ Pinky เพื่อเช็กว่าในตัวผู้เล่นมีหินก้อนนี้ไหม
+				if (countitem(.@stone_id) > 0) {
+					.@user_stones[.@count] = .@stone_id;
+					.@menu$ += "- " + getitemname(.@stone_id) + ":";
+					.@count++;
+				}
+			}
+			
+			if (.@count == 0) {
+				mes "[ช่างออฟคอสตูม]";
+				mes "ไม่พบหินออฟคอสตูมในกระเป๋าเสื้อของคุณเลยเหมียว!";
+				close;
+			}
+			
+			.@select_stone = select(.@menu$) - 1;
+			.@chosen_stone_id = .@user_stones[.@select_stone];
+			
+			// =========================================================================
+			
+			mes "[ช่างออฟคอสตูม]";
+			mes "ยืนยันการใช้ ^008800" + getitemname(.@chosen_stone_id) + "^000000 ยัดใส่ " + getitemname(.@equip_id) + " ใช่ไหม?";
+			next;
+			
+			if (select("- ใช่! ลุยเลยเหมียว:- ไม่ล่ะ เปลี่ยนใจแล้ว") == 2) {
+				close;
+			}
+			
+			if (countitem(.@chosen_stone_id) < 1) {
+				mes "[ช่างออฟคอสตูม]";
+				mes "อ้าว หินหายไปไหนแล้ว? เช็กในกระเป๋าอีกทีซิ!";
+				close;
+			}
+			
+			// สเต็ปการสลับไอเทมถอดแบบมาจากวิชาของ Pinky 100%
+			.@equip_refine = getequiprefinerycnt(.@equip_slot); 
+			.@c1 = getequipcardid(.@equip_slot, 0);
+			.@c2 = getequipcardid(.@equip_slot, 1);
+			.@c3 = getequipcardid(.@equip_slot, 2);
+			.@c4 = getequipcardid(.@equip_slot, 3);
+
+			delequip .@equip_slot; // ทำลายไอเทมคาตัวแบบ Pinky
+			delitem .@chosen_stone_id, 1; // ลบหินออฟชั่นในกระเป๋า 1 ก้อน
+
+			// เสกกลับคืนเข้ากระเป๋า ยัด ID หินออฟเข้าที่สล็อตแรกสุด (.@chosen_stone_id)
+			getitem2 .@equip_id, 1, 1, .@equip_refine, 0, .@chosen_stone_id, .@c2, .@c3, .@c4;
+			
+			specialeffect2 EF_REPAIRWEAPON; // ควันสีฟ้าซ่อมไอเทมขึ้นหัวแบบ Pinky
+			mes "[ช่างออฟคอสตูม]";
+			mes "เรียบร้อยแล้วเหมียว! หินถูกหลอมรวมเข้ากับคอสตูมเรียบร้อย!";
+			mes "ข้าส่งไอเทมกลับเข้ากระเป๋าของท่านแล้ว ลองเปิดดูได้เลยเหมียว~";
+			close;
+	}
+}
+
+morocc,134,108,4	duplicate(costume_enchant)	Costume Enchant#mor	100
