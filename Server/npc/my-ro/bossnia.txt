@@ -1,0 +1,166 @@
+//=============================== MVP ===============================
+bossnia_01,0,0	monster	Amon Ra	1511,1
+bossnia_01,0,0	monster	Angry Student Pyuriel	2249,1
+bossnia_01,0,0	monster	Atroce	1785,1
+//bossnia_01,0,0	monster	Awakened Ferre	3073,1
+bossnia_01,0,0	monster	Baphomet	1039,1
+bossnia_01,0,0	monster	Beelzebub	1874,1
+//bossnia_01,0,0	monster	Bijou	3450,1
+bossnia_01,0,0	monster	Boitata	2068,1
+//bossnia_01,0,0	monster	Brinaranea	3091,1
+//bossnia_01,0,0	monster	Buwaya	2319,1
+//bossnia_01,0,0	monster	Captain Ferloc	3181,1
+//bossnia_01,0,0	monster	Celine Kimi	2996,1
+//bossnia_01,0,0	monster	Charleston 3	3124,1
+bossnia_01,0,0	monster	Dark Guardian Kades	2255,1
+bossnia_01,0,0	monster	Dark Lord	1272,1
+//bossnia_01,0,0	monster	Despair God Morocc	3097,1
+bossnia_01,0,0	monster	Detardeurus	1719,1
+//bossnia_01,0,0	monster	Demigod	3096,1
+bossnia_01,0,0	monster	Doppelganger	1046,1
+bossnia_01,0,0	monster	Dracula	1389,1
+bossnia_01,0,0	monster	Drake	1112,1
+bossnia_01,0,0	monster	Eddga	1115,1
+bossnia_01,0,0	monster	Evil Snake Lord	1418,1
+//bossnia_01,0,0	monster	Faceworm Queen	2529,1
+bossnia_01,0,0	monster	Falling Bishop	1871,1
+bossnia_01,0,0	monster	Garm	1252,1
+bossnia_01,0,0	monster	General Daehyun	2253,1
+bossnia_01,0,0	monster	Gioia	2251,1
+bossnia_01,0,0	monster	Gloom Under Night	1768,1
+//bossnia_01,0,0	monster	Gold Queen Scaraba	2165,1
+bossnia_01,0,0	monster	Golden Thief Bug	1086,1
+bossnia_01,0,0	monster	Gopinich	1885,1
+bossnia_01,0,0	monster	Ifrit	1832,1
+bossnia_01,0,0	monster	Kiel D-01	1734,1
+//bossnia_01,0,0	monster	King of the Alley	2442,1
+bossnia_01,0,0	monster	Kraken	2202,1
+bossnia_01,0,0	monster	Ktullanux	1779,1
+bossnia_01,0,0	monster	Kublin	1980,1
+bossnia_01,0,0	monster	Lady Tanee	1688,1
+bossnia_01,0,0	monster	Leak	2156,1
+bossnia_01,0,0	monster	Lord of the Dead	1373,1
+bossnia_01,0,0	monster	Maya	1147,1
+bossnia_01,0,0	monster	Mistress	1059,1
+bossnia_01,0,0	monster	Moonlight Flower	1150,1
+//bossnia_01,0,0	monster	Morocc Necromancer	3000,1
+//bossnia_01,0,0	monster	Muspellskoll	3092,1
+//bossnia_01,0,0	monster	Nidhoggur's Shadow	2022,1
+//bossnia_01,0,0	monster	Nightmare Amon Ra	2362,1
+//bossnia_01,0,0	monster	Nightmare Baphomet	2483,1
+bossnia_01,0,0	monster	Orc Hero	1087,1
+bossnia_01,0,0	monster	Orc Lord	1190,1
+bossnia_01,0,0	monster	Osiris	1038,1
+bossnia_01,0,0	monster	Pharaoh	1157,1
+bossnia_01,0,0	monster	Phreeoni	1159,1
+bossnia_01,0,0	monster	Queen Scaraba	2087,1
+//bossnia_01,0,0	monster	Reaper Yanku	3029,1
+bossnia_01,0,0	monster	RSX-0806	1623,1
+bossnia_01,0,0	monster	Samurai Specter	1492,1
+//bossnia_01,0,0	monster	Stefan.J.E.Wolf	3473,1
+bossnia_01,0,0	monster	Stormy Knight	1251,1
+bossnia_01,0,0	monster	Tao Gunka	1583,1
+bossnia_01,0,0	monster	Thanatos Phantom	1708,1
+//bossnia_01,0,0	monster	The Last One	2441,1
+//bossnia_01,0,0	monster	Time Holder	3074,1
+bossnia_01,0,0	monster	Turtle General	1312,1
+//bossnia_01,0,0	monster	T_W_O	3254,1
+bossnia_01,0,0	monster	Valkyrie Randgris	1751,1
+bossnia_01,0,0	monster	Vesper	1685,1
+bossnia_01,0,0	monster	White Lady	1630,1
+bossnia_01,0,0	monster	Wounded Morroc	1917,1
+//=============================== Biolab MVP ===============================
+/*bossnia_01,0,0	monster	Assassin Cross Eremes	1647,1
+bossnia_01,0,0	monster	Champion Chen	2238,1
+bossnia_01,0,0	monster	Clown Alphoccio	2240,1
+bossnia_01,0,0	monster	Creator Flamel	2236,1
+bossnia_01,0,0	monster	Egnigem Cenia	1658,1
+bossnia_01,0,0	monster	Gypsy Trentini	2241,1
+bossnia_01,0,0	monster	High Priest Magaleta	1649,1
+bossnia_01,0,0	monster	High Wizard Katrinn	1651,1
+bossnia_01,0,0	monster	Lord Knight Seyren	1646,1
+bossnia_01,0,0	monster	Mastersmith Howard	1648,1
+bossnia_01,0,0	monster	Paladin Randel	2235,1
+bossnia_01,0,0	monster	Professor Celia	2237,1
+bossnia_01,0,0	monster	Sniper Cecil	1650,1
+bossnia_01,0,0	monster	Stalker Gertie	2239,1
+//=============================== Biolab Mini ===============================
+bossnia_01,0,0	monster	Alphoccio Basil	3231,3
+bossnia_01,0,0	monster	Arch Bishop Margaretha	3221,3
+bossnia_01,0,0	monster	Assassin Cross Eremes	1641,3
+bossnia_01,0,0	monster	Celia Alde	3228,3
+bossnia_01,0,0	monster	Chen Liu	3229,3
+bossnia_01,0,0	monster	Eremes Guille	3208,3
+bossnia_01,0,0	monster	Flamel Emule	3227,3
+bossnia_01,0,0	monster	Genetic Flamel	3241,3
+bossnia_01,0,0	monster	Gertie Wie	3230,3
+bossnia_01,0,0	monster	Guillotine Cross Eremes	3220,3
+bossnia_01,0,0	monster	Irene Elder	2542,3
+bossnia_01,0,0	monster	Margaretha Sorin	3209,3
+bossnia_01,0,0	monster	Harword Alt-Eisen	3212,3
+bossnia_01,0,0	monster	Kathryne Cheiron	3210,3
+bossnia_01,0,0	monster	Mechanic Howard	3223,3
+bossnia_01,0,0	monster	Minstrel Alphoccio	3245,3
+bossnia_01,0,0	monster	Randel Lawrence	3226,3
+bossnia_01,0,0	monster	Ranger Cecil	3222,3
+bossnia_01,0,0	monster	Royal Guard Randel	3233,3
+bossnia_01,0,0	monster	Rune Knight Seyren	3225,3
+bossnia_01,0,0	monster	Seyren Windsor	3213,3
+bossnia_01,0,0	monster	Shadow Chaser Gertie	3244,3
+bossnia_01,0,0	monster	Shecil Damon	3211,3
+bossnia_01,0,0	monster	Sorcerer Celia	3242,3
+bossnia_01,0,0	monster	Sura Chen	3243,3
+bossnia_01,0,0	monster	Wanderer Trentin	3246,3
+bossnia_01,0,0	monster	Warlock Kathryne	3224,3*/
+//=============================== Mini ===============================
+//bossnia_01,0,0	monster	1st Commander of Destruction	2473,1
+//bossnia_01,0,0	monster	2nd Commander of Destruction	2474,1
+//bossnia_01,0,0	monster	Amdarias	2476,1
+//bossnia_01,0,0	monster	Ancient Gigantes	3196,1
+//bossnia_01,0,0	monster	Ancient Medium Gigantes	3193,1
+bossnia_01,0,0	monster	Angeling	1096,3
+bossnia_01,0,0	monster	Arc Angeling	1388,3
+//bossnia_01,0,0	monster	Bakonawa	2320,1
+//bossnia_01,0,0	monster	Bangungot	2317,1
+//bossnia_01,0,0	monster	Bow Guardian	1830,1
+bossnia_01,0,0	monster	Cat o' Nine Tails	1307,1
+//bossnia_01,0,0	monster	Dark Coelacanth	2187,1
+bossnia_01,0,0	monster	Dark Illusion	1302,1
+bossnia_01,0,0	monster	Deviling	1582,3
+bossnia_01,0,0	monster	Dragon Fly	1091,3
+//bossnia_01,0,0	monster	Dwigh	2562,1
+bossnia_01,0,0	monster	Eclipse	1093,3
+//bossnia_01,0,0	monster	Fay Kanavian	2563,1
+//bossnia_01,0,0	monster	Fenrir	2564,1
+bossnia_01,0,0	monster	Gemini-S58	1681,3
+bossnia_01,0,0	monster	Ghostring	1120,3
+//bossnia_01,0,0	monster	Giant Octopus	2194,11
+//bossnia_01,0,0	monster	Gigantes	3192,1
+//bossnia_01,0,0	monster	Weird Coelacanth	2188,1
+//bossnia_01,0,0	monster	Gryphon	1259,3
+//bossnia_01,0,0	monster	Hardrock Mammoth	1990,1
+//bossnia_01,0,0	monster	Hydrolancer	1720,1
+//bossnia_01,0,0	monster	Jitterbug	3108,1
+//bossnia_01,0,0	monster	King Dramoh	2198,1
+//bossnia_01,0,0	monster	Large Gigantes	3194,1
+bossnia_01,0,0	monster	Mastering	1090,1
+bossnia_01,0,0	monster	Maya Purple	1289,3
+//bossnia_01,0,0	monster	Mechaspider	3741,1
+//bossnia_01,0,0	monster	Mutant Coelacanth	2189,1
+//bossnia_01,0,0	monster	Naght Sieger	1956,1
+//bossnia_01,0,0	monster	Owl Baron	1295,1
+//bossnia_01,0,0	monster	Owl Duke	1320,1
+//bossnia_01,0,0	monster	Owl Marquees	2923,1
+//bossnia_01,0,0	monster	Owl Viscount	2921,1
+//bossnia_01,0,0	monster	Pouring	1894,1
+//bossnia_01,0,0	monster	Root of Corruption	2475,1
+//bossnia_01,0,0	monster	Sword Guardian	1829,1
+//bossnia_01,0,0	monster	Tendrillion	1991,1
+bossnia_01,0,0	monster	Toad	1089,1
+//bossnia_01,0,0	monster	Torturous Redeemer	2959,1
+//bossnia_01,0,0	monster	Trentini	3232,1
+bossnia_01,0,0	monster	Vagabond Wolf	1092,1
+bossnia_01,0,0	monster	Valkyrie	1765,1
+//bossnia_01,0,0	monster	Wicked Vice Plant Manager	2988,1
+//bossnia_01,0,0	monster	Wild Rider	2208,1
+//bossnia_01,0,0	monster	Violent Coelacanth	2190,1
