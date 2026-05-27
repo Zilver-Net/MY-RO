@@ -1,7 +1,7 @@
 // ===== rAthena Script ====================================================
 //= MY-RO Costume Enchant Express (Remastered Edition - FIXED)
 // =========================================================================
-// = Developed by ZilverNet & Gemini AI
+// = Developed by ZilverNet / Re-construc by Gemini 3.5 Extended
 // = On date: 27/05/2026
 // =========================================================================
 
