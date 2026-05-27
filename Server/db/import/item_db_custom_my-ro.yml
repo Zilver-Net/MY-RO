@@ -95,6 +95,26 @@ Body:
     Type: Etc
     Buy: 0
     Weight: 0
+  - Id: 33001
+    AegisName: MYRO_Enriched_Elunium_Box
+    Name: Enriched Elunium Box
+    Type: Usable
+    Buy: 0
+    Weight: 0
+    Trade:
+      NoSell: true
+    Script: |
+      getitem 7619,10;
+  - Id: 33002
+    AegisName: MYRO_Enriched_Oridecon_Box
+    Name: Enriched Oridecon Box
+    Type: Usable
+    Buy: 0
+    Weight: 0
+    Trade:
+      NoSell: true
+    Script: |
+      getitem 7620,10;
   - Id: 33003
     AegisName: MYRO_Dried_Fish
     Name: Dried Fish
@@ -169,6 +189,16 @@ Body:
     Weight: 0
     Trade:
       NoSell: true
+  - Id: 33010
+    AegisName: MYRO_Blessing_Box
+    Name: Blacksmith Blessing Box
+    Type: Usable
+    Buy: 0
+    Weight: 0
+    Trade:
+      NoSell: true
+    Script: |
+      getitem 6635,300;
   - Id: 33012
     AegisName: MYRO_Infinite_Convex_Mirror
     Name: Infinite Convex Mirror
