@@ -1,0 +1,9 @@
+guild_vs3	mapflag	pvp_noguild
+
+//bossnia_01	mapflag	noexp
+
+iz_int	mapflag	noteleport
+iz_int	mapflag	noskill
+iz_int	mapflag	notrade
+iz_int	mapflag	nodrop
+iz_int	mapflag	nopenalty

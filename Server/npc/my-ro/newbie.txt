@@ -19,7 +19,7 @@ iz_int,56,11,0	script	intro_to_morocc	WARPNPC,2,2,{
 		callfunc "getstartitem";
 }
 
--	script	levelcheck	-1,{	
+-	script	levelcheck	-,{	
 
 	OnPCBaseLvUpEvent:
 		// Check if player is below level 100 and apply EXP buff if enabled		

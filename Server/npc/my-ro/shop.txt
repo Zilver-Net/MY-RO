@@ -135,8 +135,8 @@ morocc,146,103,6	shop	Potion	910,33003:1500,501:-1,502:-1,503:-1,504:-1,505:-1,6
 morocc,143,102,5	duplicate(Shop_armor)	Armor Shop#mor	1_F_MERCHANT_01
 morocc,140,102,5	duplicate(Shop_weapon)	Weapon Shop#mor	1_F_MERCHANT_02
 morocc,137,102,5	duplicate(Shop_class3)	Class 3 Shop#mor	4_M_KNIGHT_SILVER
-morocc,128,102,5	duplicate(Shop_pethomun)	Homun&Pet Shop#mor	4_M_DOGTRAVELER
-morocc,128,104,5	duplicate(Shop_material)	Material Shop#mor	1_M_HOF
+morocc,117,113,5	duplicate(Shop_pethomun)	Homun&Pet Shop#mor	4_M_DOGTRAVELER
+morocc,125,113,5	duplicate(Shop_material)	Material Shop#mor	1_M_HOF
 
 //switch(select("~ Healing","~ Ore","~ Chemical","~ Third jobs","~ Homunculus","~ Pet","~ Other")) {
 //case 1:	callshop "PotionS",1;	end;

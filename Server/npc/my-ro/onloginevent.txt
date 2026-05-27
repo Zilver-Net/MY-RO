@@ -18,7 +18,7 @@
 //= เพิ่มโค้ดและประกาศสำหรับการแสดงอัตราการได้รับ Item Drop Rate, MVP Drop Rate, Card Drop Rate และ MVP Card Drop Rate ในขณะที่ผู้เล่นเข้าสู่เกม
 //===============================Script==============================\\
 
--	script	checkonlogin	-1,{
+-	script	checkonlogin	-,{
 
 	OnPCLoginEvent:
 		.@exprate = getBattleFlag("base_exp_rate")/100;

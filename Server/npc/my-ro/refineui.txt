@@ -1,4 +1,4 @@
--	script	RefineUI	-1,{
+-	script	RefineUI	-,{
 	refineui();
 	end;
 	

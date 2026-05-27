@@ -38,7 +38,7 @@ function	script	Exccb_Buy	{
 return;
 }
 
-morocc,128,106,6	script	Lucy	581,{
+morocc,121,113,6	script	Lucy	581,{
 	
 	set $@tr$,"^000080[ Lucy ]^000000";
 	mes $@tr$;

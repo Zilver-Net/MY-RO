@@ -1,0 +1,1 @@
+morocc,169,83	monster	Dummy	S_DUMMY_100_NOTHING2,1,5000
