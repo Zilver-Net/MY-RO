@@ -1,4 +1,4 @@
--	script	AutotimeDN	-1,{
+-	script	AutotimeDN	-,{
 end;
 OnInit:
     OnClock0600:
