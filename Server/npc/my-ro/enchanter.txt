@@ -1,8 +1,8 @@
 // ===== rAthena Script ====================================================
-//= MY-RO Costume Enchant Express (Remastered Edition - FIXED)
+//= MY-RO Costume Enchant Express (Remastered Edition - TOTAL FIXED)
 // =========================================================================
-// = Developed by ZilverNet / Re-construc by Gemini 3.5 Extended
-// = On date: 27/05/2026
+// = Developed by ZilverNet / Re-construc by Gemini 3.5 Flash Extended
+// = Updated: 28/05/2026 (Fixed Player Variable Leak & Dupes Exploit)
 // =========================================================================
 
 -	script	Enchanter	-,{
@@ -50,24 +50,27 @@
 		.@item_choice = select(.@menu$);
 		.@part = .@chosen_parts[.@item_choice];
 		
-		@equip_id = getequipid(.@part);
-		.@slots = getitemslots(@equip_id);
+		// [FIXED] เปลี่ยนเป็นตัวแปร .@ ทั้งหมด เพื่อความปลอดภัยสูงสุด
+		.@equip_id = getequipid(.@part);
+		.@slots = getitemslots(.@equip_id);
 		setarray .@equip_card[0], getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
 		.@equip_refine = getequiprefinerycnt(.@part);
 		
 		// แปลงไอดีการ์ด/หินออฟชั่นเป็นข้อความแสดงผล
 		for(.@s = 0; .@s < 4; ++.@s) {
 			if (.@equip_card[.@s] == 0) {
-				@equip_cardname$[.@s] = "^777777ว่าง^000000";
+				.@equip_cardname$[.@s] = "^777777ว่าง^000000";
 			} else {
-				@equip_cardname$[.@s] = "^0000FF" + getitemname(.@equip_card[.@s]) + "^000000";
+				.@equip_cardname$[.@s] = "^0000FF" + getitemname(.@equip_card[.@s]) + "^000000";
 			}
 		}
 
 		next; // เติม next กั้นตรงนี้ เพื่อให้มันตัดหน้าขึ้นกระดานแสดงรายละเอียดแบบคลีน ๆ
 		mes .npc_name$;
 		mes "รายละเอียดไอเท็มที่ท่านได้เลือก:";
-		callsub L_ShowEquipDetails; // เรียกใช้ฟังก์ชันย่อยแสดงผลสล็อต
+		
+		// [FIXED] ส่งค่าผ่าน Argument ไปยัง callsub ป้องกันบัค Scope และป้องกันข้อมูลสูญหาย
+		callsub L_ShowEquipDetails, .@equip_id, .@equip_cardname$[0], .@equip_cardname$[1], .@equip_cardname$[2], .@equip_cardname$[3]; 
 		next;            
 		
 		if (select("~ ยืนยัน:~ เลือกใหม่") == 2) { 
@@ -117,7 +120,7 @@
 		// ลูปสร้างเมนูกดเลือก Slot 1-4 แบบอัตโนมัติ
 		.@slot_menu$ = "";
 		for(.@i = 0; .@i < 4; ++.@i) {
-			.@slot_menu$ += "~ Slot ที่ " + (.@i + 1) + " [ " + @equip_cardname$[.@i] + " ]:";
+			.@slot_menu$ += "~ Slot ที่ " + (.@i + 1) + " [ " + .@equip_cardname$[.@i] + " ]:";
 		}
 		.@slot_menu$ += "~ ขอกลับไปเลือกหินออฟชั่นใหม่";
 
@@ -132,8 +135,8 @@
 
 		mes .npc_name$;
 		mes "ยืนยันการใช้ [ <ITEM>"+ getitemname(.@chosen_stone_id)+"<INFO>"+.@chosen_stone_id+"</INFO></ITEM> ]";
-		mes "ในไอเท็ม [ ^0000FF" + getitemname(@equip_id) + "^000000 ]";
-		mes "ที่ Slot ["+(1+.@chosen_slot)+"] : [ "+@equip_cardname$[.@chosen_slot]+" ]";
+		mes "ในไอเท็ม [ ^0000FF" + getitemname(.@equip_id) + "^000000 ]";
+		mes "ที่ Slot ["+(1+.@chosen_slot)+"] : [ "+.@equip_cardname$[.@chosen_slot]+" ]";
 		
 		// ระบบตรวจจับสล็อตไม่ว่าง แจ้งเตือนก่อนหลอมรวมจริง
 		if (.@equip_card[.@chosen_slot] != 0) {
@@ -151,14 +154,14 @@
 			close;
 		}
 
-		// ทำการถอดและลบไอเทม
-		delequip .@part;
-		delitem .@chosen_stone_id, 1;
-		
-		// อัปเดตข้อมูลสล็อตและเสกกลับคืนเข้าตัวผู้เล่น
-		.@equip_card[.@chosen_slot] = .@chosen_stone_id;
-		getitem2 @equip_id, 1, 1, .@equip_refine, 0, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3];
-		equip @equip_id;
+		// ทำการถอดไอเทม (ในเซิร์ฟนี้ระบบจะจัดการเคลียร์ยอดให้เอง)
+        delequip .@part;
+        delitem .@chosen_stone_id, 1; // ลบหินออฟชั่นออกจากกระเป๋า
+        
+        // อัปเดตข้อมูลสล็อตและเสกกลับคืนเข้าตัวผู้เล่น
+        .@equip_card[.@chosen_slot] = .@chosen_stone_id;
+        getitem2 .@equip_id, 1, 1, .@equip_refine, 0, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3];
+        equip .@equip_id;
 		
 		specialeffect2 EF_REPAIRWEAPON;
 		mes .npc_name$;
@@ -171,12 +174,13 @@
 		end;
 
 	// =========================================================================
-	// [ฟังก์ชันย่อย] สำหรับแสดงผลรายละเอียดไอเทมและสล็อต ลดโค้ดซ้ำซ้อน
+	// [ฟังก์ชันย่อย] ดึงข้อมูลผ่านมาทาง getarg() ปลอดภัย ไร้บัคตัวแปรเอ๋อ
 	// =========================================================================
 	L_ShowEquipDetails:
-		mes "ชื่อไอเท็ม: [ ^0000FF" + getitemname(@equip_id) + "^000000 ]";
+		.@sub_equip_id = getarg(0);
+		mes "ชื่อไอเท็ม: [ ^0000FF" + getitemname(.@sub_equip_id) + "^000000 ]";
 		for(.@i = 0; .@i < 4; ++.@i) {
-			mes "Slot ที่ " + (.@i + 1) + ": [ " + @equip_cardname$[.@i] + " ]";
+			mes "Slot ที่ " + (.@i + 1) + ": [ " + getarg(.@i + 1) + " ]";
 		}
 		return;
 
