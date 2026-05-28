@@ -7,12 +7,12 @@
 
 -	script	Enchanter	-,{
 	disable_items;
-
-	mes .npc_name$;
-	mes "โปรดเลือกโหมดการ Enchant";
 	selectequipmode:
-	.@mode = select("~ อุปกรณ์สวมใส่","~ Costume");
-	
+		mes .npc_name$;
+		mes "โปรดเลือกโหมดการ Enchant";
+		
+		.@mode = select("~ อุปกรณ์สวมใส่","~ Costume");
+		
 		// ล้างค่าตัวแปรก่อนเริ่มสร้างเมนูทุกครั้งเพื่อกันบัคเมนูเบิ้ล
 		.@menu$ = "";
 		.@equipped = 0;
@@ -104,15 +104,14 @@
 			mes "ไม่พบหินออฟชั่นในกระเป๋าของท่านเลย!";
 			close;
 		}
-		
+	
 		// [FIXED] แยกคำสั่ง select ของหินออฟชั่นออกจากตัวแปรอาร์เรย์เช่นกัน
 		.@stone_choice = select(.@menu$) - 1;
 		.@chosen_stone_id = .@user_stones[.@stone_choice];
-		
+	selectslot:	
 		mes .npc_name$;
 		mes "ท่านเลือกหินออฟชั่น: [ <ITEM>"+ getitemname(.@chosen_stone_id)+"<INFO>"+.@chosen_stone_id+"</INFO></ITEM> ]";
 		mes "โปรดเลือก Slot ที่ต้องการจะใส่หินออฟชั่น";
-		callsub L_ShowEquipDetails; // เรียกใช้ฟังก์ชันย่อยแสดงผลสล็อตจุดที่ 2
 		next;
 		
 		// ลูปสร้างเมนูกดเลือก Slot 1-4 แบบอัตโนมัติ
@@ -159,11 +158,17 @@
 		// อัปเดตข้อมูลสล็อตและเสกกลับคืนเข้าตัวผู้เล่น
 		.@equip_card[.@chosen_slot] = .@chosen_stone_id;
 		getitem2 @equip_id, 1, 1, .@equip_refine, 0, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3];
+		equip @equip_id;
 		
 		specialeffect2 EF_REPAIRWEAPON;
 		mes .npc_name$;
 		mes "ดำเนินการเสร็จสิ้น";
-		close;
+		mes "ต้องการจะดำเนินการต่อหรือไม่ ?";
+		next;
+		if (select("~ ยืนยัน:~ ไม่ล่ะ เปลี่ยนใจแล้ว") == 1) {
+			goto selectequipmode;
+		}
+		end;
 
 	// =========================================================================
 	// [ฟังก์ชันย่อย] สำหรับแสดงผลรายละเอียดไอเทมและสล็อต ลดโค้ดซ้ำซ้อน
