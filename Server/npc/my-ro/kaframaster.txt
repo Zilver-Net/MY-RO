@@ -89,7 +89,7 @@
 			//set .@prizeresetstat,BaseLevel*1000;
 			//set .@prizeresetsskill,JobLevel*1000;
 			dispbottom "กรุณาเลือกการรีเซทที่ต้องการค่ะ";
-			switch(select("~ Status:~ Skill")) {
+			switch(select("~ Status & Traits Status:~ Skill")) {
 				case 1:
 					/*if (zeny < .@prizeresetstat) {
 						dispbottom "ท่านมีเงินไม่พอ";
@@ -110,7 +110,7 @@
 					} else
 						set zeny,zeny-=.@prizeresetsskill;*/
 						resetskill;
-						if(IsReBirth) { set skillpoint,skillpoint+98; }					
+						if(IsReBirth) { set skillpoint,skillpoint+107; }					
 						dispbottom "ดำเนินการเรียบร้อยค่ะ";
 						cutin "",255;
 						end;
