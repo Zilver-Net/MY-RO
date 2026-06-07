@@ -131,7 +131,7 @@
 		setarray .DropCoin[0],1500,6,33999;							// Drop Rate 15.00%, Max Amount 6, Gold Coin
 		setarray .DropBlessing[0],100,3,6635;						// Drop Rate 1.00%, Max Amount 3, Blacksmith Blessing
 		setarray .DropToken[0],20,3,7621;							// Drop Rate 0.20%, Max Amount 3, Token Of Siegfried
-		setarray .DropAngpaw[0],100,3,33004;						// Drop Rate 1.00%, Max Amount 3, Angpaw
+		setarray .DropAngpaw[0],500,3,33004;						// Drop Rate 5.00%, Max Amount 3, Angpaw
 		setarray .DropTicket[0],10,3,6673;							// Drop Rate 0.10%, Max Amount 3, Bossnia Ticket
 		setarray .DropHP[0],2000,3,33003;							// Drop Rate 20.00%, Max Amount 3, Dried Fish
 		setarray .DropBox[0],20,1,33005,33006,33007,33008;			// Drop Rate 0.20%, Max Amount 1, Costume Box
