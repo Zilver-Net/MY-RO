@@ -1,3 +1,11 @@
+// ===== rAthena Script ====================================================
+//= MY-RO Refine system (Just a simple NPC that call func refineui. thanks for rAthena.)
+// =========================================================================
+//= Developed by ZilverNet
+//= Date: N/A
+// ===== Update detailed ===================================================
+// ===== Script ============================================================
+
 -	script	RefineUI	-,{
 	refineui();
 	end;
