@@ -1,9 +1,10 @@
 // ===== rAthena Script ====================================================
-//= MY-RO Refine system (Just a simple NPC that call func refineui. thanks for rAthena.)
-// =========================================================================
-//= Developed by ZilverNet
-//= Date: N/A
-// ===== Update detailed ===================================================
+// = MY-RO Refine system (Just a simple NPC that call func refineui. thanks for rAthena.)
+// ===== Developed By: =====================================================
+// = ZilverNet
+// ===== Date: =============================================================
+// = N/A
+// ===== Update detailed: ==================================================
 // ===== Script ============================================================
 
 -	script	RefineUI	-,{
@@ -14,5 +15,7 @@
 		waitingroom "    :: �պǡ ::", 0; 
 		end;
 }
+
+// ===== Duplicates ========================================================
 
 morocc,131,104,6	duplicate(RefineUI)	Refine#mor	63

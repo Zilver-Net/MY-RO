@@ -1,28 +1,37 @@
-//===== rAthena/Hercules Script =======================================
-//= Single NPC reloader
-//===== By: ==================================================
-//= luizragna
-//===== Current Version: =====================================
-//= 1.0
-//===== Description: =========================================
-//= Use @r <npc_name>
-//= To reload a single npc
-//= Sample-1:
-//= to reload npc/custom/jobmaster.txt
-//= use @r jobmaster
-//= Sample-2:
-//= to reload npc/custom/events/poring_race.txt
-//= use @r events/poring_race
-//===== Additional Comments: =================================
-//= 1.0 First release.
-//============================================================
-// Custom by ZilverNet
-//========Update Detail========
-//= V. 1.0
-//= ปรับโค้ดให้เข้ากับเซิฟเวอร์ใหม่
-//==============================Script==============================\\
+// ===== rAthena/Hercules Script =======================================
+// = Single NPC reloader
+// ===== By: ==================================================
+// = luizragna
+// ===== Current Version: =====================================
+// = 1.0
+// ===== Description: =========================================
+// = Use @r <npc_name>
+// = To reload a single npc
+// = Sample-1:
+// = to reload npc/custom/jobmaster.txt
+// = use @r jobmaster
+// = Sample-2:
+// = to reload npc/custom/events/poring_race.txt
+// = use @r events/poring_race
+// ===== Additional Comments: =================================
+// = 1.0 First release.
+// ============================================================
 
--	script	Reloader#OP	-,{
+// ===== rAthena Script ====================================================
+// = MY-RO Reload NPC system
+// ===== Authored By: ======================================================
+// = luizragna
+// ===== Customised By: ====================================================
+// = ZilverNet
+// ===== Date: =============================================================
+// = N/A
+// ===== Update detailed: ==================================================
+// = V. 1.0
+// = ปรับโค้ดให้เข้ากับเซิฟเวอร์ใหม่
+// = V. 2.0 (2026-05-29) [Refactor by Gemini 3.5 Flash Extended]
+// ===== Script ============================================================
+
+-	script	Reloader	-,{
 
 	OnInit:
 		bindatcmd "r", strnpcinfo(3)+"::OnAtcommandReload", 0;
@@ -45,7 +54,7 @@
 		end;
 }
 
-//============================== Original ==============================\\
+// ===== Original Script ===================================================
 /*
 -	script	Reloader#OP	FAKE_NPC,{
 

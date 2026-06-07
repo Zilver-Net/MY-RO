@@ -1,42 +1,31 @@
-//===== rAthena Script ======================================= 
-//= Warper
-//===== Description: ========================================= 
-//= A complete - but very condensed - warper script.
-//===== Additional Comments: =================================
-//= 1.0 Initial script By [Euphy].
-//= 1.1 Added missing duplicates and fixed coordinates.
-//=     Some coordinates written by [Tekno-Kanix] and [ToastOfDoom].
-//= 1.2 Added new episodes and simplified functions.
-//= 1.3 Added Renewal checks and Instances menu.
-//=     Aligned coordinates with @go.
-//= 1.4 Added new Guild Dungeons.
-//= 1.4a Slight edits.
-//= 1.4b Added Wolfchev's Laboratory warp.
-//= 1.5 Added Lasagna ,Para Market ,WOE TE ,Instances and settings [sader1992].
-//= 1.5a Fix Bifrost Tower
-//============================================================
-//Custom By ZilverNet
-//========Update Detail========
-//= V. 1.0
-//= ปรับแต่งสคริปวาร์ปให้เข้ากับตัวเซิฟเวอร์
-//= เพิ่มเมนูวาร์ปใหม่ๆที่ต้องการให้วาร์ปได้อย่างง่ายดาย
-//= แปลเมนูวาร์ปเป็นภาษาไทยเพื่อให้ง่ายต่อการใช้งาน
-//= เพิ่มระบบตรวจเช็ค Butterfly Wings และหักเงินพร้อมให้ 1 ชิ้นก่อนวาร์ปหากไม่มี
-//= V. 1.1
-//= แก้ไขไอเท็มที่ใช้ในการวาร์ปเข้า Bossnia และ Bossnia Hell ให้เป็นตัวแปรเพื่อให้ง่ายต่อการแก้ไขในอนาคต
-//= แก้ไข massage เป็น dispbottom เพื่อให้แสดงข้อความที่ด้านล่างของหน้าจอแทน
-//==============================Script==============================\\
+// ===== rAthena Script ====================================================
+// = MY-RO Exchange Gold Coin to Cash Points system
+// ===== Authored By: ======================================================
+// = rAthena Project
+// ===== Customised By: ====================================================
+// = ZilverNet
+// ===== Date: =============================================================
+// = N/A
+// ===== Update detailed: ==================================================
+// = V. 1.0
+// = ปรับแต่งสคริปวาร์ปให้เข้ากับตัวเซิฟเวอร์
+// = เพิ่มเมนูวาร์ปใหม่ๆที่ต้องการให้วาร์ปได้อย่างง่ายดาย
+// = แปลเมนูวาร์ปเป็นภาษาไทยเพื่อให้ง่ายต่อการใช้งาน
+// = เพิ่มระบบตรวจเช็ค Butterfly Wings และหักเงินพร้อมให้ 1 ชิ้นก่อนวาร์ปหากไม่มี
+// = V. 1.1
+// = แก้ไขไอเท็มที่ใช้ในการวาร์ปเข้า Bossnia และ Bossnia Hell ให้เป็นตัวแปรเพื่อให้ง่ายต่อการแก้ไขในอนาคต
+// = แก้ไข massage เป็น dispbottom เพื่อให้แสดงข้อความที่ด้านล่างของหน้าจอแทน
+// ==============================Script==============================\\
 
 -	script	Warper	-,{
-function Go; function Disp; function Pick; function Restrict;
+	function Go; function Disp; function Pick; function Restrict;
 
 // --------------------------------------------------
 //	Main Menu:
 // --------------------------------------------------
-	
 
 	cutin "ep172_alpha",2;
-	menu	"Last Warp ^777777["+lastwarp$+"]^000000",-,
+	menu	"~ Last Warp ^777777["+lastwarp$+"]^000000",-,
 			"~ Towns",Towns,
 			"~ Fields",Fields,
 			"~ Dungeons",Dungeons,

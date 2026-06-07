@@ -1,12 +1,14 @@
 // ===== rAthena Script ====================================================
-//= MY-RO Enchant Grade system (Just a simple NPC that call func enchantgradeui. thanks for rAthena.)
-// =========================================================================
-//= Developed by ZilverNet
-//= Date: 2026-06-07
-// ===== Update detailed ===================================================
+// = MY-RO Enchant Grade system (Just a simple NPC that call func enchantgradeui. thanks for rAthena.)
+// ===== Developed By: =====================================================
+// = ZilverNet
+// ===== Date: =============================================================
+// = 2026-06-07
+// ===== Update detailed: ==================================================
 // ===== Script ============================================================
 
 -   script  Enchant_Grade_UI   -,{
+	
     enchantgradeui();
     end;
 
@@ -14,5 +16,7 @@
 		waitingroom "    :: Grading ::", 0; 
 		end;
 }
+
+// ===== Duplicates ========================================================
 
 morocc,131,101,6	duplicate(Enchant_Grade_UI)	Grading#mor	63

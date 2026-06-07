@@ -1,9 +1,13 @@
 // ===== rAthena Script ====================================================
-//= MY-RO All Non-Drop equipment shop
-// =========================================================================
-// = Developed by ZilverNet
-// = On date: 27/05/2026
-// =========================================================================
+// = MY-RO All Non-Drop equipment shop
+// ===== Developed By: =====================================================
+// = ZilverNet
+// ===== Date: =============================================================
+// = N/A
+// ===== Update detailed: ===================================================
+// = V. 2.0 (2026-05-29) [Refactor by Gemini 3.5 Flash Extended]
+// = Update new item
+// ===== Script ============================================================
 
 -	script	Headgear_Cash	-,{
 	switch(select("~ Upper Headgear","~ Middle Headgear","~ Lower Headgear","~ Headgear All")) {
@@ -812,9 +816,8 @@
 	OnInit: waitingroom ":: Others Cash ::",0;	end;
 }
 
-// ==========================================================
-// Duplicate Zone
-// ==========================================================
+// ===== Duplicates ========================================================
+
 morocc,143,90,7	duplicate(Headgear_Cash)	Headgear Cash#mor	442
 morocc,139,90,7	duplicate(Accessory_Cash)	Accessory Cash#mor	443
 morocc,139,87,8	duplicate(Equipment_Cash)	Equipment Cash#mor	436

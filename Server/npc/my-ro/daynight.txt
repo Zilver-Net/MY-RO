@@ -1,10 +1,23 @@
+// ===== rAthena Script ====================================================
+// = MY-RO Day/Night cycle system
+// ===== Authored By: ======================================================
+// = rAthena Project
+// ===== Customised By: ====================================================
+// = ZilverNet
+// ===== Date: =============================================================
+// = N/A
+// ===== Update detailed: ==================================================
+// ===== Script ============================================================
+
 -	script	AutotimeDN	-,{
-end;
-OnInit:
-    OnClock0600:
-    OnClock1800:
-        set .@hr, gettime(3);
-        if(.@hr >= 6 && .@hr < 18) day; //day
-        else night;
-        end;
+
+    end;
+    
+    OnInit:
+        OnClock0600:
+        OnClock1800:
+            set .@hr, gettime(3);
+            if(.@hr >= 6 && .@hr < 18) day; //day
+            else night;
+            end;
 }

@@ -1,9 +1,11 @@
-// Created by ZilverNet
-//========Update Detail========
-//= V. 1.0
-//= เพิ่มร้านแลกวิญญาณต่าง ๆ สำหรับอาชีพหลักทั้ง 6 อาชีพ
-//= วิญญาณต่าง ๆ สามารถนำไปแลกไอเทมพิเศษได้ที่ร้านค้าในเมือง Morocc
-//==============================Script==============================\\ 
+// ===== rAthena Script ====================================================
+// = MY-RO Soul Shop NPC
+// ===== Developed By: =====================================================
+// = ZilverNet
+// ===== Date: =============================================================
+// = N/A
+// ===== Script ============================================================
+
 
 -	shop	ExchangSoul	-1,33101:100,33102:100,33103:100,33104:100,33105:100,33106:100
 
@@ -38,6 +40,7 @@ return;
 }
 
 morocc,178,101,4	script	Soul Shop	564,{
+
 	switch(select("~ แลก")) {
 		case 1:
 			callfunc "Soul_Shop_Exccb","ExchangSoul",1;
@@ -52,6 +55,7 @@ morocc,178,101,4	script	Soul Shop	564,{
 }
 
 // ============================================ Function Run Shop ===========================================
+
 function	script	Soul_Shop_Exccb	{	npcshopattach getarg(0),1;	callshop getarg(0),1;	end;	}
 
 // ============================================ Function Check Item ==========================================
@@ -144,34 +148,3 @@ function	script	Soul_Exccb_ItemBuy	{
 	set @broken,0;	set @zenyuse, 0;
 	end;
 }
-
-// ----------------------- Itemshop (Notworking) -----------------------
-/*
-morocc,178,101,4	script	Soul Shop	564,{
-    switch(select("~ Acolyte Soul:~ Archer Soul:~ Mage Soul:~ Merchant Soul:~ Sword Man Soul:~ Thief Soul")) {
-        case 1:
-            callshop "ACO_Shop1",1;	end;
-        case 2:
-            callshop "ARC_Shop1",1;	end;
-        case 3:
-            callshop "MAG_Shop1",1;	end;
-        case 4:
-            callshop "MER_Shop1",1;	end;
-        case 5:
-            callshop "SWD_Shop1",1;	end;
-        case 6:
-            callshop "THF_Shop1",1;	end;
-    }		
-    
-	OnInit:
-		waitingroom ":: Soul Shop ::",0;
-		end;
-} 
-
--	Itemshop	SWD_Shop1	-1,6814,33101:100
--	Itemshop	MER_Shop1	-1,6815,33102:100
--	Itemshop	THF_Shop1	-1,6816,33103:100
--	Itemshop	MAG_Shop1	-1,6817,33104:100
--	Itemshop	ARC_Shop1	-1,6818,33105:100
--	Itemshop	ACO_Shop1	-1,6819,33106:100
-*/

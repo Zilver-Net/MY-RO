@@ -1,15 +1,16 @@
 // ===== rAthena Script ====================================================
-//= MY-RO Costume Enchant Express (True Classic Bulletproof)
-// =========================================================================
-// = Developed by Gemini 3.5 Flash Extended / Prompt, Design & Reviewed by ZilverNet
-// = On date: 26/05/2026
-// =========================================================================
-// ===== Update List =======================================================
+// = MY-RO Costume Enchant Express
+// ===== Developed By: =====================================================
+// = Gemini 3.5 Flash Extended
+// ===== Prompted, Designed & Reviewed By: =================================
+// = ZilverNet
+// ===== Date: =============================================================
+// = 26/05/2026
+// ===== Update detailed: ==================================================
 // = V. 1.0
 // = Finished developed phase
 // = V. 1.1
 // = Refine script for server
-// =========================================================================
 // ===== Script ============================================================
 
 -	script	costume_enchant	-,{
@@ -118,5 +119,7 @@
 			close;
 	}
 }
+
+// ===== Duplicates ========================================================
 
 morocc,134,108,4	duplicate(costume_enchant)	Costume Enchant#mor	100

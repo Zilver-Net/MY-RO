@@ -1,34 +1,25 @@
-//===== rAthena Script =======================================
-//= Job Master
-//===== Description: =========================================
-//= A fully functional job changer.
-//===== Additional Comments: =================================
-//= 1.0 Initial script. [Euphy]
-//= 1.1 Fixed reset on Baby job change.
-//= 1.2 Added Expanded Super Novice support and initial Kagerou/Oboro support.
-//= 1.3 Kagerou/Oboro added.
-//= 1.4 Rebellion added.
-//= 1.5 Added option to disable RebirthClass. [mazvi]
-//= 1.6 Added option to get job related equipment on change. [Braniff]
-//= 1.7 Readability changes. Also added BabyExpanded and BabySummoner classes. [Jey]
-//= 1.8 Added option to disable Baby Novice Only but Baby Class can be Enabled [mazvi]
-//= 1.9 Migrate/Integrate to Global Functions Platinum Skills. [mazvi]
-//= 2.0 Added 4th class [Lemongrass]
-//============================================================
-// Custom by ZilverNet
-//========Update Detail========
+// ===== rAthena Script ====================================================
+// = MY-RO Job Master NPC
+// ===== Authored By: ======================================================
+// = rAthena Project
+// ===== Customised By: ====================================================
+// = ZilverNet
+// ===== Date: =============================================================
+// = N/A
+// ===== Update detailed: ==================================================
 //= V. 1.0
 //= แปลสคริปต์เป็นภาษาไทยทั้งหมด
 //= เพิ่ม Duplicate NPC เพื่อให้ง่ายต่อการแก้ไขและปรับแต่งในอนาคต
-//= V. 1.1
+//= V. 1.1 (2026-05-27)
 //= เพิ่มตัวเลือก NoReset เพื่อป้องกันการรีเซ็ตเลเวลเมื่อทำการรีเบิร์ธ
 //= V. 1.2
 //= แก้ไขการรีเซ็ทเลเวลและสกิลเมื่อทำการรีเบิร์ธ เพิ่มค่าเช็คการรีเบิร์ธสำหรับรีเซ็ทสเตตัส
-//= V. 1.3
-//= แก้ไขการเปลี่ยนอาชีพคลาส 4 จากแนวทางใน github
-//==============================Script==============================\\
+//= V. 1.3 (2026-05-30)
+//= แก้ไขการเปลี่ยนอาชีพคลาส 4 จากแนวทางใน Github
+// ===== Script ============================================================
 
--	script	Job_Master	-1,{
+-	script	Job_Master	-,{
+
 	function Get_Job_Equip;
 	// Checks if the Player has the required level.
 	// closes if not, returns if yes
@@ -568,7 +559,6 @@
 		end;
 }
 
-// --------------------------------------------------
-//	Duplicates (Renewal):
-// --------------------------------------------------
+// ===== Duplicates ========================================================
+
 morocc,159,110,4	duplicate(Job_Master)	JobMaster#mor	4_EP18_DEMIFREYA

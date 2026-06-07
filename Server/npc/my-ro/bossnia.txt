@@ -1,4 +1,12 @@
-//=============================== MVP ===============================
+// ===== rAthena Script ====================================================
+// = MY-RO MVP and Mini-Boss Spawns in Bossnia
+// ===== Developed By: =====================================================
+// = ZilverNet
+// ===== Date: =============================================================
+// = N/A
+
+// ===== MVP ===============================================================
+
 bossnia_01,0,0	monster	Amon Ra	1511,1
 bossnia_01,0,0	monster	Angry Student Pyuriel	2249,1
 bossnia_01,0,0	monster	Atroce	1785,1
@@ -69,8 +77,10 @@ bossnia_01,0,0	monster	Valkyrie Randgris	1751,1
 bossnia_01,0,0	monster	Vesper	1685,1
 bossnia_01,0,0	monster	White Lady	1630,1
 bossnia_01,0,0	monster	Wounded Morroc	1917,1
-//=============================== Biolab MVP ===============================
-/*bossnia_01,0,0	monster	Assassin Cross Eremes	1647,1
+/*
+// ===== Biolab MVP ========================================================
+
+bossnia_01,0,0	monster	Assassin Cross Eremes	1647,1
 bossnia_01,0,0	monster	Champion Chen	2238,1
 bossnia_01,0,0	monster	Clown Alphoccio	2240,1
 bossnia_01,0,0	monster	Creator Flamel	2236,1
@@ -84,7 +94,9 @@ bossnia_01,0,0	monster	Paladin Randel	2235,1
 bossnia_01,0,0	monster	Professor Celia	2237,1
 bossnia_01,0,0	monster	Sniper Cecil	1650,1
 bossnia_01,0,0	monster	Stalker Gertie	2239,1
-//=============================== Biolab Mini ===============================
+
+// ===== Biolab Mini-Bosses =================================================
+
 bossnia_01,0,0	monster	Alphoccio Basil	3231,3
 bossnia_01,0,0	monster	Arch Bishop Margaretha	3221,3
 bossnia_01,0,0	monster	Assassin Cross Eremes	1641,3
@@ -111,8 +123,10 @@ bossnia_01,0,0	monster	Shecil Damon	3211,3
 bossnia_01,0,0	monster	Sorcerer Celia	3242,3
 bossnia_01,0,0	monster	Sura Chen	3243,3
 bossnia_01,0,0	monster	Wanderer Trentin	3246,3
-bossnia_01,0,0	monster	Warlock Kathryne	3224,3*/
-//=============================== Mini ===============================
+bossnia_01,0,0	monster	Warlock Kathryne	3224,3
+*/
+// ===== Mini-Bosses =======================================================
+
 //bossnia_01,0,0	monster	1st Commander of Destruction	2473,1
 //bossnia_01,0,0	monster	2nd Commander of Destruction	2474,1
 //bossnia_01,0,0	monster	Amdarias	2476,1
