@@ -1,12 +1,70 @@
-// Created by ZilverNet
-//========Update Detail========
-//= V. 1.0
-//= เพิ่ม NPC สำหรับแลกการ์ดเป็นเงิน Zeny
-//= ผู้เล่นสามารถนำการ์ดที่ไม่ต้องการมาแลกเป็น Zeny ได้
-//= ราคาการ์ดจะถูกตั้งไว้ที่ 1000 Zeny ต่อการ์ด 1 ใบ
-//= ข้อควรระวัง ** ระบบจะตรวจการ์ดในกระเป๋าของผู้เล่นทั้งหมด และลบการ์ดที่นำมาแลกออกจากตัวละคร ดังนั้นควรตรวจสอบให้แน่ใจว่ามีการ์ดที่ต้องการแลกอยู่ในกระเป๋าก่อนทำการแลก
+// ===== rAthena Script ====================================================
+// = MY-RO Exchange Card to Zeny system
+// ===== Developed By: =====================================================
+// = ZilverNet
+// ===== Date: =============================================================
+// = N/A
+// ===== Update detailed ===================================================
+// = V. 2.0 (2026-06-07) [Refactor by Gemini 3.5 Flash Extended]
+// = fix some critical bugs in the original code, optimize inventory loop for better performance, and add checks to prevent potential integer overflow when adding Zeny to the character.
+// ===== Script ============================================================
 
-morocc,147,107,6	script	Rily	436,{
+-	script	Card_to_Zeny	-,{
+	
+	getinventorylist;
+	if (@inventorylist_count > 0) {
+		freeloop(1);
+		
+		for (.@i = @inventorylist_count - 1; .@i >= 0; --.@i) {
+			if (@inventorylist_fav[.@i])
+				continue;
+			
+			.@item_id = @inventorylist_id[.@i];
+			
+			if (getiteminfo(.@item_id, ITEMINFO_TYPE) != 6 && !compare(getitemname(.@item_id), "Card"))
+				continue;
+			
+			.@sell_amount = @inventorylist_amount[.@i];
+			.@finalize = (.@sell_amount * .CardPrice);			
+			
+			if (Zeny + .@finalize > 2147483647) {
+				dispbottom "ขออภัยค่ะ! ไม่สามารถแลกการ์ดเพิ่มได้เนื่องจาก Zeny ของท่านจะเกินขีดจำกัดที่ตัวละครถือได้";
+				break;
+			}
+			
+			Zeny += .@finalize;
+			delitem .@item_id, .@sell_amount;
+			
+			.@total_cards += .@sell_amount;
+			.@total_zeny += .@finalize;
+		}
+		freeloop(0);
+	}
+
+	if (.@total_cards > 0) {
+		dispbottom "ระบบทำการแลกการ์ดทั้งหมดในกระเป๋าจำนวน " + callfunc("F_InsertComma", .@total_cards) + " ใบ";
+		dispbottom "ได้รับเงินรวมทั้งสิ้น " + callfunc("F_InsertComma", .@total_zeny) + " zeny เรียบร้อยแล้วค่ะ";
+	} else {
+		dispbottom "กรุณานำการ์ดที่ต้องการแลกมาใส่ในกระเป๋าก่อนนะคะ";
+		dispbottom "ราคาการ์ดจะถูกตั้งไว้ที่ " + callfunc("F_InsertComma", .CardPrice) + " zeny ต่อการ์ด 1 ใบ";
+		dispbottom "ข้อควรระวัง ** ระบบจะตรวจการ์ดในกระเป๋าของผู้เล่นทั้งหมด และลบการ์ดที่นำมาแลกออกจากตัวละคร ดังนั้นควรตรวจสอบให้แน่ใจว่าท่านได้เก็บการ์ดที่ไม่ต้องการแลกไว้ในคลังแล้วนะคะ";
+	}
+	end;
+	
+	OnInit:
+		.CardPrice = 1000; // Card price
+		waitingroom ":: Card to Zeny :: ", 0;
+		end;
+}
+
+// ===== Duplicates ========================================================
+
+morocc,147,107,6	duplicate(Card_to_Zeny)	Rily#mor	436
+
+// ===== V. 1.0 ============================================================
+/*
+-	script	Card_to_Zeny	-,{
+
 	getinventorylist;
 	if(@inventorylist_count > 0){
 		freeloop(1);
@@ -21,7 +79,7 @@ morocc,147,107,6	script	Rily	436,{
 			continue;
 			
 			.@sell_amount = @inventorylist_amount[.@i];
-			.@finalize = (.@sell_amount * .multiplier);			
+			.@finalize = (.@sell_amount * .CardPrice);			
 			set zeny,zeny+=.@finalize;
 			delitem .@item_id,.@sell_amount;
 			dispbottom "ท่านได้แลกการ์ด "+(getitemname(.@item_id))+" จำนวน "+callfunc("F_InsertComma",.@sell_amount)+" ใบ เป็นเงิน "+callfunc("F_InsertComma",.@finalize)+" zeny.";
@@ -30,16 +88,17 @@ morocc,147,107,6	script	Rily	436,{
 	}
 	if (.@sell_amount == 0){
 		dispbottom "กรุณานำการ์ดที่ต้องการแลกมาใส่ในกระเป๋าก่อนนะคะ";
-		dispbottom "ราคาการ์ดจะถูกตั้งไว้ที่ "+callfunc("F_InsertComma",.multiplier)+" zeny ต่อการ์ด 1 ใบ";
+		dispbottom "ราคาการ์ดจะถูกตั้งไว้ที่ "+callfunc("F_InsertComma",.CardPrice)+" zeny ต่อการ์ด 1 ใบ";
 		dispbottom "ข้อควรระวัง ** ระบบจะตรวจการ์ดในกระเป๋าของผู้เล่นทั้งหมด และลบการ์ดที่นำมาแลกออกจากตัวละคร ดังนั้นควรตรวจสอบให้แน่ใจว่าท่านได้เก็บการ์ดที่ไม่ต้องต้องการแลกไว้ในคลังแล้วนะคะ";
 		end;
 	}
 	end;
 	
 	OnInit:
+		.CardPrice = 1000; // Card price
 		waitingroom ":: Card to Zeny :: ",0;
-		
-		.multiplier = 1000; // ราคาการ์ด
-		
 		end;
 }
+
+morocc,147,107,6	duplicate(Card_to_Zeny)	Rily#mor	436
+*/

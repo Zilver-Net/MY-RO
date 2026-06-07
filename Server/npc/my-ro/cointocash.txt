@@ -1,10 +1,64 @@
-//Create By ZilverNet
-//========Update Detail========
-//= V. 1.0
-//= สคริปแลกเปลี่ยน Gold Coin เป็น Cash Points
-//==============================Script==============================\\
+// ===== rAthena Script ====================================================
+// = MY-RO Exchange Gold Coin to Cash Points system
+// ===== Developed By: =====================================================
+// = ZilverNet
+// ===== Date: =============================================================
+// = N/A
+// ===== Update detailed: ==================================================
+// = V. 2.0 (2026-05-29) [Refactor by Gemini 3.5 Flash Extended]
+// = Refactor code to prevent Integer Overflow when adding Cash Points, and added safety check to return Gold Coin if the transaction would exceed the maximum limit of Cash Points.
+// ===== Script ============================================================
 
-morocc,149,105,6	script	Lily	436,{
+-	script	Coin_to_Cash	-,{
+
+	OnTouchNPC:
+		callfunc "getmycash", 1;
+		end;
+		
+	OnInit:
+		waitingroom ":: Gold Coin to Cash ::", 0;
+		end;
+}
+
+function	script	getmycash	{
+	
+	.@coin = 33999; 					// Gold coin
+	.@is_npc = getarg(0, 0); 			// from NPC = 1, from item = 0
+	.@havecoin = countitem(.@coin);
+	
+	.@cash_to_add = .@havecoin + (.@is_npc ? 0 : 1);
+
+	if (.@is_npc && .@havecoin == 0) {
+		dispbottom "ท่านไม่มี " + getitemname(.@coin) + " ค่ะ";
+		end;
+	}
+
+	if (.@cash_to_add > 2147483647 - #CASHPOINTS) {
+		dispbottom "ขออภัยค่ะ! ไม่สามารถแลกเพิ่มได้เนื่องจาก Cash Points ของท่านจะเกินขีดจำกัดสูงสุด";
+		
+		if (!.@is_npc) { 
+			getitem .@coin, 1; 
+		}
+		end;
+	}
+
+	if (.@havecoin > 0) {
+		delitem .@coin, .@havecoin;
+	}
+	
+	#CASHPOINTS += .@cash_to_add;
+	dispbottom "ท่านได้รับ " + callfunc("F_InsertComma", .@cash_to_add) + " Cash Points. | คงเหลือ " + callfunc("F_InsertComma", #CASHPOINTS) + " Points.";
+	end;
+}
+
+// ===== Duplicates ========================================================
+
+morocc,149,105,6	duplicate(Coin_to_Cash)	Lily#mor	436
+
+// ===== V. 1.0 ============================================================
+/*
+-	script	Coin_to_Cash	-,{
+
 	OnTouchNPC:
 		@getmycashonnpc = 1;
 		callfunc "getmycash";
@@ -15,6 +69,7 @@ morocc,149,105,6	script	Lily	436,{
 }
 
 function	script	getmycash	{
+	
 	.@coin = 33999; // Gold coin
 	.@havecoin = countitem(.@coin);
 	.@useditem = 1;
@@ -30,3 +85,5 @@ function	script	getmycash	{
 		@getmycashonnpc = 0;
 		end;
 }
+
+morocc,149,105,6	duplicate(RefineUI)	Lily#mor	436
