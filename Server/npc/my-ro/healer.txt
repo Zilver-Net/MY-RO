@@ -23,6 +23,8 @@
 //= ปรับปรุงโค้ดบัฟ exp ให้ทำงานผ่านฟังก์ชั่นแยก เพื่อความสะดวกในการปรับแต่งและเรียกใช้งานผ่าน NPC อื่น ๆ
 //= V. 1.3
 //= ปรับปรุงโค้ดให้มีประสิทธิภาพมากขึ้น ง่ายต่อการแก้ไขในอนาคต
+//= V. 1.4
+//= ปรับโค้ดสูตรการคำนวนบัฟ EXP ให้กระชับและง่ายต่อการปรับแก้
 //==============================Script==============================\\
 
 -	script	Healer_master	-1,{
@@ -121,33 +123,22 @@
 
 function	script	getexpbuff	{
 	//============================== Configuration for EXP Buff ==============================\\
+
 	.@IsBuffEXP = 1;												// Also buff EXP? (1: yes / 0: no).
-	.@IsMulEXPLowLVL = 1;											// Also multiplier for low level players (below level 99) (1: yes / 0: no).
-	.@BF_boost = 100;												// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
-	.@BF_Delay = 600000;											// Buff duration, in milliseconds. Default: 600000 (10 minutes)
-	.@MaxLevel = 99;												
-	.@BF_LOWLVLMULT = 1;											// Additional boost for low level players, calculated based on how many levels they are below 99.
-	.@BF_BASELVLMULT = 30;											// Base boost based on player's level, calculated as 10% of their level.
-	.@PCLevel = BaseLevel;											
-	set .@BF_LOWLVLMULT,.@BF_LOWLVLMULT * ((.@MaxLevel - .@PCLevel)/5);	// Additional boost for low level players, calculated based on how many levels they are below 99.
-	set .@BF_BASELVLMULT,(.@BF_BASELVLMULT * .@PCLevel);			// Base boost based on player's level, calculated as 10% of their level.
 
 	//============================== End of Configuration ==============================\\
 
-	if (.@IsMulEXPLowLVL) {
-		if (.@PCLevel < .@MaxLevel) {
-		set .@BF_boost,(.@BF_boost/5) + .@BF_LOWLVLMULT;				// Total boost is the sum of base boost and additional low level boost
-		}
-	}
 	if (.@IsBuffEXP) {
-		set .@BF_EXPMULT,.@BF_boost + .@BF_BASELVLMULT; 			// Total EXP boost is the sum of the calculated boost and the base level multiplier
+		.@BF_DELAY = 600000;										// Buff duration, in milliseconds. Default: 600000 (10 minutes)
+		.@BF_EXPMULT = (BaseLevel * 24) + 176;						// Boost for EXP buff, calculated as dynamic multiplier based on player's level.
 		sc_end SC_EXPBOOST;
 		sc_end SC_JEXPBOOST;
-		sc_start SC_EXPBOOST,.@BF_Delay,.@BF_EXPMULT;
-		sc_start SC_JEXPBOOST,.@BF_Delay,.@BF_EXPMULT;
+		sc_start SC_EXPBOOST,.@BF_DELAY,.@BF_EXPMULT;
+		sc_start SC_JEXPBOOST,.@BF_DELAY,.@BF_EXPMULT;
 	}
 	return;
 }
+
 // Duplicates
 //============================================================
 morocc,151,97,6	duplicate(Healer_master)	Healer#mor	569
