@@ -23,6 +23,14 @@
 		cleararray .@chosen_parts[1], 0, 11;
 		.@menu_idx = 1;
 		next;
+
+		if (.@equipped == 0) {
+			next;
+			mes .npc_name$;
+			mes "^FF0000ตัวละครของท่านไม่ได้สวมใส่ อุปกรณ์ในหมวดนี้อยู่เลย^000000";
+			close;
+		}
+
 		mes .npc_name$;
 		mes "โปรดเลือกอุปกรณ์ที่ต้องการ";
 		
@@ -41,13 +49,6 @@
 			}
 		}
 		
-		if (.@equipped == 0) {
-			next;
-			mes .npc_name$;
-			mes "^FF0000ตัวละครของท่านไม่ได้สวมใส่อุปกรณ์ในหมวดนี้อยู่เลย^000000";
-			close;
-		}
-
 		.@item_choice = select(.@menu$);
 		.@part = .@chosen_parts[.@item_choice];
 		
