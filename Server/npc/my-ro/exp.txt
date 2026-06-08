@@ -16,6 +16,37 @@ function	script	getexpbuff	{
 	if (.@BuffEXP) {												
 		.@BF_BOOST = 100;													// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
 		.@BF_DELAY = 600000;												// 60000 = 1 min
+		.@MulEXPHighLVL = 1;												// Also boost EXP for high level players? (1: yes / 0: no).
+		.@BF_BASELVLMULT = 10;
+		.@BF_BASELVLBOOST = ((.@BF_BASELVLMULT * BaseLevel) + BaseLevel);
+
+		if (.@MulEXPHighLVL) {
+			.@BF_LOWLVLMAX = 99;
+			if (BaseLevel > .@BF_LOWLVLMAX) {
+				.@BF_HIGHLVLMULT = 10;
+				.@BF_HIGHLVLBOOST = .@BF_HIGHLVLMULT * BaseLevel;
+				.@BF_BOOST = .@BF_BOOST + .@BF_HIGHLVLBOOST;
+			}
+		}
+
+		.@BF_EXPMULT = .@BF_BOOST + .@BF_BASELVLBOOST;
+		sc_end SC_EXPBOOST;
+		sc_end SC_JEXPBOOST;
+		sc_start SC_EXPBOOST, .@BF_DELAY, .@BF_EXPMULT;
+		sc_start SC_JEXPBOOST, .@BF_DELAY, .@BF_EXPMULT;
+	}
+	return;
+}
+
+// ===== V. 2.0 ============================================================
+/*
+function	script	getexpbuff	{
+
+	.@BuffEXP = 1;															// Also buff EXP? (1: yes / 0: no).
+
+	if (.@BuffEXP) {												
+		.@BF_BOOST = 100;													// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
+		.@BF_DELAY = 600000;												// 60000 = 1 min
 		.@MulEXPLowLVL = 1;													// Also boost EXP for low level players? (1: yes / 0: no).
 		.@PCLevel = BaseLevel;
 		.@BF_BASELVLMULT = 20;
@@ -38,3 +69,4 @@ function	script	getexpbuff	{
 	}
 	return;
 }
+*/
