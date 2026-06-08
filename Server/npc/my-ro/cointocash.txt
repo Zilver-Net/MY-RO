@@ -14,7 +14,7 @@
 	OnTouchNPC:
 		callfunc "getmycash", 1;
 		end;
-		
+
 	OnInit:
 		waitingroom ":: Gold Coin to Cash ::", 0;
 		end;
@@ -87,3 +87,4 @@ function	script	getmycash	{
 }
 
 morocc,149,105,6	duplicate(RefineUI)	Lily#mor	436
+*/
