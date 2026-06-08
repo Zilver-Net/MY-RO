@@ -7,10 +7,10 @@
 // ===== Update detailed: ==================================================
 // ===== Script ============================================================
 
--   script  Enchant_Grade_UI   -,{
-	
-    enchantgradeui();
-    end;
+-	script	Enchant_Grade_UI	-,{
+
+	enchantgradeui();
+	end;
 
 	OnInit:
 		waitingroom "    :: Grading ::", 0; 
@@ -19,4 +19,4 @@
 
 // ===== Duplicates ========================================================
 
-morocc,131,101,6	duplicate(Enchant_Grade_UI)	Grading#mor	63
+morocc,131,108,6	duplicate(Enchant_Grade_UI)	Grading#mor	63
