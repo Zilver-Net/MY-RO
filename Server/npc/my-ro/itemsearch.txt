@@ -66,8 +66,8 @@
 
 		mes .NPCName$;
 		mes "--- ผลการค้นหาที่พบ ---";
-		mes "ชื่อไอเทม: [ <ITEM>"+getitemname(.@item_id)+"<INFO>"+.@item_id+"</INFO></ITEM> ]";
-		mes "Item ID: [ ^0000FF" + .@item_id + "^000000 ]";
+		mes "ชื่อไอเทม: <ITEM>" + getitemname(.@item_id) + "<INFO>" + .@item_id + "</INFO></ITEM>";
+		mes "Item ID: ^0000FF" + .@item_id + "^000000";
 		mes "-----------------------";
 		
 		if (.@can_buy == 0) {
@@ -162,4 +162,4 @@
 
 // ===== Duplicates ========================================================
 
-morocc,124,102,4	duplicate(Item_Search)	ค้นหาไอเทม#mor	2_MONEMUS
+morocc,124,101,4	duplicate(Item_Search)	ค้นหาไอเทม#mor	4_ED_ORB
