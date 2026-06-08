@@ -1,22 +1,3 @@
-// ===== rAthena/Hercules Script =======================================
-// = Single NPC reloader
-// ===== By: ==================================================
-// = luizragna
-// ===== Current Version: =====================================
-// = 1.0
-// ===== Description: =========================================
-// = Use @r <npc_name>
-// = To reload a single npc
-// = Sample-1:
-// = to reload npc/custom/jobmaster.txt
-// = use @r jobmaster
-// = Sample-2:
-// = to reload npc/custom/events/poring_race.txt
-// = use @r events/poring_race
-// ===== Additional Comments: =================================
-// = 1.0 First release.
-// ============================================================
-
 // ===== rAthena Script ====================================================
 // = MY-RO Reload NPC system
 // ===== Authored By: ======================================================
