@@ -159,8 +159,8 @@
 		setarray .DropTicket[0],10,3,6673;							// Drop Rate 0.10%, Max Amount 3, Bossnia Ticket
 		setarray .DropHP[0],2000,3,33003;							// Drop Rate 20.00%, Max Amount 3, Dried Fish
 		setarray .DropBox[0],20,1,33005,33006,33007,33008;			// Drop Rate 0.20%, Max Amount 1, Costume Box
-		setarray .DropRefineMaterial[0],250,3,7619,7620,6225,6226,1000333,1000334,1000335,1000336,1000369,1000371;		// Drop Rate 2.50%, Max Amount 3, Enriched Elunium, Enriched Oridecon, HD Carnium, HD Bradium, Enriched Ehterium, Enriched Etherdeocon, HD Etherium, HD Etherdeocon, HD Ether Bradium, HD Ether Carnium
-		setarray .DropGradeMaterial[0],250,3,1000325,1000326,1000327,1000328;		// Drop Rate 2.50%, Max Amount 3, Ether Aquamarine, Ether Topaz, Ether Amethyst, Ether Amber
+		setarray .DropRefineMaterial[0],150,3,7619,7620,6225,6226,1000333,1000334,1000335,1000336,1000369,1000371;		// Drop Rate 1.50%, Max Amount 3, Enriched Elunium, Enriched Oridecon, HD Carnium, HD Bradium, Enriched Ehterium, Enriched Etherdeocon, HD Etherium, HD Etherdeocon, HD Ether Bradium, HD Ether Carnium
+		setarray .DropGradeMaterial[0],150,3,1000325,1000326,1000327,1000328;		// Drop Rate 1.50%, Max Amount 3, Ether Aquamarine, Ether Topaz, Ether Amethyst, Ether Amber
 		setarray .DropSoul[0],100,3,6814,6815,6816,6817,6818,6819;	// Drop Rate 1.00%, Max Amount 3, Soul, Swordman, Merchant, Thief, Mage, Archer, Acolyte
 		setarray .DropVoucher[0],2000,6,7615,7616,7617;				// Drop Rate 20.00%, Max Amount 6, MVP Voucher, Miniboss Voucher, Monster Voucher
 		end;
