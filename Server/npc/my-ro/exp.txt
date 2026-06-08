@@ -1,0 +1,40 @@
+// ===== rAthena Script ====================================================
+// = MY-RO EXP buff system
+// ===== Developed By: ====================================================
+// = ZilverNet
+// ===== Date: =============================================================
+// = N/A
+// ===== Update detailed: ==================================================
+// = V. 2.0 (2026-06-08)
+// = saparate EXP buff script from healer for better management.
+// ===== Script ============================================================
+
+function	script	getexpbuff	{
+
+	.@BuffEXP = 1;															// Also buff EXP? (1: yes / 0: no).
+
+	if (.@BuffEXP) {												
+		.@BF_BOOST = 100;													// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
+		.@BF_DELAY = 600000;												// 60000 = 1 min
+		.@MulEXPLowLVL = 1;													// Also boost EXP for low level players? (1: yes / 0: no).
+		.@PCLevel = BaseLevel;
+		.@BF_BASELVLMULT = 20;
+		.@BF_BASELVLBOOST = (.@BF_BASELVLMULT * .@PCLevel);
+
+		if (.@MulEXPLowLVL) {
+			.@BF_LOWLVLMAX = 99;
+			if (.@PCLevel < .@BF_LOWLVLMAX) {
+				.@BF_LOWLVLMULT = 2;
+				.@BF_LOWLVLBOOST = .@BF_LOWLVLMULT * (.@BF_LOWLVLMAX - .@PCLevel);
+				.@BF_BOOST = .@BF_BOOST + .@BF_LOWLVLBOOST;
+			}
+		}
+
+		.@BF_EXPMULT = .@BF_BOOST + .@BF_BASELVLBOOST;
+		sc_end SC_EXPBOOST;
+		sc_end SC_JEXPBOOST;
+		sc_start SC_EXPBOOST, .@BF_DELAY, .@BF_EXPMULT;
+		sc_start SC_JEXPBOOST, .@BF_DELAY, .@BF_EXPMULT;
+	}
+	return;
+}
