@@ -1,5 +1,5 @@
 // ===== rAthena Script ====================================================
-// = MY-RO Exchange Gold Coin to Cash Points system
+// = MY-RO Healer and Buff system
 // ===== Authored By: ======================================================
 // = Euphy
 // ===== Customised By: ====================================================
@@ -18,6 +18,8 @@
 // = ปรับปรุงโค้ดให้มีประสิทธิภาพมากขึ้น ง่ายต่อการแก้ไขในอนาคต
 // = V. 1.4
 // = ปรับโค้ดสูตรการคำนวนบัฟ EXP ให้กระชับและง่ายต่อการปรับแก้
+// = V. 2.0 (2026-06-08)
+// = ย้ายสคริปต์บัฟ EXP ไปไว้ในไฟล์แยกเพื่อความสะดวกในการจัดการและเรียกใช้งานผ่าน NPC อื่น ๆ
 // ===== Script ============================================================
 
 -	script	Healer_master	-1,{
@@ -102,7 +104,6 @@
 	OnInIt:
 		.BF_Delay = 600000;											// Buff duration, in milliseconds. Default: 600000 (10 minutes)
 		.BF_level = 10;												// Base level for buffs
-		.BF_boost = 100;											// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
 		.IsBuffEXP = 1;												// Also buff EXP? (1: yes / 0: no).
 		.IsBuffsAB = 1;												// Also buff players? (1: yes / 0: no) AB only.
 		.IsBuffsETC = 0;											// Also buff players? (1: yes / 0: no) Buff ETC.
@@ -112,21 +113,6 @@
 		.Food = 0;													// Also food buff for players? (1: yes / 0: no)
 		.CP = 0;													// Also buff CP players? (1: yes / 0: no)
 		end;
-}
-
-function	script	getexpbuff	{
-
-	.@IsBuffEXP = 1;												// Also buff EXP? (1: yes / 0: no).
-
-	if (.@IsBuffEXP) {
-		.@BF_DELAY = 600000;										// Buff duration, in milliseconds. Default: 600000 (10 minutes)
-		.@BF_EXPMULT = (BaseLevel * 24) + 176;						// Boost for EXP buff, calculated as dynamic multiplier based on player's level.
-		sc_end SC_EXPBOOST;
-		sc_end SC_JEXPBOOST;
-		sc_start SC_EXPBOOST,.@BF_DELAY,.@BF_EXPMULT;
-		sc_start SC_JEXPBOOST,.@BF_DELAY,.@BF_EXPMULT;
-	}
-	return;
 }
 
 // ===== Duplicates ========================================================
