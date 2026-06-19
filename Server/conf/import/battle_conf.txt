@@ -267,7 +267,7 @@ max_summoner_aspd: 194
 delay_rate: 10
 
 // Max Level Difference for Devotion
-devotion_level_difference: 100
+devotion_level_difference: 300
 
 // For RENEWAL_CAST (Note 2)
 // By default skill that has '-1' value for Fixed Casting Time will use 20% of cast time
