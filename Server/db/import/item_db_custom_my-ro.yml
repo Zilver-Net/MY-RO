@@ -416,9 +416,12 @@ Body:
     EquipLevelMin: 1
     View: 2812
     Script: |
-      bonus bDef,999;
-      bonus bMdef,999;
-      bonus bSpeedAddRate,45;
+      bonus bAllStats,30000;
+      bonus bSpeedAddRate,55;
+      bonus4 bAutoSpellWhenHit,"MG_SAFETYWALL",1000,10,0;
+      bonus4 bAutoSpellWhenHit,"AL_PNEUMA",1000,10,0;
+      bonus4 bAutoSpellWhenHit,"AL_HEAL",1000,10,0;
+      bonus4 bAutoSpellWhenHit,"SM_ENDURE",1000,10,0; 
   - Id: 33201
     AegisName: MYRO_Special_Katar
     Name: Special Katar
