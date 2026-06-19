@@ -1,5 +1,5 @@
 // Level range for sharing within a party
-party_share_level: 200
+party_share_level: 300
 
 login_server_id: ragnarok1
 login_server_pw: ragnarok1
