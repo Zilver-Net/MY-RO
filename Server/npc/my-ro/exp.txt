@@ -1,12 +1,12 @@
 // ===== rAthena Script ====================================================
 // = MY-RO EXP buff system
-// ===== Developed By: ====================================================
+// ===== Developed By: =====================================================
 // = ZilverNet
 // ===== Date: =============================================================
 // = N/A
 // ===== Update detailed: ==================================================
-// = V. 2.0 (2026-06-08)
-// = saparate EXP buff script from healer for better management.
+// = V. 2.0 (2026-06-08): saparate EXP buff script from healer for better management.
+// = V. 2.1 (2026-06-19): change the formular from low level boost to high level boost for better dynamic boosting.
 // ===== Script ============================================================
 
 function	script	getexpbuff	{
@@ -14,22 +14,27 @@ function	script	getexpbuff	{
 	.@BuffEXP = 1;															// Also buff EXP? (1: yes / 0: no).
 
 	if (.@BuffEXP) {												
-		.@BF_BOOST = 100;													// Base boost for EXP buff, in percentage. Default: 100 (1x EXP)
-		.@BF_DELAY = 600000;												// 60000 = 1 min
+		.@BF_BOOST = 100;													// Base boost for EXP buff, in percentage. (Default: 100: 1x EXP)
+		.@BF_DELAY = 600000;												// 60000: 1 min
 		.@MulEXPHighLVL = 1;												// Also boost EXP for high level players? (1: yes / 0: no).
-		.@BF_BASELVLMULT = 10;
+		.@BF_BASELVLMULT = 10;												// Base multiplier boost for players. (1: x1 EXP)
 		.@BF_BASELVLBOOST = ((.@BF_BASELVLMULT * BaseLevel) + BaseLevel);
 
+// ===== Boost for High level players: =====================================
+
 		if (.@MulEXPHighLVL) {
-			.@BF_LOWLVLMAX = 99;
+			.@BF_LOWLVLMAX = 99;											// After this level, players will start to receive the high level boost.
 			if (BaseLevel > .@BF_LOWLVLMAX) {
-				.@BF_HIGHLVLMULT = 10;
+				.@BF_HIGHLVLMULT = 25;										// Multiplier for high level players. (1: x1 EXP)
 				.@BF_HIGHLVLBOOST = .@BF_HIGHLVLMULT * BaseLevel;
 				.@BF_BOOST = .@BF_BOOST + .@BF_HIGHLVLBOOST;
 			}
 		}
 
+// =========================================================================
+
 		.@BF_EXPMULT = .@BF_BOOST + .@BF_BASELVLBOOST;
+		if (.@BF_EXPMULT < 300) { .@BF_EXPMULT = 300; }						// Minimum boost for players. (100: x1 EXP)
 		sc_end SC_EXPBOOST;
 		sc_end SC_JEXPBOOST;
 		sc_start SC_EXPBOOST, .@BF_DELAY, .@BF_EXPMULT;
