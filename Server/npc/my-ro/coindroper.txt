@@ -92,7 +92,7 @@
 // ===== MVP Drops =========================================================
 
 		if( getmonsterinfo( killedrid,MOB_MVPEXP ) ){ // MVP Check
-			.@mvp_loop = rand(7,10);
+			.@mvp_loop = rand(3,6);
 			for (.@i = 0; .@i < .@mvp_loop; ++.@i) {
 				if(.IsDropVoucher)	{ makeitem .DropVoucher[2],rand(1,(.DropVoucher[1]*.AmountMult[0])),.@map$,.@x,.@y; }
 				if(.IsDropCoin) { makeitem .DropCoin[2],rand(1,(.DropCoin[1]*.AmountMult[0])),.@map$,rand(.@x-2,.@x+2),rand(.@y-2,.@y+2); }
@@ -152,15 +152,15 @@
 
 		.DropRate = 10000;											// Base Drop Rate 100.00% **No Change**
 		setarray .AmountMult[0],4,2,1;								// Multiplier for amount of items dropped from MVPs*8, Mini-Bosses*4, and regular monsters*1.
-		setarray .DropCoin[0],1500,6,33999;							// Drop Rate 15.00%, Max Amount 6, Gold Coin
+		setarray .DropCoin[0],3000,5,33999;							// Drop Rate 30.00%, Max Amount 6, Gold Coin
 		setarray .DropBlessing[0],100,3,6635,1000337;				// Drop Rate 1.00%, Max Amount 3, Blacksmith Blessing, Blessed Ether Dust
 		setarray .DropToken[0],20,3,7621;							// Drop Rate 0.20%, Max Amount 3, Token Of Siegfried
 		setarray .DropAngpaw[0],500,3,33004;						// Drop Rate 5.00%, Max Amount 3, Angpaw
 		setarray .DropTicket[0],10,3,6673;							// Drop Rate 0.10%, Max Amount 3, Bossnia Ticket
-		setarray .DropHP[0],2000,3,33003;							// Drop Rate 20.00%, Max Amount 3, Dried Fish
+		setarray .DropHP[0],3000,5,33003;							// Drop Rate 35.00%, Max Amount 6, Dried Fish
 		setarray .DropBox[0],20,1,33005,33006,33007,33008;			// Drop Rate 0.20%, Max Amount 1, Costume Box
-		setarray .DropRefineMaterial[0],150,3,7619,7620,6225,6226,1000333,1000334,1000335,1000336,1000369,1000371;		// Drop Rate 1.50%, Max Amount 3, Enriched Elunium, Enriched Oridecon, HD Carnium, HD Bradium, Enriched Ehterium, Enriched Etherdeocon, HD Etherium, HD Etherdeocon, HD Ether Bradium, HD Ether Carnium
-		setarray .DropGradeMaterial[0],150,3,1000325,1000326,1000327,1000328;		// Drop Rate 1.50%, Max Amount 3, Ether Aquamarine, Ether Topaz, Ether Amethyst, Ether Amber
+		setarray .DropRefineMaterial[0],200,4,7619,7620,6225,6226,1000333,1000334,1000335,1000336,1000369,1000371;		// Drop Rate 1.50%, Max Amount 3, Enriched Elunium, Enriched Oridecon, HD Carnium, HD Bradium, Enriched Ehterium, Enriched Etherdeocon, HD Etherium, HD Etherdeocon, HD Ether Bradium, HD Ether Carnium
+		setarray .DropGradeMaterial[0],50,4,1000325,1000326,1000327,1000328;		// Drop Rate 1.50%, Max Amount 3, Ether Aquamarine, Ether Topaz, Ether Amethyst, Ether Amber
 		setarray .DropSoul[0],100,3,6814,6815,6816,6817,6818,6819;	// Drop Rate 1.00%, Max Amount 3, Soul, Swordman, Merchant, Thief, Mage, Archer, Acolyte
 		setarray .DropVoucher[0],2000,6,7615,7616,7617;				// Drop Rate 20.00%, Max Amount 6, MVP Voucher, Miniboss Voucher, Monster Voucher
 		end;
