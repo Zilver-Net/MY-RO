@@ -24,13 +24,6 @@
 		.@menu_idx = 1;
 		next;
 
-		if (.@equipped == 0) {
-			next;
-			mes .npc_name$;
-			mes "^FF0000ตัวละครของท่านไม่ได้สวมใส่ อุปกรณ์ในหมวดนี้อยู่เลย^000000";
-			close;
-		}
-
 		mes .npc_name$;
 		mes "โปรดเลือกอุปกรณ์ที่ต้องการ";
 		
@@ -39,7 +32,7 @@
 		} else {
 			setarray .@indices[1], EQI_COSTUME_HEAD_TOP, EQI_COSTUME_HEAD_MID, EQI_COSTUME_HEAD_LOW, EQI_SHADOW_ARMOR, EQI_SHADOW_SHIELD, EQI_SHADOW_WEAPON, EQI_COSTUME_GARMENT, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_L, EQI_SHADOW_ACC_R;
 		}
-		
+
 		for(.@i = 1; .@i <= 10; ++.@i) {
 			if (getequipisequiped(.@indices[.@i])) {
 				.@menu$ += "~ " + F_getpositionname(.@indices[.@i]) + "-[ " + getequipname(.@indices[.@i]) + " ]:";
@@ -47,6 +40,13 @@
 				.@menu_idx++;
 				.@equipped = 1;
 			}
+		}
+		
+		if (.@equipped == 0) {
+			next;
+			mes .npc_name$;
+			mes "^FF0000ตัวละครของท่านไม่ได้สวมใส่ อุปกรณ์ในหมวดนี้อยู่เลย^000000";
+			close;
 		}
 		
 		.@item_choice = select(.@menu$);
