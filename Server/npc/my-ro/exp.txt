@@ -43,6 +43,12 @@ function	script	getexpbuff	{
 	return;
 }
 
+-	script	getbuffonlvup	-,{
+	OnPCBaseLvUpEvent:
+		callfunc "getexpbuff";
+		end;
+}
+
 // ===== V. 2.0 ============================================================
 /*
 function	script	getexpbuff	{
