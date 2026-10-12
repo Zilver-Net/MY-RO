@@ -26,16 +26,16 @@
 -	script	checkonlogin	-,{
 
 	OnPCLoginEvent:
-		.@exprate = getBattleFlag("base_exp_rate")/100;
+		/*.@exprate = getBattleFlag("base_exp_rate")/100;
 		.@jobrate = getBattleFlag("job_exp_rate")/100;
 		.@mobrate = getBattleFlag("mob_count_rate")/100;
 		.@mobdroprate = getBattleFlag("item_rate_common")/100;
 		.@MVPdroprate = getBattleFlag("item_rate_common_mvp")/100;
 		.@carddroprate = getBattleFlag("item_rate_card")/100;
-		.@MVPcarddroprate = getBattleFlag("item_rate_card_mvp")/100;
+		.@MVPcarddroprate = getBattleFlag("item_rate_card_mvp")/100;*/
 
 		announce ""+strcharinfo(0)+" ได้เข้าสู่เกมส์",0x0033FF;
-		if(getusers(1) < 16){
+		/*if(getusers(1) < 16){
 			setbattleflag "mob_count_rate",getBattleFlag("mob_count_rate")+20,true;
 		}	
 		announce "[EXP: x"+callfunc("F_InsertComma",.@exprate)+" | Job EXP: x"+callfunc("F_InsertComma",.@jobrate)+" | Monster: x"+callfunc("F_InsertComma",.@mobrate)+" ]",bc_yellow|bc_self;
@@ -60,13 +60,13 @@
 				set noviceassistget,1;
 				if(getgroupid() == 99) { getitem 33199,1; equip 33199; } // ADM Sign
 				end;
-			}
+			}*/
 		end;
 
 	OnPCLogOutEvent:
 		announce ""+strcharinfo(0)+" ได้ออกจากเกมส์",0x0033FF;
-		if(getusers(1) < 16){
+		/*if(getusers(1) < 16){
 		setbattleflag "mob_count_rate",getBattleFlag("mob_count_rate")-20,true;
-		}
+		}*/
 		end;
 }
