@@ -9,6 +9,7 @@
 // Note 3: Value is a bit field. If no description is given,
 //         assume unit types (1: Pc, 2: Mob, 4: Pet, 8: Homun, 16: Mercenary, 128: NPC, 512: Elemental)
 //--------------------------------------------------------------
+// battle.conf
 
 // Type of penalty that is applied to FLEE when more than agi_penalty_count monsters are targetting player
 // 0 = no penalty is applied
@@ -23,6 +24,17 @@ agi_penalty_type: 0
 vit_penalty_type: 0
 
 //--------------------------------------------------------------
+// client.conf
+
+// Valid range of dyes and styles on the client.
+min_hair_style: 0
+max_hair_style: 69
+min_hair_color: 0
+max_hair_color: 8
+min_cloth_color: 0 
+max_cloth_color: 700
+
+//--------------------------------------------------------------
 // drops.conf
 
 // Item drop rates (Note 2)
@@ -31,41 +43,39 @@ vit_penalty_type: 0
 item_rate_common: 100
 item_rate_common_boss: 100
 item_rate_common_mvp: 100
-item_drop_common_min: 3000
+item_drop_common_min: 501
 item_drop_common_max: 10000
 
 // The rate healing items are dropped (items that restore HP or SP)
 item_rate_heal: 100
 item_rate_heal_boss: 100
 item_rate_heal_mvp: 100
-item_drop_heal_min: 3000
+item_drop_heal_min: 501
 item_drop_heal_max: 10000
 
 // The rate at which usable items (in the item tab) other then healing items are dropped.
 item_rate_use: 100
 item_rate_use_boss: 100
 item_rate_use_mvp: 100
-item_drop_use_min: 3000
+item_drop_use_min: 501
 item_drop_use_max: 10000
 
 // The rate at which equipment is dropped.
 item_rate_equip: 100
 item_rate_equip_boss: 100
 item_rate_equip_mvp: 100
-item_drop_equip_min: 2000
+item_drop_equip_min: 501
 item_drop_equip_max: 10000
 
 // The rate at which cards are dropped
-item_rate_card: 10000
-item_rate_card_boss: 10000
-item_rate_card_mvp: 10000
-item_drop_card_min: 1000
+item_rate_card: 2000
+item_drop_card_min: 200
 item_drop_card_max: 10000
 
 // The rate adjustment for the MVP items that the MVP gets directly in their inventory
 // Mode: 0 - official order, 1 - random order, 2 - all items
-item_rate_mvp: 1000
-item_drop_mvp_min: 1000
+item_rate_mvp: 100
+item_drop_mvp_min: 1
 item_drop_mvp_max: 10000
 item_drop_mvp_mode: 0
 
@@ -85,11 +95,6 @@ item_rate_treasure: 100
 item_drop_treasure_min: 1
 item_drop_treasure_max: 10000
 
-// Makes your LUK value affect drop rates on an absolute basis.
-// Setting to 100 means each luk adds 0.01% chance to find items
-// (regardless of item's base drop rate).
-drops_by_luk: 10
-
 // Make broadcast ** Player1 won Pupa's Pupa Card (chance 0.01%) ***
 // This can be set to any value between 0~10000.
 // Note: It also announces STEAL skill usage with rare items
@@ -97,7 +102,7 @@ drops_by_luk: 10
 // 1 = show announces for 0.01% drop chance items
 // 333 = show announces for 3.33% or lower drop chance items
 // 10000 = show announces for all items
-rare_drop_announce: 150
+rare_drop_announce: 101
 
 //--------------------------------------------------------------
 // exp.conf
@@ -125,11 +130,11 @@ exp_cost_redemptio: 0
 
 // Buying store (Note 1)
 // Requires: 2010-04-27aRagexeRE or later
-feature.buying_store: off
+feature.buying_store: on
 
 // Search stores (Note 1)
 // Requires: 2010-08-03aRagexeRE or later
-feature.search_stores: off
+feature.search_stores: on
 
 // Battlegrounds queue interface. Makes it possible to queue for a battleground anywhere using the battle menu.
 // Requires: 2012-04-10aRagexe or later
@@ -145,29 +150,32 @@ feature.attendance: off
 
 // Private Airship System (Note 1)
 // Requires: 2018-03-21aRagexeRE or later
-feature.privateairship: off
+feature.privateairship: on
 
 // Barter Shop System (Note 1)
 // Requires: 2019-01-16RagexeRE or later
-feature.barter: off
+feature.barter: on
 
 // Extended Barter Shop System (Note 1)
 // Requires: 2019-11-06RagexeRE or later
-feature.barter_extended: off
+feature.barter_extended: on
 
 //--------------------------------------------------------------
 // homunc.conf
 
 // The rate a homunculus will get friendly by feeding it. (Note 2)
-homunculus_friendly_rate: 1000
+homunculus_friendly_rate: 50000
 
 // Can you name a homunculus more then once? (Note 1)
-hom_rename: no
+hom_rename: yes
 
 // The rate at which homunculus gain experience from kills. (Note 2)
 // Only applies to renewal mode.
 // Official: 10%
 homunculus_exp_gain: 100
+
+// Does autoloot work, when a monster is killed by homunculus only?
+homunculus_autoloot: yes
 
 //--------------------------------------------------------------
 // misc.conf
@@ -179,7 +187,7 @@ night_at_start: yes
 // monster.conf
 
 // Rate of monsters on a map, 200 would be twice as many as normal. (Note 2)
-mob_count_rate: 250
+mob_count_rate: 100
 
 // Respawn rate of monsters on a map. 50 would make mobs respawn twice as fast (half delay time) (Note 2)
 //Note: This does not affects mobs with immediate respawn (most normal mobs)
@@ -187,19 +195,26 @@ mob_spawn_delay: 50
 plant_spawn_delay: 50
 boss_spawn_delay: 10
 
+// Display some mob info next to their name? (add as needed)
+// (does not works on guardian or Emperium)
+// 1: Display mob HP (Hp/MaxHp format)
+// 2: Display mob HP (Percent of full life format)
+// 4: Display mob's level
+show_mob_info: 4
+
 // Zeny from mobs
 zeny_from_mobs: yes
 
 // Chance of mob casting a skill (Note 2)
 // Higher rates lead to 100% mob skill usage with no/few normal attacks.
 // Set to 0 to disable mob skills.
-mob_skill_rate: 10
+mob_skill_rate: 100
 
 // Mob skill delay adjust (Note 2)
 // After a mob has casted a skill, there is a delay before being able to
 // re-cast it. Note that skills with a delay of 0 can't be affected by this
 // setting.
-mob_skill_delay: 300
+mob_skill_delay: 100
 
 //--------------------------------------------------------------
 // party.conf
@@ -207,7 +222,7 @@ mob_skill_delay: 300
 // Give additional experience bonus per party-member involved on even-share parties (excluding yourself)?
 // ex. If set to 10, an even-share party of 5 people will receive +40% exp (4 members * 10% exp):
 //     140% party experience in total, so each member receives 140%/5 = 28% exp (instead of 20%).
-party_even_share_bonus: 25
+party_even_share_bonus: 100
 
 //--------------------------------------------------------------
 // pet.conf
@@ -216,7 +231,7 @@ party_even_share_bonus: 25
 pet_catch_rate: 1000
 
 // The rate a pet will get friendly by feeding it. (Note 2)
-pet_friendly_rate: 1000
+pet_friendly_rate: 50000
 
 // When the master attacks a monster, whether or not the pet will also attack. (Note 1)
 pet_attack_support: yes
@@ -260,11 +275,38 @@ max_extended_aspd: 194
 // Max ASPD for Summoner Class (Doram). (Default 193, Highest allowed 199)
 max_summoner_aspd: 194
 
+// Maximum HPs depending on base level. Default values are:
+// Lv 99:  330000
+// Lv150:  660000
+// Lv175: 1100000
+max_hp_lv99: 1000000000
+max_hp_lv150: 1000000000
+max_hp: 1000000000
+
+// Maximum SP. (Default is 1000000)
+max_sp: 1000000000
+
+// Prevent logout of players after being hit for how long (in ms, 0 disables)?
+prevent_logout: 0
+
+// When should the server prevent a player from logging out? Have no effect if prevent_logout is disabled. (Note 3)
+// Official servers prevent players from logging out after attacking, casting skills, and taking damage.
+// 0 = Players can always logout
+// 1 = Prevent logout on login
+// 2 = Prevent logout after attacking
+// 4 = Prevent logout after casting skill
+// 8 = Prevent logout after being hit
+prevent_logout_trigger: 0
+
+// Minimum distance a vending/chat room must be from a NPC in order to be placed.
+// Default: 3 (0: disabled).
+min_npc_vendchat_distance: 0
+ 
 //--------------------------------------------------------------
 // skill.conf
 
 // Delay time after casting (Note 2)
-delay_rate: 10
+delay_rate: 100
 
 // Max Level Difference for Devotion
 devotion_level_difference: 300
@@ -273,4 +315,4 @@ devotion_level_difference: 300
 // By default skill that has '-1' value for Fixed Casting Time will use 20% of cast time
 // as Fixed Casting Time, and the rest (80%) as Variable Casting Time.
 // Put it 0 to disable default Fixed Casting Time (just like 0 in the skill_db.yml).
-default_fixed_castrate: 0
+default_fixed_castrate: 20
