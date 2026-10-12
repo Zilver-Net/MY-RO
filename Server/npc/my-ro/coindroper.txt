@@ -137,14 +137,14 @@
 // ===== Enable Drop Settings ==============================================
 
 		.IsDropCoin = 1;											// Drop Gold Coin? (1: yes / 0: no)
-		.IsDropBlessing = 1;										// Drop Blacksmith Blessing? (1: yes / 0: no)
+		.IsDropBlessing = 0;										// Drop Blacksmith Blessing? (1: yes / 0: no)
 		.IsDropToken = 0;											// Drop Token Of Siegfried? (1: yes / 0: no)
 		.IsDropAngpaw = 1;											// Drop Angpaw? (1: yes / 0: no)
 		.IsDropTicket = 0;											// Drop Bossnia Ticket? (1: yes / 0: no)
 		.IsDropHP = 1;												// Drop Dried Fish? (1: yes / 0: no)
 		.IsDropBox = 0;												// Drop Costume Box? (1: yes / 0: no) Box 1-4
-		.IsDropRefineMaterial = 1;									// Drop Crafting Material? (1: yes / 0: no) Enriched Elunium, Enriched Oridecon, HD Carnium, HD Bradium, Enriched Ehterium, Enriched Etherdeocon, HD Etherium, HD Etherdeocon, HD Ether Bradium, HD Ether Carnium
-		.IsDropGradeMaterial = 1;									// Drop Crafting Material? (1: yes / 0: no) Ether Aquamarine, Ether Topaz, Ether Amethyst, Ether Amber
+		.IsDropRefineMaterial = 0;									// Drop Crafting Material? (1: yes / 0: no) Enriched Elunium, Enriched Oridecon, HD Carnium, HD Bradium, Enriched Ehterium, Enriched Etherdeocon, HD Etherium, HD Etherdeocon, HD Ether Bradium, HD Ether Carnium
+		.IsDropGradeMaterial = 0;									// Drop Crafting Material? (1: yes / 0: no) Ether Aquamarine, Ether Topaz, Ether Amethyst, Ether Amber
 		.IsDropSoul = 0;											// Drop Soul? (1: yes / 0: no)
 		.IsDropVoucher = 0;											// Drop Monster Voucher? (1: yes / 0: no)
 
