@@ -112,95 +112,46 @@
 			}
 
 		case 6:
-            AddSkillMenu:
-                menu    "~ เพิ่มความจุน้ำหนัก ("+AddSkillWeightMemory+"/"+.AddSkillWeight[1]+")",AddSkillWeight,
-                        "~ Greed ("+AddSkillGreedMemory+"/"+.AddSkillGreed[1]+")",AddSkillGreed,
-                        "~ Heal ("+AddSkillHealMemory+"/"+.AddSkillHeal[1]+")",AddSkillHeal,
-                        "~ Teleport ("+AddSkillTeleportMemory+"/"+.AddSkillTeleport[1]+")",AddSkillTeleport;
+			.@PickSkill = select("~ เพิ่มความจุน้ำหนัก:" +
+								"~ Greed:" +
+								"~ Heal:" +
+								"~ Teleport:" +
+								"~ Discount:" +
+								"~ Overcharge");
 
-                AddSkillWeight:
-                    if (AddSkillWeightMemory < .AddSkillWeight[1]) {
-                        if (countitem(.AddSkillWeight[0]) >= .AddSkillWeight[2]) {
-                            specialeffect2 EF_EARTHSPIKE; sleep2 300;
-                            specialeffect2 EF_DEVIL; sleep2 300;
-                            specialeffect2 EF_COIN; sleep2 300;
-                            specialeffect2 EF_SIGHTRASHER;
-                            dispbottom "ดำเนินการเรียบร้อยค่ะ";
-                            delitem .AddSkillWeight[0],.AddSkillWeight[2];
-                            set AddSkillWeightMemory, AddSkillWeightMemory + 1;
-                            skill .AddSkillWeight[3],AddSkillWeightMemory,SKILL_PERM_GRANT;
-                            
-                            if (select("~ ดำเนินการต่อ") == 1) { goto AddSkillMenu; }
-                            cutin "",255; end;
-                        } else {
-                            dispbottom "ท่านไม่มี "+getitemname(.AddSkillWeight[0])+" ค่ะ"; cutin "",255; end;
-                        } 
-                    } else {
-                        dispbottom "ท่านถึงขีดจำกัดแล้วค่ะ"; cutin "",255; end;
-                    }
+			.@skill_id = .AddSkill[.@PickSkill];
+			.@req_job  = .AddSkillJob[.@PickSkill];
 
-                AddSkillGreed:
-                    if (AddSkillGreedMemory < .AddSkillGreed[1]) {
-                        if (countitem(.AddSkillGreed[0]) >= .AddSkillGreed[2]) {
-                            specialeffect2 EF_EARTHSPIKE; sleep2 300;
-                            specialeffect2 EF_DEVIL; sleep2 300;
-                            specialeffect2 EF_COIN; sleep2 300;
-                            specialeffect2 EF_SIGHTRASHER;
-                            dispbottom "ดำเนินการเรียบร้อยค่ะ";
-                            delitem .AddSkillGreed[0],.AddSkillGreed[2];
-                            set AddSkillGreedMemory, AddSkillGreedMemory + 1;
-                            skill .AddSkillGreed[3],AddSkillGreedMemory,SKILL_PERM_GRANT;
-                            
-                            if (select("~ ดำเนินการต่อ") == 1) { goto AddSkillMenu; }
-                            cutin "",255; end;
-                        } else {
-                            dispbottom "ท่านไม่มี "+getitemname(.AddSkillGreed[0])+" ค่ะ"; cutin "",255; end;
-                        } 
-                    } else {
-                        dispbottom "ท่านถึงขีดจำกัดแล้วค่ะ"; cutin "",255; end;
-                    }
+			// 1. เช็คว่าสายอาชีพตรงกับเจ้าของสกิลหรือไม่ (ถ้าเป็นสายอาชีพนั้นอยู่แล้ว ห้ามซื้อ)
+			if (BaseJob == .@req_job) {
+				dispbottom "สายอาชีพของท่านสามารถเรียนรู้สกิลนี้ได้อยู่แล้ว ไม่สามารถซื้อได้ค่ะ";
+				cutin "", 255;
+				end;
+			}
 
-                AddSkillHeal:
-                    if (AddSkillHealMemory < .AddSkillHeal[1]) {
-                        if (countitem(.AddSkillHeal[0]) >= .AddSkillHeal[2]) {
-                            specialeffect2 EF_EARTHSPIKE; sleep2 300;
-                            specialeffect2 EF_DEVIL; sleep2 300;
-                            specialeffect2 EF_COIN; sleep2 300;
-                            specialeffect2 EF_SIGHTRASHER;
-                            dispbottom "ดำเนินการเรียบร้อยค่ะ";
-                            delitem .AddSkillHeal[0],.AddSkillHeal[2];
-                            set AddSkillHealMemory, AddSkillHealMemory + 1;
-                            skill .AddSkillHeal[3],AddSkillHealMemory,SKILL_PERM_GRANT;
-                            
-                            if (select("~ ดำเนินการต่อ") == 1) { goto AddSkillMenu; }
-                            cutin "",255; end;
-                        } else {
-                            dispbottom "ท่านไม่มี "+getitemname(.AddSkillHeal[0])+" ค่ะ"; cutin "",255; end;
-                        } 
-                    } else {
-                        dispbottom "ท่านถึงขีดจำกัดแล้วค่ะ"; cutin "",255; end;
-                    }
+			// 2. เช็คว่ามีสกิลนี้อยู่แล้วหรือยัง (ป้องกันการกดซื้อซ้ำ)
+			if (getskilllv(.@skill_id) > 0) {
+				dispbottom "ท่านมีสกิลนี้อยู่แล้วค่ะ";
+				cutin "", 255;
+				end;
+			}
 
-                AddSkillTeleport:
-                    if (AddSkillTeleportMemory < .AddSkillTeleport[1]) {
-                        if (countitem(.AddSkillTeleport[0]) >= .AddSkillTeleport[2]) {
-                            specialeffect2 EF_EARTHSPIKE; sleep2 300;
-                            specialeffect2 EF_DEVIL; sleep2 300;
-                            specialeffect2 EF_COIN; sleep2 300;
-                            specialeffect2 EF_SIGHTRASHER;
-                            dispbottom "ดำเนินการเรียบร้อยค่ะ";
-                            delitem .AddSkillTeleport[0],.AddSkillTeleport[2];
-                            set AddSkillTeleportMemory, AddSkillTeleportMemory + 1;
-                            skill .AddSkillTeleport[3],AddSkillTeleportMemory,SKILL_PERM_GRANT;
-                            
-                            if (select("~ ดำเนินการต่อ") == 1) { goto AddSkillMenu; }
-                            cutin "",255; end;
-                        } else {
-                            dispbottom "ท่านไม่มี "+getitemname(.AddSkillTeleport[0])+" ค่ะ"; cutin "",255; end;
-                        } 
-                    } else {
-                        dispbottom "ท่านถึงขีดจำกัดแล้วค่ะ"; cutin "",255; end;
-                    }
+			// 3. เช็ค Cashpoint
+			if (#CASHPOINTS < .AddSkill[0]) {
+				dispbottom "ท่านมี Cashpoint ไม่เพียงพอค่ะ";
+				cutin "", 255;
+				end;
+			}
+
+			// 4. หัก Cashpoint และมอบสกิล
+			#CASHPOINTS -= .AddSkill[0];
+			skill .@skill_id, .AddSkillMaxLv[.@PickSkill], SKILL_PERM_GRANT;
+
+			specialeffect2 EF_COIN;
+			dispbottom "ดำเนินการเรียบร้อยค่ะ";
+			dispbottom "ท่านได้ใช้ Cashpoint ไป " + .AddSkill[0] + " Cashpoint. คงเหลือ " + callfunc("F_InsertComma", #CASHPOINTS) + " Cashpoint.";			
+			cutin "",255;
+			end;
 
 		case 7:
 			switch(select("~ ชาย:~ หญิง")){
@@ -267,11 +218,16 @@
 	}
 	
 	OnInit:
-        setarray .AddSkillWeight[0],7776,10,1,681;		//  Gym Pass,Maxlvl 10, Use per time 1, ALL_INCCARRY
-        setarray .AddSkillGreed[0],33009,1,10,1013;		//  Skill Scroll, Maxlvl 1, Use per time 10, BS_GREED
-        setarray .AddSkillHeal[0],33009,1,10,28;		//  Skill Scroll, Maxlvl 1, Use per time 10, AL_HEAL
-        setarray .AddSkillTeleport[0],33009,1,10,26;	//  Skill Scroll, Maxlvl 1, Use per time 10, AL_TELEPORT
-        end;
+		// [0] Cashpoint, [1] Weight, [2] Greed, [3] Heal, [4] Teleport, [5] Discount, [6] Overcharge
+		setarray .AddSkill[0], 100, 681, 1013, 28, 26, 37, 38;
+
+		// กำหนด Level สกิลที่จะมอบให้ผู้เล่น
+		setarray .AddSkillMaxLv[1], 10, 1, 10, 2, 10, 10;
+
+		// กำหนดสายอาชีพที่เป็นเจ้าของสกิล (ห้ามซื้อ)
+		// -1 = ทุกอาชีพซื้อได้ | JOB_MERCHANT = สายพานิชย์ห้ามซื้อ | JOB_ACOLYTE = สายนักบวชห้ามซื้อ
+		setarray .AddSkillJob[1], -1, JOB_MERCHANT, JOB_ACOLYTE, JOB_ACOLYTE, JOB_MERCHANT, JOB_MERCHANT;
+		end;
 }
 
 // ===== Duplicates ========================================================
