@@ -13,8 +13,8 @@ function	script	angpaw	{
 
 	.@chance = rand(1, 10000);
 	
-	if (.@chance <= 10) {							// 0.10% chance to get big rewards (10M - 100M)
-		.@get_zeny = rand(10000000, 100000000);
+	if (.@chance <= 10) {							// 0.10% chance to get big rewards (10M - 500M)
+		.@get_zeny = rand(10000000, 500000000);
 	} else if (.@chance <= 100) {					// 1.00% chance to get (1M - 10M)
 		.@get_zeny = rand(1000000, 10000000);
 	} else if (.@chance <= 500) {					// 5.00% chance to get (100K - 1M)
