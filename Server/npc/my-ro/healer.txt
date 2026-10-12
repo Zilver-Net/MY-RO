@@ -20,6 +20,8 @@
 // = ปรับโค้ดสูตรการคำนวนบัฟ EXP ให้กระชับและง่ายต่อการปรับแก้
 // = V. 2.0 (2026-06-08)
 // = ย้ายสคริปต์บัฟ EXP ไปไว้ในไฟล์แยกเพื่อความสะดวกในการจัดการและเรียกใช้งานผ่าน NPC อื่น ๆ
+// = V. 2.0.1 (2026-10-04)
+// = เพิ่มบัฟ Soullink แต่ไม่สำเร็จ รอแก้ไขในอนาคต
 // ===== Script ============================================================
 
 -	script	Healer_master	-1,{
@@ -61,6 +63,42 @@
 	if (.IsBuffsBRAGI) {
 		sc_start4 SC_POEMBRAGI,.BF_Delay,.BF_level,80,100,0;
 		sc_start4 SC_SERVICE4U,.BF_Delay,.BF_level,40,40,0;
+	}
+	if (.IsBuffSoullink) {
+		switch (BaseJob) {
+			case JOB_ALCHEMIST:
+				sc_start SL_ALCHEMIST,.BF_Delay,.BF_level; break;
+			case JOB_MONK:
+				sc_start SL_MONK,.BF_Delay,.BF_level; break;
+			case JOB_STAR_GLADIATOR:
+				sc_start SL_STAR,.BF_Delay,.BF_level; break;
+			case JOB_SAGE:
+				sc_start SL_SAGE,.BF_Delay,.BF_level; break;
+			case JOB_CRUSADER:
+				sc_start SL_CRUSADER,.BF_Delay,.BF_level; break;
+			case JOB_SUPER_NOVICE:
+				sc_start SL_SUPERNOVICE,.BF_Delay,.BF_level; break;
+			case JOB_KNIGHT:
+				sc_start SL_KNIGHT,.BF_Delay,.BF_level; break;
+			case JOB_WIZARD:
+				sc_start SL_WIZARD,.BF_Delay,.BF_level; break;
+			case JOB_PRIEST:
+				sc_start SL_PRIEST,.BF_Delay,.BF_level; break;
+			case JOB_BARD:
+				sc_start SL_BARDDANCER,.BF_Delay,.BF_level; break;
+			case JOB_DANCER:
+				sc_start SL_BARDDANCER,.BF_Delay,.BF_level; break;
+			case JOB_ROGUE:
+				sc_start SL_ROGUE,.BF_Delay,.BF_level; break;
+			case JOB_ASSASSIN:
+				sc_start SL_ASSASSIN,.BF_Delay,.BF_level; break;
+			case JOB_BLACKSMITH:
+				sc_start SL_BLACKSMITH,.BF_Delay,.BF_level; break;
+			case JOB_HUNTER:
+				sc_start SL_HUNTER,.BF_Delay,.BF_level; break;
+			case JOB_SOUL_LINKER:
+				sc_start SL_SOULLINKER,.BF_Delay,.BF_level; break;
+		}
 	}
 	if (.IsCP) {
 		sc_start SC_CP_WEAPON,.BF_Delay,.BF_level;
@@ -106,8 +144,9 @@
 		.BF_level = 10;												// Base level for buffs
 		.IsBuffEXP = 1;												// Also buff EXP? (1: yes / 0: no).
 		.IsBuffsAB = 1;												// Also buff players? (1: yes / 0: no) AB only.
-		.IsBuffsETC = 0;											// Also buff players? (1: yes / 0: no) Buff ETC.
+		.IsBuffsETC = 1;											// Also buff players? (1: yes / 0: no) Buff ETC.
 		.IsBuffsBRAGI = 1;											// Also buff players? (1: yes / 0: no) Buff BRAGI.
+		.IsBuffSoullink = 0;										// Also buff players? (1: yes / 0: no) Buff Soullink.
 		.IsIndentified = 1;											// Also indentified item? (1: yes / 0: no)
 		.Delay = 3;													// Heal delay, in seconds
 		.Food = 0;													// Also food buff for players? (1: yes / 0: no)
