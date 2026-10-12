@@ -3,10 +3,10 @@
 // ===== Developed By: =====================================================
 // = ZilverNet
 // ===== Date: =============================================================
-// = 2026-05-28
+// = 2026-06-21
 // ===== Update detailed: ==================================================
-// = V. 1.1 [Refactor by Gemini 3.5 Flash Extended]
-// = Fixed Player Variable Leak & Dupes Exploit
+// = V. 1.1 [Refactor by Gemini 3.5 Flash Extended] - Fixed Player Variable Leak & Dupes Exploit.
+// = V. 1.2 (2026-06-21) - Fixed for Enchantgrade.
 // ===== Script ============================================================
 
 -	script	Enchanter	-,{
@@ -55,7 +55,9 @@
 		.@equip_id = getequipid(.@part);
 		.@slots = getitemslots(.@equip_id);
 		setarray .@equip_card[0], getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
-		.@equip_refine = getequiprefinerycnt(.@part);
+		.@equip_refine = getequiprefinerycnt(.@part);		
+		.@equip_grade = getenchantgrade(.@part); 
+		if (.@equip_grade < 0) { .@equip_grade = 0; }
 		
 		for(.@s = 0; .@s < 4; ++.@s) {
 			if (.@equip_card[.@s] == 0) {
@@ -153,7 +155,12 @@
         delitem .@chosen_stone_id, 1;
         
         .@equip_card[.@chosen_slot] = .@chosen_stone_id;
-        getitem2 .@equip_id, 1, 1, .@equip_refine, 0, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3];
+
+        cleararray .@rand_id[0], 0, 1;
+        cleararray .@rand_val[0], 0, 1;
+        cleararray .@rand_param[0], 0, 1;
+
+        getitem4 .@equip_id, 1, 1, .@equip_refine, 0, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3], .@equip_grade, .@rand_id, .@rand_val, .@rand_param;
         equip .@equip_id;
 		
 		specialeffect2 EF_REPAIRWEAPON;
